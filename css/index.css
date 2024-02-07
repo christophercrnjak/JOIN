@@ -1,3 +1,42 @@
-.head_elements img {
-    background-color: rgb(246, 247, 248);
+.container {
+    background-color: var(--bgwhite);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
+
+.logo {
+  position: absolute;
+  top: 80px;
+  left: 77px;
+}
+
+.sign_up {
+  position: absolute;
+  top: 67px;
+  right: 122px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 279px;
+  height: 49px;
+}
+
+.sign_up span {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.button_grey {
+  color: white;
+  background-color: var(--bgdarkblue);
+  font-size: 16px;
+  border-radius: 8px;
+  padding: 15px 16px 15px 16px;
+  font-weight: bold;
+}
+
+.button_grey:hover {
+  cursor: pointer;
+}
