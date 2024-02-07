@@ -1,13 +1,12 @@
 @font-face {
   font-family: Inter;
-  src: url(/Fonts/Inter-VariableFont_slnt,wght.ttf);
+  src: url(/fonts/Inter-VariableFont_slnt,wght.ttf);
 } 
 :root {
     --bgdarkblue: #2a3647;
     --bgwhite: #f6f7f8;
     --blue: #29abe2;
     --overlaybgwhite: #ffff;
-    --mainfonts: url();
   }
 
   body {
