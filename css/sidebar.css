@@ -1,0 +1,16 @@
+.head_main_navbar {
+    background-color: var(--bgwhite);
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+
+}
+.sidebar {
+    background-color: var(--bgdarkblue);
+    height: 100vh;
+    width: 20%;
+}
+.sidebar a {
+    text-decoration: none;
+    color: var(--bgwhite);
+}
