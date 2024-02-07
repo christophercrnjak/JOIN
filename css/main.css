@@ -1,0 +1,8 @@
+:root {
+    --blue: #ff1e1e;
+    --white: #ffffff;
+  }
+  .center {
+    display: flex;
+    justify-content: center;
+  }
