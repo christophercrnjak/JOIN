@@ -1,0 +1,24 @@
+[
+    {
+    "title": "",
+    "description": "",
+    "category": "",
+    "contacts": {
+                "firstName": "",
+                "secondName": ""
+        },
+    "dueDate": "",
+    "priority": "",
+    "subtasks": {
+        "task_1": {
+            "name": "",
+            "done": ""
+        },
+        "task_2": {
+            "name": "",
+            "done": ""
+        }
+    },
+    "status": ""
+    }
+]
