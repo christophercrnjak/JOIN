@@ -40,3 +40,13 @@
 .button_grey:hover {
   cursor: pointer;
 }
+
+.line_break {
+  height: 3px;
+  width: 150px;
+  border-color: var(--blue);
+}
+
+h1 {
+  margin: 0;
+}
