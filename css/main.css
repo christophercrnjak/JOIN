@@ -2,6 +2,12 @@
     --blue: #ff1e1e;
     --white: #ffffff;
   }
+
+  body {
+    margin: 0;
+    background-color: rgb(246, 247, 248);
+  }
+
   .center {
     display: flex;
     justify-content: center;
