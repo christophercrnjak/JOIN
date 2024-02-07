@@ -1,6 +1,3 @@
-*{
-   
-}
 .head_main_navbar {
     background-color: var(--bgwhite);
     width: 100%;
@@ -8,12 +5,18 @@
     justify-content: space-evenly;
     position: absolute;
 }
+
 .sidebar {
     background-color: var(--bgdarkblue);
     height: 100vh;
-    width: 20%;
+    width: 15%;
     position: absolute;
 }
+
+ul, ol {
+    list-style-type: none;
+}
+
 .sidebar a {
     text-decoration: none;
     color: var(--bgwhite);
