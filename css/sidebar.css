@@ -3,12 +3,14 @@
     width: 100%;
     display: flex;
     justify-content: space-evenly;
+    position: absolute;
 
 }
 .sidebar {
     background-color: var(--bgdarkblue);
     height: 100vh;
     width: 20%;
+    position: absolute;
 }
 .sidebar a {
     text-decoration: none;
