@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/board.css">
+</head>
+
+<body>
+    <div class="main_richard_board">
+        <aside class="board_aside_richard">
+
+        </aside>
+        <div class="board_container_richard">
+            <nav class="navbar_board_richard"></nav>
+            <section class="container_board_richard">
+                <header class="board_header">
+                    <div class="header_text">Board</div>
+                    <div class="search_add">
+                        <div class="search">
+                            <input type="text" placeholder="Find Task">
+                            <div class="search_right">
+                                <div class="line_search"></div>
+                                <a onclick="searchTask()"><img src="img/search.png" alt=""></a>
+                            </div>
+                        </div>
+                        <a class="add_task_btn"> Add task  <span class="plus_add_btn">+</span></a>
+                    </div>
+                </header>
+                <section class="board_content">
+                    <div class="board_column">
+                        <div class="board_column_head">
+                            <div class="board_column_head_text">To do</div>
+                            <div class="board_column_head_add_btn">+</div>
+                        </div>
+                        <div id="board_column_task_container">
+                            <div class="no_task">No Task To do</div>
+                        </div>
+                    </div>
+                    <div class="board_column">
+                        <div class="board_column_head">
+                            <div class="board_column_head_text">In progress</div>
+                            <div class="board_column_head_add_btn">+</div>
+                        </div>
+                        <div id="board_column_task_container">
+                            <article class="task">
+                                <div class="task_category">User Story</div>
+                                <div class="task_title">Kochwelt Page & Recipe Recommender</div>
+                                <div class="task_description">Build start page with recipe recommendation...</div>
+                                <div class="task_progress">
+                                    <div class="progressbar">
+                                        <div class="progressbar_blue"></div>
+                                    </div>
+                                    <div class="progressbar_text">1/2 Subtasks</div>
+                                </div>
+                                <div class="task_members_prio">
+                                    <div class="task_members">
+                                        <div class="member_cycle orange pos1">AM</div>
+                                        <div class="member_cycle turkies pos2">EM</div>
+                                        <div class="member_cycle violett pos3">MB</div>
+                                    </div>
+                                    <div class="task_prio">
+                                        <img src="img/Priority symbols.png" alt="">
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                    <div class="board_column">
+                        <div class="board_column_head">
+                            <div class="board_column_head_text">Await feedback</div>
+                            <div class="board_column_head_add_btn">+</div>
+                        </div>
+                        <div id="board_column_task_container"></div>
+                    </div>
+                    <div class="board_column">
+                        <div class="board_column_head">
+                            <div class="board_column_head_text">Done</div>
+                            <div class="board_column_head_add_btn">+</div>
+                        </div>
+                        <div id="board_column_task_container"></div>
+                    </div>
+                    
+                </section>
+            </section>
+        </div>
+    </div>
+</body>
+
+</html>
