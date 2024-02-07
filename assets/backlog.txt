@@ -6,5 +6,5 @@ jsDoc for all functions in english
 
 all comments in english
 
-
+main element of all pages has the ID: "container"
 
