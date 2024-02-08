@@ -6,16 +6,60 @@ body {
     margin: 0;
 }
 
+.dialog_show_task {
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .task_dialog {
+        width: 525px;
+        height: 931px;
+        border-radius: 30px;
+        background-color: white;
+        padding: 48px 40px 48px 40px;
+    }
+
+        .category_close {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .close {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+            .line {
+                position: absolute;
+                width: 1px;
+                height: 20px;
+                background-color: black;
+              }
+      
+            .line.horizontal {
+              transform: rotate(45deg);
+            }
+          
+            .line.vertical {
+              transform: rotate(-45deg);
+            }
+
 .main_richard_board {
     display: flex;
     height: 100vh;
     background-color: rgb(246, 247, 248);
 }
-    .board_aside_richard {
-        width: 232px;
-        height: 100vh;
-        background-color: rgb(41, 54, 71);
-    }
 
     .board_container_richard {
         height: 100vh;
