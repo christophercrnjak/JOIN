@@ -1,6 +1,7 @@
 body {
   height: 100vh;
   display: flex;
+  /* flex-direction: column; */
   justify-content: center;
   align-items: center;
 }
@@ -14,7 +15,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* row-gap: 32px; */
   background-color: var(--bgwhite);
   box-shadow: 0px 0px 14px 3px #0000000A; /* not working */
 }
@@ -53,16 +53,13 @@ body {
 .login_section {
   background-color: white;
   border-radius: 30px;
-  /* want to fix it with padding - does noch work */
-  /* width: 652px;
-  height: 493px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* does not work */
+  padding: 48px 48px 48px 48px;
   row-gap: 32px;
-  padding: 148px, 115px, 48px, 115px
+  width: 45%;
 }
 
 .headline {
@@ -88,6 +85,7 @@ h1 {
   flex-direction: column;
   justify-content: space-between;
   row-gap: 20px;
+  width: 65%;
 }
 
 .input_fields {
@@ -100,7 +98,6 @@ h1 {
   border-radius: 10px;
   border: 1px solid rgb(209, 209, 209);
   padding: 12px 21px 12px 21px;
-  width: 422px;
 }
 
 .btns {
@@ -128,4 +125,9 @@ h1 {
 
 .remember_me {
   margin-left: 39px;
+}
+
+.legal_section {
+  display: flex;
+  gap: 16px;
 }
