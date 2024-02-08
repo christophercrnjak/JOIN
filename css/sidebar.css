@@ -20,10 +20,15 @@
 .sidebar {
     background-color: var(--bgdarkblue);
     height: 100vh;
-    width: 15%;
+    width: 232px;
     position: absolute;
 
 }
+
+.logo_sidebar {
+    padding-top: 60px;
+}
+
 
 ul, ol {
     list-style-type: none;
@@ -31,7 +36,7 @@ ul, ol {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    padding: 0;
+    row-gap: 15px;
 }
 
 .sidebar a {
@@ -40,23 +45,21 @@ ul, ol {
 }
 
 .sidebar li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding-top: 8px;
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
     flex-direction: row;
-
 }
 
 .sidebar li:hover {
     background-color: #39495f;
-    width: 100%;
     cursor: pointer;
 }
 
 .section_sidebar {
     height: 100vh;
-    width: 232px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -65,7 +68,7 @@ ul, ol {
 }
 
 .section_sidebar img {
-    padding: 16px;
+    padding-right: 8px;
 }
 
 .sidebar_footer a:hover {
