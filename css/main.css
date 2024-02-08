@@ -14,7 +14,11 @@
     padding: 0;
     font-family: 'Inter', sans-serif;
   }
-  .center {
+  .display_center {
     display: flex;
     justify-content: center;
+    align-items: center;
+  }
+  .text_center {
+    text-align: center;
   }
