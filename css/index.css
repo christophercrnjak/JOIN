@@ -41,12 +41,25 @@
   cursor: pointer;
 }
 
-.line_break {
-  height: 3px;
-  width: 150px;
-  border-color: var(--blue);
+.headline {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 h1 {
   margin: 0;
+  font-size: 61px;
+  font-weight: 700;
+}
+
+.line_break {
+  height: 3px;
+  width: 150px;
+  background-color: var(--blue);
+}
+
+.content {
+  background-color: white;
+  border-radius: 30px;
 }
