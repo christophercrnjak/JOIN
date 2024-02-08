@@ -1,16 +1,23 @@
-.container {
-    background-color: var(--bgwhite);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .wrapper {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-  }
+.container {
+  position: relative;
+  inset: 0;
+  height: 100%;
+  max-width: 1440px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* row-gap: 32px; */
+  background-color: var(--bgwhite);
+  box-shadow: 0px 0px 14px 3px #0000000A; /* not working */
+}
 
 .logo {
   position: absolute;
@@ -43,20 +50,19 @@
   font-weight: bold;
 }
 
-.btn_sign_up:hover {
-  cursor: pointer;
-}
-
-.content {
+.login_section {
   background-color: white;
   border-radius: 30px;
-  width: 652px;
-  height: 493px;
+  /* want to fix it with padding - does noch work */
+  /* width: 652px;
+  height: 493px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  /* does not work */
   row-gap: 32px;
+  padding: 148px, 115px, 48px, 115px
 }
 
 .headline {
