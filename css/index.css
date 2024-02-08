@@ -28,7 +28,7 @@
   font-weight: 400;
 }
 
-.button_grey {
+.btn_sign_up {
   color: white;
   background-color: var(--bgdarkblue);
   font-size: 16px;
@@ -37,7 +37,7 @@
   font-weight: bold;
 }
 
-.button_grey:hover {
+.btn_sign_up:hover {
   cursor: pointer;
 }
 
@@ -66,10 +66,44 @@ h1 {
   background-color: var(--blue);
 }
 
-.input_area {}
+.input_area {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
 .input_fields {
   display: flex;
   flex-direction: column;
-  row-gap: 32px;
+  row-gap: 10px;
+}
+
+.input_fields input {
+  border-radius: 10px;
+  border: 1px solid rgb(209, 209, 209);
+  padding: 12px 21px 12px 21px;
+}
+
+.btns {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.btn_log_in {
+  color: white;
+  background-color: var(--bgdarkblue);
+  font-size: 21px;
+  border-radius: 8px;
+  padding: 15px 24px 15px 24px;
+  font-weight: bold;
+}
+
+.btn_guest_log_in {
+  color: var(--bgdarkblue);
+  background-color: white;
+  font-size: 21px;
+  border-radius: 8px;
+  padding: 15px 24px 15px 24px;
+  font-weight: bold;
 }
