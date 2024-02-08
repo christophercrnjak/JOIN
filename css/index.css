@@ -1,9 +1,15 @@
 .container {
     background-color: var(--bgwhite);
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+  }
+
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    align-content: center;
   }
 
 .logo {
@@ -46,6 +52,11 @@
   border-radius: 30px;
   width: 652px;
   height: 493px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 32px;
 }
 
 .headline {
@@ -70,6 +81,7 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  row-gap: 20px;
 }
 
 .input_fields {
@@ -82,12 +94,12 @@ h1 {
   border-radius: 10px;
   border: 1px solid rgb(209, 209, 209);
   padding: 12px 21px 12px 21px;
+  width: 422px;
 }
 
 .btns {
   display: flex;
-  justify-content: space-between;
-  gap: 10px;
+  gap: 35px;
 }
 
 .btn_log_in {
@@ -106,4 +118,8 @@ h1 {
   border-radius: 8px;
   padding: 15px 24px 15px 24px;
   font-weight: bold;
+}
+
+.remember_me {
+  margin-left: 39px;
 }
