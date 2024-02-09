@@ -15,17 +15,17 @@
 
 <body onload="includeHTML()">
     
-    <div class="dialog_show_task">
-        <div class="task__board_dialog">
-            <div class="category_close_board_dialog">
+    <div class="dialog_container">
+        <div class="task_dialog">
+            <div class="category_close">
                 <div class="task_category">User Story</div>
                 <div class="close">
                     <div class="line horizontal"></div>
                     <div class="line vertical"></div>
                 </div>
             </div>
-            <div class="title_board_dialog">Kochwelt Page & Recipe Recommender</div>
-            <div class="task_description_board_dialog">Build start page with recipe recommendation.</div>
+            <div class="task_title_dialog">Kochwelt Page & Recipe Recommender</div>
+            <div class="task_description_dialog">Build start page with recipe recommendation.</div>
             <div class="due_Date_board_dialog"></div>
             <div class="priority_board_dialog"></div>
             <div class=""></div>
@@ -35,127 +35,152 @@
     </div>
     
     <div class="board_container_">
+        
         <div w3-include-html="/assets/templates/sidebar.html"></div> 
-        <section class="container_board_">
-            <header class="board_header">
-                <div class="header_text">Board</div>
-                <div class="search_add">
-                    <div class="search">
-                        <input type="text" placeholder="Find Task">
-                        <div class="search_right">
-                            <div class="line_search"></div>
-                            <a onclick="searchTask()"><img src="./assets/templates/img/search.png" alt=""></a>
+        
+        <header class="board_header">
+            <div class="header_text">Board</div>
+            <div class="search_add">
+                <div class="search">
+                    <input id="task_to_be_found" type="text" placeholder="Find Task">
+                    <div class="search_right">
+                        <div class="line_search"></div>
+                        <a onclick="searchTask()"><img src="./assets/templates/img/search.png" alt=""></a>
+                    </div>
+                </div>
+                <a class="add_task_btn"> Add task <span class="plus_add_btn">+</span></a>
+            </div>
+        </header>
+
+        <section class="board_content">
+            
+            <!-- first column -->
+            <div class="board_column">
+                <div class="column_head">
+                    <div class="column_head_text">To do</div>
+                    <div class="column_head_add_btn">+</div>
+                </div>
+
+                <div id="task_container_Todo" class="task_container">
+                    <!-- task -->
+                    <div class="no_task">No Task To do</div>
+                </div>
+            </div>
+            
+            <!-- second column -->
+            <div class="board_column">
+                
+                <div class="board_column_head">
+                    <div class="board_column_head_text">In progress</div>
+                    <div class="board_column_head_add_btn">+</div>
+                </div>
+
+                <div id="task_container_InProgress" class="task_container">
+                    <!-- task -->
+                    <article class="task">
+                        <div class="task_category">User Story</div>
+                        <div class="task_title">Kochwelt Page & Recipe Recommender</div>
+                        <div class="task_description">Build start page with recipe recommendation...</div>
+                        <div class="task_progress">
+                            <div class="progressbar">
+                                <div class="progressbar_blue"></div>
+                            </div>
+                            <div class="progressbar_text">1/2 Subtasks</div>
                         </div>
-                    </div>
-                    <a class="add_task_btn"> Add task <span class="plus_add_btn">+</span></a>
+                        <div class="task_members_prio">
+                            <div class="task_members">
+                                <div class="member_cycle orange pos1">AM</div>
+                                <div class="member_cycle turkies pos2">EM</div>
+                                <div class="member_cycle violett pos3">MB</div>
+                            </div>
+                            <div class="task_prio">
+                                <img src="./assets/templates/img/Priority symbols Medium.png" alt="">
+                            </div>
+                        </div>
+                    </article>
                 </div>
-            </header>
-            <section class="board_content">
-                <div class="board_column">
-                    <div class="board_column_head">
-                        <div class="board_column_head_text">To do</div>
-                        <div class="board_column_head_add_btn">+</div>
-                    </div>
-                    <div id="board_column_task_container">
-                        <div class="no_task">No Task To do</div>
-                    </div>
+            </div>
+
+            <!-- third column -->
+            <div class="board_column">
+                <div class="board_column_head">
+                    <div class="board_column_head_text">Await feedback</div>
+                    <div class="board_column_head_add_btn">+</div>
                 </div>
-                <div class="board_column">
-                    <div class="board_column_head">
-                        <div class="board_column_head_text">In progress</div>
-                        <div class="board_column_head_add_btn">+</div>
-                    </div>
-                    <div id="board_column_task_container">
-                        <article class="task">
-                            <div class="task_category">User Story</div>
-                            <div class="task_title">Kochwelt Page & Recipe Recommender</div>
-                            <div class="task_description">Build start page with recipe recommendation...</div>
-                            <div class="task_progress">
-                                <div class="progressbar">
-                                    <div class="progressbar_blue"></div>
-                                </div>
-                                <div class="progressbar_text">1/2 Subtasks</div>
+
+                <div id="task_container_AwaitFeedback" class="task_container">
+
+                    <!-- task -->
+                    <article class="task">
+                        <div class="task_category turkies ">Technical Task</div>
+                        <div class="task_title">HTML Base Template Creation</div>
+                        <div class="task_description">Create reusable HTML base templates...</div>
+                        <div class="task_members_prio">
+                            <div class="task_members">
+                                <div class="member_cycle orange pos1">DE</div>
+                                <div class="member_cycle turkies pos2">BZ</div>
+                                <div class="member_cycle violett pos3">AS</div>
                             </div>
-                            <div class="task_members_prio">
-                                <div class="task_members">
-                                    <div class="member_cycle orange pos1">AM</div>
-                                    <div class="member_cycle turkies pos2">EM</div>
-                                    <div class="member_cycle violett pos3">MB</div>
-                                </div>
-                                <div class="task_prio">
-                                    <img src="./assets/templates/img/Priority symbols Medium.png" alt="">
-                                </div>
+                            <div class="task_prio">
+                                <img src="./assets/templates/img/Priority symbols Low.png" alt="">
                             </div>
-                        </article>
-                    </div>
+                        </div>
+                    </article>
+
+                    <!-- task -->
+                    <article class="task">
+                        <div class="task_category">User Story</div>
+                        <div class="task_title">Daily Kochwelt Recipe</div>
+                        <div class="task_description">Implement daily recipe and portion calculator...</div>
+                        <div class="task_members_prio">
+                            <div class="task_members">
+                                <div class="member_cycle orange pos1">EF</div>
+                                <div class="member_cycle turkies pos2">AS</div>
+                                <div class="member_cycle violett pos3">TW</div>
+                            </div>
+                            <div class="task_prio">
+                                <img src="./assets/templates/img/Priority symbols Medium.png" alt="">
+                            </div>
+                        </div>
+                    </article>
                 </div>
-                <div class="board_column">
-                    <div class="board_column_head">
-                        <div class="board_column_head_text">Await feedback</div>
-                        <div class="board_column_head_add_btn">+</div>
-                    </div>
-                    <div id="board_column_task_container">
-                        <article class="task">
-                            <div class="task_category turkies ">Technical Task</div>
-                            <div class="task_title">HTML Base Template Creation</div>
-                            <div class="task_description">Create reusable HTML base templates...</div>
-                            <div class="task_members_prio">
-                                <div class="task_members">
-                                    <div class="member_cycle orange pos1">DE</div>
-                                    <div class="member_cycle turkies pos2">BZ</div>
-                                    <div class="member_cycle violett pos3">AS</div>
-                                </div>
-                                <div class="task_prio">
-                                    <img src="./assets/templates/img/Priority symbols Low.png" alt="">
-                                </div>
-                            </div>
-                        </article>
-                        <article class="task">
-                            <div class="task_category">User Story</div>
-                            <div class="task_title">Daily Kochwelt Recipe</div>
-                            <div class="task_description">Implement daily recipe and portion calculator...</div>
-                            <div class="task_members_prio">
-                                <div class="task_members">
-                                    <div class="member_cycle orange pos1">EF</div>
-                                    <div class="member_cycle turkies pos2">AS</div>
-                                    <div class="member_cycle violett pos3">TW</div>
-                                </div>
-                                <div class="task_prio">
-                                    <img src="./assets/templates/img/Priority symbols Medium.png" alt="">
-                                </div>
-                            </div>
-                        </article>
-                    </div>
+            </div>
+
+            <!-- fourth column -->
+            <div class="board_column">
+                
+                <div class="board_column_head">
+                    <div class="board_column_head_text">Done</div>
+                    <div class="board_column_head_add_btn">+</div>
                 </div>
-                <div class="board_column">
-                    <div class="board_column_head">
-                        <div class="board_column_head_text">Done</div>
-                        <div class="board_column_head_add_btn">+</div>
-                    </div>
-                    <div id="board_column_task_container">
-                        <article class="task">
-                            <div class="task_category turkies ">Technical Task</div>
-                            <div class="task_title">CSS Architecture Planning</div>
-                            <div class="task_description">Define CSS naming conventions and structure...</div>
-                            <div class="task_progress">
-                                <div class="progressbar">
-                                    <div class="progressbar_blue_hundred"></div>
-                                </div>
-                                <div class="progressbar_text">2/2 Subtasks</div>
+                
+                <div id="task_container_Done" class="task_container">
+
+                    <!-- task -->
+                    <article class="task">
+                        <div class="task_category turkies ">Technical Task</div>
+                        <div class="task_title">CSS Architecture Planning</div>
+                        <div class="task_description">Define CSS naming conventions and structure...</div>
+                        <div class="task_progress">
+                            <div class="progressbar">
+                                <div class="progressbar_blue_hundred"></div>
                             </div>
-                            <div class="task_members_prio">
-                                <div class="task_members">
-                                    <div class="member_cycle orange pos1">SM</div>
-                                    <div class="member_cycle turkies pos2">BZ</div>
-                                </div>
-                                <div class="task_prio">
-                                    <img src="./assets/templates/img/Priority symbols Urgent.png" alt="">
-                                </div>
+                            <div class="progressbar_text">2/2 Subtasks</div>
+                        </div>
+                        <div class="task_members_prio">
+                            <div class="task_members">
+                                <div class="member_cycle orange pos1">SM</div>
+                                <div class="member_cycle turkies pos2">BZ</div>
                             </div>
-                        </article>
-                    </div>
+                            <div class="task_prio">
+                                <img src="./assets/templates/img/Priority symbols Urgent.png" alt="">
+                            </div>
+                        </div>
+                    </article>
+
                 </div>
-            </section>
+            </div>
+
         </section>
     </div>
 

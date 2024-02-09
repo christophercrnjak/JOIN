@@ -12,6 +12,19 @@
   --bgwhite: #f6f7f8e7;
   --blue: #29abe2;
   --overlaybgwhite: #ffff;
+
+  /* member-colors 
+     compared to https://codepen.io/pavlovsk/pen/zYvbGKe 
+     created by Richard Wezel                             */
+  --mediumslateblue: #6E52FF;
+  --blueviolet: #9327FF;
+  --orange: #FF7A00;
+  --violet: #FC71FF;
+  --yellow: #FFBB2B;
+  --turquoise: #1FD7C1;
+  --darkslateblue: #462F8A;
+  --red: #FF4646;
+  --deepskyblue: #00BEE8;
 }
 
 * {
