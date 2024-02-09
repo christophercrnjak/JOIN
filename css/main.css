@@ -5,28 +5,69 @@
 @font-face {
   font-family: Inter;
   src: url(/fonts/Inter-VariableFont_slnt,wght.ttf);
-} 
+}
+
 :root {
-    --bgdarkblue: #2a3647;
-    --bgwhite: #f6f7f8e7;
-    --blue: #29abe2;
-    --overlaybgwhite: #ffff;
-  }
+  --bgdarkblue: #2a3647;
+  --bgwhite: #f6f7f8e7;
+  --blue: #29abe2;
+  --overlaybgwhite: #ffff;
+}
 
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Inter', sans-serif;
-  }
-  .display_center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .text_center {
-    text-align: center;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+}
 
-  .d-none {
-    display: none;
-  }
+.display_center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text_center {
+  text-align: center;
+}
+
+.d-none {
+  display: none;
+}
+
+button {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  font-weight: bold;
+  transition: transform 0.3 ease-in;
+  border-radius: 8px;
+}
+
+button:hover {
+  transform: scale(1.02);
+}
+
+.btn_grey {
+  background-color: var(--bgdarkblue);
+  color: white;
+}
+
+.btn_grey:hover {
+  background-color: var(--blue);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.btn_transparent {
+  background-color: white;
+  color: var(--bgdarkblue);
+  border: 1px solid var(--bgdarkblue) !important;
+}
+
+.btn_transparent:hover {
+  color: var(--blue);
+  border: 1px solid var(--blue) !important;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}

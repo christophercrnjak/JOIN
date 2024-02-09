@@ -1,3 +1,6 @@
+
+/* head Navbar  */
+
 .head_main_navbar {
     background-color: var(--bgwhite);
     width: 100%;
@@ -17,6 +20,9 @@
     left: 15rem;
     /* position relative nochmals überarbeiten */
 }
+
+/* Sidebar  */
+
 .sidebar {
     background-color: var(--bgdarkblue);
     height: 100vh;
@@ -30,30 +36,23 @@
 }
 
 
-ul, ol {
-    list-style-type: none;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    row-gap: 15px;
-}
+
 
 .sidebar a {
     text-decoration: none;
     color: var(--bgwhite);
 }
 
-.sidebar li {
+.side_navbar {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 8px;
     display: flex;
     flex-direction: row;
+    
 }
 
-.sidebar li:hover {
+.side_navbar:hover {
     background-color: #39495f;
     cursor: pointer;
 }

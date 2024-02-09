@@ -1,16 +1,22 @@
-.container {
-    background-color: var(--bgwhite);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bgwhite);
+}
 
-  .wrapper {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-  }
+.container {
+  position: relative;
+  inset: 0;
+  height: 100%;
+  max-width: 1440px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 .logo {
   position: absolute;
@@ -35,28 +41,21 @@
 }
 
 .btn_sign_up {
-  color: white;
-  background-color: var(--bgdarkblue);
   font-size: 16px;
-  border-radius: 8px;
   padding: 15px 16px 15px 16px;
-  font-weight: bold;
 }
 
-.btn_sign_up:hover {
-  cursor: pointer;
-}
-
-.content {
+.login_section {
+  box-shadow: 0px 0px 14px 3px #0000000A;
   background-color: white;
   border-radius: 30px;
-  width: 652px;
-  height: 493px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 48px 48px 48px 48px;
   row-gap: 32px;
+  width: 45%;
 }
 
 .headline {
@@ -82,6 +81,7 @@ h1 {
   flex-direction: column;
   justify-content: space-between;
   row-gap: 20px;
+  width: 65%;
 }
 
 .input_fields {
@@ -94,7 +94,6 @@ h1 {
   border-radius: 10px;
   border: 1px solid rgb(209, 209, 209);
   padding: 12px 21px 12px 21px;
-  width: 422px;
 }
 
 .btns {
@@ -103,23 +102,37 @@ h1 {
 }
 
 .btn_log_in {
-  color: white;
-  background-color: var(--bgdarkblue);
   font-size: 21px;
-  border-radius: 8px;
   padding: 15px 24px 15px 24px;
-  font-weight: bold;
 }
 
 .btn_guest_log_in {
-  color: var(--bgdarkblue);
-  background-color: white;
   font-size: 21px;
-  border-radius: 8px;
   padding: 15px 24px 15px 24px;
-  font-weight: bold;
 }
 
 .remember_me {
   margin-left: 39px;
+}
+
+.legal_section {
+  position: absolute;
+  bottom: 30px;
+  display: flex;
+  gap: 16px;
+}
+
+.link_wrapper {
+  width: 110px;
+  text-align: center;
+}
+
+.legal_section a {
+  color: rgb(168, 168, 168);
+  text-decoration: none;
+}
+
+.legal_section a:hover {
+  font-weight: 700;
+  color: var(--blue);
 }
