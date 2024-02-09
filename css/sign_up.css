@@ -78,21 +78,10 @@ body {
     padding: 12px 21px 12px 21px;
   }
   
-  .btns {
-    display: flex;
-    gap: 35px;
-  }
-  
-  .btn_log_in {
-    padding: 15px 24px 15px 24px;
-  }
-  
-  .btn_guest_log_in {
-    padding: 15px 24px 15px 24px;
-  }
-  
-  .remember_me {
+  .accept_privacy_policy {
     margin-left: 39px;
+    display: flex;
+    gap: 8px;
   }
   
   #checkbox {
@@ -105,6 +94,14 @@ body {
     border-color: var(--blue);
     border: solid 3px black;
     box-shadow: 0px 0px 14px 3px #0000000A;
+  }
+
+  .accept_privacy_policy p a{
+    color: var(--blue);
+  }
+  
+  .btn_sign_up {
+    padding: 15px 24px 15px 24px;
   }
   
   .legal_section {

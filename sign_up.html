@@ -7,7 +7,7 @@
     <link rel="icon" type="image/x-icon" href="/assets/templates/img/favicon.png">
     <title>JOIN</title>
     <link rel="stylesheet" href="./css/main.css" />
-    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="./css/sign_up.css" />
     <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon" />
     <script src="./js/main.js"></script>
 </head>
@@ -29,7 +29,6 @@
                         placeholder="Name"
                         oninvalid="this.setCustomValidity('Please only use letters.')"
                         oninput="this.setCustomValidity('')">
-                        >
                     <input required
                         type="email"
                         placeholder="Email"
@@ -46,16 +45,14 @@
                         oninvalid="this.setCustomValidity('You forgot to enter your password.')"
                         oninput="this.setCustomValidity('')">
                 </div>
-                <div class="remember_me">
+                <div class="accept_privacy_policy">
                     <input type="checkbox" id="checkbox" />
-                    <span>Remember me</span>
+                    <p>I accept the <a href="./privacy_policy.html">Privacy policy</a></p>
                 </div>
             </div>
 
-            <div class="btns">
-                <button class="btn_log_in btn_grey">Log in</button>
-                <button class="btn_transparent btn_guest_log_in">Guest Log in</button>
-            </div>
+            <button class="btn_sign_up btn_grey">Sign up</button>
+
         </form>
 
         <div class="legal_section">
