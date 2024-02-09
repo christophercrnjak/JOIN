@@ -9,6 +9,7 @@
     justify-content: space-around;
     align-items: center;
     position: absolute;
+    position: fixed;
 }
 #navbarHeadIcon {
     height: 2rem;
@@ -28,15 +29,13 @@
     height: 100vh;
     width: 232px;
     position: absolute;
+    position: fixed;
 
 }
 
 .logo_sidebar {
     padding-top: 60px;
 }
-
-
-
 
 .sidebar a {
     text-decoration: none;
@@ -45,14 +44,24 @@
 
 .side_navbar {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     display: flex;
-    flex-direction: row;
-    
+    flex-direction: column;
+   
 }
 
-.side_navbar:hover {
+.side_navbar_section {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    padding-left: 48px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    width: 232px;
+}
+.side_navbar_section:hover {
     background-color: #39495f;
     cursor: pointer;
 }
@@ -74,4 +83,7 @@
     color: var(--blue);
 }
 
+.sidebar_footer {
+    gap: 8px;
+}
 /* Aktives Element #091931 */
