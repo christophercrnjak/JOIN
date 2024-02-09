@@ -12,15 +12,16 @@
     <link rel="stylesheet" href="css/sidebar.css">
     <link rel="stylesheet" href="./Fonts/Inter-VariableFont_slnt,wght.ttf">
     <script src="./js/include.js"></script>
+    <script src="js/board.js"></script>
 </head>
 
 <body onload="includeHTML()">
     
-    <div class="dialog_container">
+    <div id="dialog_container" class="dialog_container d-none">
         <div class="task_dialog">
             <div class="category_close">
                 <div class="task_category">User Story</div>
-                <a class="close">
+                <a onclick="close_open_Dialog()" class="close">
                     <div class="line horizontal"></div>
                     <div class="line vertical"></div>
                 </a>
@@ -106,15 +107,14 @@
             
             <!-- second column -->
             <div class="board_column">
-                
-                <div class="board_column_head">
-                    <div class="board_column_head_text">In progress</div>
-                    <div class="board_column_head_add_btn">+</div>
+                <div class="column_head">
+                    <div class="column_head_text">In progress</div>
+                    <div class="column_head_add_btn">+</div>
                 </div>
 
                 <div id="task_container_InProgress" class="task_container">
                     <!-- task -->
-                    <article class="task">
+                    <article onclick="close_open_Dialog()" class="task">
                         <div class="task_category">User Story</div>
                         <div class="task_title">Kochwelt Page & Recipe Recommender</div>
                         <div class="task_description">Build start page with recipe recommendation...</div>
@@ -140,9 +140,9 @@
 
             <!-- third column -->
             <div class="board_column">
-                <div class="board_column_head">
-                    <div class="board_column_head_text">Await feedback</div>
-                    <div class="board_column_head_add_btn">+</div>
+                <div class="column_head">
+                    <div class="column_head_text">Await feedback</div>
+                    <div class="column_head_add_btn">+</div>
                 </div>
 
                 <div id="task_container_AwaitFeedback" class="task_container">
@@ -186,9 +186,9 @@
             <!-- fourth column -->
             <div class="board_column">
                 
-                <div class="board_column_head">
-                    <div class="board_column_head_text">Done</div>
-                    <div class="board_column_head_add_btn">+</div>
+                <div class="column_head">
+                    <div class="column_head_text">Done</div>
+                    <div class="column_head_add_btn">+</div>
                 </div>
                 
                 <div id="task_container_Done" class="task_container">
