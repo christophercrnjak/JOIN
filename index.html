@@ -8,15 +8,11 @@
     <title>JOIN</title>
     <link rel="stylesheet" href="./css/main.css" />
     <link rel="stylesheet" href="./css/index.css" />
-    <link
-      rel="shortcut icon"
-      href="./assets/img/favicon.png"
-      type="image/x-icon"
-    />
+    <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon" />
     <script src="./js/main.js"></script>
-  </head>
+</head>
 
-  <body>
+<body>
     <div class="container">
         <img class="logo" src="./assets/img/logo.svg" alt="" />
         <div class="sign_up">
@@ -24,19 +20,27 @@
             <button class="btn_sign_up btn_grey">Sign up</button>
         </div>
 
-        <div class="login_section">
+        <form class="login_section" onsubmit="handleLogin(); return false">
             <div class="headline">
                 <h1>Log in</h1>
-                <div class="line_break"></div>
+                <hr>
             </div>
 
             <div class="input_area">
                 <div class="input_fields">
-                    <input type="text" />
-                    <input type="text" />
+                    <input required
+                        type="email"
+                        placeholder="Email"
+                        oninvalid="this.setCustomValidity('Please use a valid e-mail address.')"
+                        oninput="this.setCustomValidity('')">
+                    <input required
+                        type="password"
+                        placeholder="Password"
+                        oninvalid="this.setCustomValidity('You forgot to enter your password.')"
+                        oninput="this.setCustomValidity('')">
                 </div>
                 <div class="remember_me">
-                    <input type="checkbox" name="" id="" />
+                    <input type="checkbox" id="checkbox" />
                     <span>Remember me</span>
                 </div>
             </div>
@@ -45,7 +49,7 @@
                 <button class="btn_log_in btn_grey">Log in</button>
                 <button class="btn_transparent btn_guest_log_in">Guest Log in</button>
             </div>
-        </div>
+        </form>
 
         <div class="legal_section">
             <div class="link_wrapper">
@@ -57,5 +61,8 @@
         </div>
 
     </div>
-  </body>
+
+    <script src="./js/index.js"></script>
+</body>
+
 </html>

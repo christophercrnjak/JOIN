@@ -62,6 +62,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  row-gap: 16px;
 }
 
 h1 {
@@ -70,10 +71,12 @@ h1 {
   font-weight: 700;
 }
 
-.line_break {
-  height: 3px;
-  width: 150px;
-  background-color: var(--blue);
+hr {
+width: 70%;
+align-self: center;
+height: 3px;
+border: none;
+background-color: var(--blue);
 }
 
 .input_area {
@@ -111,6 +114,18 @@ h1 {
 
 .remember_me {
   margin-left: 39px;
+}
+
+#checkbox {
+  transition: transform 0.3s ease-in;
+  border-radius: 2px;
+}
+
+#checkbox:hover {
+  transform: scale(1.05);
+  border-color: var(--blue);
+  border: solid 3px black;
+  box-shadow: 0px 0px 14px 3px #0000000A;
 }
 
 .legal_section {
