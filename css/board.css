@@ -1,337 +1,236 @@
 
-.dialog_container {
-    background-color: rgba(0, 0, 0, 0.2);
-    z-index: 999;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.board_container {
+    height: 100vh;
+    width: 100%;
+    background-color: var(--bgwhite);
 }
-
-    .task_dialog {
-        width: 525px;
-        height: 931px;
-        border-radius: 30px;
-        background-color: white;
-        padding: 48px 40px 48px 40px;
-    }
-
-        .category_close {
+        .board_header {
             display: flex;
+            margin: 79.5px 88px 79.5px 64px;
             justify-content: space-between;
-        }
-
-        .close {
-            width: 32px;
-            height: 32px;
-            display: flex;
-            justify-content: center;
             align-items: center;
         }
-
-            .line {
-                position: absolute;
-                width: 1px;
-                height: 17px;
-                background-color: black;
-              }
-      
-            .line.horizontal {
-              transform: rotate(45deg);
+            .header_text {
+                color: black;
+                font-size: 61px;
+                font-weight: 700;
+                font-family: 'Inter', sans-serif;
             }
-          
-            .line.vertical {
-              transform: rotate(-45deg);
-            }
-        
-        .task_title_dialog {
-            font-family: 'Inter', sans-serif;
-            font-weight: 700;
-            color: black;
-            font-size: 61px;
-            line-height: 73.2px;
-            margin-top: 24px;
-        }
-
-        .task_description_dialog {
-            font-family: 'Inter', sans-serif;
-            font-weight: 400;
-            color: black;
-            font-size: 20px;
-            line-height: 24px;
-            margin-top: 24px;
-        }
-
-    .board_container {
-        height: 100vh;
-        width: 100%;
-        background-color: var(--bgwhite);
-    }
-
-            .board_header {
+            .search_add {
                 display: flex;
-                margin: 79.5px 88px 79.5px 64px;
-                justify-content: space-between;
+                gap: 30px;
                 align-items: center;
             }
-
-                .header_text {
-                    color: black;
-                    font-size: 61px;
-                    font-weight: 700;
-                    font-family: 'Inter', sans-serif;
-                }
-
-                .search_add {
+                .search {
+                    width: 312px;
+                    background-color: white;
+                    height: 48px;
                     display: flex;
-                    gap: 30px;
+                    border-radius: 10px;
+                    justify-content: space-between;
                     align-items: center;
+                    padding: 10px;
+                    border: 1px solid #A8A8A8;
                 }
-
-                    .search {
-                        width: 312px;
-                        background-color: white;
-                        height: 48px;
-                        display: flex;
-                        border-radius: 10px;
-                        justify-content: space-between;
-                        align-items: center;
-                        padding: 10px;
-                        border: 1px solid #A8A8A8;
+                    .search input {
+                        height: 100%;
+                        font-size: 20px;
+                        font-weight: 400;
+                        color: rgba(209, 209, 209, 0.2);
+                        width: 100%;
+                        border: none;
                     }
-
-                        .search input {
-                            height: 100%;
-                            font-size: 20px;
-                            font-weight: 400;
-                            color: rgba(209, 209, 209, 0.2);
-                            width: 100%;
-                            border: none;
+                    .search input::placeholder {
+                        color: rgb(209, 209, 209);
+                    }
+                    .search_right {
+                        display: flex;
+                        gap: 16px;
+                        height: 100%;
+                        position: relative;
+                    }
+                        .line_search {
+                            height: 90%;
+                            width: 1px;
+                            background-color: rgba(0, 0, 0, 0.2);
+                            position: absolute;
+                            right: 40px;
                         }
-
-                        .search input::placeholder {
-                            color: rgb(209, 209, 209);
+                        .search a {
+                            position: absolute;
+                            right: 0;
+                            top: -3px;
                         }
-
-
-                        .search_right {
-                            display: flex;
-                            gap: 16px;
-                            height: 100%;
-                            position: relative;
+                        .search img {
+                            width: 32px;
+                            height: 32px;
                         }
-
-                            .line_search {
-                                height: 90%;
-                                width: 1px;
-                                background-color: rgba(0, 0, 0, 0.2);
-                                position: absolute;
-                                right: 40px;
-                            }
-
-                            .search a {
-                                position: absolute;
-                                right: 0;
-                                top: -3px;
-                            }
-
-                            .search img {
-                                width: 32px;
-                                height: 32px;
-                            }
-
-                    .add_task_btn {
-                        background-color: var(--bgdarkblue);
-                        padding:  16px, 8px, 16px;
-                        border-radius: 10px;
-                        height: 48px;
-                        width: 160px;
-                        border: 1px solid rgb(41, 54, 71);
-                        color: white;
+                .add_task_btn {
+                    background-color: var(--bgdarkblue);
+                    padding:  16px, 8px, 16px;
+                    border-radius: 10px;
+                    height: 48px;
+                    width: 160px;
+                    border: 1px solid rgb(41, 54, 71);
+                    color: white;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 21px;
+                    font-family: 'Inter', sans-serif;
+                    font-weight: 700;
+                }
+                .plus_add_btn {
+                    font-size: 32px;
+                    padding-left: 10px;
+                    padding-bottom: 4px;
+                }
+    
+                
+        .board_content {
+            display: flex;
+            font-family: 'Inter', sans-serif;
+            margin: 64px;
+            height: 100%;
+            gap: 26px;
+        }
+            .board_column {
+                width: 25%;
+                height: 100%;
+                
+            }
+                .column_head {
+                    padding: 10px;
+                    display: flex;
+                    justify-content: space-between;
+                }
+                    .column_head_text {
+                        font-weight: bold;
+                        color: var(--bgdarkblue);
+                        font-size: 20px;
+                    }
+                    .column_head_add_btn {
+                        width: 24px;
+                        height: 24px;
+                        border-radius: 8px;
+                        padding: 3px;
+                        border: 3px solid var(--bgdarkblue);
                         display: flex;
                         justify-content: center;
                         align-items: center;
-                        font-size: 21px;
-                        font-family: 'Inter', sans-serif;
-                        font-weight: 700;
+                        padding-bottom: 5px;
+                        font-weight: 900;
                     }
-
-                    .plus_add_btn {
-                        font-size: 32px;
-                        padding-left: 10px;
-                        padding-bottom: 4px;
-                    }
-                    
-            .board_content {
-                display: flex;
-                font-family: 'Inter', sans-serif;
-                margin: 64px;
-                height: 100%;
-                gap: 26px;
-            }
-
-                .board_column {
-                    width: 25%;
+                .task_container {
                     height: 100%;
-                    
+                    display: flex;
+                    flex-direction: column;
+                    gap: 16px;
                 }
-
-                    .column_head {
-                        padding: 10px;
+                    .no_task {
+                        width: 100%;
+                        height: 48px;
+                        background-color: #E7E7E7;
                         display: flex;
-                        justify-content: space-between;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 10px;
+                        border: 1px dotted #A8A8A8;
+                        color: #A8A8A8;
                     }
-
-                        .column_head_text {
-                            font-weight: bold;
-                            color: var(--bgdarkblue);
-                            font-size: 20px;
-                        }
-
-                        .column_head_add_btn {
-                            width: 24px;
-                            height: 24px;
+                    .task {
+                        background-color: white;
+                        padding: 16px;
+                        border-radius: 24px;
+                        min-width: 252px;
+                    }
+                        .task_category {
+                            padding: 4px 16px 4px;
+                            color: white;
+                            background-color: #0038FF;
                             border-radius: 8px;
-                            padding: 3px;
-                            border: 3px solid var(--bgdarkblue);
+                            font-size: 16px;
+                            font-weight: 400;
+                            width: fit-content;
                             display: flex;
-                            justify-content: center;
                             align-items: center;
-                            padding-bottom: 5px;
-                            font-weight: 900;
                         }
-
-                    .task_container {
-                        height: 100%;
-                        display: flex;
-                        flex-direction: column;
-                        gap: 16px;
-                    }
-
-                        .no_task {
-                            width: 100%;
-                            height: 48px;
-                            background-color: #E7E7E7;
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            border-radius: 10px;
-                            border: 1px dotted #A8A8A8;
+                        
+                        .task_title {
+                            margin-top: 24px;
+                            color: black;
+                            font-size: 16px;
+                            font-weight: 700;
+                        }
+                        .task_description {
+                            margin-top: 8px;
                             color: #A8A8A8;
+                            font-size: 16px;
+                            font-weight: 400;
                         }
-
-                        .task {
-                            background-color: white;
-                            padding: 16px;
-                            border-radius: 24px;
-                            min-width: 252px;
+                        .task_progress{
+                            margin-top: 24px;
+                            width: 100%;
+                            display: flex;
+                            justify-content: space-between;
                         }
-
-                            .task_category {
-                                padding: 4px 16px 4px;
-                                color: white;
-                                background-color: #0038FF;
+                            .progressbar {
+                                width: 128px;
                                 border-radius: 8px;
-                                font-size: 16px;
-                                font-weight: 400;
-                                width: fit-content;
-                                display: flex;
-                                align-items: center;
+                                background-color: #F4F4F4;
+                                height: 8px;
+                                
                             }
-                            
-                            .task_title {
-                                margin-top: 24px;
-                                color: black;
-                                font-size: 16px;
-                                font-weight: 700;
-                            }
-
-                            .task_description {
-                                margin-top: 8px;
-                                color: #A8A8A8;
-                                font-size: 16px;
-                                font-weight: 400;
-                            }
-
-                            .task_progress{
-                                margin-top: 24px;
-                                width: 100%;
-                                display: flex;
-                                justify-content: space-between;
-                            }
-
-                                .progressbar {
-                                    width: 128px;
+                                .progressbar_blue {
+                                    width: 64px;
                                     border-radius: 8px;
-                                    background-color: #F4F4F4;
+                                    background-color: #4589FF;
                                     height: 8px;
-                                    
                                 }
-
-                                    .progressbar_blue {
-                                        width: 64px;
-                                        border-radius: 8px;
-                                        background-color: #4589FF;
-                                        height: 8px;
-                                    }
-
-                                    .progressbar_blue_hundred {
-                                        width: 100%;
-                                        border-radius: 8px;
-                                        background-color: #4589FF;
-                                        height: 8px;
-                                    }
-
-                                    .progressbar_text {
-                                        font-size: 12px;
-                                        font-weight: 400;
-                                    }
-
-                            .task_members_prio {
-                                margin-top: 24px;
+                                .progressbar_blue_hundred {
+                                    width: 100%;
+                                    border-radius: 8px;
+                                    background-color: #4589FF;
+                                    height: 8px;
+                                }
+                                .progressbar_text {
+                                    font-size: 12px;
+                                    font-weight: 400;
+                                }
+                        .task_members_prio {
+                            margin-top: 24px;
+                            display: flex;
+                            justify-content: space-between;
+                            width: 100%;
+                        }
+                            .task_members {
                                 display: flex;
-                                justify-content: space-between;
-                                width: 100%;
+                               position: relative;
                             }
-
-                                .task_members {
+                                .member_cycle {
+                                    width: 32px;
+                                    height: 32px;
+                                    border-radius: 42px;
                                     display: flex;
-                                   position: relative;
+                                    justify-content: center;
+                                    align-items: center;
+                                    color: white;
+                                    font-size: 12px;
                                 }
-
-                                    .member_cycle {
-                                        width: 32px;
-                                        height: 32px;
-                                        border-radius: 42px;
-                                        display: flex;
-                                        justify-content: center;
-                                        align-items: center;
-                                        color: white;
-                                        font-size: 12px;
-                                    }
-
-                                    .orange {
-                                        background-color: var(--orange);
-                                    }
-
-                                    .turkies {
-                                        background-color: var(--turquoise);
-                                    }
-
-                                    .violett {
-                                        background-color: var(--darkslateblue);
-                                    }
-
-                                    .pos2 {
-                                       position: relative;
-                                       left: -9px; 
-                                    }
-
-                                    .pos3 {
-                                        position: relative;
-                                       left: -18px; 
-                                    }                      
+                                .orange {
+                                    background-color: var(--orange);
+                                }
+                                .turkies {
+                                    background-color: var(--turquoise);
+                                }
+                                .violett {
+                                    background-color: var(--darkslateblue);
+                                }
+                                .pos2 {
+                                   position: relative;
+                                   left: -9px; 
+                                }
+                                .pos3 {
+                                    position: relative;
+                                   left: -18px; 
+                                }                      

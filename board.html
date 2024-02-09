@@ -7,6 +7,7 @@
     <link rel="icon" type="image/x-icon" href="/assets/templates/img/favicon.png">
     <title>Document</title>
     <link rel="stylesheet" href="css/board.css">
+    <link rel="stylesheet" href="css/task_dialog.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/sidebar.css">
     <link rel="stylesheet" href="./Fonts/Inter-VariableFont_slnt,wght.ttf">
@@ -19,18 +20,54 @@
         <div class="task_dialog">
             <div class="category_close">
                 <div class="task_category">User Story</div>
-                <div class="close">
+                <a class="close">
                     <div class="line horizontal"></div>
                     <div class="line vertical"></div>
-                </div>
+                </a>
             </div>
             <div class="task_title_dialog">Kochwelt Page & Recipe Recommender</div>
             <div class="task_description_dialog">Build start page with recipe recommendation.</div>
-            <div class="due_Date_board_dialog"></div>
-            <div class="priority_board_dialog"></div>
-            <div class=""></div>
-            <div class=""></div>
-            <div class=""></div>
+            <div class="due_Date_dialog">
+                Due date: <span class="duedate">10/05/23</span>
+            </div>
+            <div class="priority_dialog">
+                Priority: <span >Medium</span><img src="assets/img/Priority symbols Medium.png">
+            </div>
+            <div class="assigned_to">
+                <div>Assiged To:</div>
+                <div class="table_assigedto">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td class="member_cycle orange pos1">AM</td>
+                                <td class="member_name_assiged_to">Anton Mayer</td>
+                            </tr>
+                            <tr>
+                                <td class="member_cycle turkies pos1">EM</td>
+                                <td class="member_name_assiged_to">Emanuel Mauer</td>
+                            </tr>
+                            <tr>
+                                <td class="member_cycle violett pos1">MB</td>
+                                <td class="member_name_assiged_to">Marcel Bauer</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="subtasks_main">
+                <div>Subtasks</div>
+                <div class="subtask_container">
+                    <div class="Subtasks"><img src="assets/img/check_button_checked.png" alt=""><span>Implement Recipe Recommendation</span></div>
+                    <div class="Subtasks"><img src="assets/img/check_button_unchecked.png" alt=""><span>Start Page Layout</span></div>
+                </div>
+            </div>
+            <div class="delete_and_edit_section">
+                <div class="delete_and_edit">
+                    <a><img src="assets/img/delete.png" alt="">Delete</a>
+                    <div class="line_task"></div>
+                    <a><img src="assets/img/edit.png" alt="">Edit</a>
+                </div>
+            </div>
         </div>
     </div>
     

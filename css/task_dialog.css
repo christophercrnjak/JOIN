@@ -1,0 +1,173 @@
+.dialog_container {
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .task_dialog {
+        width: 525px;
+        height: fit-content;
+        border-radius: 30px;
+        background-color: white;
+        padding: 48px 40px 48px 40px;
+    }
+
+        .category_close {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .close {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .close:hover {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(209, 209, 209, 0.4);
+            border-radius: 20px;
+        }
+
+            .line {
+                position: absolute;
+                width: 1px;
+                height: 17px;
+                background-color: black;
+              }
+      
+            .line.horizontal {
+              transform: rotate(45deg);
+            }
+          
+            .line.vertical {
+              transform: rotate(-45deg);
+            }
+        
+        .task_title_dialog {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            color: black;
+            font-size: 61px;
+            line-height: 73.2px;
+            margin-top: 24px;
+        }
+
+        .task_description_dialog {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            color: black;
+            font-size: 20px;
+            line-height: 24px;
+            margin-top: 24px;
+        }
+
+        .due_Date_dialog {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            color: black;
+            font-size: 20px;
+            line-height: 24px;
+            margin-top: 24px;
+        }
+
+            .duedate {
+                margin-left: 25px;
+            }
+        
+        .priority_dialog {
+            display: flex;
+            align-items: center;
+            margin-top: 24px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            color: black;
+            font-size: 20px;
+            line-height: 24px;
+        }
+
+            .priority_dialog span {
+                margin-left: 50px;
+            }
+
+        .assigned_to {
+            display: flex;
+            flex-direction: column;
+            margin-top: 24px;
+        }
+
+            .table_assigedto table {
+                padding: 7px 16px 7px 16px;
+                border-spacing:0 15px;
+            }
+
+            .member_name_assiged_to {
+                padding-left: 16px;
+                font-family: 'OpenSans', sans-serif;
+            }
+
+        .subtasks_main {
+            display: flex;
+            flex-direction: column;
+        }
+
+            .subtask_container {
+                display: flex;
+                flex-direction: column;
+                margin-top: 6.5px;
+            }
+
+                .Subtasks {
+                    display: flex;
+                    align-items: center;
+                    margin-top: 8px;
+                }
+
+                .Subtasks span{
+                    padding-left: 16px;
+                }
+        
+        .delete_and_edit_section {
+            width: 100%;
+            display: flex;
+            margin-top: 24px;
+        }
+
+            .delete_and_edit {
+                display: flex;
+                justify-content: end;
+                align-items: center;
+                width: 100%;
+            }
+
+            .delete_and_edit img{
+                width: 25px;
+                height: 25px;
+                margin-right: 8px;
+            }
+
+            .delete_and_edit a{
+                display: flex;
+                align-items: center;
+            }
+
+                .line_task {
+                    background-color: #D1D1D1;
+                    height: 24px;
+                    width: 1px;
+                    margin-left: 8px;
+                    margin-right: 8px;
+                }
