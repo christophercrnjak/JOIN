@@ -15,21 +15,21 @@
 <body>
     <div class="container">
         <img class="logo" src="./assets/img/logo.svg" alt="" />
-        <div class="sign_up">
-            <span>Not a Join user?</span>
-            <form action="./sign_up.html">
-                <button type="submit" class="btn_sign_up btn_grey">Sign up</button>
-            </form>
-        </div>
 
-        <form class="login_section" onsubmit="handleLogin(); return false">
+        <form class="sign_up_section" onsubmit="handleNewRegister(); return false">
             <div class="headline">
-                <h1>Log in</h1>
+                <h1>Sign up</h1>
                 <hr>
             </div>
 
             <div class="input_area">
                 <div class="input_fields">
+                    <input required
+                        type="text"
+                        placeholder="Name"
+                        oninvalid="this.setCustomValidity('Please only use letters.')"
+                        oninput="this.setCustomValidity('')">
+                        >
                     <input required
                         type="email"
                         placeholder="Email"
@@ -38,6 +38,11 @@
                     <input required
                         type="password"
                         placeholder="Password"
+                        oninvalid="this.setCustomValidity('You forgot to enter your password.')"
+                        oninput="this.setCustomValidity('')">
+                    <input required
+                        type="password"
+                        placeholder="Confirm Password"
                         oninvalid="this.setCustomValidity('You forgot to enter your password.')"
                         oninput="this.setCustomValidity('')">
                 </div>
