@@ -1,3 +1,6 @@
+
+/* head Navbar  */
+
 .head_main_navbar {
     background-color: var(--bgwhite);
     width: 100%;
@@ -6,6 +9,7 @@
     justify-content: space-around;
     align-items: center;
     position: absolute;
+    position: fixed;
 }
 #navbarHeadIcon {
     height: 2rem;
@@ -17,21 +21,20 @@
     left: 15rem;
     /* position relative nochmals überarbeiten */
 }
+
+/* Sidebar  */
+
 .sidebar {
     background-color: var(--bgdarkblue);
     height: 100vh;
-    width: 15%;
+    width: 232px;
     position: absolute;
+    position: fixed;
 
 }
 
-ul, ol {
-    list-style-type: none;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0;
+.logo_sidebar {
+    padding-top: 60px;
 }
 
 .sidebar a {
@@ -39,24 +42,32 @@ ul, ol {
     color: var(--bgwhite);
 }
 
-.sidebar li {
-    padding-top: 8px;
+.side_navbar {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    flex-direction: row;
-
+    display: flex;
+    flex-direction: column;
+   
 }
 
-.sidebar li:hover {
+.side_navbar_section {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    padding-left: 48px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    width: 232px;
+}
+.side_navbar_section:hover {
     background-color: #39495f;
-    width: 100%;
     cursor: pointer;
 }
 
 .section_sidebar {
     height: 100vh;
-    width: 232px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -65,11 +76,14 @@ ul, ol {
 }
 
 .section_sidebar img {
-    padding: 16px;
+    padding-right: 8px;
 }
 
 .sidebar_footer a:hover {
     color: var(--blue);
 }
 
+.sidebar_footer {
+    gap: 8px;
+}
 /* Aktives Element #091931 */

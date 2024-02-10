@@ -1,24 +1,34 @@
 [
     {
-    "title": "",
-    "description": "",
-    "category": "",
-    "contacts": {
-                "firstName": "",
-                "secondName": ""
+    "title": "Kochwelt Page & Recipe Recommender",
+    "description": "Build start page with recipe recommendation.",
+    "category": "User Story",
+    "contacts": [
+        {
+            "firstName": "Anton",
+            "secondName": "Mayer"
         },
-    "dueDate": "",
-    "priority": "",
-    "subtasks": {
-        "task_1": {
-            "name": "",
-            "done": ""
+        {
+            "firstName": "Emanuel",
+            "secondName": "Mauer"
         },
-        "task_2": {
-            "name": "",
-            "done": ""
+        {
+            "firstName": "Marcel",
+            "secondName": "Bauer"
         }
-    },
-    "status": ""
+    ],
+    "dueDate": "10/05/23",
+    "priority": "Medium",
+    "subtasks": [
+                   {
+                    "name": "Implement Recipe Recommendation",
+                    "done": "true"
+                    },    
+                    {
+                    "name": "Start Page Layout",
+                    "done": "false"
+                    }
+    ],
+    "status": "inProgress"
     }
 ]

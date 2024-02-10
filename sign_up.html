@@ -7,7 +7,7 @@
     <link rel="icon" type="image/x-icon" href="/assets/templates/img/favicon.png">
     <title>JOIN</title>
     <link rel="stylesheet" href="./css/main.css" />
-    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="./css/sign_up.css" />
     <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon" />
     <script src="./js/main.js"></script>
 </head>
@@ -15,19 +15,20 @@
 <body>
     <div class="container">
         <img class="logo" src="./assets/img/logo.svg" alt="" />
-        <div class="sign_up">
-            <span>Not a Join user?</span>
-            <button class="btn_sign_up btn_grey"><a href="./sign_up.html">Sign up</a></button>
-        </div>
 
-        <form class="login_section" onsubmit="handleLogin(); return false">
+        <form class="sign_up_section" onsubmit="handleNewRegister(); return false">
             <div class="headline">
-                <h1>Log in</h1>
+                <h1>Sign up</h1>
                 <hr>
             </div>
 
             <div class="input_area">
                 <div class="input_fields">
+                    <input required
+                        type="text"
+                        placeholder="Name"
+                        oninvalid="this.setCustomValidity('Please only use letters.')"
+                        oninput="this.setCustomValidity('')">
                     <input required
                         type="email"
                         placeholder="Email"
@@ -38,17 +39,20 @@
                         placeholder="Password"
                         oninvalid="this.setCustomValidity('You forgot to enter your password.')"
                         oninput="this.setCustomValidity('')">
+                    <input required
+                        type="password"
+                        placeholder="Confirm Password"
+                        oninvalid="this.setCustomValidity('You forgot to enter your password.')"
+                        oninput="this.setCustomValidity('')">
                 </div>
-                <div class="remember_me">
+                <div class="accept_privacy_policy">
                     <input type="checkbox" id="checkbox" />
-                    <span>Remember me</span>
+                    <p>I accept the <a href="./privacy_policy.html">Privacy policy</a></p>
                 </div>
             </div>
 
-            <div class="btns">
-                <button class="btn_log_in btn_grey">Log in</button>
-                <button class="btn_transparent btn_guest_log_in">Guest Log in</button>
-            </div>
+            <button class="btn_sign_up btn_grey">Sign up</button>
+
         </form>
 
         <div class="legal_section">
