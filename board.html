@@ -15,7 +15,7 @@
     <script src="js/board.js"></script>
 </head>
 
-<body onload="includeHTML()">
+<body onload="includeHTML(), init()">
     
     <div id="dialog_container" class="dialog_container d-none">
         <div class="task_dialog">
@@ -81,9 +81,9 @@
             <div class="search_add">
                 <div class="search">
                     <input id="task_to_be_found" type="text" placeholder="Find Task">
-                    <div class="search_right">
-                        <div class="line_search"></div>
-                        <a onclick="searchTask()"><img src="./assets/templates/img/search.png" alt=""></a>
+                    <!-- <div class="search_right"> -->
+                        <!-- <div class="line_search"></div>
+                        <a onclick="searchTask()"><img src="assets/img/search.png" alt=""></a> -->
                     </div>
                 </div>
                 <a class="add_task_btn"> Add task <span class="plus_add_btn">+</span></a>
