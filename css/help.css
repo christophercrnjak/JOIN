@@ -8,7 +8,6 @@ body {
 }
 
 .font {
-    margin-top: 206px;
     margin-left: 328px;
     margin-bottom: 32px;
     font-size: 61px;
@@ -16,6 +15,12 @@ body {
     line-height: 73.2px;
     width: 138px;
     height: 73px;
+    margin-top: 206px;
+}
+.headline{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 .headline img{
     width: 32px;
@@ -25,6 +30,12 @@ body {
     left: 1307px;
     bottom: 762px;
     right: 96px;
+    cursor: pointer;
+}
+.headline img:hover{
+    border: groove 1px lightgray;
+    border-radius: 50%;
+    background-color: lightgray;
 }
 .text{
     margin-left: 328px;
@@ -42,11 +53,16 @@ body {
     font-weight: 400;
     line-height: 19.2px;
 }
-.text_line h2{
+.underline{
     font-size: 20px;
     line-height: 32.4px;
     font-weight: 700;
     margin-top: 16px;
+    margin-bottom: 0;
+}
+.text_line{
+    margin-left: 328px;
+    margin-right: 98px;
 }
 .text a{
     margin-right: 35px;
@@ -54,5 +70,18 @@ body {
     font-size: 27px;
     line-height: 32.4px;
     font-weight: 700;
+}
+.text_line p{
+    margin-top: 0px;
+    margin-left: 60px;
+}
+.number{
+    margin-right: 35px;
+    width: 21px;
+    height: 32px;
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 32.4px;
+    margin-bottom: 0px;
 }
 
