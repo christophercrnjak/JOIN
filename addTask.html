@@ -8,15 +8,56 @@
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/addTask.css">
     <link rel="stylesheet" href="/css/sidebar.css">
+    <script src="/js/addTask.js"></script>
     <script src="./js/include.js"></script>
     <title>Add Task</title>
 </head>
 
-<body onload="includeHTML()">
+<body onload="includeHTML(), addTaskInit()">
     <div w3-include-html="/assets/templates/sidebar.html"></div>
     <div class="main_addTask">
-        <div id="container"></div>
-        <h1>Hallo Welt</h1>
+        <h1>Add Task</h1>
+        <div id="container" class="addTaskForms">
+            <form  class="addTaskForm">
+                <div for="title">Title<span>*</span></div>
+                <input id="titleAddtask" type="text" placeholder="Enter a title">
+                <div for="">Description</div>
+                <textarea name="" id="" cols="30" rows="10"></textarea>
+                <div for="Assigned">Assigned to</div>
+                <select name="assigned" id="assigned">
+                    <option value="#">Person</option>
+                    <option value="#">Person</option>
+                    <option value="#">Person</option>
+                    <option value="#">Person</option>
+                    <option value="#">Person</option>
+                    <option value="#">Person</option>
+                    <option value="#">Person</option>
+                    <option value="#">Person</option>
+                    <option value="#">Person</option>
+                </select>
+
+            </form>
+
+            <form  class="display_center addTaskForm">
+                <div for="title">Due date<span>*</span></div>
+                <input type="date" name="" id="">
+                <div for="prio">Prio</div>
+                <div>
+                    <button>Urgrend</button>
+                    <button>Medium</button>
+                    <button>Low</button>
+                </div>
+                <div for="category">Category</div>
+                <select name="category" id="category">
+                    <option value="#">Technical Task</option>
+                    <option value="#">User Story</option>
+                </select>
+                <div for="Subtasks">Subtasks</div>
+                <input type="text">
+
+            </form>
+
+        </div>
     </div>
 </body>
 

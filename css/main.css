@@ -43,7 +43,9 @@
   justify-content: center;
   align-items: center;
 }
-
+.flex_direction_column {
+  flex-direction: column;
+}
 .text_center {
   text-align: center;
 }
