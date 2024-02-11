@@ -3,23 +3,24 @@
 
 .head_main_navbar {
     background-color: var(--bgwhite);
-    width: 100%;
     text-align: center;
     display: flex;
-    justify-content: space-around;
+    right: 14px;
     align-items: center;
-    position: absolute;
+    width: 70%; /* überarbeiten bei Monitor größe*/
+    justify-content: space-between;
     position: fixed;
 }
+
 #navbarHeadIcon {
-    height: 2rem;
+    height: 3rem;
     padding: 4px;
 }
 .headnavbar_icon {
-    gap: 1rem;
-    position: relative;
-    left: 15rem;
-    /* position relative nochmals überarbeiten */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
 }
 
 /* Sidebar  */
@@ -55,11 +56,13 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    text-align: center;
     padding-left: 48px;
     padding-top: 8px;
     padding-bottom: 8px;
     width: 232px;
+}
+.side_navbar_section a{
+   padding-top: 6px;
 }
 .side_navbar_section:hover {
     background-color: #39495f;
