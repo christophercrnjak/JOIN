@@ -1,3 +1,32 @@
-body{
-    background-color:  var(--blue);
+body {
+  height: 100vh;
+}
+
+.container {
+  margin-left: 232px;
+  padding-top: 96px;
+  height: calc(100vh - 232px);
+}
+
+.header_section {
+  height: 100%;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+hr {
+  background-color: var(--blue);
+  border: none;
+  width: 3px;
+  height: 30%;
+}
+
+h1 {
+    font-size: 61px;
+}
+
+h2 {
+    font-size: 27px;
+    font-weight: 400;
 }

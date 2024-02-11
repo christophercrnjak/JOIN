@@ -1,5 +1,8 @@
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
 }
 
 @font-face {
@@ -30,12 +33,6 @@
   --darkslateblue: #462F8A;
   --red: #FF4646;
   --deepskyblue: #00BEE8;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  font-family: 'Inter', sans-serif;
 }
 
 .display_center {
