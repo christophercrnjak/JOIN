@@ -4,14 +4,11 @@ async function init() {
     let resp = await fetch('assets/json/tasks.json'); 
     tasks = await resp.json(); 
     console.log(tasks);
-    renderColumnContent('task_container_Todo', 'To do');
-    renderColumnContent('task_container_InProgress', 'In progress');
-    renderColumnContent('task_container_AwaitFeedback', 'Await feedback');
-    renderColumnContent('task_container_Done', 'Done');
+    renderColumnContent()
 }
 
 // render content of column "To do" in Board
-function renderColumnContent(containerId, header){
+function renderColumnContent(){
     let toDo_container = document.getElementById('task_container_Todo')
     let inProgress_container = document.getElementById('task_container_InProgress')
     let awaitFeedback_container = document.getElementById('task_container_AwaitFeedback')
@@ -29,24 +26,17 @@ function distributionTasks(toDo, inProgress, awaitFeedback, done) {
 
         switch (task.status) {
           case 'toDo':
-            toDo += taskHTML(task, i);
+            toDo.innerHTML += taskHTML(task, i);
             break;
           case 'inProgress':
-            inProgress += taskHTML(task, i);
+            inProgress.innerHTML += taskHTML(task, i);
             break;
           case 'awaitFeedback':
-            awaitFeedback += taskHTML(task, i);
+            awaitFeedback.innerHTML += taskHTML(task, i);
             break;
           case 'done':
-            done += taskHTML(task, i);
+            done.innerHTML += taskHTML(task, i);
             break;
-        }
-document.getElementById("demo").innerHTML = "Today is " + day;
-        if(task.status == header) {
-            container.innerHTML += taskHTML(task, i);
-        } else {
-            if(container.innerHTML == '')
-            container.innerHTML = noTaskHTML(`${header}`);
         }
     }
 }
@@ -83,6 +73,10 @@ function taskHTML(task, i) {
             </div>
         </article>
     `
+}
+
+function initials() {
+    return `test`
 }
 
 
