@@ -85,7 +85,7 @@ h2 {
   align-items: center;
 }
 
-#task_amount {
+.task_amount {
   font-size: 64px;
   font-weight: 600;
 }
