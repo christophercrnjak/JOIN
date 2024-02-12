@@ -19,6 +19,7 @@ function renderColumnContent(container, header){
         if(task.status == toDo) {
             container.innerHTML += taskHTML(task, i);
         } else {
+            if(container.innerHTML == '')
             container.innerHTML = noTaskHTML(`${header}`);
         }
     }
@@ -46,9 +47,9 @@ function taskHTML(task, i) {
             </div>
             <div class="task_members_prio">
                 <div class="task_members">
-                    <div class="member_cycle orange pos1">AM</div>
-                    <div class="member_cycle turkies pos2">EM</div>
-                    <div class="member_cycle violett pos3">MB</div>
+                    <div class="member_cycle orange pos1">${initials(task.contacts[0])}</div>
+                    <div class="member_cycle turkies pos2">${initials(task.contacts[1])}</div>
+                    <div class="member_cycle violett pos3">${initials(task.contacts[2])}</div>
                 </div>
                 <div class="task_prio">
                     <img src="assets/img/Priority_symbols_Medium.png" alt="">
