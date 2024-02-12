@@ -1,3 +1,37 @@
-body{
-    background-color:  var(--blue);
+body {
+  height: 100vh;
+}
+
+.container {
+  margin-left: 328px;
+  padding-top: 206px;
+  display: flex;
+  flex-direction: column;
+}
+
+.header_section {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+hr {
+  background-color: var(--blue);
+  border: none;
+  width: 3px;
+  height: 59px;
+}
+
+h1 {
+    font-size: 61px;
+}
+
+h2 {
+    font-size: 27px;
+    font-weight: 400;
+}
+
+.first_row {
+  display: flex;
+  gap: 32px;
 }

@@ -1,68 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="/assets/templates/img/favicon.png">
-    <title>JOIN</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JOIN - Login in</title>
     <link rel="stylesheet" href="./css/main.css" />
     <link rel="stylesheet" href="./css/index.css" />
-    <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="./Fonts/Inter-VariableFont_slnt,wght.ttf" />
+    <link
+      rel="shortcut icon"
+      href="./assets/img/favicon.png"
+      type="image/x-icon"
+    />
     <script src="./js/main.js"></script>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="container">
-        <img class="logo" src="./assets/img/logo.svg" alt="" />
-        <div class="sign_up">
-            <span>Not a Join user?</span>
-            <button class="btn_sign_up btn_grey"><a href="./sign_up.html">Sign up</a></button>
+      <img class="logo" src="./assets/img/logo.svg" alt="" />
+      <div class="sign_up">
+        <span>Not a Join user?</span>
+        <button class="btn_sign_up btn_grey">
+          <a href="./sign_up.html">Sign up</a>
+        </button>
+      </div>
+
+      <form class="login_section" onsubmit="handleLogin(); return false">
+        <div class="headline">
+          <h1>Log in</h1>
+          <hr />
         </div>
 
-        <form class="login_section" onsubmit="handleLogin(); return false">
-            <div class="headline">
-                <h1>Log in</h1>
-                <hr>
-            </div>
-
-            <div class="input_area">
-                <div class="input_fields">
-                    <input required
-                        type="email"
-                        placeholder="Email"
-                        oninvalid="this.setCustomValidity('Please use a valid e-mail address.')"
-                        oninput="this.setCustomValidity('')">
-                    <input required
-                        type="password"
-                        placeholder="Password"
-                        oninvalid="this.setCustomValidity('You forgot to enter your password.')"
-                        oninput="this.setCustomValidity('')">
-                </div>
-                <div class="remember_me">
-                    <input type="checkbox" id="checkbox" />
-                    <span>Remember me</span>
-                </div>
-            </div>
-
-            <div class="btns">
-                <button class="btn_log_in btn_grey">Log in</button>
-                <button class="btn_transparent btn_guest_log_in">Guest Log in</button>
-            </div>
-        </form>
-
-        <div class="legal_section">
-            <div class="link_wrapper">
-                <a href="./privacy_policy.html">Privacy Police</a>
-            </div>
-            <div class="link_wrapper">
-                <a href="./legal_notice.html" class="link_wrapper">Legal notice</a>
-            </div>
+        <div class="input_area">
+          <div class="input_fields">
+            <input
+              required
+              type="email"
+              placeholder="Email"
+              oninvalid="this.setCustomValidity('Please use a valid e-mail address.')"
+              oninput="this.setCustomValidity('')"
+            />
+            <input
+              required
+              type="password"
+              placeholder="Password"
+              oninvalid="this.setCustomValidity('You forgot to enter your password.')"
+              oninput="this.setCustomValidity('')"
+            />
+          </div>
+          <div class="remember_me">
+            <input type="checkbox" id="checkbox" />
+            <span>Remember me</span>
+          </div>
         </div>
 
+        <div class="btns">
+          <button class="btn_log_in btn_grey">Log in</button>
+          <button class="btn_transparent btn_guest_log_in">Guest Log in</button>
+        </div>
+      </form>
+
+      <div class="legal_section">
+        <div class="link_wrapper">
+          <a href="./privacy_policy.html">Privacy Police</a>
+        </div>
+        <div class="link_wrapper">
+          <a href="./legal_notice.html" class="link_wrapper">Legal notice</a>
+        </div>
+      </div>
     </div>
 
     <script src="./js/index.js"></script>
-</body>
-
+  </body>
 </html>

@@ -1,52 +1,36 @@
 let tasks = [];
 
 async function init() {
-    let resp = await fetch('assets/json/tasks.json'); // der Inhalt des JSONs bundesländer wird der Variable resp (steht für respons) zugewiesen und ist noch Text
-    tasks = await resp.json(); // der Text wird in ein JSON umgewandelt und noch einmal in einem eigenen Array gespeichert (bundeslaender)
+    let resp = await fetch('assets/json/tasks.json'); 
+    tasks = await resp.json(); 
     console.log(tasks);
-}
-
-// inital render of the different columns
-function renderTasksInColumns() {
-    renderToDo();
-    renderInProgress();
-    renderAwaitFeedback();
-    renderDone();
+    renderColumnContent('task_container_Todo', 'To do');
+    renderColumnContent('task_container_InProgress', 'In progress');
+    renderColumnContent('task_container_AwaitFeedback', 'Await feedback');
+    renderColumnContent('task_container_Done', 'Done');
 }
 
 // render content of column "To do" in Board
-function renderToDo(){
-    let toDoContainer = document.getElementById('task_container_Todo');
-    toDoContainer.innerHTML = '';
+function renderColumnContent(container, header){
+    let container = document.getElementById(`${container}`);
+    container.innerHTML = '';
     for (let i = 0; i < tasks.length; i++) {
         const task = tasks[i];
         if(task.status == toDo) {
-            toDoContainer.innerHTML += taskHTML(task, i);
+            container.innerHTML += taskHTML(task, i);
         } else {
-            toDoContainer.innerHTML = noTaskHTML('To do');
+            if(container.innerHTML == '')
+            container.innerHTML = noTaskHTML(`${header}`);
         }
     }
-}
-
-function renderInProgress(){
-    let inProgressContainer = document.getElementById('task_container_InProgress');
-}
-
-function renderAwaitFeedback(){
-    let awaitFeddbackContainer = document.getElementById('task_container_AwaitFeedback');
-}
-
-function renderDone(){
-    let doneContainer = document.getElementById('task_container_Done');
 }
 
 function noTaskHTML(head_text) {
     return `<div class="no_task">No Task ${head_text}</div>`
 }
 
-
 function taskHTML(task, i) {
-    
+
     let category = task.category;
     let title = task.title;
     let description = task.description;
@@ -63,9 +47,9 @@ function taskHTML(task, i) {
             </div>
             <div class="task_members_prio">
                 <div class="task_members">
-                    <div class="member_cycle orange pos1">AM</div>
-                    <div class="member_cycle turkies pos2">EM</div>
-                    <div class="member_cycle violett pos3">MB</div>
+                    <div class="member_cycle orange pos1">${initials(task.contacts[0])}</div>
+                    <div class="member_cycle turkies pos2">${initials(task.contacts[1])}</div>
+                    <div class="member_cycle violett pos3">${initials(task.contacts[2])}</div>
                 </div>
                 <div class="task_prio">
                     <img src="assets/img/Priority_symbols_Medium.png" alt="">
