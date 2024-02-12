@@ -1,8 +1,7 @@
-
-.board_container {
+body {
+    background-color: var(--bgwhite);
     height: 100vh;
     width: 100%;
-    background-color: var(--bgwhite);
 }
         .board_header {
             display: flex;
@@ -140,7 +139,6 @@
                         background-color: white !important;
                         padding: 16px;
                         border-radius: 24px;
-                        min-width: 252px;
                     }
                         .task_category {
                             padding: 4px 16px 4px;
