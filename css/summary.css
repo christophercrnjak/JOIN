@@ -3,6 +3,11 @@ body {
   background-color: var(--bgwhite);
 }
 
+.wrapper {
+  display: flex;
+  gap: 80px;
+}
+
 .container {
   margin-left: 328px;
   padding-top: 206px;
@@ -138,4 +143,22 @@ hr {
 .task:hover {
   background-color: var(--bgdarkblue);
   color: white;
+}
+
+.welcome_message {
+  display: flex;
+  flex-direction: column;
+  row-gap: 3px;
+  width: 30%;
+}
+
+.welcome_message p {
+  font-size: 47px;
+  font-weight: 500;
+}
+
+.welcome_message p span {
+  font-size: 64px;
+  font-weight: 700;
+  color: var(--blue);
 }
