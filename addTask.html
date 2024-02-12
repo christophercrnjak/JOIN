@@ -16,13 +16,13 @@
 <body onload="includeHTML(), addTaskInit()">
     <div w3-include-html="/assets/templates/sidebar.html"></div>
     <div class="main_addTask">
-        <div class="AddTaskhead">
+        <div class="AddTask_head">
             <h1>Add Task</h1>
         </div>
         <div id="container" class="addTaskForms">
             <form  class="addTaskForm">
                 <div for="title">Title<span>*</span></div>
-                <input id="titleAddtask" type="text" placeholder="Enter a title">
+                <input id="titleAddtask" type="title" placeholder="Enter a title">
                 <div for="">Description</div>
                 <textarea name="" id="" cols="30" rows="10"></textarea>
                 <div for="Assigned">Assigned to</div>
@@ -55,7 +55,7 @@
                     <option value="#">User Story</option>
                 </select>
                 <div for="Subtasks">Subtasks</div>
-                <input type="text">
+                <input type="title">
 
             </form>
 

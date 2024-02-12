@@ -4,4 +4,7 @@ function addTaskInit () {
 
 function renderAssignedPerson() {
     // Render Person form task
+    let assigned = document.getElementById('');
+
+    
 }
