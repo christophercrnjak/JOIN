@@ -49,6 +49,7 @@ h2 {
 
 .task_status {
   background-color: white;
+  color: black;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -56,6 +57,11 @@ h2 {
   border-radius: 30px;
   padding: 38px 19px;
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
+.task_status:hover {
+  background-color: var(--bgdarkblue);
+  color: white;
 }
 
 .task_information {
@@ -76,6 +82,7 @@ h2 {
 
 .urgent_task {
   background-color: white;
+  color: black;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -83,6 +90,11 @@ h2 {
   padding: 28px 48px;
   border-radius: 30px;
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
+.urgent_task:hover {
+  background-color: var(--bgdarkblue);
+  color: white;
 }
 
 .urgent_task_status {
@@ -120,4 +132,10 @@ hr {
   border-radius: 30px;
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
   padding: 25px;
+  color: black;
+}
+
+.task:hover {
+  background-color: var(--bgdarkblue);
+  color: white;
 }
