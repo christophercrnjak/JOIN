@@ -1,5 +1,6 @@
 body {
   height: 100vh;
+  background-color: var(--bgwhite);
 }
 
 .container {
@@ -7,6 +8,7 @@ body {
   padding-top: 206px;
   display: flex;
   flex-direction: column;
+  row-gap: 56px;
 }
 
 .header_section {
@@ -31,7 +33,90 @@ h2 {
     font-weight: 400;
 }
 
+.summary {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 28px;
+}
+
 .first_row {
   display: flex;
+  justify-content: space-between;
   gap: 32px;
+}
+
+.task_status {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  border-radius: 30px;
+  padding: 38px 19px;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
+.task_information {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#task_amount {
+  font-size: 64px;
+  font-weight: 600;
+}
+
+#task_name {
+  font-size: 20px;
+}
+
+.urgent_task {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 61px;
+  padding: 28px 48px;
+  border-radius: 30px;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
+.urgent_task_status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+}
+
+hr {
+  background-color: #D1D1D1;
+}
+
+.urgent_task_date {
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.urgent_information {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 13px;
+}
+
+.third_row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.task {
+  background-color: white;
+  border-radius: 30px;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+  padding: 25px;
 }

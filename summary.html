@@ -1,47 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Summary</title>
-    <link rel="stylesheet" href="css/summary.css" />
-    <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="css/sidebar.css" />
-    <link
-      rel="shortcut icon"
-      href="./assets/img/favicon.png"
-      type="image/x-icon"
-    />
-    <link rel="stylesheet" href="./Fonts/Inter-VariableFont_slnt,wght.ttf" />
-    <script src="./js/include.js"></script>
-  </head>
-  <body onload="includeHTML()">
-    <div w3-include-html="/assets/templates/sidebar.html"></div>
 
-    <div class="container">
-        <div class="header_section">
-            <h1>Join 360</h1>
-            <hr> <!-- missing height -->
-            <h2>Key Metrics at a Glance</h2>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Summary</title>
+  <link rel="stylesheet" href="css/summary.css" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/sidebar.css" />
+  <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="./Fonts/Inter-VariableFont_slnt,wght.ttf" />
+  <script src="./js/include.js"></script>
+</head>
 
-        <div class="summary">
-          <div class="first_row">
-            <div>
-              <img src="./assets/img/pencil.svg" alt="">
-              1 - To-Do
-            </div>
-            <div>
-              <img src="./assets/img/hook.svg" alt="">
-              1 Done
-            </div>
-          </div>
-          <div class="second_row"></div>
-          <div class="third_row"></div>
-        </div>
+<body onload="includeHTML()">
+  <div w3-include-html="/assets/templates/sidebar.html"></div>
 
+  <div class="container">
+    <div class="header_section">
+      <h1>Join 360</h1>
+      <hr>
+      <h2>Key Metrics at a Glance</h2>
     </div>
 
-    <script src="./js/summary.js"></script>
-  </body>
+    <div class="summary">
+      <div class="first_row">
+        <div class="task_status">
+          <img src="./assets/img/pencil.svg">
+          <div class="task_information">
+            <div id="task_amount">1</div>
+            <div id="task_name">To-Do</div>
+          </div>
+        </div>
+        <div class="task_status">
+          <img src="./assets/img/hook.svg">
+          <div class="task_information">
+            <div id="task_amount">1</div>
+            <div id="task_name">Done</div>
+          </div>
+        </div>
+      </div>
+      <div class="second_row">
+        <div class="urgent_task">
+          <div class="urgent_task_status">
+            <img src="./assets/img/double_arrow.svg">
+            <div class="task_information">
+              <div id="task_amount">1</div>
+              <div id="task_urgent">Urgent</div>
+            </div>
+          </div>
+          <hr>
+          <div class="urgent_information">
+            <p class="urgent_task_date">Oktober 16, 2022</p>
+            <p>Upcoming Deadline</p>
+          </div>
+        </div>
+      </div>
+      <div class="third_row">
+        <div class="task_information task">
+          <div id="task_amount">5</div>
+          <div id="task_urgent">Task in Board</div>
+        </div>
+        <div class="task_information task">
+          <div id="task_amount">2</div>
+          <div id="task_urgent">Task in Progress</div>
+        </div>
+        <div class="task_information task">
+          <div id="task_amount">5</div>
+          <div id="task_urgent">Awaiting Feeback</div>
+        </div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./js/summary.js"></script>
+</body>
+
 </html>
