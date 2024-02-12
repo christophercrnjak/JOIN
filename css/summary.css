@@ -3,13 +3,13 @@ body {
 }
 
 .container {
-  margin-left: 232px;
-  padding-top: 96px;
-  height: calc(100vh - 232px);
+  margin-left: 328px;
+  padding-top: 206px;
+  display: flex;
+  flex-direction: column;
 }
 
 .header_section {
-  height: 100%;
   display: flex;
   gap: 30px;
   align-items: center;
@@ -19,7 +19,7 @@ hr {
   background-color: var(--blue);
   border: none;
   width: 3px;
-  height: 30%;
+  height: 59px;
 }
 
 h1 {
@@ -29,4 +29,9 @@ h1 {
 h2 {
     font-size: 27px;
     font-weight: 400;
+}
+
+.first_row {
+  display: flex;
+  gap: 32px;
 }
