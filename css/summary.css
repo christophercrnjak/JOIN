@@ -9,6 +9,7 @@ body {
   display: flex;
   flex-direction: column;
   row-gap: 56px;
+  width: 55%;
 }
 
 .header_section {
