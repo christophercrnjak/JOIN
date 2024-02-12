@@ -11,12 +11,38 @@ async function init() {
 }
 
 // render content of column "To do" in Board
-function renderColumnContent(container, header){
-    let container = document.getElementById(`${container}`);
-    container.innerHTML = '';
+function renderColumnContent(containerId, header){
+    let toDo_container = document.getElementById('task_container_Todo')
+    let inProgress_container = document.getElementById('task_container_InProgress')
+    let awaitFeedback_container = document.getElementById('task_container_AwaitFeedback')
+    let done_container = document.getElementById('task_container_Done')
+    toDo_container.innerHTML = '';
+    inProgress_container.innerHTML = '';
+    awaitFeedback_container.innerHTML = '';
+    done_container.innerHTML = '';
+    distributionTasks(toDo_container, inProgress_container, awaitFeedback_container, done_container);
+}
+
+function distributionTasks(toDo, inProgress, awaitFeedback, done) {
     for (let i = 0; i < tasks.length; i++) {
         const task = tasks[i];
-        if(task.status == toDo) {
+
+        switch (task.status) {
+          case 'toDo':
+            toDo += taskHTML(task, i);
+            break;
+          case 'inProgress':
+            inProgress += taskHTML(task, i);
+            break;
+          case 'awaitFeedback':
+            awaitFeedback += taskHTML(task, i);
+            break;
+          case 'done':
+            done += taskHTML(task, i);
+            break;
+        }
+document.getElementById("demo").innerHTML = "Today is " + day;
+        if(task.status == header) {
             container.innerHTML += taskHTML(task, i);
         } else {
             if(container.innerHTML == '')
@@ -26,7 +52,7 @@ function renderColumnContent(container, header){
 }
 
 function noTaskHTML(head_text) {
-    return `<div class="no_task">No Task ${head_text}</div>`
+    return `<div class="no_task"> no ${head_text} task</div>`
 }
 
 function taskHTML(task, i) {

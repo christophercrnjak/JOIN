@@ -7,12 +7,12 @@
 
 @font-face {
   font-family: Inter;
-  src: url(/fonts/Inter-VariableFont_slnt,wght.ttf);
+  src: url(/Fonts/Inter-VariableFont_slnt,wght.ttf);
 }
 
 @font-face {
   font-family: OpenSans;
-  src: url(/JOIN/Fonts/opensans/OpenSans-Regular.ttf);
+  src: url(/Fonts/opensans/OpenSans-Regular.ttf);
 }
 
 :root {

@@ -14,7 +14,6 @@
                 color: black;
                 font-size: 61px;
                 font-weight: 700;
-                font-family: 'Inter', sans-serif;
             }
             .search_add {
                 display: flex;
@@ -78,7 +77,6 @@
                     justify-content: center;
                     align-items: center;
                     font-size: 21px;
-                    font-family: 'Inter', sans-serif;
                     font-weight: 700;
                 }
                 .plus_add_btn {
@@ -90,7 +88,6 @@
                 
         .board_content {
             display: flex;
-            font-family: 'Inter', sans-serif;
             margin: 64px;
             height: 100%;
             gap: 26px;
