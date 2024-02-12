@@ -39,33 +39,54 @@ function calcSumOfAmount() {
 }
 
 function renderAmountsInElements() {
+    renderToDoAmountInElement();
+    renderDoneAmountInElement();
+    renderAllAmountInElement();
+    renderInProgressAmountInElement();
+    renderAwaitingFeedbackAmountInElements();
+}
+
+function renderToDoAmountInElement() {
+    let toDoAmountElement = document.getElementById('toDoAmount');
     if (toDoAmount != 0) {
-        document.getElementById('toDoAmount').innerHTML = toDoAmount;
+        toDoAmountElement.innerHTML = toDoAmount;
     } else {
-        document.getElementById('toDoAmount').innerHTML = "0";
+        toDoAmountElement.innerHTML = "0";
     }
+}
 
-    if (doneAmount != 0) {
-        document.getElementById('doneAmount').innerHTML = doneAmount;
+function renderDoneAmountInElement() {
+    let doneAmountElement = document.getElementById('doneAmount');
+    if (toDoAmount != 0) {
+        doneAmountElement.innerHTML = toDoAmount;
     } else {
-        document.getElementById('doneAmount').innerHTML = "0";
+        doneAmountElement.innerHTML = "0";
     }
+}
 
-    if (allAmounts != 0) {
-        document.getElementById('allAmounts').innerHTML = allAmounts;
+function renderAllAmountInElement() {
+    let allAmountElement = document.getElementById('allAmount');
+    if (toDoAmount != 0) {
+        allAmountElement.innerHTML = toDoAmount;
     } else {
-        document.getElementById('allAmounts').innerHTML = "0";
+        allAmountElement.innerHTML = "0";
     }
+}
 
-    if (inProgressAmount != 0) {
-        document.getElementById('inProgressAmount').innerHTML = inProgressAmount;
+function renderInProgressAmountInElement() {
+    let inProgressAmountElement = document.getElementById('inProgressAmount');
+    if (toDoAmount != 0) {
+        inProgressAmountElement.innerHTML = toDoAmount;
     } else {
-        document.getElementById('inProgressAmount').innerHTML = "0";
+        inProgressAmountElement.innerHTML = "0";
     }
+}
 
-    if (awaitingFeedbackAmount != 0) {
-        document.getElementById('awaitingFeedbackAmount').innerHTML = awaitingFeedbackAmount;
+function renderAwaitingFeedbackAmountInElements() {
+    let awaitingFeedbackAmountElement = document.getElementById('awaitingFeedbackAmount');
+    if (toDoAmount != 0) {
+        awaitingFeedbackAmountElement.innerHTML = toDoAmount;
     } else {
-        document.getElementById('awaitingFeedbackAmount').innerHTML = "0";
+        awaitingFeedbackAmountElement.innerHTML = "0";
     }
 }
