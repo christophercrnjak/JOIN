@@ -3,9 +3,19 @@ body {
     height: 100vh;
     width: 100%;
 }
+
+.container {
+    margin-left: 232px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 56px;
+    padding-top: 47px;
+}
         .board_header {
             display: flex;
-            margin: 79.5px 88px 79.5px 64px;
+            margin-left: 64px;
+            margin-top: 79.5px;
+            margin-right: 88px;
             justify-content: space-between;
             align-items: center;
         }

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="/assets/templates/img/favicon.png">
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.png">
     <title>JOIN Board</title>
     <link rel="stylesheet" href="./css/board.css">
     <link rel="stylesheet" href="./css/task_dialog.css">
@@ -15,9 +15,10 @@
   
 </head>
 
-<body onload="init()">
-    
+<body onload="includeHTML(); init()">
+    <div w3-include-html="./assets/templates/sidebar.html"></div>
     <div id="dialog_container" class="dialog_container d-none">
+        
         <div class="task_dialog">
             <div class="category_close">
                 <div class="task_category">User Story</div>
@@ -71,20 +72,21 @@
             </div>
         </div>
     </div>
-        <div w3-include-html="/assets/templates/sidebar.html"></div> 
-        
+    <div class="container">
         <header class="board_header">
             <div class="header_text">Board</div>
-            <div class="search_add">
-                <div class="search">
-                    <input id="task_to_be_found" type="text" placeholder="Find Task">
-                    <!-- <div class="search_right"> -->
-                        <!-- <div class="line_search"></div>
-                        <a onclick="searchTask()"><img src="assets/img/search.png" alt=""></a> -->
+            
+                <div class="search_add">
+                    <div class="search">
+                        <input id="task_to_be_found" type="text" placeholder="Find Task">
+                        <!-- <div class="search_right"> -->
+                            <!-- <div class="line_search"></div>
+                            <a onclick="searchTask()"><img src="assets/img/search.png" alt=""></a> -->
                     </div>
+                    <a class="add_task_btn"> Add task <span class="plus_add_btn">+</span></a>
                 </div>
-                <a class="add_task_btn"> Add task <span class="plus_add_btn">+</span></a>
-            </div>
+                
+            
         </header>
 
         <section class="board_content">
@@ -98,7 +100,7 @@
 
                 <div id="task_container_Todo" class="task_container">
                     <!-- task -->
-                    <div class="no_task">No Task To do</div>
+                    
                 </div>
             </div>
             
@@ -111,27 +113,7 @@
 
                 <div id="task_container_InProgress" class="task_container">
                     <!-- task -->
-                    <article onclick="close_open_Dialog()" class="task">
-                        <div class="task_category">User Story</div>
-                        <div class="task_title">Kochwelt Page & Recipe Recommender</div>
-                        <div class="task_description">Build start page with recipe recommendation...</div>
-                        <div class="task_progress">
-                            <div class="progressbar">
-                                <div class="progressbar_blue"></div>
-                            </div>
-                            <div class="progressbar_text">1/2 Subtasks</div>
-                        </div>
-                        <div class="task_members_prio">
-                            <div class="task_members">
-                                <div class="member_cycle orange pos1">AM</div>
-                                <div class="member_cycle turkies pos2">EM</div>
-                                <div class="member_cycle violett pos3">MB</div>
-                            </div>
-                            <div class="task_prio">
-                                <img src="assets/img/Priority_symbols_Medium.png" alt="">
-                            </div>
-                        </div>
-                    </article>
+                    
                 </div>
             </div>
 
@@ -145,38 +127,10 @@
                 <div id="task_container_AwaitFeedback" class="task_container">
 
                     <!-- task -->
-                    <article class="task">
-                        <div class="task_category turkies ">Technical Task</div>
-                        <div class="task_title">HTML Base Template Creation</div>
-                        <div class="task_description">Create reusable HTML base templates...</div>
-                        <div class="task_members_prio">
-                            <div class="task_members">
-                                <div class="member_cycle orange pos1">DE</div>
-                                <div class="member_cycle turkies pos2">BZ</div>
-                                <div class="member_cycle violett pos3">AS</div>
-                            </div>
-                            <div class="task_prio">
-                                <img src="assets/img/Priority_symbols_Low.png" alt="">
-                            </div>
-                        </div>
-                    </article>
+                   
 
                     <!-- task -->
-                    <article class="task">
-                        <div class="task_category">User Story</div>
-                        <div class="task_title">Daily Kochwelt Recipe</div>
-                        <div class="task_description">Implement daily recipe and portion calculator...</div>
-                        <div class="task_members_prio">
-                            <div class="task_members">
-                                <div class="member_cycle orange pos1">EF</div>
-                                <div class="member_cycle turkies pos2">AS</div>
-                                <div class="member_cycle violett pos3">TW</div>
-                            </div>
-                            <div class="task_prio">
-                                <img src="assets/img/Priority_symbols_Medium.png" alt="">
-                            </div>
-                        </div>
-                    </article>
+                    
                 </div>
             </div>
 
@@ -191,31 +145,13 @@
                 <div id="task_container_Done" class="task_container">
 
                     <!-- task -->
-                    <article class="task">
-                        <div class="task_category turkies ">Technical Task</div>
-                        <div class="task_title">CSS Architecture Planning</div>
-                        <div class="task_description">Define CSS naming conventions and structure...</div>
-                        <div class="task_progress">
-                            <div class="progressbar">
-                                <div class="progressbar_blue_hundred"></div>
-                            </div>
-                            <div class="progressbar_text">2/2 Subtasks</div>
-                        </div>
-                        <div class="task_members_prio">
-                            <div class="task_members">
-                                <div class="member_cycle orange pos1">SM</div>
-                                <div class="member_cycle turkies pos2">BZ</div>
-                            </div>
-                            <div class="task_prio">
-                                <img src="assets/img/Priority_symbols_Urgent.png" alt="">
-                            </div>
-                        </div>
-                    </article>
+                    
 
                 </div>
             </div>
 
         </section>
+    </div>
   <script src="./js/board.js"></script>
 </body>
 
