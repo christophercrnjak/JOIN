@@ -55,6 +55,7 @@ h2 {
   display: flex;
   justify-content: space-between;
   gap: 32px;
+  height: 33%;
 }
 
 .first_row a {
@@ -93,6 +94,10 @@ h2 {
 #task_name {
   font-size: 20px;
   text-align: center;
+}
+
+.second_row {
+  height: 33%;
 }
 
 .urgent_task {
@@ -141,6 +146,7 @@ hr {
   justify-content: space-between;
   width: 100%;
   gap: 28px;
+  height: 33%;
 }
 
 .third_row a {
@@ -153,6 +159,7 @@ hr {
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
   padding: 25px;
   color: black;
+  height: 33%;
 }
 
 .task:hover {
