@@ -11,7 +11,7 @@ async function init() {
     tasks = await resp.json(); 
     console.log(tasks);
     calcTaskAmount(tasks);
-    calcSumOfAmount();
+    calcSumOfAmounts();
     renderAmountsInElements();
 }
 
@@ -35,7 +35,7 @@ function calcTaskAmount(tasks) {
     }
 }
 
-function calcSumOfAmount() {
+function calcSumOfAmounts() {
     allAmounts = toDoAmount + inProgressAmount + awaitingFeedbackAmount + doneAmount;
 }
 
