@@ -17,59 +17,9 @@
 
 <body onload="includeHTML(); init()">
     <div w3-include-html="./assets/templates/sidebar.html"></div>
-    <div id="dialog_container" onclick="close_open_Dialog()" class="dialog_container d-none">
+    <div id="dialog_container" class="dialog_container d-none">
         
-        <div class="task_dialog" onclick="doNotClose(event)" >
-            <div class="category_close" onclick="doNotClose(event)">
-                <div onclick="doNotClose(event)" class="task_category">User Story</div>
-                <a onclick="close_open_Dialog()" class="close">
-                    <div class="line horizontal"></div>
-                    <div class="line vertical"></div>
-                </a>
-            </div>
-            <div onclick="doNotClose(event)" class="task_title_dialog">Kochwelt Page & Recipe Recommender</div>
-            <div onclick="doNotClose(event)" class="task_description_dialog">Build start page with recipe recommendation.</div>
-            <div onclick="doNotClose(event)" class="due_Date_dialog">
-                Due date: <span class="duedate">10/05/23</span>
-            </div>
-            <div onclick="doNotClose(event)" class="priority_dialog">
-                Priority: <span >Medium</span><img src="assets/img/Priority_symbols_Medium.png">
-            </div>
-            <div onclick="doNotClose(event)" class="assigned_to">
-                <div>Assiged To:</div>
-                <div class="table_assigedto">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td class="member_cycle orange pos1">AM</td>
-                                <td class="member_name_assiged_to">Anton Mayer</td>
-                            </tr>
-                            <tr>
-                                <td class="member_cycle turkies pos1">EM</td>
-                                <td class="member_name_assiged_to">Emanuel Mauer</td>
-                            </tr>
-                            <tr>
-                                <td class="member_cycle violett pos1">MB</td>
-                                <td class="member_name_assiged_to">Marcel Bauer</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div onclick="doNotClose(event)" class="subtasks_main">
-                <div>Subtasks</div>
-                <div class="subtask_container">
-                    <div class="Subtasks"><img src="assets/img/check_button_checked.png" alt=""><span>Implement Recipe Recommendation</span></div>
-                    <div class="Subtasks"><img src="assets/img/check_button_unchecked.png" alt=""><span>Start Page Layout</span></div>
-                </div>
-            </div>
-            <div onclick="doNotClose(event)" class="delete_and_edit_section">
-                <div class="delete_and_edit">
-                    <a><img src="assets/img/delete.png" alt="">Delete</a>
-                    <div class="line_task"></div>
-                    <a><img src="assets/img/edit.png" alt="">Edit</a>
-                </div>
-            </div>
+        <div id="task_dialog_container" class="task_dialog" >
         </div>
     </div>
     <div class="container">
@@ -78,80 +28,55 @@
                 <div class="search_add">
                     <div class="search">
                         <input id="task_to_be_found" type="text" placeholder="Find Task">
-                        <!-- <div class="search_right"> -->
+                            <!-- <div class="search_right"> -->
                             <!-- <div class="line_search"></div>
                             <a onclick="searchTask()"><img src="assets/img/search.png" alt=""></a> -->
                     </div>
                     <a class="add_task_btn"> Add task <span class="plus_add_btn">+</span></a>
                 </div>
-                
-            
         </header>
 
         <section class="board_content">
             
-            <!-- first column -->
+            <!-- To do -->
             <div class="board_column">
                 <div class="column_head">
                     <div class="column_head_text">To do</div>
                     <div class="column_head_add_btn">+</div>
                 </div>
-
-                <div id="task_container_Todo" class="task_container">
-                    <!-- task -->
-                    
-                </div>
+                <div id="task_container_Todo" class="task_container"></div>
             </div>
             
-            <!-- second column -->
+            <!-- In progress -->
             <div class="board_column">
                 <div class="column_head">
                     <div class="column_head_text">In progress</div>
                     <div class="column_head_add_btn">+</div>
                 </div>
-
-                <div id="task_container_InProgress" class="task_container">
-                    <!-- task -->
-                    
-                </div>
+                <div id="task_container_InProgress" class="task_container"></div>
             </div>
 
-            <!-- third column -->
+            <!-- Await feedback -->
             <div class="board_column">
                 <div class="column_head">
                     <div class="column_head_text">Await feedback</div>
                     <div class="column_head_add_btn">+</div>
                 </div>
-
-                <div id="task_container_AwaitFeedback" class="task_container">
-
-                    <!-- task -->
-                   
-
-                    <!-- task -->
-                    
-                </div>
+                <div id="task_container_AwaitFeedback" class="task_container"></div>
             </div>
 
-            <!-- fourth column -->
+            <!-- Done -->
             <div class="board_column">
-                
                 <div class="column_head">
                     <div class="column_head_text">Done</div>
                     <div class="column_head_add_btn">+</div>
                 </div>
-                
-                <div id="task_container_Done" class="task_container">
-
-                    <!-- task -->
-                    
-
-                </div>
+                <div id="task_container_Done" class="task_container"></div>
             </div>
 
         </section>
     </div>
-  <script src="./js/board.js"></script>
+    <script src="./js/board.js"></script>
 </body>
 
 </html>

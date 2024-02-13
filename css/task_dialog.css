@@ -103,6 +103,11 @@
                 margin-left: 50px;
             }
 
+            #prio_image {
+                margin-left: 10px;
+                padding-top: 4px;
+            }
+
         .assigned_to {
             display: flex;
             flex-direction: column;
@@ -151,6 +156,7 @@
                 justify-content: end;
                 align-items: center;
                 width: 100%;
+              
             }
 
             .delete_and_edit img{
@@ -162,6 +168,7 @@
             .delete_and_edit a{
                 display: flex;
                 align-items: center;
+                color: var(--bgdarkblue);
             }
 
                 .line_task {

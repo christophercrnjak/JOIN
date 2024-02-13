@@ -127,6 +127,7 @@ body {
                         align-items: center;
                         padding-bottom: 5px;
                         font-weight: 900;
+                        margin-left: 10px;
                     }
                 .task_container {
                     height: 100%;
@@ -210,6 +211,10 @@ body {
                             justify-content: space-between;
                             width: 100%;
                         }
+
+                            .task_prio {
+                                padding-top: 4px;
+                            }
                             .task_members {
                                 display: flex;
                                position: relative;
