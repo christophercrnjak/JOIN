@@ -8,7 +8,7 @@ async function init() {
 }
 
 // delete content of columns
-function renderColumnContent(){
+async function renderColumnContent(){
     let toDo_container = document.getElementById('task_container_Todo');
     let inProgress_container = document.getElementById('task_container_InProgress');
     let awaitFeedback_container = document.getElementById('task_container_AwaitFeedback');
@@ -17,7 +17,8 @@ function renderColumnContent(){
     inProgress_container.innerHTML = '';
     awaitFeedback_container.innerHTML = '';
     done_container.innerHTML = '';
-    distributionTasks(toDo_container, inProgress_container, awaitFeedback_container, done_container);
+    await distributionTasks(toDo_container, inProgress_container, awaitFeedback_container, done_container);
+    noTask(toDo_container, inProgress_container, awaitFeedback_container, done_container);
 }
 
 function distributionTasks(toDo, inProgress, awaitFeedback, done) {
@@ -27,30 +28,49 @@ function distributionTasks(toDo, inProgress, awaitFeedback, done) {
 
             case 'toDo': // case one tasks[i].status: 'toDo'
               toDo.innerHTML += taskHTML(task, i);
-              renderInitials(i); // get the circle with the Initials
-              setColorOfCategory(i); // set color of categories in dependence of category names
-              showprogressbar(i);
+              renderTaskElements(i)
               break;
             case 'inProgress': // case one tasks[i].status: 'inProgress'
               inProgress.innerHTML += taskHTML(task, i);
-              renderInitials(i);
-              setColorOfCategory(i);
-              showprogressbar(i);
+              renderTaskElements(i)
               break;
             case 'awaitFeedback':
               awaitFeedback.innerHTML += taskHTML(task, i);
-              renderInitials(i);
-              setColorOfCategory(i);
-              showprogressbar(i);
+              renderTaskElements(i)
               break;
             case 'done':
               done.innerHTML += taskHTML(task, i);
-              renderInitials(i);
-              setColorOfCategory(i);
-              showprogressbar(i);
+              renderTaskElements(i)
               break;
         }
     }
+  
+}
+
+function noTask(toDo_container, inProgress_container, awaitFeedback_container, done_container) {
+    if (toDo_container.innerHTML == '') {
+        toDo_container.innerHTML = noTaskHTML('To do');
+    };
+    if (inProgress_container.innerHTML == '') {
+        inProgress_container.innerHTML = noTaskHTML('In Progress');
+    };
+    if (awaitFeedback_container.innerHTML == '') {
+        awaitFeedback_container = noTaskHTML('Await feedback');
+    };
+    if (done_container.innerHTML == '') {
+        done_container.innerHTML = noTaskHTML('done');
+    };
+}
+
+function noTaskHTML(head_text) {
+   
+    return `<div class="no_task"> no ${head_text} task</div>`
+}
+
+function renderTaskElements(i) {
+    setColorOfCategory(i);
+    showprogressbar(i);
+    renderInitials(i);
 }
 
 function setColorOfCategory(i) {
@@ -64,10 +84,6 @@ function setColorOfCategory(i) {
           container.style.backgroundColor = '#1FD7C1';
           break;
     }
-}
-
-function noTaskHTML(head_text) {
-    return `<div class="no_task"> no ${head_text} task</div>`
 }
 
 function taskHTML(task, i) {
@@ -96,6 +112,7 @@ function showprogressbar(i) {
     if (task.subtasks.length > 0) {
         container.innerHTML = subtaskHTML(i);
         renderSubtaskAmounts(i);
+        renderBlueProgressbar(i)
     } else {
         container.classList.add('d-none')
     }
@@ -104,9 +121,10 @@ function showprogressbar(i) {
 function subtaskHTML(i) {
     return `
     <div  class="progressbar">
-            <div class="progressbar_blue"></div>
-        </div>
-        <div class="progressbar_text"> <span id="subtasks_todo${i}"></span>/<span id="subtasks_total${i}"></span> Subtasks</div>
+        <div id="blue_progressbar${i}" class="progressbar_blue"></div>
+    </div>
+    <div class="progressbar_text"> 
+        <span id="subtasks_todo${i}"></span> / <span id="subtasks_total${i}"></span> Subtasks
     </div>
     `;
 }
@@ -129,6 +147,23 @@ function calcSubtaskAmount(i) {
         } 
     }
     return subtask_amount_todo;
+}
+
+function renderBlueProgressbar(i) {
+    let container = document.getElementById(`blue_progressbar${i}`)
+    let amountOfOpenTasks = calcSubtaskAmount(i);
+    let totalSubtasks = tasks[i].subtasks.length;
+    if (amountOfOpenTasks == 0) {
+        container.style.width = '128px';
+    } else {
+        let progress = calcProgressbar(totalSubtasks) * amountOfOpenTasks;
+        container.style.width = `${progress}px`;
+    }
+}
+
+function calcProgressbar(totalSubtasks){
+    let progressTotal = 128 / totalSubtasks;
+    return +progressTotal;
 }
 
 function renderInitials(task_number) {

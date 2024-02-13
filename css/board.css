@@ -169,6 +169,7 @@ body {
                             width: 100%;
                             display: flex;
                             justify-content: space-between;
+                            align-items: center;
                         }
                             .progressbar {
                                 width: 128px;
@@ -178,7 +179,6 @@ body {
                                 
                             }
                                 .progressbar_blue {
-                                    width: 64px;
                                     border-radius: 8px;
                                     background-color: #4589FF;
                                     height: 8px;
