@@ -97,7 +97,7 @@ body {
                 
         .board_content {
             display: flex;
-            margin: 64px;
+            margin: 64px 30px 64px;
             height: 100%;
             gap: 26px;
         }
