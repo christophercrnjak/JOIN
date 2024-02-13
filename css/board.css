@@ -1,12 +1,21 @@
-
-.board_container {
+body {
+    background-color: var(--bgwhite);
     height: 100vh;
     width: 100%;
-    background-color: var(--bgwhite);
+}
+
+.container {
+    margin-left: 232px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 56px;
+    padding-top: 47px;
 }
         .board_header {
             display: flex;
-            margin: 79.5px 88px 79.5px 64px;
+            margin-left: 64px;
+            margin-top: 79.5px;
+            margin-right: 88px;
             justify-content: space-between;
             align-items: center;
         }
@@ -140,7 +149,6 @@
                         background-color: white !important;
                         padding: 16px;
                         border-radius: 24px;
-                        min-width: 252px;
                     }
                         .task_category {
                             padding: 4px 16px 4px;
@@ -171,6 +179,7 @@
                             width: 100%;
                             display: flex;
                             justify-content: space-between;
+                            align-items: center;
                         }
                             .progressbar {
                                 width: 128px;
@@ -180,7 +189,6 @@
                                 
                             }
                                 .progressbar_blue {
-                                    width: 64px;
                                     border-radius: 8px;
                                     background-color: #4589FF;
                                     height: 8px;

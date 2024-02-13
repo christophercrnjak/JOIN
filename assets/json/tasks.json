@@ -26,11 +26,11 @@
     "subtasks": [
                    {
                     "name": "Implement Recipe Recommendation",
-                    "done": "true"
+                    "done": true
                     },    
                     {
                     "name": "Start Page Layout",
-                    "done": "false"
+                    "done": false
                     }
     ],
     "status": "inProgress"
@@ -95,12 +95,12 @@
                 {
                     "firstName": "Sofia",
                     "secondName": "Müller",
-                    "color": "var(--darkslateblue)"
+                    "color": "darkslateblue"
                 },
                 {
                     "firstName": "Benedikt",
                     "secondName": "Ziegler",
-                    "color": "var(--darkslateblue)"
+                    "color": "darkslateblue"
                 }
             ],
             "dueDate": "02/09/2023",
@@ -108,11 +108,11 @@
             "subtasks": [
                            {
                             "name": "Establish CSS Methodology",
-                            "done": "true"
+                            "done": true
                             },    
                             {
                             "name": "Setup Base Styles",
-                            "done": "true"
+                            "done": true
                             }
             ],
             "status": "done"
