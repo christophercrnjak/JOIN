@@ -36,9 +36,35 @@
     "status": "inProgress"
     },
     {
-        "title": "HTML Base Template Creation",
-        "description": "Create reusable HTML base templates...",
-        "category": "Technical Task",
+    "title": "HTML Base Template Creation",
+    "description": "Create reusable HTML base templates...",
+    "category": "Technical Task",
+    "contacts": [
+        {
+            "firstName": "Anton",
+            "secondName": "Mayer",
+            "color": "darkslateblue"
+        },
+        {
+            "firstName": "Emanuel",
+            "secondName": "Mauer",
+            "color": "darkslateblue"
+        },
+        {
+            "firstName": "Marcel",
+            "secondName": "Bauer",
+            "color": "darkslateblue"
+        }
+    ],
+    "dueDate": "10/05/23",
+    "priority": "Low",
+    "subtasks": [],
+    "status": "awaitFeedback"
+    },
+    {
+        "title": "Daily Kochwelt Recipe",
+        "description": "Implement daily recipe and portion calculator....",
+        "category": "User Story",
         "contacts": [
             {
                 "firstName": "Anton",
@@ -57,64 +83,38 @@
             }
         ],
         "dueDate": "10/05/23",
-        "priority": "Low",
+        "priority": "Medium",
         "subtasks": [],
         "status": "awaitFeedback"
-        },
-        {
-            "title": "Daily Kochwelt Recipe",
-            "description": "Implement daily recipe and portion calculator....",
-            "category": "User Story",
-            "contacts": [
-                {
-                    "firstName": "Anton",
-                    "secondName": "Mayer",
-                    "color": "darkslateblue"
-                },
-                {
-                    "firstName": "Emanuel",
-                    "secondName": "Mauer",
-                    "color": "darkslateblue"
-                },
-                {
-                    "firstName": "Marcel",
-                    "secondName": "Bauer",
-                    "color": "darkslateblue"
-                }
-            ],
-            "dueDate": "10/05/23",
-            "priority": "Medium",
-            "subtasks": [],
-            "status": "awaitFeedback"
-        },
-        {
-            "title": "CSS Architecture Planning",
-            "description": "Define CSS naming conventions and structure",
-            "category": "Technical Task",
-            "contacts": [
-                {
-                    "firstName": "Sofia",
-                    "secondName": "Müller",
-                    "color": "darkslateblue"
-                },
-                {
-                    "firstName": "Benedikt",
-                    "secondName": "Ziegler",
-                    "color": "darkslateblue"
-                }
-            ],
-            "dueDate": "02/09/2023",
-            "priority": "Urgent",
-            "subtasks": [
-                           {
-                            "name": "Establish CSS Methodology",
-                            "done": true
-                            },    
-                            {
-                            "name": "Setup Base Styles",
-                            "done": true
-                            }
-            ],
-            "status": "done"
-        } 
+    },
+    {
+        "title": "CSS Architecture Planning",
+        "description": "Define CSS naming conventions and structure",
+        "category": "Technical Task",
+        "contacts": [
+            {
+                "firstName": "Sofia",
+                "secondName": "Müller",
+                "color": "darkslateblue"
+            },
+            {
+                "firstName": "Benedikt",
+                "secondName": "Ziegler",
+                "color": "darkslateblue"
+            }
+        ],
+        "dueDate": "02/09/2023",
+        "priority": "Urgent",
+        "subtasks": [
+                        {
+                        "name": "Establish CSS Methodology",
+                        "done": true
+                        },    
+                        {
+                        "name": "Setup Base Styles",
+                        "done": true
+                        }
+        ],
+        "status": "done"
+    } 
 ]
