@@ -1,10 +1,30 @@
 [
     {
-    "name": {
-        "firstName": "",
-        "secondName": ""
+        "name": {
+            "firstName": "Anton",
+            "secondName": "Meyer"
+        },
+        "mail": "anton@gmail"
     },
-    "mail": "",
-    "phone": ""
+    {
+        "name": {
+            "firstName": "Anja",
+            "secondName": "Schulz"
+        },
+        "mail": "schulz@hotmail"
+    },
+    {
+        "name": {
+            "firstName": "Benedikt",
+            "secondName": "Ziegler"
+        },
+        "mail": "benedikt@gmail"
+    },
+    {
+        "name": {
+            "firstName": "David",
+            "secondName": "Eisenberg"
+        },
+        "mail": "davidberg@gmail"
     }
 ]
