@@ -339,16 +339,26 @@ function renderAssigedToDialog(taskId) {
         let status = tasks[taskId].subtasks[subtaskId].done;
         switch (status) {
             case true:
-              container.innerHTML = `<img src="assets/img/check_button_checked.png" alt="">`;
+              container.innerHTML = `<a onclick="changeSubtaskStatus(${taskId}, ${subtaskId})"><img src="assets/img/check_button_checked.png" alt=""></a>`;
               break;
             case false:
-                container.innerHTML = `<img src="assets/img/check_button_unchecked.png" alt="">`;
+                container.innerHTML = `<a onclick="changeSubtaskStatus(${taskId}, ${subtaskId})"><img src="assets/img/check_button_unchecked.png" alt=""></a>`;
               break;
         }
     }
 
+    function changeSubtaskStatus(taskId, subtaskId) {
+        let subtaskStatus = tasks[taskId].subtasks[subtaskId].done;
+        if (subtaskStatus == true) {
+            subtaskStatus = false;
+        } else {
+            subtaskStatus = true;
+        }
+        renderSubtaskImage(taskId, subtaskId);
+    }
 
-{/* <img src="assets/img/check_button_checked.png" alt=""> */}
+
+
 
 function deleteTask(taskId) {
     tasks.splice(taskId, 1);
@@ -357,7 +367,7 @@ function deleteTask(taskId) {
 }
 
 function doNotClose(event) {
-    event.stopPrpagation();
+    event.stopPropagation();
 }
 
 
