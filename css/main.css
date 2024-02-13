@@ -127,6 +127,18 @@ input[type=text] {
   padding: 12px 20px 12px 40px;
 }
 
+input[type=search] {
+  width: 100%;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-image: url('../assets/img/search.png');
+  background-position: right 10px center; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 20px;
+}
+
 a {
   text-decoration: none;
   color: white;
