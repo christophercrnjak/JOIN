@@ -36,6 +36,6 @@ function renderAssignedPerson() {
 
 function addTaskContacts(contact) {
 return`
-<option value="#">${contact.name.firstName} ${contact.name.secondName}</option>
+<option value="#">${contact.name.firstName} ${contact.name.secondName} <input type="checkbox" name="" id=""></option>
 `
 }
