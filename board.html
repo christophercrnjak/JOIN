@@ -17,25 +17,25 @@
 
 <body onload="includeHTML(); init()">
     <div w3-include-html="./assets/templates/sidebar.html"></div>
-    <div id="dialog_container" class="dialog_container d-none">
+    <div id="dialog_container" onclick="close_open_Dialog()" class="dialog_container d-none">
         
-        <div class="task_dialog">
-            <div class="category_close">
-                <div class="task_category">User Story</div>
+        <div class="task_dialog" onclick="doNotClose(event)" >
+            <div class="category_close" onclick="doNotClose(event)">
+                <div onclick="doNotClose(event)" class="task_category">User Story</div>
                 <a onclick="close_open_Dialog()" class="close">
                     <div class="line horizontal"></div>
                     <div class="line vertical"></div>
                 </a>
             </div>
-            <div class="task_title_dialog">Kochwelt Page & Recipe Recommender</div>
-            <div class="task_description_dialog">Build start page with recipe recommendation.</div>
-            <div class="due_Date_dialog">
+            <div onclick="doNotClose(event)" class="task_title_dialog">Kochwelt Page & Recipe Recommender</div>
+            <div onclick="doNotClose(event)" class="task_description_dialog">Build start page with recipe recommendation.</div>
+            <div onclick="doNotClose(event)" class="due_Date_dialog">
                 Due date: <span class="duedate">10/05/23</span>
             </div>
-            <div class="priority_dialog">
+            <div onclick="doNotClose(event)" class="priority_dialog">
                 Priority: <span >Medium</span><img src="assets/img/Priority_symbols_Medium.png">
             </div>
-            <div class="assigned_to">
+            <div onclick="doNotClose(event)" class="assigned_to">
                 <div>Assiged To:</div>
                 <div class="table_assigedto">
                     <table>
@@ -56,14 +56,14 @@
                     </table>
                 </div>
             </div>
-            <div class="subtasks_main">
+            <div onclick="doNotClose(event)" class="subtasks_main">
                 <div>Subtasks</div>
                 <div class="subtask_container">
                     <div class="Subtasks"><img src="assets/img/check_button_checked.png" alt=""><span>Implement Recipe Recommendation</span></div>
                     <div class="Subtasks"><img src="assets/img/check_button_unchecked.png" alt=""><span>Start Page Layout</span></div>
                 </div>
             </div>
-            <div class="delete_and_edit_section">
+            <div onclick="doNotClose(event)" class="delete_and_edit_section">
                 <div class="delete_and_edit">
                     <a><img src="assets/img/delete.png" alt="">Delete</a>
                     <div class="line_task"></div>
@@ -75,7 +75,6 @@
     <div class="container">
         <header class="board_header">
             <div class="header_text">Board</div>
-            
                 <div class="search_add">
                     <div class="search">
                         <input id="task_to_be_found" type="text" placeholder="Find Task">

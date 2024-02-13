@@ -204,4 +204,8 @@ function close_open_Dialog() {
     container.classList.toggle('d-none')
 }
 
+function doNotClose(event) {
+    event.stopPrpagation();
+}
+
 

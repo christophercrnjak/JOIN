@@ -186,6 +186,7 @@ body {
                                 border-radius: 8px;
                                 background-color: #F4F4F4;
                                 height: 8px;
+                                margin-top: 1px;
                                 
                             }
                                 .progressbar_blue {
@@ -240,3 +241,12 @@ body {
                                     position: relative;
                                    left: -18px; 
                                 }                      
+
+                                @media(max-width: 1360px) {
+                                    .task_progress {
+                                        flex-direction: column-reverse;
+                                        gap: 5px;
+                                        align-items: start;
+                                        margin-top: 10px;
+                                    }
+                                }
