@@ -107,13 +107,25 @@ function calcNextDeadline() {
 
 }
 
-// Function to find the next upcoming due date
-function getNextDueDate(tasks) {
-    // Filter out tasks with due dates greater than today
-    const upcomingTasks = tasks.filter(task => new Date(task.dueDate) > new Date());
+// Function to parse date string in "DD/MM/YYYY" format
+function parseDate(dateString) {
+    const [day, month, year] = dateString.split('/');
+    return new Date(`${year}-${month}-${day}`);
+  }
+  
+  // Function to find the next upcoming due date
+  function getNextDueDate(tasks) {
+    // Get the current date
+    const currentDate = new Date();
+  
+    // Filter out tasks with due dates less than or equal to the current date
+    const upcomingTasks = tasks.filter(task => {
+      const taskDate = parseDate(task.dueDate);
+      return taskDate > currentDate;
+    });
   
     // Sort the upcoming tasks by due date in ascending order
-    upcomingTasks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
+    upcomingTasks.sort((a, b) => parseDate(a.dueDate) - parseDate(b.dueDate));
   
     // Return the due date of the first task (next upcoming due date)
     return upcomingTasks.length > 0 ? upcomingTasks[0].dueDate : null;
@@ -124,3 +136,4 @@ function getNextDueDate(tasks) {
   
   // Display the result
   console.log("Next Upcoming Due Date:", nextDueDate);
+  
