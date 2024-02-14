@@ -1,0 +1,33 @@
+.contacts {
+    background-color: blue;
+    width: 456px;
+    height: 100vh;
+    box-shadow: 4px 0px 6px 0px #00000014;
+    margin-left: 232px;
+    overflow-y: scroll;
+    margin-top: 96px;
+    position: fixed;
+}
+
+.add {
+    background: rgba(42, 54, 71, 1);
+    color: white;
+    padding: 12px 0px 12px 0px;
+    border-radius: 10px;
+    border: 1px;
+    gap: 16px;
+    display: flex;
+    width: 352px;
+    height: 56px;
+    align-items: center;
+    justify-content: center;
+    margin-left: 52px;
+    margin-top: 22.5px;
+
+}
+
+.contact_list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
