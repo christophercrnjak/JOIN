@@ -99,9 +99,9 @@ function getNextDueDate() {
     let tasksNotDone = tasks.filter((status) => {
         return status.status != 'done';
     })
-    console.log(tasksNotDone);
+    console.log('Tasks which are not done', tasksNotDone);
     let dueDates = tasksNotDone.map((dueDates) => {
         return dueDates.dueDate;
     })
-    console.log(dueDates);
+    console.log('Due dates of tasks which are not done', dueDates);
 }
