@@ -1,65 +1,64 @@
 [
     {
-    "title": "Kochwelt Page & Recipe Recommender",
-    "description": "Build start page with recipe recommendation.",
-    "category": "User Story",
-    "contacts": [
-        {
-            "firstName": "Anton",
-            "secondName": "Mayer",
-            "color": "orange"
-        },
-        {
-            "firstName": "Emanuel",
-            "secondName": "Mauer",
-            "color": "turquoise"
-
-        },
-        {
-            "firstName": "Marcel",
-            "secondName": "Bauer",
-            "color": "darkslateblue"
-        }
-    ],
-    "dueDate": "10/05/23",
-    "priority": "Medium",
-    "subtasks": [
-                   {
-                    "name": "Implement Recipe Recommendation",
-                    "done": true
-                    },    
-                    {
-                    "name": "Start Page Layout",
-                    "done": false
-                    }
-    ],
-    "status": "inProgress"
+        "title": "Kochwelt Page & Recipe Recommender",
+        "description": "Build start page with recipe recommendation.",
+        "category": "User Story",
+        "contacts": [
+            {
+                "firstName": "Anton",
+                "secondName": "Mayer",
+                "color": "orange"
+            },
+            {
+                "firstName": "Emanuel",
+                "secondName": "Mauer",
+                "color": "turquoise"
+            },
+            {
+                "firstName": "Marcel",
+                "secondName": "Bauer",
+                "color": "darkslateblue"
+            }
+        ],
+        "dueDate": "10/05/23",
+        "priority": "Medium",
+        "subtasks": [
+            {
+                "name": "Implement Recipe Recommendation",
+                "done": true
+            },
+            {
+                "name": "Start Page Layout",
+                "done": false
+            }
+        ],
+        "status": "inProgress"
     },
     {
-    "title": "HTML Base Template Creation",
-    "description": "Create reusable HTML base templates...",
-    "category": "Technical Task",
-    "contacts": [
-        {
-            "firstName": "Anton",
-            "secondName": "Mayer",
-            "color": "darkslateblue"
-        },
-        {
-            "firstName": "Emanuel",
-            "secondName": "Mauer",
-            "color": "darkslateblue"
-        },
-        {
-            "firstName": "Marcel",
-            "secondName": "Bauer",
-            "color": "darkslateblue"
-        }
-    ],
-    "dueDate": "10/05/23",
-    "priority": "Low",
-    "subtasks": [],
-    "status": "awaitFeedback"
+        "title": "HTML Base Template Creation",
+        "description": "Create reusable HTML base templates...",
+        "category": "Technical Task",
+        "contacts": [
+            {
+                "firstName": "Anton",
+                "secondName": "Mayer",
+                "color": "darkslateblue"
+            },
+            {
+                "firstName": "Emanuel",
+                "secondName": "Mauer",
+                "color": "darkslateblue"
+            },
+            {
+                "firstName": "Marcel",
+                "secondName": "Bauer",
+                "color": "darkslateblue"
+            }
+        ],
+        "dueDate": "10/05/23",
+        "priority": "Low",
+        "subtasks": [],
+        "status": "awaitFeedback"
     },
     {
         "title": "Daily Kochwelt Recipe",
@@ -106,15 +105,15 @@
         "dueDate": "02/09/23",
         "priority": "Urgent",
         "subtasks": [
-                        {
-                        "name": "Establish CSS Methodology",
-                        "done": true
-                        },    
-                        {
-                        "name": "Setup Base Styles",
-                        "done": true
-                        }
+            {
+                "name": "Establish CSS Methodology",
+                "done": true
+            },
+            {
+                "name": "Setup Base Styles",
+                "done": true
+            }
         ],
         "status": "done"
-    } 
+    }
 ]
