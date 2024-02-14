@@ -12,21 +12,21 @@
     <link rel="stylesheet" href="css/contact.css">
     <link rel="stylesheet" href="./Fonts/Inter-VariableFont_slnt,wght.ttf">
     <script src="./js/include.js"></script>
+    <script src="./js/contact.js"></script>
 </head>
 
-<body onload="includeHTML()">
+<body onload="includeHTML(); loadContacts()">
     <div w3-include-html="/assets/templates/sidebar.html">
     </div>
         <div class="contacts">
             <div >
                 <button class="add">Add new contact <img src="assets/img/person_add.png"></button>
             </div>
-            <div class="contact_list">
-                <span>A</span>
-                <span>Anton Mayer</span>
-                <span>aonton@gmail.com</span>
+            <div id="person" class="contact_list">
+            
             </div>
     </div>
+
 </body>
 
 </html>

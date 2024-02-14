@@ -63,18 +63,6 @@ h2 {
   width: 50%;
 }
 
-.task_status {
-  background-color: white;
-  color: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 18px;
-  border-radius: 30px;
-  padding: 38px 19px;
-  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
-}
-
 .task_status:hover {
   background-color: var(--bgdarkblue);
   color: white;
@@ -133,14 +121,6 @@ hr {
 .urgent_task_date {
   font-size: 21px;
   font-weight: 700;
-}
-
-.urgent_information {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  row-gap: 13px;
 }
 
 .third_row {
