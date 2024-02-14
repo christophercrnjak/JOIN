@@ -1,5 +1,5 @@
 .contacts {
-    background-color: blue;
+    background-color: white;
     width: 456px;
     height: 100vh;
     box-shadow: 4px 0px 6px 0px #00000014;
@@ -29,5 +29,73 @@
 .contact_list {
     display: flex;
     flex-direction: column;
+    margin-left: 52px;
+    width: 456px;
+    height: 928px;
+    margin-top: 28px;
+}
+.contact_list h3{
+    width: 14px;
+    height: 24px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 16px;
+}
+.first_letter{
+    border-bottom: 1px solid rgba(209,209,209,1);
+    width: 352px;
+    height: 58px;
+    padding: 17px 36px 17px 36px;
+    gap: 8px;
+    display: flex;
+    margin-bottom: 16px;
+}
+.persons{
+
+    border-radius: 45px;
+    gap: 10px;
+    display: flex;
+    width: 42px;
+    height: 42px;
+    justify-content: center;
     align-items: center;
+}
+    
+#text{
+    width: 121px;
+    height: 24px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    
+}
+.person_initials {
+    width: 42px;
+    height: 42px;
+    border-radius: 45px;
+    gap: 10px;
+    background-color: lightgray;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 42px;
+    letter-spacing: 0em;
+    text-align: center;
+}
+.persons_details{
+    display: flex;
+    gap: 35px;
+    margin-top: 15px;
+    margin-bottom: 21px;
+}
+.person_details{
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+}
+.email{
+    font-size: 16px;
+    line-height: 19.2px;
+    font-weight: 400;
+    color: rgba(0, 124, 238, 1);
 }
