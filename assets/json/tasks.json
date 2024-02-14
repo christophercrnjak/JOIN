@@ -40,19 +40,19 @@
         "category": "Technical Task",
         "contacts": [
             {
-                "firstName": "Anton",
-                "secondName": "Mayer",
-                "color": "darkslateblue"
+                "firstName": "David",
+                "secondName": "Eisenberg",
+                "color": "violet"
             },
             {
-                "firstName": "Emanuel",
-                "secondName": "Mauer",
-                "color": "darkslateblue"
+                "firstName": "Benedict",
+                "secondName": "Ziegler",
+                "color": "mediumslateblue"
             },
             {
-                "firstName": "Marcel",
-                "secondName": "Bauer",
-                "color": "darkslateblue"
+                "firstName": "Anja",
+                "secondName": "Schulz",
+                "color": "blueviolet"
             }
         ],
         "dueDate": "10/05/23",
@@ -66,19 +66,19 @@
         "category": "User Story",
         "contacts": [
             {
-                "firstName": "Anton",
-                "secondName": "Mayer",
-                "color": "darkslateblue"
+                "firstName": "Eva",
+                "secondName": "Fischer",
+                "color": "yellow"
             },
             {
-                "firstName": "Emanuel",
-                "secondName": "Mauer",
-                "color": "darkslateblue"
+                "firstName": "Anja",
+                "secondName": "Schulz",
+                "color": "blueviolet"
             },
             {
-                "firstName": "Marcel",
-                "secondName": "Bauer",
-                "color": "darkslateblue"
+                "firstName": "Tatjana",
+                "secondName": "Wolf",
+                "color": "red"
             }
         ],
         "dueDate": "10/05/23",
@@ -94,12 +94,12 @@
             {
                 "firstName": "Sofia",
                 "secondName": "Müller",
-                "color": "darkslateblue"
+                "color": "deepskyblue"
             },
             {
-                "firstName": "Benedikt",
+                "firstName": "Benedict",
                 "secondName": "Ziegler",
-                "color": "darkslateblue"
+                "color": "mediumslateblue"
             }
         ],
         "dueDate": "02/09/23",

@@ -133,6 +133,7 @@
                 display: flex;
                 flex-direction: column;
                 margin-top: 6.5px;
+                
             }
 
                 .Subtasks {
@@ -143,6 +144,11 @@
 
                 .Subtasks span{
                     padding-left: 16px;
+                }
+
+                .ckeckbox img {
+                    width: 25px;
+                    height: 25px;
                 }
         
         .delete_and_edit_section {

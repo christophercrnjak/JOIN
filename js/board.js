@@ -8,6 +8,7 @@ async function init() {
     renderColumnContent();
 }
 
+
 // delete content of columns
 async function renderColumnContent(){
     let toDo_container = document.getElementById('task_container_Todo');
@@ -21,6 +22,7 @@ async function renderColumnContent(){
     await distributionTasks(toDo_container, inProgress_container, awaitFeedback_container, done_container);
     noTask(toDo_container, inProgress_container, awaitFeedback_container, done_container);
 }
+
 
 function distributionTasks(toDo, inProgress, awaitFeedback, done) {
     for (let i = 0; i < tasks.length; i++) {
@@ -48,6 +50,7 @@ function distributionTasks(toDo, inProgress, awaitFeedback, done) {
   
 }
 
+
 function noTask(toDo_container, inProgress_container, awaitFeedback_container, done_container) {
     if (toDo_container.innerHTML == '') {
         toDo_container.innerHTML = noTaskHTML('To do');
@@ -63,10 +66,12 @@ function noTask(toDo_container, inProgress_container, awaitFeedback_container, d
     };
 }
 
+
 function noTaskHTML(head_text) {
    
     return `<div class="no_task"> no ${head_text} task</div>`
 }
+
 
 function renderTaskElements(i) {
     setColorOfCategory(i);
@@ -74,6 +79,7 @@ function renderTaskElements(i) {
     renderInitials(i);
     renderPriority(i);
 }
+
 
 function setColorOfCategory(i) {
     let category = tasks[i].category;
@@ -88,8 +94,8 @@ function setColorOfCategory(i) {
     }
 }
 
-function taskHTML(task, i) {
 
+function taskHTML(task, i) {
     let category = task.category;
     let title = task.title;
     let description = task.description;
@@ -108,6 +114,7 @@ function taskHTML(task, i) {
     `
 }
 
+
 function renderPriority(i) {
     let priority = tasks[i].priority;
     let container = document.getElementById(`prio_icon${i}`);
@@ -124,6 +131,7 @@ function renderPriority(i) {
     }
 }
 
+
 function showprogressbar(i) {
     let container = document.getElementById(`task_progressbar${i}`)
     let task = tasks[i];
@@ -136,6 +144,7 @@ function showprogressbar(i) {
     }
 }
 
+
 function subtaskHTML(i) {
     return `
     <div  class="progressbar">
@@ -147,6 +156,7 @@ function subtaskHTML(i) {
     `;
 }
 
+
 function renderSubtaskAmounts(i) {
     let sub_todo = document.getElementById(`subtasks_todo${i}`);
     let sub_total = document.getElementById(`subtasks_total${i}`);
@@ -154,6 +164,7 @@ function renderSubtaskAmounts(i) {
     sub_todo.innerHTML = amountOfOpenTasks;
     sub_total.innerHTML = tasks[i].subtasks.length;
 }
+
 
 function calcSubtaskAmount(i) {
     let task = tasks[i];
@@ -167,11 +178,14 @@ function calcSubtaskAmount(i) {
     return subtask_amount_todo;
 }
 
+
 function renderBlueProgressbar(i) {
     let container = document.getElementById(`blue_progressbar${i}`)
     let amountOfOpenTasks = calcSubtaskAmount(i);
     let totalSubtasks = tasks[i].subtasks.length;
     if (amountOfOpenTasks == 0) {
+        container.style.width = '0px';
+    } else if (amountOfOpenTasks == tasks[i].subtasks.length) {
         container.style.width = '128px';
     } else {
         let progress = calcProgressbar(totalSubtasks) * amountOfOpenTasks;
@@ -179,10 +193,12 @@ function renderBlueProgressbar(i) {
     }
 }
 
+
 function calcProgressbar(totalSubtasks){
     let progressTotal = 128 / totalSubtasks;
     return +progressTotal;
 }
+
 
 function renderInitials(task_number) {
     let task = tasks[task_number];
@@ -202,10 +218,12 @@ function renderInitials(task_number) {
     }
 }
 
+
 function calcPositionMember(i) {
     let position = i * -9;
     return `${position}px`
 }
+
 
 function taskMemberHTML(firstCharacter, secondCharacter, colorClass, task_number, i) {
     return `
@@ -223,10 +241,12 @@ function close_open_Dialog(taskId) {
     let container = document.getElementById('dialog_container');
     container.classList.toggle('d-none');
     if(!container.classList.contains('d-none')) {
-    renderDialogTask(taskId);}
+    renderDialogTask(taskId)};
+    renderBlueProgressbar(taskId);
 }
 
- function renderDialogTask(taskId){
+
+function renderDialogTask(taskId){
     let container = document.getElementById('task_dialog_container');
     let task = tasks[taskId];
     container.innerHTML = taskDialogHTML(task, taskId);
@@ -234,7 +254,8 @@ function close_open_Dialog(taskId) {
     renderAssigedToDialog(taskId);
     renderPriorityDialog(taskId);
     renderSubtasksDialog(taskId);
- }
+}
+
 
 function taskDialogHTML(task, taskId) {
     return`
@@ -261,11 +282,13 @@ function taskDialogHTML(task, taskId) {
                     </table>
                 </div>
             </div>
+
             <div onclick="doNotClose(event)" class="subtasks_main">
-                <div>Subtasks</div>
+                <div id="subtask_dialog_header"></div>
                 <div id="subtask_dialog_container" class="subtask_container">
                 </div>
             </div>
+
             <div onclick="doNotClose(event)" class="delete_and_edit_section">
                 <div class="delete_and_edit">
                     <a onclick="deleteTask(${taskId})"><img src="assets/img/delete.png" alt="">Delete</a>
@@ -275,6 +298,7 @@ function taskDialogHTML(task, taskId) {
             </div>
     `;
 }
+
 
 function setColorOfCategoryInDialog(i) {
     let category = tasks[i].category;
@@ -288,6 +312,7 @@ function setColorOfCategoryInDialog(i) {
           break;
     }
 }
+
 
 function renderAssigedToDialog(taskId) {
     let container = document.getElementById('member_container_dialog');
@@ -303,61 +328,69 @@ function renderAssigedToDialog(taskId) {
         `;
     }
 }
-    function renderPriorityDialog(i) {
-        let priority = tasks[i].priority;
-        let container = document.getElementById('prio_image');
-        switch (priority) {
-            case "Low":
-              container.innerHTML = `<img src="assets/img/Priority_symbols_Low.png" alt="">`;
-              break;
-            case "Medium":
-                container.innerHTML = `<img src="assets/img/Priority_symbols_Medium.png" alt="">`;
-              break;
-            case "Urgent":
-              container.innerHTML = `<img src="assets/img/Priority_symbols_Urgent.png" alt="">`;
-            break;
-        }
+
+
+function renderPriorityDialog(i) {
+    let priority = tasks[i].priority;
+    let container = document.getElementById('prio_image');
+    switch (priority) {
+        case "Low":
+          container.innerHTML = `<img src="assets/img/Priority_symbols_Low.png" alt="">`;
+          break;
+        case "Medium":
+            container.innerHTML = `<img src="assets/img/Priority_symbols_Medium.png" alt="">`;
+          break;
+        case "Urgent":
+          container.innerHTML = `<img src="assets/img/Priority_symbols_Urgent.png" alt="">`;
+        break;
     }
+}
 
-    function renderSubtasksDialog(i){
-        let container = document.getElementById('subtask_dialog_container');
-        container.innerHTML = '';
-        for (let j = 0; j < tasks[i].subtasks.length; j++) {
-            let subtask = tasks[i].subtasks[j];
-            container.innerHTML += `
-                <div class="Subtasks">
-                    <div id="subtask_status_img${i}${j}"></div>
-                    <span>${subtask.name}</span>
-                </div>
-            `;
-            renderSubtaskImage(i, j);
-        }
+
+function renderSubtasksDialog(i){
+    let container = document.getElementById('subtask_dialog_container');
+    let header = document.getElementById('subtask_dialog_header')
+    if (tasks[i].subtasks.length > 0) {
+        header.innerHTML = 'Subtasks';
     }
-
-    function renderSubtaskImage(taskId, subtaskId) {
-        let container = document.getElementById(`subtask_status_img${taskId}${subtaskId}`)
-        let status = tasks[taskId].subtasks[subtaskId].done;
-        switch (status) {
-            case true:
-              container.innerHTML = `<a onclick="changeSubtaskStatus(${taskId}, ${subtaskId})"><img src="assets/img/check_button_checked.png" alt=""></a>`;
-              break;
-            case false:
-                container.innerHTML = `<a onclick="changeSubtaskStatus(${taskId}, ${subtaskId})"><img src="assets/img/check_button_unchecked.png" alt=""></a>`;
-              break;
-        }
+    container.innerHTML = '';
+    for (let j = 0; j < tasks[i].subtasks.length; j++) {
+        let subtask = tasks[i].subtasks[j];
+        container.innerHTML += `
+            <div class="Subtasks">
+                <div id="subtask_status_img${i}${j}"></div>
+                <span>${subtask.name}</span>
+            </div>
+        `;
+        renderSubtaskImage(i, j);
     }
+}
 
-    function changeSubtaskStatus(taskId, subtaskId) {
-        let subtaskStatus = tasks[taskId].subtasks[subtaskId].done;
-        if (subtaskStatus == true) {
-            subtaskStatus = false;
-        } else {
-            subtaskStatus = true;
-        }
-        renderSubtaskImage(taskId, subtaskId);
+
+function changeSubtaskStatus(taskId, subtaskId) {
+    let subtaskStatus = tasks[taskId].subtasks[subtaskId].done;
+    if (subtaskStatus == true) {
+        tasks[taskId].subtasks[subtaskId].done = false;
+    } else {
+        tasks[taskId].subtasks[subtaskId].done = true;
     }
+    renderSubtasksDialog(taskId);
+    renderSubtaskAmounts(taskId);
+}
 
 
+function renderSubtaskImage(taskId, subtaskId) {
+    let container = document.getElementById(`subtask_status_img${taskId}${subtaskId}`)
+    let status = tasks[taskId].subtasks[subtaskId].done;
+    switch (status) {
+        case true:
+          container.innerHTML = `<a class="checkbox" onclick="changeSubtaskStatus(${taskId}, ${subtaskId})"><img src="assets/img/check_button_checked.png" alt=""></a>`;
+          break;
+        case false:
+            container.innerHTML = `<a onclick="changeSubtaskStatus(${taskId}, ${subtaskId})"><img src="assets/img/check_button_unchecked.png" alt=""></a>`;
+          break;
+    }
+}
 
 
 function deleteTask(taskId) {
@@ -365,6 +398,7 @@ function deleteTask(taskId) {
     renderColumnContent();
     close_open_Dialog(taskId);
 }
+
 
 function doNotClose(event) {
     event.stopPropagation();

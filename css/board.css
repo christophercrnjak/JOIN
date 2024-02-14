@@ -159,6 +159,7 @@ a {
                         padding: 16px;
                         border-radius: 24px;
                         cursor: pointer;
+                        min-width: 152px;
                     }
                         .task_category {
                             padding: 4px 16px 4px;
@@ -247,14 +248,29 @@ a {
                                 .darkslateblue {
                                     background-color: var(--darkslateblue);
                                 }
+                                .violet {
+                                    background-color: var(--violet);
+                                }
+                                .mediumslateblue {
+                                    background-color: var(--mediumslateblue);
+                                }
+                                .blueviolet {
+                                    background-color: var(--blueviolet);
+                                }
+                                .yellow {
+                                    background-color: var(--yellow);
+                                }
+                                .red {
+                                    background-color: var(--red);
+                                }
+                                .deepskyblue {
+                                    background-color: var(--deepskyblue);
+                                }
                                 .pos2 {
                                    position: relative;
                                    left: -9px; 
                                 }
-                                .pos3 {
-                                    position: relative;
-                                   left: -18px; 
-                                }                      
+                                                   
 
                                 @media(max-width: 1360px) {
                                     .task_progress {
