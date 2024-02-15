@@ -1,3 +1,11 @@
+.container_display_flex{
+    display: flex;
+    justify-content: space-between;
+}
+body{
+    overflow: hidden;
+}
+
 .contacts {
     background-color: white;
     width: 456px;
@@ -6,7 +14,6 @@
     margin-left: 232px;
     overflow-y: scroll;
     margin-top: 48px;
-    position: fixed;
 }
 
 .add {
@@ -30,11 +37,11 @@
     display: flex;
     flex-direction: column;
     margin-left: 52px;
-    width: 456px;
     height: 928px;
     margin-top: 28px;
 }
-.contact_list h3{
+
+.contact_list h3 {
     width: 14px;
     height: 24px;
     font-weight: 400;
@@ -42,8 +49,9 @@
     line-height: 24px;
     margin-bottom: 16px;
 }
-.first_letter{
-    border-bottom: 1px solid rgba(209,209,209,1);
+
+.first_letter {
+    border-bottom: 1px solid rgba(209, 209, 209, 1);
     width: 352px;
     height: 58px;
     padding: 17px 36px 17px 36px;
@@ -51,7 +59,8 @@
     display: flex;
     margin-bottom: 16px;
 }
-.persons{
+
+.persons {
 
     border-radius: 45px;
     gap: 10px;
@@ -65,15 +74,16 @@
     font-weight: 400;
     line-height: 14.4px;
 }
-    
-#text{
+
+#text {
     width: 121px;
     height: 24px;
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
-    
+
 }
+
 .person_initials {
     width: 42px;
     height: 42px;
@@ -86,35 +96,50 @@
     letter-spacing: 0em;
     text-align: center;
 }
-.persons_details{
+
+.persons_details {
     display: flex;
     gap: 35px;
     margin-top: 15px;
     margin-bottom: 21px;
 }
-.person_details{
+
+.person_details {
     font-weight: 400;
     font-size: 20px;
     line-height: 24px;
 }
-.email{
+
+.email {
     font-size: 16px;
     line-height: 19.2px;
     font-weight: 400;
     color: rgba(0, 124, 238, 1);
 }
-.better_team{
-    position: absolute;
+
+.better_team {
     display: flex;
     gap: 30px;
     align-items: center;
     height: 73px;
     margin-top: 206px;
-    margin-left: 743px;
-    justify-content: center;
+    margin-left: 55px;
+    margin-right: 128px;
 }
-.better_team h1{
+
+.better_team h1 {
     font-weight: 700;
     font-size: 61px;
     line-height: 73.2px;
+    border-right-style: solid;
+    border-right-color:rgba(41, 171, 226, 1);
+    padding-right: 30px;
+    height: 70px;
+}
+
+.better_team h2 {
+    font-size: 27px;
+    font-weight: 400;
+    line-height: 32.4px;
+
 }
