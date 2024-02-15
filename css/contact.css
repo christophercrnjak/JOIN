@@ -5,7 +5,7 @@
     box-shadow: 4px 0px 6px 0px #00000014;
     margin-left: 232px;
     overflow-y: scroll;
-    margin-top: 96px;
+    margin-top: 48px;
     position: fixed;
 }
 
@@ -102,4 +102,19 @@
     line-height: 19.2px;
     font-weight: 400;
     color: rgba(0, 124, 238, 1);
+}
+.better_team{
+    position: absolute;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    height: 73px;
+    margin-top: 206px;
+    margin-left: 743px;
+    justify-content: center;
+}
+.better_team h1{
+    font-weight: 700;
+    font-size: 61px;
+    line-height: 73.2px;
 }
