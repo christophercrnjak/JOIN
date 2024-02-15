@@ -96,12 +96,36 @@ function renderAwaitingFeedbackAmountInElements() {
 }
 
 function getNextDueDate() {
+    
     let tasksNotDone = tasks.filter((status) => {
         return status.status != 'done';
     })
     console.log('Tasks which are not done', tasksNotDone);
+    
     let dueDates = tasksNotDone.map((dueDates) => {
         return dueDates.dueDate;
     })
     console.log('Due dates of tasks which are not done', dueDates);
+
+    let newArray = dueDates.map(dateString => {
+        let [DD, MM, YY] = dateString.split('/');
+
+        let newDateString = /*html*/`${YY}/${MM}/${DD}`;
+
+        return newDateString;
+    });
+
+    console.log('Due dates in format YY/MM/DD', newArray);
+
+    let formatedDueDates = newArray.sort(function(a, b) {
+        let dateA = new Date('20' + a.replace(/(\d{2})\/(\d{2})\/(\d{2})/, '$1-$2-$3'));
+        let dateB = new Date('20' + b.replace(/(\d{2})\/(\d{2})\/(\d{2})/, '$1-$2-$3'));
+
+        return dateA - dateB;
+    });
+
+    console.log('Due dates in date format', formatedDueDates);
+
+    let firstValue = formatedDueDates[0];
+    console.log(firstValue);
 }
