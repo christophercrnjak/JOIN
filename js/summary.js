@@ -120,7 +120,7 @@ function getNextDueDate() {
     console.log('Due dates in format YY/MM/DD', newArray);
 
     // puts it into an date format and sort it from small to big
-    let formatedDueDates = newArray.sort(function(a, b) {
+    let formatedDueDates = newArray.sort((a, b) => {
         let dateA = new Date('20' + a.replace(/(\d{2})\/(\d{2})\/(\d{2})/, '$1-$2-$3'));
         let dateB = new Date('20' + b.replace(/(\d{2})\/(\d{2})\/(\d{2})/, '$1-$2-$3'));
 
