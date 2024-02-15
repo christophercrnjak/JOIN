@@ -5,13 +5,10 @@ let awaitingFeedbackAmount = 0;
 let doneAmount = 0;
 let allAmounts = 0;
 let nextUpcomingTask; //TO-DO
-let allDeadlines  = [];
-let sortedDeadlines = [];
 
 async function init() {
-    let resp = await fetch('assets/json/tasks.json'); 
-    tasks = await resp.json(); 
-    // console.log(tasks);
+    let resp = await fetch('assets/json/tasks.json');
+    tasks = await resp.json();
     calcTaskAmount(tasks);
     calcSumOfAmounts();
     renderAmountsInElements();
@@ -23,18 +20,18 @@ function calcTaskAmount(tasks) {
         const task = tasks[i];
         switch (task.status) {
             case 'toDo':
-              toDoAmount++;
-              break;
+                toDoAmount++;
+                break;
             case 'inProgress':
-              inProgressAmount++;
-              break;
+                inProgressAmount++;
+                break;
             case 'awaitFeedback':
-              awaitingFeedbackAmount++;
-              break;
+                awaitingFeedbackAmount++;
+                break;
             case 'done':
-              doneAmount++;
-              break;
-          }
+                doneAmount++;
+                break;
+        }
     }
 }
 
@@ -101,7 +98,7 @@ function getNextDueDate() {
         return status.status != 'done';
     })
     console.log('Tasks which are not done', tasksNotDone);
-    
+
     // create a new array called dueDates which only gives the dueDate-value of those tasks
     let dueDates = tasksNotDone.map((dueDates) => {
         return dueDates.dueDate;
@@ -132,4 +129,13 @@ function getNextDueDate() {
     // outputs the first value of this array
     let firstValue = formatedDueDates[0];
     console.log(firstValue);
+
+    // format the last value as 'July 11, 2024'
+    let lastValue = new Date('20' + firstValue.replace(/(\d{2})\/(\d{2})\/(\d{2})/, '$1-$2-$3'));
+    let formattedLastValue = new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric' }).format(lastValue);
+
+    console.log('Formatted last value:', formattedLastValue);
+
+    let nextDueDate = document.getElementById('nextDueDate');
+    nextDueDate.innerHTML = formattedLastValue;
 }
