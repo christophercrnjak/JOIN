@@ -123,6 +123,7 @@ function getNextDueDate() {
 
         return dateA - dateB;
     });
+    console.log(formatedDueDates);
 
 
     // outputs the first value of this array
