@@ -46,6 +46,10 @@
   flex-direction: column;
 }
 
+.space_between {
+  justify-content: space-between;
+}
+
 .text_center {
   text-align: center;
 }

@@ -92,29 +92,29 @@ function renderAwaitingFeedbackAmountInElements() {
     }
 }
 
+function renderNextDueDate() {
+    getTasksNotDone();
+}
+
 function getNextDueDate() {
     // excludes the tasks which are done
     let tasksNotDone = tasks.filter((status) => {
         return status.status != 'done';
     })
-    console.log('Tasks which are not done', tasksNotDone);
 
     // create a new array called dueDates which only gives the dueDate-value of those tasks
     let dueDates = tasksNotDone.map((dueDates) => {
         return dueDates.dueDate;
     })
-    console.log('Due dates of tasks which are not done', dueDates);
 
     // changes the format of this string (DD/MM/YY to YY/MM/DD)
     let newArray = dueDates.map(dateString => {
         let [DD, MM, YY] = dateString.split('/');
-
         let newDateString = /*html*/`${YY}/${MM}/${DD}`;
 
         return newDateString;
     });
 
-    console.log('Due dates in format YY/MM/DD', newArray);
 
     // puts it into an date format and sort it from small to big
     let formatedDueDates = newArray.sort((a, b) => {
@@ -124,17 +124,14 @@ function getNextDueDate() {
         return dateA - dateB;
     });
 
-    console.log('Due dates in date format', formatedDueDates);
 
     // outputs the first value of this array
     let firstValue = formatedDueDates[0];
-    console.log(firstValue);
 
     // format the last value as 'July 11, 2024'
     let lastValue = new Date('20' + firstValue.replace(/(\d{2})\/(\d{2})\/(\d{2})/, '$1-$2-$3'));
     let formattedLastValue = new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric' }).format(lastValue);
 
-    console.log('Formatted last value:', formattedLastValue);
 
     let nextDueDate = document.getElementById('nextDueDate');
     nextDueDate.innerHTML = formattedLastValue;
