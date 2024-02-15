@@ -1,5 +1,5 @@
 let tasks = [];
-
+let currentDraggedElement;
 
 async function init() {
     let resp = await fetch('assets/json/tasks.json'); 
@@ -8,10 +8,24 @@ async function init() {
     renderColumnContent();
 }
 
+function startDragging(task) {
+    currentDraggedElement = task;
+    console.log(`${task}`)
+}
+
 function searchTask() {
     let search_content = document.getElementById('task_to_be_found').value;
     search_content = search_content.toLowerCase();
     renderColumnContent(search_content);
+}
+
+function allowDrop(event) {
+    event.preventDefault();
+}
+
+function moveTo(status) {
+    tasks[currentDraggedElement].status = status;
+    renderColumnContent();
 }
 
 
@@ -25,12 +39,12 @@ async function renderColumnContent(search_content){
     inProgress_container.innerHTML = '';
     awaitFeedback_container.innerHTML = '';
     done_container.innerHTML = '';
-    await distributionTasks(toDo_container, inProgress_container, awaitFeedback_container, done_container, search_content);
+    await filterTasks(toDo_container, inProgress_container, awaitFeedback_container, done_container, search_content);
     noTask(toDo_container, inProgress_container, awaitFeedback_container, done_container);
 }
 
 
-function distributionTasks(toDo, inProgress, awaitFeedback, done, search_content) {
+function filterTasks(toDo, inProgress, awaitFeedback, done, search_content) {
     for (let i = 0; i < tasks.length; i++) {
         let task = tasks[i];
         switch (task.status) { // tasks[i].status has the Value of
@@ -57,7 +71,6 @@ function distributionTasks(toDo, inProgress, awaitFeedback, done, search_content
             break;
         }
     }
-  
 }
 
 
@@ -110,7 +123,7 @@ function taskHTML(task, i) {
     let title = task.title;
     let description = task.description;
     return `
-        <article id="task${i}" onclick="close_open_Dialog(${i})" class="task">
+        <article id="task${i}" draggable="true" ondragstart="startDragging(${i})" onclick="close_open_Dialog(${i})" class="task">
             <div id="task_category${i}" class="task_category">${category}</div>
             <div class="task_title">${title}</div>
             <div class="task_description">${description}</div>
