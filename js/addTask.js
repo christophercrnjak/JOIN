@@ -31,7 +31,22 @@ function renderAssignedPerson() {
         let contact = contacts[i];
         assigned.innerHTML += addTaskContacts(contact);
     }
+}
 
+function dropdownToggle() {
+    let dropdownContainer = document.getElementById('addTask_dropdown');
+
+    if(dropdownContainer.style.display === 'none'){
+        dropdownContainer.style.display = 'block';
+    } else {
+        dropdownContainer.style.display = 'none';
+    }
+    let addTask_dropdown = document.querySelector('addTask_dropdown');
+    addTask_dropdown.style.height = addTask_dropdown.offsetHeight + 'px';
+}
+
+function addTaskBtn() {
+    
 }
 
 function addTaskContacts(contact) {

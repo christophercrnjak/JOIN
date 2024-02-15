@@ -15,31 +15,36 @@
 
 <body onload="includeHTML(), addTaskInit()">
     <div w3-include-html="/assets/templates/sidebar.html"></div>
+    
     <div class="main_addTask">
         <div class="AddTask_head">
             <h1>Add Task</h1>
         </div>
         <div id="container" class="addTaskForms">
-            <form  class="addTaskForm">
-                <div for="title">Title<span>*</span></div>
-                <input id="titleAddtask" type="title" placeholder="Enter a title">
+            <form  class="addTaskForm border_right">
+                <div for=" ">Title<span>*</span></div>
+                <input id="titleAddtask" type="text" placeholder="Enter a title">
                 <div for="">Description</div>
-                <textarea name="" id="" cols="30" rows="10"></textarea>
+                <textarea name="" id="description" cols="30" rows="5" placeholder="Enter a Description"></textarea>
                 <div for="Assigned">Assigned to</div>
                 
-                <select name="assigneds" id="assigned" value="Select contact to assign">
-                </select>
+                <!-- <div name="assigneds" id="assigned" value="Select contact to assign">
+                </div> -->
+                <a id="dropdownToggleBtn" onclick="dropdownToggle()">Select contacts to assign</a>
+                <div class="addTask_dropdown" id="addTask_dropdown">
+                    <div class="assigned" id="assigned"></div>
+                </div>
 
             </form>
            
             <form  class="display_center addTaskForm">
-                <div for="title">Due date<span>*</span></div>
+                <div for="text">Due date<span>*</span></div>
                 <input type="date" name="" id="">
                 <div for="prio">Prio</div>
-                <div>
-                    <button id="btnUrgrend">Urgrend</button>
-                    <button id="btnMedium">Medium</button>
-                    <button id="btnLow">Low</button>
+                <div class="btn_addTask_list">
+                    <a class="btn_addTask" id="btnUrgrend">Urgrend <img src="assets/img/Priority_symbols_Urgent.png" alt="" srcset=""></a>
+                    <a class="btn_addTask" id="btnMedium">Medium <img src="assets/img/Priority_symbols_Medium.png" alt="" srcset=""></a>
+                    <a class="btn_addTask" id="btnLow">Low <img src="assets/img/Priority_symbols_Low.png" alt="" srcset=""></a>
                 </div>
                 <div for="category">Category</div>
                 <select name="category" id="category">
@@ -47,7 +52,7 @@
                     <option value="#">User Story</option>
                 </select>
                 <div for="Subtasks">Subtasks</div>
-                <input type="title">
+                <input type="text">
 
             </form>
 

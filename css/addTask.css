@@ -6,25 +6,102 @@
     height: 100vh;
     width: 100%;
     background-color: var(--bgwhite);
-    padding-left: 252px;
+    padding-left: 280px;
 }
 
 
 .AddTask_head h1 {
-    font-size: 2rem;
-    margin-bottom: 6rem;
+    font-size: 61px;
+    
+    
 }
 .addTaskForms {
     gap: 40px;
     display: flex;
+    justify-content: center;
+    align-items: baseline;
 }
 .addTaskForm {
  display: flex;
  align-items: flex-start;
  flex-direction: column;
  justify-content: center;
- gap: 10px;
+ gap: 10px; 
+ height: 378px;
+ width: 440px;
 }
+
+.border_right{
+    border-right: 1px solid #bebebe;
+}
+
 .addTaskForm span {
     color: red;
+}
+.addTaskForm input {
+    background-image: url();
+    width: 360px;
+}
+.addTaskForm textarea {
+    width: 360px;
+}
+
+#description {
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-position: right 10px center; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+  }
+
+
+.btn_addTask_list {
+    display: flex;
+    width: 440px;   
+    gap:8px;
+}
+  .btn_addTask {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    color: black;
+    gap:8px;
+    padding: 16px 8px;
+    height: 56px;
+    width: 120px ;
+    border-radius: 10px;
+    
+  }
+  .addTask_dropdown {
+    position: relative;
+    display: inline-block;
+}
+  .addTask_dropdown {
+    display: none;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+#dropdownToggleBtn {
+    background-color: #f1f1f1;
+    border: none;
+    color: black;
+    padding: 10px;
+    text-align: left;
+    cursor: pointer;
+    width: 360px;
+    height: 36px;
+    
+}
+
+#dropdownToggleBtn {
+    background-color: #ffffff;
+}
+.assigned {
+    display: block;
+    width: 360px;
+    background-color: #ffffff;
 }

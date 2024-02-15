@@ -41,9 +41,11 @@
   justify-content: center;
   align-items: center;
 }
+
 .flex_direction_column {
   flex-direction: column;
 }
+
 .text_center {
   text-align: center;
 }
@@ -98,6 +100,17 @@ input[type=email] {
   font-size: 16px;
   background-color: white;
   background-image: url('../assets/img/mail.png');
+  background-position: right 10px center; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+}
+
+input[type=date] {
+  width: 100%;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
   background-position: right 10px center; 
   background-repeat: no-repeat;
   padding: 12px 20px 12px 40px;

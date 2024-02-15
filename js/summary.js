@@ -11,11 +11,11 @@ let sortedDeadlines = [];
 async function init() {
     let resp = await fetch('assets/json/tasks.json'); 
     tasks = await resp.json(); 
-    console.log(tasks);
+    // console.log(tasks);
     calcTaskAmount(tasks);
     calcSumOfAmounts();
     renderAmountsInElements();
-    calcNextDeadline();
+    getNextDueDate();
 }
 
 function calcTaskAmount(tasks) {
@@ -95,45 +95,41 @@ function renderAwaitingFeedbackAmountInElements() {
     }
 }
 
-function calcNextDeadline() {
-    // for (let i = 0; i < tasks.length; i++) {
-    //     const task = tasks[i];
-    //     allDeadlines.push(task.dueDate);
-    //     sortedDeadlines.sort();
-    // }
+function getNextDueDate() {
+    // excludes the tasks which are done
+    let tasksNotDone = tasks.filter((status) => {
+        return status.status != 'done';
+    })
+    console.log('Tasks which are not done', tasksNotDone);
+    
+    // create a new array called dueDates which only gives the dueDate-value of those tasks
+    let dueDates = tasksNotDone.map((dueDates) => {
+        return dueDates.dueDate;
+    })
+    console.log('Due dates of tasks which are not done', dueDates);
 
-    // tasks.sort((a,b) => a.getTime() - b.getTime());
+    // changes the format of this string (DD/MM/YY to YY/MM/DD)
+    let newArray = dueDates.map(dateString => {
+        let [DD, MM, YY] = dateString.split('/');
 
+        let newDateString = /*html*/`${YY}/${MM}/${DD}`;
 
-}
-
-// Function to parse date string in "DD/MM/YYYY" format
-function parseDate(dateString) {
-    const [day, month, year] = dateString.split('/');
-    return new Date(`${year}-${month}-${day}`);
-  }
-  
-  // Function to find the next upcoming due date
-  function getNextDueDate(tasks) {
-    // Get the current date
-    const currentDate = new Date();
-  
-    // Filter out tasks with due dates less than or equal to the current date
-    const upcomingTasks = tasks.filter(task => {
-      const taskDate = parseDate(task.dueDate);
-      return taskDate > currentDate;
+        return newDateString;
     });
-  
-    // Sort the upcoming tasks by due date in ascending order
-    upcomingTasks.sort((a, b) => parseDate(a.dueDate) - parseDate(b.dueDate));
-  
-    // Return the due date of the first task (next upcoming due date)
-    return upcomingTasks.length > 0 ? upcomingTasks[0].dueDate : null;
-  }
-  
-  // Get the next upcoming due date
-  const nextDueDate = getNextDueDate(tasks);
-  
-  // Display the result
-  console.log("Next Upcoming Due Date:", nextDueDate);
-  
+
+    console.log('Due dates in format YY/MM/DD', newArray);
+
+    // puts it into an date format and sort it from small to big
+    let formatedDueDates = newArray.sort((a, b) => {
+        let dateA = new Date('20' + a.replace(/(\d{2})\/(\d{2})\/(\d{2})/, '$1-$2-$3'));
+        let dateB = new Date('20' + b.replace(/(\d{2})\/(\d{2})\/(\d{2})/, '$1-$2-$3'));
+
+        return dateA - dateB;
+    });
+
+    console.log('Due dates in date format', formatedDueDates);
+
+    // outputs the first value of this array
+    let firstValue = formatedDueDates[0];
+    console.log(firstValue);
+}

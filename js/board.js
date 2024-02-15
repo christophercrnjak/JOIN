@@ -1,5 +1,5 @@
 let tasks = [];
-
+let currentDraggedElement;
 
 async function init() {
     let resp = await fetch('assets/json/tasks.json'); 
@@ -8,9 +8,29 @@ async function init() {
     renderColumnContent();
 }
 
+function startDragging(task) {
+    currentDraggedElement = task;
+    console.log(`${task}`)
+}
+
+function searchTask() {
+    let search_content = document.getElementById('task_to_be_found').value;
+    search_content = search_content.toLowerCase();
+    renderColumnContent(search_content);
+}
+
+function allowDrop(event) {
+    event.preventDefault();
+}
+
+function moveTo(status) {
+    tasks[currentDraggedElement].status = status;
+    renderColumnContent();
+}
+
 
 // delete content of columns
-async function renderColumnContent(){
+async function renderColumnContent(search_content){
     let toDo_container = document.getElementById('task_container_Todo');
     let inProgress_container = document.getElementById('task_container_InProgress');
     let awaitFeedback_container = document.getElementById('task_container_AwaitFeedback');
@@ -19,35 +39,38 @@ async function renderColumnContent(){
     inProgress_container.innerHTML = '';
     awaitFeedback_container.innerHTML = '';
     done_container.innerHTML = '';
-    await distributionTasks(toDo_container, inProgress_container, awaitFeedback_container, done_container);
+    await filterTasks(toDo_container, inProgress_container, awaitFeedback_container, done_container, search_content);
     noTask(toDo_container, inProgress_container, awaitFeedback_container, done_container);
 }
 
 
-function distributionTasks(toDo, inProgress, awaitFeedback, done) {
+function filterTasks(toDo, inProgress, awaitFeedback, done, search_content) {
     for (let i = 0; i < tasks.length; i++) {
         let task = tasks[i];
         switch (task.status) { // tasks[i].status has the Value of
 
-            case 'toDo': // case one tasks[i].status: 'toDo'
-              toDo.innerHTML += taskHTML(task, i);
-              renderTaskElements(i)
-              break;
-            case 'inProgress': // case one tasks[i].status: 'inProgress'
-              inProgress.innerHTML += taskHTML(task, i);
-              renderTaskElements(i)
-              break;
-            case 'awaitFeedback':
-              awaitFeedback.innerHTML += taskHTML(task, i);
-              renderTaskElements(i)
-              break;
-            case 'done':
-              done.innerHTML += taskHTML(task, i);
-              renderTaskElements(i)
-              break;
+        case 'toDo': // case one tasks[i].status: 'toDo'
+            if(!search_content || task.title.toLowerCase().includes(search_content) || task.description.toLowerCase().includes(search_content)) {
+            toDo.innerHTML += taskHTML(task, i);
+            renderTaskElements(i)}
+            break;
+        case 'inProgress': // case one tasks[i].status: 'inProgress'
+            if(!search_content || task.title.toLowerCase().includes(search_content) || task.description.toLowerCase().includes(search_content)) {
+            inProgress.innerHTML += taskHTML(task, i);
+            renderTaskElements(i)}
+            break;
+        case 'awaitFeedback':
+            if(!search_content || task.title.toLowerCase().includes(search_content) || task.description.toLowerCase().includes(search_content)) {
+            awaitFeedback.innerHTML += taskHTML(task, i);
+            renderTaskElements(i)}
+            break;
+        case 'done':
+            if(!search_content || task.title.toLowerCase().includes(search_content) || task.description.toLowerCase().includes(search_content)) {
+            done.innerHTML += taskHTML(task, i);
+            renderTaskElements(i)}
+            break;
         }
     }
-  
 }
 
 
@@ -100,7 +123,7 @@ function taskHTML(task, i) {
     let title = task.title;
     let description = task.description;
     return `
-        <article id="task${i}" onclick="close_open_Dialog(${i})" class="task">
+        <article id="task${i}" draggable="true" ondragstart="startDragging(${i})" onclick="close_open_Dialog(${i})" class="task">
             <div id="task_category${i}" class="task_category">${category}</div>
             <div class="task_title">${title}</div>
             <div class="task_description">${description}</div>

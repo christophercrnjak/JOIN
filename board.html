@@ -27,10 +27,8 @@
             <div class="header_text">Board</div>
                 <div class="search_add">
                     <div class="search">
-                        <input id="task_to_be_found" type="search" placeholder="Find Task">
-                            <!-- <div class="search_right"> -->
-                            <!-- <div class="line_search"></div>
-                            <a onclick="searchTask()"><img src="assets/img/search.png" alt=""></a> -->
+                        <input id="task_to_be_found" onkeydown="searchTask()" type="search" placeholder="Find Task">
+                            
                     </div>
                     <a class="add_task_btn"> Add task <span class="plus_add_btn">+</span></a>
                 </div>
@@ -39,7 +37,7 @@
         <section class="board_content">
             
             <!-- To do -->
-            <div class="board_column">
+            <div class="board_column" ondrop="moveTo('toDo')" ondragover="allowDrop(event)">
                 <div class="column_head">
                     <div class="column_head_text">To do</div>
                     <a href="addTask.html" class="column_head_add_btn">+</a>
@@ -48,7 +46,7 @@
             </div>
             
             <!-- In progress -->
-            <div class="board_column">
+            <div class="board_column" ondrop="moveTo('inProgress')" ondragover="allowDrop(event)">
                 <div class="column_head">
                     <div class="column_head_text">In progress</div>
                     <a href="addTask.html" class="column_head_add_btn">+</a>
@@ -57,7 +55,7 @@
             </div>
 
             <!-- Await feedback -->
-            <div class="board_column">
+            <div class="board_column" ondrop="moveTo('awaitFeedback')" ondragover="allowDrop(event)">
                 <div class="column_head">
                     <div class="column_head_text">Await feedback</div>
                     <a href="addTask.html" class="column_head_add_btn">+</a>
@@ -66,7 +64,7 @@
             </div>
 
             <!-- Done -->
-            <div class="board_column">
+            <div class="board_column" ondrop="moveTo('done')" ondragover="allowDrop(event)">
                 <div class="column_head">
                     <div class="column_head_text">Done</div>
                     <a href="addTask.html" class="column_head_add_btn">+</a>
