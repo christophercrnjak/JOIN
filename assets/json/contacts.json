@@ -2,29 +2,59 @@
     {
         "name": {
             "firstName": "Anton",
-            "secondName": "Meyer"
+            "secondName": "Meyer",
+            "color": "#FF7A00"
         },
-        "mail": "anton@gmail"
+        "mail": "anton@gmail.com"
     },
     {
         "name": {
             "firstName": "Anja",
-            "secondName": "Schulz"
+            "secondName": "Schulz",
+            "color": "#9327FF"
+            
         },
-        "mail": "schulz@hotmail"
+        "mail": "schulz@hotmail.de"
     },
     {
         "name": {
             "firstName": "Benedikt",
-            "secondName": "Ziegler"
+            "secondName": "Ziegler",
+            "color": "#6E52FF"
         },
-        "mail": "benedikt@gmail"
+        "mail": "benedikt@gmail.com"
     },
     {
         "name": {
             "firstName": "David",
-            "secondName": "Eisenberg"
+            "secondName": "Eisenberg",
+            "color": "#FC71FF"
         },
-        "mail": "davidberg@gmail"
+        "mail": "davidberg@gmail.com"
+    },
+    {
+        "name": {
+            "firstName": "Eva",
+            "secondName": "Fischer",
+            "color": "#FFBB2B"
+        },
+        "mail":"eva@gmail.com"
+    },
+    {
+        "name": {
+            "firstName": "Emmanuel",
+            "secondName": "Mauer",
+            "color": "#1FD7C1"
+        },
+        "mail":"emmanuelma@gmail.com"
+    },
+    {
+        "name": {
+            "firstName": "Marcel",
+            "secondName": "Bauer",
+            "color": "#462F8A"
+        },
+        "mail":"bauer@gmail.com"
+        
     }
 ]

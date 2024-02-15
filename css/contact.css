@@ -60,6 +60,10 @@
     height: 42px;
     justify-content: center;
     align-items: center;
+    color: white;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14.4px;
 }
     
 #text{
