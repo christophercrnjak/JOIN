@@ -56,4 +56,5 @@ function splitName() {
   let name = document.getElementById("name");
   let splittedName = name.value.split(" ");
   let firstName = splittedName[0];
+  let secondName = splittedName[1];
 }
