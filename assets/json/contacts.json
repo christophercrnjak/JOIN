@@ -5,16 +5,17 @@
             "secondName": "Meyer",
             "color": "#FF7A00"
         },
-        "mail": "anton@gmail.com"
+        "mail": "anton@gmail.com",
+        "password": ""
     },
     {
         "name": {
             "firstName": "Anja",
             "secondName": "Schulz",
             "color": "#9327FF"
-            
         },
-        "mail": "schulz@hotmail.de"
+        "mail": "schulz@hotmail.de",
+        "password": ""
     },
     {
         "name": {
@@ -22,7 +23,8 @@
             "secondName": "Ziegler",
             "color": "#6E52FF"
         },
-        "mail": "benedikt@gmail.com"
+        "mail": "benedikt@gmail.com",
+        "password": ""
     },
     {
         "name": {
@@ -30,7 +32,8 @@
             "secondName": "Eisenberg",
             "color": "#FC71FF"
         },
-        "mail": "davidberg@gmail.com"
+        "mail": "davidberg@gmail.com",
+        "password": ""
     },
     {
         "name": {
@@ -38,7 +41,8 @@
             "secondName": "Fischer",
             "color": "#FFBB2B"
         },
-        "mail":"eva@gmail.com"
+        "mail":"eva@gmail.com",
+        "password": ""
     },
     {
         "name": {
@@ -46,7 +50,8 @@
             "secondName": "Mauer",
             "color": "#1FD7C1"
         },
-        "mail":"emmanuelma@gmail.com"
+        "mail":"emmanuelma@gmail.com",
+        "password": ""
     },
     {
         "name": {
@@ -54,7 +59,7 @@
             "secondName": "Bauer",
             "color": "#462F8A"
         },
-        "mail":"bauer@gmail.com"
-        
+        "mail":"bauer@gmail.com",
+        "password": ""
     }
 ]
