@@ -1,15 +1,26 @@
 let users = [];
 let passwordCheckStatus;
+let checkbox = document.getElementById("checkbox");
+let password_message = document.getElementById("password_message");
+let confirm_password = document.getElementById("confirm_password");
+let firstName;
+let secondName;
+let register_btn = document.getElementById("register_btn");
+let userName = document.getElementById("name");
+let email = document.getElementById("email");
+let password = document.getElementById("password");
 
 async function register() {
   comparePassword();
   if (passwordCheckStatus) {
-    let register_btn = document.getElementById("register_btn");
-    let name = document.getElementById("name");
+    splitName(userName);
     register_btn.disabled = true;
     users.push({
-      name: name.value,
-      mail: mail.value,
+      name: {
+        firstName: firstName,
+        secondName: secondName,
+      },
+      mail: email.value,
       password: password.value,
     });
     resetForm();
@@ -20,20 +31,19 @@ async function register() {
 }
 
 function resetForm() {
-  let name = document.getElementById("name");
-  let email = document.getElementById("email");
-  let password = document.getElementById("password");
-  let confirm_password = document.getElementById("confirm_password");
-  let checkbox = document.getElementById("checkbox");
-  let register_btn = document.getElementById("register_btn");
-  let password_message = document.getElementById("password_message");
-  name.value = "";
+  userName.value = "";
   email.value = "";
   password.value = "";
   confirm_password.value = "";
   password_message.innerHTML = "";
   checkbox.checked = false;
   register_btn.disabled = false;
+}
+
+function splitName(userName) {
+  let splittedName = userName.value.split(" ");
+  firstName = splittedName[0];
+  secondName = splittedName[1];
 }
 
 function comparePassword() {
@@ -50,11 +60,4 @@ function comparePassword() {
       "Password do not match!";
     passwordCheckStatus = false;
   }
-}
-
-function splitName() {
-  let name = document.getElementById("name");
-  let splittedName = name.value.split(" ");
-  let firstName = splittedName[0];
-  let secondName = splittedName[1];
 }
