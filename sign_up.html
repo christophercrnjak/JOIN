@@ -16,44 +16,50 @@
     <div class="container">
         <img class="logo" src="./assets/img/logo.svg" alt="" />
 
-        <form class="sign_up_section" onsubmit="handleNewRegister(); return false">
+        <div class="sign_up_section">
             <div class="headline">
                 <h1>Sign up</h1>
                 <hr>
             </div>
 
             <div class="input_area">
-                <div class="input_fields">
-                    <input required
+                <form class="input_fields" onsubmit="register(); return false">
+                    <input
+                        required
                         type="text"
                         placeholder="Name"
                         oninvalid="this.setCustomValidity('Please only use letters.')"
-                        oninput="this.setCustomValidity('')">
-                    <input required
+                        oninput="this.setCustomValidity('')"
+                        id="name">
+                    <input
+                        required
                         type="email"
                         placeholder="Email"
                         oninvalid="this.setCustomValidity('Please use a valid e-mail address.')"
-                        oninput="this.setCustomValidity('')">
-                    <input required
+                        oninput="this.setCustomValidity('')"
+                        id="email">
+                    <input
+                        required
                         type="password"
                         placeholder="Password"
-                        oninvalid="this.setCustomValidity('You forgot to enter your password.')"
-                        oninput="this.setCustomValidity('')">
-                    <input required
+                        oninvalid="this.setCustomValidity('Please enter your password.')"
+                        oninput="this.setCustomValidity('')"
+                        id="password">
+                    <input
+                        required
                         type="password"
                         placeholder="Confirm Password"
-                        oninvalid="this.setCustomValidity('You forgot to enter your password.')"
-                        oninput="this.setCustomValidity('')">
-                </div>
-                <div class="accept_privacy_policy">
-                    <input type="checkbox" id="checkbox" />
-                    <p>I accept the <a href="./privacy_policy.html">Privacy policy</a></p>
-                </div>
+                        oninvalid="this.setCustomValidity('Please enter your password.')"
+                        oninput="this.setCustomValidity('')"
+                        id="confirm_password">
+                    <div class="accept_privacy_policy">
+                        <input required type="checkbox" id="checkbox"/>
+                        <p>I accept the <a href="./privacy_policy.html">Privacy policy</a></p>
+                    </div>
+                    <button class="btn_sign_up btn_grey" id="register_btn">Sign up</button>
+                </form>
             </div>
-
-            <button class="btn_sign_up btn_grey">Sign up</button>
-
-        </form>
+        </div>
 
         <div class="legal_section">
             <div class="link_wrapper">
