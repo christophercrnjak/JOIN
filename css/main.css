@@ -98,7 +98,7 @@ button:hover {
 }
 
 input[type=email] {
-  /* width: 100%; */
+  width: 100%;
   border: 2px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
