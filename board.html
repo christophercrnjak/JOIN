@@ -16,12 +16,18 @@
 </head>
 
 <body onload="includeHTML(); init()">
+
+    <!-- SIDEBAR & NAVBAR -->
     <div w3-include-html="./assets/templates/sidebar.html"></div>
+
+    <!-- DIALOG SHOW MORE TASK INFORMATIONS -->
     <div id="dialog_container" class="dialog_container d-none">
         
         <div id="task_dialog_container" class="task_dialog" >
         </div>
     </div>
+
+    <!-- KANBAN BOARD HEADER WITH SEARCHINPUT AND ADD-BUTTON -->
     <div class="container">
         <header class="board_header">
             <div class="header_text">Board</div>
@@ -34,6 +40,7 @@
                 </div>
         </header>
 
+        <!-- KANBAN BOARD CONTENT -->
         <section class="board_content">
             
             <!-- To do -->
@@ -71,9 +78,10 @@
                 </div>
                 <div id="task_container_Done" class="task_container"></div>
             </div>
-
         </section>
     </div>
+
+    <!-- JAVASCRIPT FOR THE KANBAN BOARD -->
     <script src="./js/board.js"></script>
 </body>
 
