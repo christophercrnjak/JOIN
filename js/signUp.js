@@ -1,14 +1,22 @@
 let users = [];
+let passwordCheckStatus;
 
 async function register() {
-  let register_btn = document.getElementById("register_btn");
-  register_btn.disabled = true;
-  users.push({
-    email: email.value,
-    password: password.value,
-  });
-
-  resetForm();
+  comparePassword();
+  if (passwordCheckStatus) {
+    let register_btn = document.getElementById("register_btn");
+    let name = document.getElementById("name");
+    register_btn.disabled = true;
+    users.push({
+      name: name.value,
+      mail: mail.value,
+      password: password.value,
+    });
+    resetForm();
+  } else {
+    document.getElementById("password_message").innerHTML =
+      "Passwords do not match. Please check and try again!";
+  }
 }
 
 function resetForm() {
@@ -18,10 +26,12 @@ function resetForm() {
   let confirm_password = document.getElementById("confirm_password");
   let checkbox = document.getElementById("checkbox");
   let register_btn = document.getElementById("register_btn");
+  let password_message = document.getElementById("password_message");
   name.value = "";
   email.value = "";
   password.value = "";
   confirm_password.value = "";
+  password_message.innerHTML = "";
   checkbox.checked = false;
   register_btn.disabled = false;
 }
@@ -33,9 +43,17 @@ function comparePassword() {
   ) {
     document.getElementById("password_message").style.color = "green";
     document.getElementById("password_message").innerHTML = "Password match!";
+    passwordCheckStatus = true;
   } else {
     document.getElementById("password_message").style.color = "red";
     document.getElementById("password_message").innerHTML =
       "Password do not match!";
+    passwordCheckStatus = false;
   }
+}
+
+function splitName() {
+  let name = document.getElementById("name");
+  let splittedName = name.value.split(" ");
+  let firstName = splittedName[0];
 }
