@@ -1,6 +1,7 @@
 let users = [];
 
 async function register() {
+    let register_btn = document.getElementById('register_btn');
     register_btn.disabled = true;
     users.push({
         email: email.value,
