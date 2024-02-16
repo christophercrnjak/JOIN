@@ -1,65 +1,65 @@
 [
-    {
-        "name": {
-            "firstName": "Anton",
-            "secondName": "Meyer",
-            "color": "#FF7A00"
-        },
-        "mail": "anton@gmail.com",
-        "password": ""
+  {
+    "name": {
+      "firstName": "Anton",
+      "secondName": "Meyer",
+      "color": "#FF7A00"
     },
-    {
-        "name": {
-            "firstName": "Anja",
-            "secondName": "Schulz",
-            "color": "#9327FF"
-        },
-        "mail": "schulz@hotmail.de",
-        "password": ""
+    "mail": "anton@gmail.com",
+    "password": ""
+  },
+  {
+    "name": {
+      "firstName": "Anja",
+      "secondName": "Schulz",
+      "color": "#9327FF"
     },
-    {
-        "name": {
-            "firstName": "Benedikt",
-            "secondName": "Ziegler",
-            "color": "#6E52FF"
-        },
-        "mail": "benedikt@gmail.com",
-        "password": ""
+    "mail": "schulz@hotmail.de",
+    "password": ""
+  },
+  {
+    "name": {
+      "firstName": "Benedikt",
+      "secondName": "Ziegler",
+      "color": "#6E52FF"
     },
-    {
-        "name": {
-            "firstName": "David",
-            "secondName": "Eisenberg",
-            "color": "#FC71FF"
-        },
-        "mail": "davidberg@gmail.com",
-        "password": ""
+    "mail": "benedikt@gmail.com",
+    "password": ""
+  },
+  {
+    "name": {
+      "firstName": "David",
+      "secondName": "Eisenberg",
+      "color": "#FC71FF"
     },
-    {
-        "name": {
-            "firstName": "Eva",
-            "secondName": "Fischer",
-            "color": "#FFBB2B"
-        },
-        "mail":"eva@gmail.com",
-        "password": ""
+    "mail": "davidberg@gmail.com",
+    "password": ""
+  },
+  {
+    "name": {
+      "firstName": "Eva",
+      "secondName": "Fischer",
+      "color": "#FFBB2B"
     },
-    {
-        "name": {
-            "firstName": "Emmanuel",
-            "secondName": "Mauer",
-            "color": "#1FD7C1"
-        },
-        "mail":"emmanuelma@gmail.com",
-        "password": ""
+    "mail": "eva@gmail.com",
+    "password": ""
+  },
+  {
+    "name": {
+      "firstName": "Emmanuel",
+      "secondName": "Mauer",
+      "color": "#1FD7C1"
     },
-    {
-        "name": {
-            "firstName": "Marcel",
-            "secondName": "Bauer",
-            "color": "#462F8A"
-        },
-        "mail":"bauer@gmail.com",
-        "password": ""
-    }
+    "mail": "emmanuelma@gmail.com",
+    "password": ""
+  },
+  {
+    "name": {
+      "firstName": "Marcel",
+      "secondName": "Bauer",
+      "color": "#462F8A"
+    },
+    "mail": "bauer@gmail.com",
+    "password": ""
+  }
 ]

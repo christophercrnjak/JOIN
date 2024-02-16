@@ -7,133 +7,143 @@ let allAmounts = 0;
 let nextUpcomingTask; //TO-DO
 
 async function init() {
-    let resp = await fetch('assets/json/tasks.json');
-    tasks = await resp.json();
-    calcTaskAmount(tasks);
-    calcSumOfAmounts();
-    renderAmountsInElements();
-    getNextDueDate();
+  let resp = await fetch("assets/json/tasks.json");
+  tasks = await resp.json();
+  calcTaskAmount(tasks);
+  calcSumOfAmounts();
+  renderAmountsInElements();
+  getNextDueDate();
 }
 
 function calcTaskAmount(tasks) {
-    for (let i = 0; i < tasks.length; i++) {
-        const task = tasks[i];
-        switch (task.status) {
-            case 'toDo':
-                toDoAmount++;
-                break;
-            case 'inProgress':
-                inProgressAmount++;
-                break;
-            case 'awaitFeedback':
-                awaitingFeedbackAmount++;
-                break;
-            case 'done':
-                doneAmount++;
-                break;
-        }
+  for (let i = 0; i < tasks.length; i++) {
+    const task = tasks[i];
+    switch (task.status) {
+      case "toDo":
+        toDoAmount++;
+        break;
+      case "inProgress":
+        inProgressAmount++;
+        break;
+      case "awaitFeedback":
+        awaitingFeedbackAmount++;
+        break;
+      case "done":
+        doneAmount++;
+        break;
     }
+  }
 }
 
 function calcSumOfAmounts() {
-    allAmounts = toDoAmount + inProgressAmount + awaitingFeedbackAmount + doneAmount;
+  allAmounts =
+    toDoAmount + inProgressAmount + awaitingFeedbackAmount + doneAmount;
 }
 
 function renderAmountsInElements() {
-    renderToDoAmountInElement();
-    renderDoneAmountInElement();
-    renderAllAmountInElement();
-    renderInProgressAmountInElement();
-    renderAwaitingFeedbackAmountInElements();
+  renderToDoAmountInElement();
+  renderDoneAmountInElement();
+  renderAllAmountInElement();
+  renderInProgressAmountInElement();
+  renderAwaitingFeedbackAmountInElements();
 }
 
 function renderToDoAmountInElement() {
-    let toDoAmountElement = document.getElementById('toDoAmount');
-    if (toDoAmount != 0) {
-        toDoAmountElement.innerHTML = toDoAmount;
-    } else {
-        toDoAmountElement.innerHTML = "0";
-    }
+  let toDoAmountElement = document.getElementById("toDoAmount");
+  if (toDoAmount != 0) {
+    toDoAmountElement.innerHTML = toDoAmount;
+  } else {
+    toDoAmountElement.innerHTML = "0";
+  }
 }
 
 function renderDoneAmountInElement() {
-    let doneAmountElement = document.getElementById('doneAmount');
-    if (doneAmount != 0) {
-        doneAmountElement.innerHTML = doneAmount;
-    } else {
-        doneAmountElement.innerHTML = "0";
-    }
+  let doneAmountElement = document.getElementById("doneAmount");
+  if (doneAmount != 0) {
+    doneAmountElement.innerHTML = doneAmount;
+  } else {
+    doneAmountElement.innerHTML = "0";
+  }
 }
 
 function renderAllAmountInElement() {
-    let allAmountElement = document.getElementById('allAmounts');
-    if (allAmounts != 0) {
-        allAmountElement.innerHTML = allAmounts;
-    } else {
-        allAmountElement.innerHTML = "0";
-    }
+  let allAmountElement = document.getElementById("allAmounts");
+  if (allAmounts != 0) {
+    allAmountElement.innerHTML = allAmounts;
+  } else {
+    allAmountElement.innerHTML = "0";
+  }
 }
 
 function renderInProgressAmountInElement() {
-    let inProgressAmountElement = document.getElementById('inProgressAmount');
-    if (inProgressAmount != 0) {
-        inProgressAmountElement.innerHTML = inProgressAmount;
-    } else {
-        inProgressAmountElement.innerHTML = "0";
-    }
+  let inProgressAmountElement = document.getElementById("inProgressAmount");
+  if (inProgressAmount != 0) {
+    inProgressAmountElement.innerHTML = inProgressAmount;
+  } else {
+    inProgressAmountElement.innerHTML = "0";
+  }
 }
 
 function renderAwaitingFeedbackAmountInElements() {
-    let awaitingFeedbackAmountElement = document.getElementById('awaitingFeedbackAmount');
-    if (awaitingFeedbackAmount != 0) {
-        awaitingFeedbackAmountElement.innerHTML = awaitingFeedbackAmount;
-    } else {
-        awaitingFeedbackAmountElement.innerHTML = "0";
-    }
+  let awaitingFeedbackAmountElement = document.getElementById(
+    "awaitingFeedbackAmount"
+  );
+  if (awaitingFeedbackAmount != 0) {
+    awaitingFeedbackAmountElement.innerHTML = awaitingFeedbackAmount;
+  } else {
+    awaitingFeedbackAmountElement.innerHTML = "0";
+  }
 }
 
 function renderNextDueDate() {
-    getTasksNotDone();
+  getTasksNotDone();
 }
 
 function getNextDueDate() {
-    // excludes the tasks which are done
-    let tasksNotDone = tasks.filter((status) => {
-        return status.status != 'done';
-    })
+  // excludes the tasks which are done
+  let tasksNotDone = tasks.filter((status) => {
+    return status.status != "done";
+  });
 
-    // create a new array called dueDates which only gives the dueDate-value of those tasks
-    let dueDates = tasksNotDone.map((dueDates) => {
-        return dueDates.dueDate;
-    })
+  // create a new array called dueDates which only gives the dueDate-value of those tasks
+  let dueDates = tasksNotDone.map((dueDates) => {
+    return dueDates.dueDate;
+  });
 
-    // changes the format of this string (DD/MM/YY to YY/MM/DD)
-    let newArray = dueDates.map(dateString => {
-        let [DD, MM, YY] = dateString.split('/');
-        let newDateString = /*html*/`${YY}/${MM}/${DD}`;
+  // changes the format of this string (DD/MM/YY to YY/MM/DD)
+  let newArray = dueDates.map((dateString) => {
+    let [DD, MM, YY] = dateString.split("/");
+    let newDateString = /*html*/ `${YY}/${MM}/${DD}`;
 
-        return newDateString;
-    });
+    return newDateString;
+  });
 
+  // puts it into an date format and sort it from small to big
+  let formatedDueDates = newArray.sort((a, b) => {
+    let dateA = new Date(
+      "20" + a.replace(/(\d{2})\/(\d{2})\/(\d{2})/, "$1-$2-$3")
+    );
+    let dateB = new Date(
+      "20" + b.replace(/(\d{2})\/(\d{2})\/(\d{2})/, "$1-$2-$3")
+    );
 
-    // puts it into an date format and sort it from small to big
-    let formatedDueDates = newArray.sort((a, b) => {
-        let dateA = new Date('20' + a.replace(/(\d{2})\/(\d{2})\/(\d{2})/, '$1-$2-$3'));
-        let dateB = new Date('20' + b.replace(/(\d{2})\/(\d{2})\/(\d{2})/, '$1-$2-$3'));
+    return dateA - dateB;
+  });
+  console.log(formatedDueDates);
 
-        return dateA - dateB;
-    });
-    console.log(formatedDueDates);
+  // outputs the first value of this array
+  let firstValue = formatedDueDates[0];
 
+  // format the last value as 'July 11, 2024'
+  let lastValue = new Date(
+    "20" + firstValue.replace(/(\d{2})\/(\d{2})\/(\d{2})/, "$1-$2-$3")
+  );
+  let formattedLastValue = new Intl.DateTimeFormat("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  }).format(lastValue);
 
-    // outputs the first value of this array
-    let firstValue = formatedDueDates[0];
-
-    // format the last value as 'July 11, 2024'
-    let lastValue = new Date('20' + firstValue.replace(/(\d{2})\/(\d{2})\/(\d{2})/, '$1-$2-$3'));
-    let formattedLastValue = new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric' }).format(lastValue);
-
-
-    let nextDueDate = document.getElementById('nextDueDate');
-    nextDueDate.innerHTML = formattedLastValue;
+  let nextDueDate = document.getElementById("nextDueDate");
+  nextDueDate.innerHTML = formattedLastValue;
 }

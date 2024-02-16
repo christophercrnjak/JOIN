@@ -1,4 +1,4 @@
-// 
+//
 
 function includeHTML() {
   var z, i, elmnt, file, xhttp;
@@ -35,17 +35,17 @@ function includeHTML() {
 // Durch das Umschreiben der Funktion wird die Sidebar nicht mehr angezeigt,
 // es wird auch keine Fehler angezeigt wo durch man erkennen kann warum dort nix erscheint.
 
-  // async function includeHTML() {
-  //   let includeElements = document.querySelector("[w3-include-html]");
-  
-  //   for (let i = 0; i < includeElements.length; i++) {
-  //     let element = includeElements[i];
-  //     file = element.getAttribute("w3-include-html");
-  //     let response = await fetch(file);
-  //     if (response.ok) {
-  //       element = await response.text();
-  //     } else {
-  //       element.innerHTML = "Page not found.";
-  //     }
-  //   }
-  // }
+// async function includeHTML() {
+//   let includeElements = document.querySelector("[w3-include-html]");
+
+//   for (let i = 0; i < includeElements.length; i++) {
+//     let element = includeElements[i];
+//     file = element.getAttribute("w3-include-html");
+//     let response = await fetch(file);
+//     if (response.ok) {
+//       element = await response.text();
+//     } else {
+//       element.innerHTML = "Page not found.";
+//     }
+//   }
+// }

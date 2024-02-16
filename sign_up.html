@@ -1,79 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="/assets/templates/img/favicon.png">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="/assets/templates/img/favicon.png"
+    />
     <title>JOIN</title>
     <link rel="stylesheet" href="./css/main.css" />
     <link rel="stylesheet" href="./css/sign_up.css" />
-    <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      href="./assets/img/favicon.png"
+      type="image/x-icon"
+    />
     <script src="./js/main.js"></script>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="container">
-        <img class="logo" src="./assets/img/logo.svg" alt="" />
+      <img class="logo" src="./assets/img/logo.svg" alt="" />
 
-        <div class="sign_up_section display_center flex_direction_column">
-            <div class="headline">
-                <h1>Sign up</h1>
-                <hr>
-            </div>
-
-            <div class="input_area">
-                <form class="input_fields" onsubmit="register(); return false">
-                    <input
-                        required
-                        type="text"
-                        placeholder="Name"
-                        oninvalid="this.setCustomValidity('Please only use letters.')"
-                        oninput="this.setCustomValidity('')"
-                        id="name">
-                    <input
-                        required
-                        type="email"
-                        placeholder="Email"
-                        oninvalid="this.setCustomValidity('Please use a valid e-mail address.')"
-                        oninput="this.setCustomValidity('')"
-                        id="email">
-                    <input
-                        required
-                        type="password"
-                        placeholder="Password"
-                        oninvalid="this.setCustomValidity('Please enter your password.')"
-                        oninput="this.setCustomValidity('')"
-                        id="password">
-                    <input
-                        required
-                        type="password"
-                        placeholder="Confirm Password"
-                        oninvalid="this.setCustomValidity('Please enter your password.')"
-                        oninput="this.setCustomValidity('')"
-                        id="confirm_password">
-                    <div class="accept_privacy_policy">
-                        <input required type="checkbox" id="checkbox"/>
-                        <p>I accept the <a href="./privacy_policy.html">Privacy policy</a></p>
-                    </div>
-                    <button class="btn_sign_up btn_grey" id="register_btn">Sign up</button>
-                </form>
-            </div>
+      <div class="sign_up_section display_center flex_direction_column">
+        <div class="headline">
+          <h1>Sign up</h1>
+          <hr />
         </div>
 
-        <div class="legal_section">
-            <div class="link_wrapper">
-                <a href="./privacy_policy.html">Privacy Police</a>
+        <div class="input_area">
+          <form class="input_fields" onsubmit="register(); return false">
+            <input
+              required
+              type="text"
+              placeholder="Name"
+              oninvalid="this.setCustomValidity('Please only use letters.')"
+              oninput="this.setCustomValidity('')"
+              id="name"
+            />
+            <input
+              required
+              type="email"
+              placeholder="Email"
+              oninvalid="this.setCustomValidity('Please use a valid e-mail address.')"
+              oninput="this.setCustomValidity('')"
+              id="email"
+            />
+            <input
+              required
+              type="password"
+              placeholder="Password"
+              oninvalid="this.setCustomValidity('Please enter your password.')"
+              oninput="this.setCustomValidity('')"
+              onkeyup="comparePassword()"
+              id="password"
+            />
+            <input
+              required
+              type="password"
+              placeholder="Confirm Password"
+              oninvalid="this.setCustomValidity('Please enter your password.')"
+              oninput="this.setCustomValidity('')"
+              onkeyup="comparePassword()"
+              id="confirm_password"
+            />
+            <div class="accept_privacy_policy">
+              <input required type="checkbox" id="checkbox" />
+              <p>
+                I accept the <a href="./privacy_policy.html">Privacy policy</a>
+              </p>
             </div>
-            <div class="link_wrapper">
-                <a href="./legal_notice.html" class="link_wrapper">Legal notice</a>
-            </div>
+            <span id="password_message"></span>
+            <button class="btn_sign_up btn_grey" id="register_btn">
+              Sign up
+            </button>
+          </form>
         </div>
+      </div>
 
+      <div class="legal_section">
+        <div class="link_wrapper">
+          <a href="./privacy_policy.html">Privacy Police</a>
+        </div>
+        <div class="link_wrapper">
+          <a href="./legal_notice.html" class="link_wrapper">Legal notice</a>
+        </div>
+      </div>
     </div>
 
     <script src="./js/signUp.js"></script>
     <script src="./js/storage.js"></script>
-</body>
-
+  </body>
 </html>

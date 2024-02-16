@@ -2,7 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 @font-face {
@@ -20,20 +20,20 @@
   --bgwhite: #f6f7f8e7;
   --blue: #29abe2;
   --overlaybgwhite: #ffff;
-  --grey: #D1D1D1;
+  --grey: #d1d1d1;
 
   /* member-colors 
      compared to https://codepen.io/pavlovsk/pen/zYvbGKe 
      created by Richard Wezel                             */
-  --mediumslateblue: #6E52FF;
-  --blueviolet: #9327FF;
-  --orange: #FF7A00;
-  --violet: #FC71FF;
-  --yellow: #FFBB2B;
-  --turquoise: #1FD7C1;
-  --darkslateblue: #462F8A;
-  --red: #FF4646;
-  --deepskyblue: #00BEE8;
+  --mediumslateblue: #6e52ff;
+  --blueviolet: #9327ff;
+  --orange: #ff7a00;
+  --violet: #fc71ff;
+  --yellow: #ffbb2b;
+  --turquoise: #1fd7c1;
+  --darkslateblue: #462f8a;
+  --red: #ff4646;
+  --deepskyblue: #00bee8;
 }
 
 .display_center {
@@ -66,7 +66,7 @@ button {
   overflow: hidden;
   outline: none;
   font-weight: bold;
-  transition: color 0.3 ease-in,  transform 3.3s ease-in;
+  transition: color 0.3 ease-in, transform 3.3s ease-in;
   border-radius: 8px;
   font-size: 21px;
 }
@@ -97,61 +97,61 @@ button:hover {
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-input[type=email] {
+input[type="email"] {
   width: 100%;
   border: 2px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
   background-color: white;
-  background-image: url('../assets/img/mail.png');
-  background-position: right 10px center; 
+  background-image: url("../assets/img/mail.png");
+  background-position: right 10px center;
   background-repeat: no-repeat;
   padding: 12px 20px 12px 40px;
 }
 
-input[type=date] {
+input[type="date"] {
   width: 100%;
   border: 2px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
   background-color: white;
-  background-position: right 10px center; 
+  background-position: right 10px center;
   background-repeat: no-repeat;
   padding: 12px 20px 12px 40px;
 }
 
-input[type=password] {
+input[type="password"] {
   width: 100%;
   border: 2px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
   background-color: white;
-  background-image: url('../assets/img/lock.png');
-  background-position: right 10px center; 
+  background-image: url("../assets/img/lock.png");
+  background-position: right 10px center;
   background-repeat: no-repeat;
   padding: 12px 20px 12px 40px;
 }
 
-input[type=text] {
+input[type="text"] {
   width: 100%;
   border: 2px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
   background-color: white;
-  background-image: url('../assets/img/person.png');
-  background-position: right 10px center; 
+  background-image: url("../assets/img/person.png");
+  background-position: right 10px center;
   background-repeat: no-repeat;
   padding: 12px 20px 12px 40px;
 }
 
-input[type=search] {
+input[type="search"] {
   width: 100%;
   border: 2px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
   background-color: white;
-  background-image: url('../assets/img/search.png');
-  background-position: right 10px center; 
+  background-image: url("../assets/img/search.png");
+  background-position: right 10px center;
   background-repeat: no-repeat;
   padding: 12px 20px 12px 20px;
 }
