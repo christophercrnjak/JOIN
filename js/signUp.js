@@ -9,6 +9,19 @@ let register_btn = document.getElementById("register_btn");
 let userName = document.getElementById("name");
 let email = document.getElementById("email");
 let password = document.getElementById("password");
+let registerSuccessfull = document.getElementById("register_successfull");
+
+async function init() {
+  loadUsers();
+}
+
+async function loadUsers() {
+  try {
+    users = JSON.parse(await getItem("users"));
+  } catch (e) {
+    console.warn("Could not load users!");
+  }
+}
 
 async function register() {
   comparePassword();
@@ -19,31 +32,21 @@ async function register() {
       name: {
         firstName: firstName,
         secondName: secondName,
+        color: "#ff4646",
       },
       mail: email.value,
       password: password.value,
     });
     resetForm();
+    registerSuccessfull.classList.remove("d-none");
+    registerSuccessfull.innerHTML = "You Signed Up successfully";
+    setInterval(() => {
+      window.location.href = "index.html";
+    }, 3000);
   } else {
     document.getElementById("password_message").innerHTML =
       "Passwords do not match. Please check and try again!";
   }
-}
-
-function resetForm() {
-  userName.value = "";
-  email.value = "";
-  password.value = "";
-  confirm_password.value = "";
-  password_message.innerHTML = "";
-  checkbox.checked = false;
-  register_btn.disabled = false;
-}
-
-function splitName(userName) {
-  let splittedName = userName.value.split(" ");
-  firstName = splittedName[0];
-  secondName = splittedName[1];
 }
 
 function comparePassword() {
@@ -60,4 +63,20 @@ function comparePassword() {
       "Password do not match!";
     passwordCheckStatus = false;
   }
+}
+
+function splitName(userName) {
+  let splittedName = userName.value.split(" ");
+  firstName = splittedName[0];
+  secondName = splittedName[1];
+}
+
+function resetForm() {
+  userName.value = "";
+  email.value = "";
+  password.value = "";
+  confirm_password.value = "";
+  password_message.innerHTML = "";
+  checkbox.checked = false;
+  register_btn.disabled = false;
 }

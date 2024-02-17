@@ -6,6 +6,12 @@ body {
   background-color: var(--bgwhite);
 }
 
+#register_successfull {
+  position: fixed;
+  inset: 0;
+  width: 200px;
+}
+
 .container {
   position: relative;
   inset: 0;
