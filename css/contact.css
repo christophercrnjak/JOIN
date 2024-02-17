@@ -30,7 +30,9 @@ body{
     justify-content: center;
     margin-left: 52px;
     margin-top: 22.5px;
-
+}
+.add:hover{
+    background: rgba(41, 171, 226, 1);
 }
 
 .contact_list {

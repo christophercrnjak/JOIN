@@ -11,7 +11,6 @@ body {
     font-size: 61px;
     font-weight: 700;
     line-height: 73.2px;
-    width: 138px;
     height: 73px;
     margin-top: 206px;
 }
@@ -28,9 +27,16 @@ body {
     margin-top: 129px;
 }
 .headline img:hover{
-    border: groove 1px lightgray;
+    border: groove 1px rgba(238, 238, 238, 1);
     border-radius: 50%;
-    background-color: lightgray;
+    background-color: rgba(238, 238, 238, 1);
+    ;
+}
+.text ul{
+    margin-left: 18px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19.2px;
 }
 .text{
     margin-left: 328px;
