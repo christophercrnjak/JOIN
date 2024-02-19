@@ -442,7 +442,7 @@ function deleteTask(taskId) {
     close_open_Dialog(taskId);
 }
 
-
+// Prevents the browser's default behavior of dragging back elements
 function doNotClose(event) {
     event.stopPropagation();
 }
