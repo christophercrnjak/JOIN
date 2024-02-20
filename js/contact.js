@@ -37,6 +37,3 @@ function closeDialog() {
     let dialog = document.getElementById('dialog');
     dialog.classList.remove('open');
 }
-function stopPropagation(event) {
-    event.stopPropagation();
-}
