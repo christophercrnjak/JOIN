@@ -142,7 +142,7 @@ a {
                     display: flex;
                     flex-direction: column;
                     gap: 16px;
-                    min-height: 200px;
+                    min-height: 500px;
                 }
                     .no_task {
                         width: 100%;
