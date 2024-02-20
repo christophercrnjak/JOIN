@@ -1,7 +1,6 @@
 let users = [];
-let mail = document.getElementById('mail');
-let password = document.getElementById('password');
-
+let mail = document.getElementById("mail");
+let password = document.getElementById("password");
 
 async function init() {
   await loadUsers();
@@ -9,7 +8,6 @@ async function init() {
 
 function handleLogIn() {
   checkExistingUser();
-
 
   // window.location.href = "summary.html";
 }
@@ -30,8 +28,9 @@ function checkExistingUser() {
   // debugger;
   for (let i = 0; i < users.length; i++) {
     const user = users[i];
-    if (user.mail == mail.value) {
+    if (user.mail == mail.value && user.password == password.value) {
       // add this information about that specific account in users
+      console.log("stimmt überein");
     }
   }
 }

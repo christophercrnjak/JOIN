@@ -37,13 +37,13 @@ async function register() {
       mail: mail.value,
       password: password.value,
     });
-    await setItem('users', JSON.stringify(users));
+    await setItem("users", JSON.stringify(users));
     resetForm();
     registerSuccessfull.classList.remove("d-none");
     registerSuccessfull.innerHTML = "You Signed Up successfully";
-    // setInterval(() => {
-    //   window.location.href = "index.html";
-    // }, 3000);
+    setInterval(() => {
+      window.location.href = "index.html";
+    }, 1000);
   } else {
     document.getElementById("password_message").innerHTML =
       "Passwords do not match. Please check and try again!";
