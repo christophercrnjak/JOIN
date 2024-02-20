@@ -41,7 +41,7 @@ async function register() {
     registerSuccessfull.classList.remove("d-none");
     registerSuccessfull.innerHTML = "You Signed Up successfully";
     setInterval(() => {
-      window.location.href = "index.html";
+    //   window.location.href = "index.html";
     }, 3000);
   } else {
     document.getElementById("password_message").innerHTML =
