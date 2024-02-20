@@ -13,11 +13,31 @@ async function init() {
     renderColumnContent();
 }
 
+
+// ***** Drag and Drop *****
+
+
 // The function is initialized by starting dragging a task
 // The parameter 'task' represents an index of the array 'tasks' and is transfered through rendering the html by functions taskHTML(task, i) -> i = param task
 function startDragging(task) {
     currentDraggedElement = task;
 }
+
+// Prevents the browser's default behavior of dragging back elements
+function allowDrop(event) {
+    event.preventDefault();
+}
+
+// transfer of the new created status-value through dragging and render column content with new status
+// to be found in columns element with the class board_column
+function moveTo(status) {
+    tasks[currentDraggedElement].status = status;
+    renderColumnContent();
+}
+
+
+// ***** Search *****
+
 
 // get Value of search-inputfield in lowerCase letters and trasfer function
 function searchTask() {
@@ -25,16 +45,6 @@ function searchTask() {
     search_content = search_content.toLowerCase();
     renderColumnContent(search_content);
 }
-
-function allowDrop(event) {
-    event.preventDefault();
-}
-
-function moveTo(status) {
-    tasks[currentDraggedElement].status = status;
-    renderColumnContent();
-}
-
 
 // render content of colums in depending on status
 async function renderColumnContent(search_content){
@@ -111,6 +121,14 @@ function taskHTML(task, i) {
     `
 }
 
+// render task special content
+function renderTaskElements(i) {
+    setColorOfCategory(i); 
+    showprogressbar(i); // set blue bar
+    renderInitials(i); // Initials of task members
+    renderPriority(i); 
+}
+
 
 // render no task divs for columns without content/ not assigned status
 function noTask(toDo_container, inProgress_container, awaitFeedback_container, done_container) {
@@ -135,14 +153,6 @@ function noTaskHTML(head_text) {
 }
 
 
-// render task special content
-function renderTaskElements(i) {
-    setColorOfCategory(i); 
-    showprogressbar(i); // set blue bar
-    renderInitials(i); // Initials of task members
-    renderPriority(i); 
-}
-
 function setColorOfCategory(i) {
     let category = tasks[i].category;
     container = document.getElementById(`task_category${i}`);
@@ -156,6 +166,27 @@ function setColorOfCategory(i) {
     }
 }
 
+
+function renderPriority(i) {
+    let priority = tasks[i].priority;
+    let container = document.getElementById(`prio_icon${i}`);
+    switch (priority) {
+        case "Low":
+          container.innerHTML = `<img src="assets/img/Priority_symbols_Low.png" alt="">`;
+          break;
+        case "Medium":
+            container.innerHTML = `<img src="assets/img/Priority_symbols_Medium.png" alt="">`;
+          break;
+        case "Urgent":
+          container.innerHTML = `<img src="assets/img/Priority_symbols_Urgent.png" alt="">`;
+        break;
+    }
+}
+
+
+// ***** Progressbar *****
+
+
 function showprogressbar(i) {
     let container = document.getElementById(`task_progressbar${i}`)
     let task = tasks[i];
@@ -167,6 +198,64 @@ function showprogressbar(i) {
         container.classList.add('d-none')
     }
 }
+
+function renderBlueProgressbar(i) {
+    let container = document.getElementById(`blue_progressbar${i}`)
+    let amountOfOpenTasks = calcSubtaskAmount(i);
+    let totalSubtasks = tasks[i].subtasks.length;
+    if (amountOfOpenTasks == 0) {
+        container.style.width = '0px';
+    } else if (amountOfOpenTasks == tasks[i].subtasks.length) {
+        container.style.width = '128px';
+    } else {
+        let progress = calcProgressbar(totalSubtasks) * amountOfOpenTasks;
+        container.style.width = `${progress}px`;
+    }
+}
+
+function calcProgressbar(totalSubtasks){
+    let progressTotal = 128 / totalSubtasks;
+    return +progressTotal;
+}
+
+
+// ***** Subtask *****
+
+
+function subtaskHTML(i) {
+    return `
+    <div  class="progressbar">
+        <div id="blue_progressbar${i}" class="progressbar_blue"></div>
+    </div>
+    <div class="progressbar_text"> 
+        <span id="subtasks_todo${i}"></span> / <span id="subtasks_total${i}"></span> Subtasks
+    </div>
+    `;
+}
+
+function renderSubtaskAmounts(i) {
+    let sub_todo = document.getElementById(`subtasks_todo${i}`);
+    let sub_total = document.getElementById(`subtasks_total${i}`);
+    let amountOfOpenTasks = calcSubtaskAmount(i);
+    sub_todo.innerHTML = amountOfOpenTasks;
+    sub_total.innerHTML = tasks[i].subtasks.length;
+}
+
+function calcSubtaskAmount(i) {
+    let task = tasks[i];
+    let subtask = task.subtasks;
+    let subtask_amount_todo = 0;
+    for (let i = 0; i < subtask.length; i++) {
+        if(subtask[i].done == true) {
+            subtask_amount_todo++;
+        } 
+    }
+    return subtask_amount_todo;
+}
+
+
+// ***** Member of task *****
+
 
 function renderInitials(task_number) {
     let task = tasks[task_number];
@@ -186,77 +275,11 @@ function renderInitials(task_number) {
     }
 }
 
-function renderPriority(i) {
-    let priority = tasks[i].priority;
-    let container = document.getElementById(`prio_icon${i}`);
-    switch (priority) {
-        case "Low":
-          container.innerHTML = `<img src="assets/img/Priority_symbols_Low.png" alt="">`;
-          break;
-        case "Medium":
-            container.innerHTML = `<img src="assets/img/Priority_symbols_Medium.png" alt="">`;
-          break;
-        case "Urgent":
-          container.innerHTML = `<img src="assets/img/Priority_symbols_Urgent.png" alt="">`;
-        break;
-    }
-}
-
-
-function subtaskHTML(i) {
+function taskMemberHTML(firstCharacter, secondCharacter, colorClass, task_number, i) {
     return `
-    <div  class="progressbar">
-        <div id="blue_progressbar${i}" class="progressbar_blue"></div>
-    </div>
-    <div class="progressbar_text"> 
-        <span id="subtasks_todo${i}"></span> / <span id="subtasks_total${i}"></span> Subtasks
-    </div>
+        <div id="task_member${task_number}${i}" class="member_cycle ${colorClass}">${firstCharacter}${secondCharacter}</div>
     `;
 }
-
-
-function renderSubtaskAmounts(i) {
-    let sub_todo = document.getElementById(`subtasks_todo${i}`);
-    let sub_total = document.getElementById(`subtasks_total${i}`);
-    let amountOfOpenTasks = calcSubtaskAmount(i);
-    sub_todo.innerHTML = amountOfOpenTasks;
-    sub_total.innerHTML = tasks[i].subtasks.length;
-}
-
-
-function calcSubtaskAmount(i) {
-    let task = tasks[i];
-    let subtask = task.subtasks;
-    let subtask_amount_todo = 0;
-    for (let i = 0; i < subtask.length; i++) {
-        if(subtask[i].done == true) {
-            subtask_amount_todo++;
-        } 
-    }
-    return subtask_amount_todo;
-}
-
-
-function renderBlueProgressbar(i) {
-    let container = document.getElementById(`blue_progressbar${i}`)
-    let amountOfOpenTasks = calcSubtaskAmount(i);
-    let totalSubtasks = tasks[i].subtasks.length;
-    if (amountOfOpenTasks == 0) {
-        container.style.width = '0px';
-    } else if (amountOfOpenTasks == tasks[i].subtasks.length) {
-        container.style.width = '128px';
-    } else {
-        let progress = calcProgressbar(totalSubtasks) * amountOfOpenTasks;
-        container.style.width = `${progress}px`;
-    }
-}
-
-
-function calcProgressbar(totalSubtasks){
-    let progressTotal = 128 / totalSubtasks;
-    return +progressTotal;
-}
-
 
 function calcPositionMember(i) {
     let position = i * -9;
@@ -264,16 +287,7 @@ function calcPositionMember(i) {
 }
 
 
-function taskMemberHTML(firstCharacter, secondCharacter, colorClass, task_number, i) {
-    return `
-        <div id="task_member${task_number}${i}" class="member_cycle ${colorClass}">${firstCharacter}${secondCharacter}</div>
-    `;
-}
-
-
-
 // ****** DIALOG FUNCTIONS *****
-
 
 
 function close_open_Dialog(taskId) {
@@ -442,7 +456,7 @@ function deleteTask(taskId) {
     close_open_Dialog(taskId);
 }
 
-// Prevents the browser's default behavior of dragging back elements
+
 function doNotClose(event) {
     event.stopPropagation();
 }
