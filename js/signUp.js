@@ -7,7 +7,7 @@ let firstName;
 let secondName;
 let register_btn = document.getElementById("register_btn");
 let userName = document.getElementById("name");
-let email = document.getElementById("email");
+let mail = document.getElementById("mail");
 let password = document.getElementById("password");
 let registerSuccessfull = document.getElementById("register_successfull");
 
@@ -34,7 +34,7 @@ async function register() {
         secondName: secondName,
         color: "#ff4646",
       },
-      mail: email.value,
+      mail: mail.value,
       password: password.value,
     });
     await setItem('users', JSON.stringify(users));
@@ -74,7 +74,7 @@ function splitName(userName) {
 
 function resetForm() {
   userName.value = "";
-  email.value = "";
+  mail.value = "";
   password.value = "";
   confirm_password.value = "";
   password_message.innerHTML = "";

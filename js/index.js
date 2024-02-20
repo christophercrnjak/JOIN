@@ -1,5 +1,5 @@
 let users = [];
-let email = document.getElementById('email');
+let mail = document.getElementById('mail');
 let password = document.getElementById('password');
 
 
@@ -11,7 +11,7 @@ function handleLogIn() {
   checkExistingUser();
 
 
-  window.location.href = "summary.html";
+  // window.location.href = "summary.html";
 }
 
 function handleGuestLogIn() {
@@ -27,10 +27,13 @@ async function loadUsers() {
 }
 
 function checkExistingUser() {
+  debugger;
   for (let i = 0; i < users.length; i++) {
     const user = users[i];
-    if (user.name) {
-      
+    if (user.mail == mail.value) {
+      console.log('funzt');
+    } else {
+      console.log('nö');
     }
   }
 }
