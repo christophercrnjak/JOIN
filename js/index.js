@@ -1,9 +1,31 @@
+let users = [];
+let email = document.getElementById('email');
+let password = document.getElementById('password');
+
+
+async function init() {
+  await loadUsers();
+}
+
 function handleLogIn() {
-  console.log("test");
+  checkExistingUser();
+
+
   window.location.href = "summary.html";
 }
 
 function handleGuestLogIn() {
-  console.log("guesttest");
   window.location.href = "summary.html";
+}
+
+async function loadUsers() {
+  try {
+    users = JSON.parse(await getItem("users"));
+  } catch (e) {
+    console.warn("Could not load users!");
+  }
+}
+
+function checkExistingUser() {
+  
 }

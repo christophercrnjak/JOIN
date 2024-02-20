@@ -14,7 +14,7 @@
     />
   </head>
 
-  <body>
+  <body onload="init()">
     <div class="container">
       <img class="logo" src="./assets/img/logo.svg" alt="" />
       <div class="sign_up">
@@ -38,7 +38,7 @@
               placeholder="Email"
               oninvalid="this.setCustomValidity('Please use a valid e-mail address.')"
               oninput="this.setCustomValidity('')"
-              id="input_mail"
+              id="email"
             />
             <input
               required
@@ -46,7 +46,7 @@
               placeholder="Password"
               oninvalid="this.setCustomValidity('Please enter your password.')"
               oninput="this.setCustomValidity('')"
-              id="input_pw"
+              id="password"
             />
           </div>
           <div class="remember_me">
@@ -83,6 +83,7 @@
       </div>
     </div>
 
+    <script src="./js/storage.js"></script>
     <script src="./js/index.js"></script>
   </body>
 </html>
