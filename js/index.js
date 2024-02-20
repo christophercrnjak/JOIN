@@ -27,13 +27,11 @@ async function loadUsers() {
 }
 
 function checkExistingUser() {
-  debugger;
+  // debugger;
   for (let i = 0; i < users.length; i++) {
     const user = users[i];
     if (user.mail == mail.value) {
-      console.log('funzt');
-    } else {
-      console.log('nö');
+      // add this information about that specific account in users
     }
   }
 }
