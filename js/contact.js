@@ -1,13 +1,13 @@
 let person = [];
 
 async function init() {
-    let resp = await fetch('assets/json/contacts.json'); 
+    let resp = await fetch('assets/json/contacts.json');
     person = await resp.json();
     console.log(person);
     loadContacts();
 }
 
-function loadContacts(){
+function loadContacts() {
     let content = document.getElementById('person');
     let contactList = '';
     let displayedLetters = [];
@@ -26,4 +26,17 @@ function loadContacts(){
                        </div>`;
     }
     content.innerHTML = contactList;
+}
+
+function openDialog() {
+    let dialog = document.getElementById('dialog');
+    dialog.classList.add('open');
+}
+
+function closeDialog() {
+    let dialog = document.getElementById('dialog');
+    dialog.classList.remove('open');
+}
+function stopPropagation(event) {
+    event.stopPropagation();
 }
