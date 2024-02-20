@@ -29,8 +29,7 @@ function checkExistingUser() {
   for (let i = 0; i < users.length; i++) {
     const user = users[i];
     if (user.mail == mail.value && user.password == password.value) {
-      // add this information about that specific account in users
-      console.log("stimmt überein");
+      // add this information about that specific account in a new json-file
     }
   }
 }
