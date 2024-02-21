@@ -5,6 +5,7 @@ let awaitingFeedbackAmount = 0;
 let doneAmount = 0;
 let allAmounts = 0;
 let urgentAmount = 0;
+let nextDueDate;
 
 async function init() {
   let resp = await fetch("assets/json/tasks.json");
@@ -14,6 +15,16 @@ async function init() {
   calcUrgentAmount();
   getNextDueDate();
   render();
+}
+
+function render() {
+  renderToDoAmount();
+  renderDoneAmount();
+  renderNextDueDate();
+  renderUrgentAmount();
+  renderAllAmount();
+  renderInProgressAmount();
+  renderAwaitingFeedbackAmount();
 }
 
 function calcTaskAmount(tasks) {
@@ -39,15 +50,6 @@ function calcTaskAmount(tasks) {
 function calcSumOfAmounts() {
   allAmounts =
     toDoAmount + inProgressAmount + awaitingFeedbackAmount + doneAmount;
-}
-
-function render() {
-  renderToDoAmount();
-  renderDoneAmount();
-  renderUrgentAmount();
-  renderAllAmount();
-  renderInProgressAmount();
-  renderAwaitingFeedbackAmount();
 }
 
 function renderToDoAmount() {
@@ -135,14 +137,16 @@ function getNextDueDate() {
   let lastValue = new Date(
     "20" + firstValue.replace(/(\d{2})\/(\d{2})\/(\d{2})/, "$1-$2-$3")
   );
-  let formattedLastValue = new Intl.DateTimeFormat("en-US", {
+  nextDueDate = new Intl.DateTimeFormat("en-US", {
     month: "long",
     day: "numeric",
     year: "numeric",
   }).format(lastValue);
+}
 
-  let nextDueDate = document.getElementById("nextDueDate");
-  nextDueDate.innerHTML = formattedLastValue;
+function renderNextDueDate() {
+  let nextDueDateElement = document.getElementById("nextDueDate");
+  nextDueDateElement.innerHTML = nextDueDate;
 }
 
 function calcUrgentAmount() {
