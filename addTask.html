@@ -32,11 +32,11 @@
                     <div onclick="toggleDropdown(); return false" class="dropbtn" id="dropbtn">Select contacts assign</div>
                     
                     <input type="text" id="dropdownInput" onkeyup="filterFunction()" class="d-none">
-                    <div id="myDropdown" class="dropdown_content">
-                      <a href="#" class="">Anton Meyer </a>
-                      <a href="#">Anja Schulz</a>
-                      <a href="#">Benedikt Ziegler</a>
-                      <a href="#">David Eisenberg</a>
+                    <div id="dropdown" class="dropdown_content">
+                      <a href="#" class=""><p>Anton Meyer </p><input type="checkbox" name="" id=""></a>
+                      <a href="#"><p>Anja Schulz</p><input type="checkbox" name="" id=""></a>
+                      <a href="#"><p>Benedikt Ziegler</p><input type="checkbox" name="" id=""></a>
+                      <a href="#"><p>David Eisenberg</p><input type="checkbox" name="" id=""></a>
                     </div>
                   </div>
 
@@ -62,7 +62,7 @@
                     <option value="#">User Story</option>
                 </select>
                 <div for="Subtasks">Subtasks</div>
-                <input type="text">
+                <input type="text" placeholder="&#10010;">
 
             </form>
 
@@ -70,8 +70,8 @@
         <div class="create_clear_task">
             <p><span>*</span>This Field is required</p>
             <div class="addTask_btns">
-                <button class="btn_grey addTask_btn">Clear X</button>
-                <button class="btn_transparent addTask_btn"> Create Task </button>
+                <button class="btn_grey addTask_btn" onclick="pushToJson()">Clear &#10006;</button>
+                <button class="btn_transparent addTask_btn" onclick="removeToJson()"> Create Task &#10003;</button>
             </div>
         </div>
     </div>

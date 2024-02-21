@@ -51,7 +51,7 @@ function filterFunction() {
   let input, filter, select, options, i, txtValue, a;
   input = document.getElementById("dropdownInput");
   filter = input.value.toUpperCase();
-  select = document.getElementById("myDropdown");
+  select = document.getElementById("dropdown");
   options = select.getElementsByTagName("a");
   for (i = 0; i < options.length; i++) {
       txtValue = options[i].textContent || options[i].innerText;
@@ -65,7 +65,7 @@ function filterFunction() {
 
 
 function toggleDropdown() {
-  let dropdownContent = document.getElementById('myDropdown');
+  let dropdownContent = document.getElementById('dropdown');
   let arrow = document.getElementById('arrow');
   dropdownContent.classList.toggle('show');
   document.getElementById('dropdownInput').classList.toggle('d-none');
@@ -75,11 +75,20 @@ function toggleDropdown() {
 }
 
 function toggledropbtn() {
-  let dropdownContent = document.getElementById('myDropdown');
+  let dropdownContent = document.getElementById('dropdown');
   let arrow = document.getElementById('arrow');
   dropdownContent.classList.toggle('show');
   document.getElementById('dropdownInput').classList.toggle('d-none');
   document.getElementById('dropbtn').classList.toggle('d-none');
   arrow.innerHTML = `&#11206;`;
   
+}
+
+function pushToJson() {
+  // Push the Add Task inputs in to a JSON
+}
+
+
+function removeToJson() {
+  // Remove the Add Task inputs in to a JSON
 }
