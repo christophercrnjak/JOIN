@@ -4,8 +4,29 @@ let contacts = [];
 
 function addTaskInit () {
   
- 
+  renderDropList()
    
+}
+
+async function renderDropList(){
+  let response = await fetch('assets/json/contacts.json');
+  let responseAsJson = await response.json();
+  let dropdown = document.getElementById('dropdown');
+
+  dropdown.innerHTML = '';
+  for (let i = 0; i < responseAsJson.length; i++) {
+    let dropdownList = responseAsJson[i];
+    dropdown.innerHTML += dropdownHtml(dropdownList);
+  
+  }
+}
+
+function dropdownHtml(dropdownList) {
+  return`
+  <a class="dropdown_assign" ><div class="display_center gap" onclick="">
+  <img src="${dropdownList['image']}">${dropdownList['name']['firstName']} ${dropdownList['name']['secondName']}</div>
+  <img src="assets/img/Check_btn.svg"></a>
+  `;
 }
 
 // Farbe änderung der btn urgrend, medium und low 
