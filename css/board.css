@@ -430,6 +430,7 @@ a {
                                     .task_container {
                                         overflow-x: overlay;
                                         min-height: 0px;
+                                        flex-direction: row;
                                     }
                                 }
                             }
