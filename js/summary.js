@@ -95,14 +95,10 @@ function renderAwaitingFeedbackAmountInElements() {
   }
 }
 
-function renderNextDueDate() {
-  getTasksNotDone();
-}
-
 function getNextDueDate() {
   // excludes the tasks which are done
-  let tasksNotDone = tasks.filter((status) => {
-    return status.status != "done";
+  let tasksNotDone = tasks.filter((taskElement) => {
+    return taskElement.status != "done";
   });
 
   // create a new array called dueDates which only gives the dueDate-value of those tasks
@@ -129,7 +125,6 @@ function getNextDueDate() {
 
     return dateA - dateB;
   });
-  console.log(formatedDueDates);
 
   // outputs the first value of this array
   let firstValue = formatedDueDates[0];

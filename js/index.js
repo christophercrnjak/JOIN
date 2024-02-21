@@ -1,6 +1,7 @@
 let users = [];
 let mail = document.getElementById("mail");
 let password = document.getElementById("password");
+let currentUser = [];
 
 async function init() {
   await loadUsers();
@@ -12,7 +13,9 @@ function handleLogIn() {
     setCurretUser();
   }
 
-  // window.location.href = "summary.html";
+  setInterval(() => {
+    window.location.href = "summary.html";
+  }, 1000);
 }
 
 function handleGuestLogIn() {
@@ -31,9 +34,7 @@ function checkExistingUser() {
   for (let i = 0; i < users.length; i++) {
     const user = users[i];
     if (user.mail == mail.value && user.password == password.value) {
-      return true;
-    } else {
-      return false;
+      user.lockedIn = true;
     }
   }
 }

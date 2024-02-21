@@ -6,7 +6,8 @@
       "color": "#FF7A00"
     },
     "mail": "anton@gmail.com",
-    "password": ""
+    "password": "",
+    "lockedIn": false
   },
   {
     "name": {
@@ -15,7 +16,8 @@
       "color": "#9327FF"
     },
     "mail": "schulz@hotmail.de",
-    "password": ""
+    "password": "",
+    "lockedIn": false
   },
   {
     "name": {
@@ -24,7 +26,8 @@
       "color": "#6E52FF"
     },
     "mail": "benedikt@gmail.com",
-    "password": ""
+    "password": "",
+    "lockedIn": false
   },
   {
     "name": {
@@ -33,7 +36,8 @@
       "color": "#FC71FF"
     },
     "mail": "davidberg@gmail.com",
-    "password": ""
+    "password": "",
+    "lockedIn": false
   },
   {
     "name": {
@@ -42,7 +46,8 @@
       "color": "#FFBB2B"
     },
     "mail": "eva@gmail.com",
-    "password": ""
+    "password": "",
+    "lockedIn": false
   },
   {
     "name": {
@@ -51,7 +56,8 @@
       "color": "#1FD7C1"
     },
     "mail": "emmanuelma@gmail.com",
-    "password": ""
+    "password": "",
+    "lockedIn": false
   },
   {
     "name": {
@@ -60,6 +66,7 @@
       "color": "#462F8A"
     },
     "mail": "bauer@gmail.com",
-    "password": ""
+    "password": "",
+    "lockedIn": false
   }
 ]

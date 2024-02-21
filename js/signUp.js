@@ -36,6 +36,7 @@ async function register() {
       },
       mail: mail.value,
       password: password.value,
+      lockedIn: false,
     });
     await setItem("users", JSON.stringify(users));
     resetForm();
