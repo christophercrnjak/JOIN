@@ -1,21 +1,47 @@
 let tasks = [];
+let contacts = [];
 let toDoAmount = 0;
 let inProgressAmount = 0;
 let awaitingFeedbackAmount = 0;
 let doneAmount = 0;
 let allAmounts = 0;
-let nextUpcomingTask; //TO-DO
+let urgentAmount = 0;
+let nextDueDate;
+let userName;
 
 async function init() {
-  let resp = await fetch("assets/json/tasks.json");
-  tasks = await resp.json();
-  calcTaskAmount(tasks);
+  await fetchTasks();
+  await fetchContacts();
+  calcTaskAmount();
   calcSumOfAmounts();
-  renderAmountsInElements();
+  calcUrgentAmount();
+  getUserName();
   getNextDueDate();
+  render();
 }
 
-function calcTaskAmount(tasks) {
+async function fetchTasks() {
+  let resp = await fetch("assets/json/tasks.json");
+  tasks = await resp.json();
+}
+
+async function fetchContacts() {
+  let resp = await fetch("assets/json/contacts.json");
+  contacts = await resp.json();
+}
+
+function render() {
+  renderToDoAmount();
+  renderDoneAmount();
+  renderNextDueDate();
+  renderUrgentAmount();
+  renderAllAmount();
+  renderInProgressAmount();
+  renderAwaitingFeedbackAmount();
+  renderUserName();
+}
+
+function calcTaskAmount() {
   for (let i = 0; i < tasks.length; i++) {
     const task = tasks[i];
     switch (task.status) {
@@ -40,15 +66,7 @@ function calcSumOfAmounts() {
     toDoAmount + inProgressAmount + awaitingFeedbackAmount + doneAmount;
 }
 
-function renderAmountsInElements() {
-  renderToDoAmountInElement();
-  renderDoneAmountInElement();
-  renderAllAmountInElement();
-  renderInProgressAmountInElement();
-  renderAwaitingFeedbackAmountInElements();
-}
-
-function renderToDoAmountInElement() {
+function renderToDoAmount() {
   let toDoAmountElement = document.getElementById("toDoAmount");
   if (toDoAmount != 0) {
     toDoAmountElement.innerHTML = toDoAmount;
@@ -57,7 +75,7 @@ function renderToDoAmountInElement() {
   }
 }
 
-function renderDoneAmountInElement() {
+function renderDoneAmount() {
   let doneAmountElement = document.getElementById("doneAmount");
   if (doneAmount != 0) {
     doneAmountElement.innerHTML = doneAmount;
@@ -66,7 +84,7 @@ function renderDoneAmountInElement() {
   }
 }
 
-function renderAllAmountInElement() {
+function renderAllAmount() {
   let allAmountElement = document.getElementById("allAmounts");
   if (allAmounts != 0) {
     allAmountElement.innerHTML = allAmounts;
@@ -75,7 +93,7 @@ function renderAllAmountInElement() {
   }
 }
 
-function renderInProgressAmountInElement() {
+function renderInProgressAmount() {
   let inProgressAmountElement = document.getElementById("inProgressAmount");
   if (inProgressAmount != 0) {
     inProgressAmountElement.innerHTML = inProgressAmount;
@@ -84,7 +102,7 @@ function renderInProgressAmountInElement() {
   }
 }
 
-function renderAwaitingFeedbackAmountInElements() {
+function renderAwaitingFeedbackAmount() {
   let awaitingFeedbackAmountElement = document.getElementById(
     "awaitingFeedbackAmount"
   );
@@ -133,12 +151,50 @@ function getNextDueDate() {
   let lastValue = new Date(
     "20" + firstValue.replace(/(\d{2})\/(\d{2})\/(\d{2})/, "$1-$2-$3")
   );
-  let formattedLastValue = new Intl.DateTimeFormat("en-US", {
+  nextDueDate = new Intl.DateTimeFormat("en-US", {
     month: "long",
     day: "numeric",
     year: "numeric",
   }).format(lastValue);
+}
 
-  let nextDueDate = document.getElementById("nextDueDate");
-  nextDueDate.innerHTML = formattedLastValue;
+function renderNextDueDate() {
+  let nextDueDateElement = document.getElementById("nextDueDate");
+  nextDueDateElement.innerHTML = nextDueDate;
+}
+
+function calcUrgentAmount() {
+  for (let i = 0; i < tasks.length; i++) {
+    const task = tasks[i];
+    if (task.priority == "Urgent") {
+      urgentAmount++;
+    }
+  }
+}
+
+function renderUrgentAmount() {
+  let urgentAmountElement = document.getElementById("urgent_amount");
+  if (urgentAmount != 0) {
+    urgentAmountElement.innerHTML = urgentAmount;
+  } else {
+    urgentAmountElement.innerHTML = "0";
+  }
+}
+
+function getUserName() {
+  for (let i = 0; i < contacts.length; i++) {
+    const contact = contacts[i];
+    if (contact.lockedIn) {
+      let mergedUserName =
+        contact.name.firstName + " " + contact.name.secondName;
+      userName = mergedUserName;
+    }
+  }
+}
+
+function renderUserName() {
+  let userNameElement = document.getElementById("user_name");
+  let comma = document.getElementById("comma");
+  userNameElement.innerHTML = userName;
+  comma.innerHTML = ",";
 }

@@ -19,7 +19,7 @@
     "image":"assets/img/img_name_icon/Anja.svg",
     "mail": "schulz@hotmail.de",
     "password": "",
-    "lockedIn": false
+    "lockedIn": true
   },
   {
     "name": {
