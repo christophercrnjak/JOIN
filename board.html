@@ -21,22 +21,28 @@
     <div w3-include-html="./assets/templates/sidebar.html"></div>
 
     <!-- DIALOG SHOW MORE TASK INFORMATIONS -->
-    <div id="dialog_container" class="dialog_container d-none">
+    <div id="dialog_container" onclick="close_open_Dialog()" class="dialog_container d-none">
         
-        <div id="task_dialog_container" class="task_dialog" >
+        <div id="task_dialog_container" onclick="doNotClose(event)" class="task_dialog" >
         </div>
     </div>
 
     <!-- KANBAN BOARD HEADER WITH SEARCHINPUT AND ADD-BUTTON -->
     <div class="container">
         <header class="board_header">
-            <div class="header_text">Board</div>
+            <div class="header_text_main">
+                <div class="header_text">Board</div>
+                <a href="addTask.html" class="add_task_btn_mobile">
+                    <div class="line_add_btn_horizont"></div>
+                    <div class="line_add_btn_vertical"></div>
+                </a>
+            </div>
                 <div class="search_add">
                     <div class="search">
                         <input id="task_to_be_found" onkeydown="searchTask()" type="search" placeholder="Find Task">
                             
                     </div>
-                    <a class="add_task_btn"> Add task <span class="plus_add_btn">+</span></a>
+                    <a href="addTask.html" class="add_task_btn"> Add task <span class="plus_add_btn">+</span></a>
                 </div>
         </header>
 
@@ -48,6 +54,10 @@
                 <div class="column_head">
                     <div class="column_head_text">To do</div>
                     <a href="addTask.html" class="column_head_add_btn">+</a>
+                    <a href="addTask.html" class="column_head_add_btn_mobile">
+                        <div class="line_add_btn_horizont_column_head"></div>
+                        <div class="line_add_btn_vertical_column_head"></div>
+                    </a>
                 </div>
                 <div id="task_container_Todo" class="task_container"></div>
             </div>
@@ -57,6 +67,10 @@
                 <div class="column_head">
                     <div class="column_head_text">In progress</div>
                     <a href="addTask.html" class="column_head_add_btn">+</a>
+                    <a href="addTask.html" class="column_head_add_btn_mobile">
+                        <div class="line_add_btn_horizont_column_head"></div>
+                        <div class="line_add_btn_vertical_column_head"></div>
+                    </a>
                 </div>
                 <div id="task_container_InProgress" class="task_container"></div>
             </div>
@@ -66,6 +80,10 @@
                 <div class="column_head">
                     <div class="column_head_text">Await feedback</div>
                     <a href="addTask.html" class="column_head_add_btn">+</a>
+                    <a href="addTask.html" class="column_head_add_btn_mobile">
+                        <div class="line_add_btn_horizont_column_head"></div>
+                        <div class="line_add_btn_vertical_column_head"></div>
+                    </a>
                 </div>
                 <div id="task_container_AwaitFeedback" class="task_container"></div>
             </div>
@@ -75,6 +93,10 @@
                 <div class="column_head">
                     <div class="column_head_text">Done</div>
                     <a href="addTask.html" class="column_head_add_btn">+</a>
+                    <a href="addTask.html" class="column_head_add_btn_mobile">
+                        <div class="line_add_btn_horizont_column_head"></div>
+                        <div class="line_add_btn_vertical_column_head"></div>
+                    </a>
                 </div>
                 <div id="task_container_Done" class="task_container"></div>
             </div>
