@@ -167,3 +167,20 @@
   background-repeat: no-repeat;
   padding: 12px 20px 12px 40px;
 }
+
+.create_clear_task {
+  align-items: flex-start;
+  width: 840px;
+  display: flex;
+  justify-content: space-between;
+}
+.addTask_btns {
+  display: flex;
+  gap: 18px;
+}
+.create_clear_task span {
+  color: red;
+}
+.addTask_btn {
+  padding: 16px;
+}
