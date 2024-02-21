@@ -8,6 +8,9 @@ async function init() {
 
 function handleLogIn() {
   checkExistingUser();
+  if (checkExistingUser) {
+    setCurretUser();
+  }
 
   // window.location.href = "summary.html";
 }
@@ -25,11 +28,14 @@ async function loadUsers() {
 }
 
 function checkExistingUser() {
-  // debugger;
   for (let i = 0; i < users.length; i++) {
     const user = users[i];
     if (user.mail == mail.value && user.password == password.value) {
-      // add this information about that specific account in a new json-file
+      return true;
+    } else {
+      return false;
     }
   }
 }
+
+function setCurretUser() {}
