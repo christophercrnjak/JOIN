@@ -164,7 +164,7 @@ hr {
   font-weight: 500;
 }
 
-.welcome_message p span {
+#user_name {
   font-size: 64px;
   font-weight: 700;
   color: var(--blue);
