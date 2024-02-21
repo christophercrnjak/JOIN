@@ -4,15 +4,16 @@ let inProgressAmount = 0;
 let awaitingFeedbackAmount = 0;
 let doneAmount = 0;
 let allAmounts = 0;
-let nextUpcomingTask; //TO-DO
+let urgentAmount = 0;
 
 async function init() {
   let resp = await fetch("assets/json/tasks.json");
   tasks = await resp.json();
   calcTaskAmount(tasks);
   calcSumOfAmounts();
-  renderAmountsInElements();
+  calcUrgentAmount();
   getNextDueDate();
+  render();
 }
 
 function calcTaskAmount(tasks) {
@@ -40,15 +41,16 @@ function calcSumOfAmounts() {
     toDoAmount + inProgressAmount + awaitingFeedbackAmount + doneAmount;
 }
 
-function renderAmountsInElements() {
-  renderToDoAmountInElement();
-  renderDoneAmountInElement();
-  renderAllAmountInElement();
-  renderInProgressAmountInElement();
-  renderAwaitingFeedbackAmountInElements();
+function render() {
+  renderToDoAmount();
+  renderDoneAmount();
+  renderUrgentAmount();
+  renderAllAmount();
+  renderInProgressAmount();
+  renderAwaitingFeedbackAmount();
 }
 
-function renderToDoAmountInElement() {
+function renderToDoAmount() {
   let toDoAmountElement = document.getElementById("toDoAmount");
   if (toDoAmount != 0) {
     toDoAmountElement.innerHTML = toDoAmount;
@@ -57,7 +59,7 @@ function renderToDoAmountInElement() {
   }
 }
 
-function renderDoneAmountInElement() {
+function renderDoneAmount() {
   let doneAmountElement = document.getElementById("doneAmount");
   if (doneAmount != 0) {
     doneAmountElement.innerHTML = doneAmount;
@@ -66,7 +68,7 @@ function renderDoneAmountInElement() {
   }
 }
 
-function renderAllAmountInElement() {
+function renderAllAmount() {
   let allAmountElement = document.getElementById("allAmounts");
   if (allAmounts != 0) {
     allAmountElement.innerHTML = allAmounts;
@@ -75,7 +77,7 @@ function renderAllAmountInElement() {
   }
 }
 
-function renderInProgressAmountInElement() {
+function renderInProgressAmount() {
   let inProgressAmountElement = document.getElementById("inProgressAmount");
   if (inProgressAmount != 0) {
     inProgressAmountElement.innerHTML = inProgressAmount;
@@ -84,7 +86,7 @@ function renderInProgressAmountInElement() {
   }
 }
 
-function renderAwaitingFeedbackAmountInElements() {
+function renderAwaitingFeedbackAmount() {
   let awaitingFeedbackAmountElement = document.getElementById(
     "awaitingFeedbackAmount"
   );
@@ -141,4 +143,22 @@ function getNextDueDate() {
 
   let nextDueDate = document.getElementById("nextDueDate");
   nextDueDate.innerHTML = formattedLastValue;
+}
+
+function calcUrgentAmount() {
+  for (let i = 0; i < tasks.length; i++) {
+    const task = tasks[i];
+    if (task.priority == "Urgent") {
+      urgentAmount++;
+    }
+  }
+}
+
+function renderUrgentAmount() {
+  let urgentAmountElement = document.getElementById("urgent_amount");
+  if (urgentAmount != 0) {
+    urgentAmountElement.innerHTML = urgentAmount;
+  } else {
+    urgentAmountElement.innerHTML = "0";
+  }
 }
