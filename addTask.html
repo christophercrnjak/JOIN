@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="/assets/templates/img/favicon.png">
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.png">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/addTask.css">
     <link rel="stylesheet" href="/css/sidebar.css">
@@ -15,36 +15,46 @@
 
 <body onload="includeHTML(), addTaskInit()">
     <div w3-include-html="/assets/templates/sidebar.html"></div>
-    
+
     <div class="main_addTask">
         <div class="AddTask_head">
             <h1>Add Task</h1>
         </div>
         <div id="container" class="addTaskForms">
-            <form  class="addTaskForm border_right">
+            <form class="addTaskForm border_right">
                 <div for=" ">Title<span>*</span></div>
                 <input id="titleAddtask" type="text" placeholder="Enter a title">
                 <div for="">Description</div>
                 <textarea name="" id="description" cols="30" rows="5" placeholder="Enter a Description"></textarea>
-                <div for="Assigned">Assigned to</div>
-                
-                <!-- <div name="assigneds" id="assigned" value="Select contact to assign">
-                </div> -->
-                <a id="dropdownToggleBtn" onclick="dropdownToggle()">Select contacts to assign</a>
-                <div class="addTask_dropdown" id="addTask_dropdown">
-                    <div class="assigned" id="assigned"></div>
-                </div>
+
+                <div class="dropdown">
+                    <span id="arrow" class="arrow" onclick="toggledropbtn(); return false">&#11206;</span>
+                    <div onclick="toggleDropdown(); return false" class="dropbtn" id="dropbtn">Select contacts assign</div>
+                    
+                    <input type="text" id="dropdownInput" onkeyup="filterFunction()" class="d-none">
+                    <div id="myDropdown" class="dropdown_content">
+                      <a href="#" class="">Anton Meyer </a>
+                      <a href="#">Anja Schulz</a>
+                      <a href="#">Benedikt Ziegler</a>
+                      <a href="#">David Eisenberg</a>
+                    </div>
+                  </div>
+
+
 
             </form>
-           
-            <form  class="display_center addTaskForm">
+
+            <form class="display_center addTaskForm">
                 <div for="text">Due date<span>*</span></div>
                 <input type="date" name="" id="">
                 <div for="prio">Prio</div>
                 <div class="btn_addTask_list">
-                    <a class="btn_addTask" id="btnUrgrend">Urgrend <img src="assets/img/Priority_symbols_Urgent.png" alt="" srcset=""></a>
-                    <a class="btn_addTask" id="btnMedium">Medium <img src="assets/img/Priority_symbols_Medium.png" alt="" srcset=""></a>
-                    <a class="btn_addTask" id="btnLow">Low <img src="assets/img/Priority_symbols_Low.png" alt="" srcset=""></a>
+                    <a class="btn_addTask" id="btnUrgrend" onclick="changeBtnUrgrend()">Urgrend <img
+                            src="assets/img/Priority_symbols_Urgent.png" alt="" srcset=""></a>
+                    <a class="btn_addTask" id="btnMedium" onclick="changeBtnMedium()">Medium <img
+                            src="assets/img/Priority_symbols_Medium.png" alt="" srcset=""></a>
+                    <a class="btn_addTask" id="btnLow" onclick="changeBtnLow()">Low <img
+                            src="assets/img/Priority_symbols_Low.png" alt="" srcset=""></a>
                 </div>
                 <div for="category">Category</div>
                 <select name="category" id="category">

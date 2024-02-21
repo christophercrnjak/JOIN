@@ -3,54 +3,83 @@ let contacts = [];
 
 
 function addTaskInit () {
-   // renderAssignedPerson();
-    fatchContacts ();
+  
+ 
    
 }
 
-function fatchContacts () {
-    fetch('assets/json/contacts.json')
-    .then(response => response.json())
-    .then(names =>{
-        for (let i = 0; i < names.length; i++) {
-            let element = names[i];
-            contacts.push(element);
-            //console.log('Test text',element.name.firstName);
-             
-        }
-        renderAssignedPerson();
-    })
-    
-}
-function renderAssignedPerson() {
-    // Render Person form task
-    let assigned = document.getElementById('assigned');
-    
-    assigned.innerHTML = '';
-    for (let i = 0; i < contacts.length; i++) {
-        let contact = contacts[i];
-        assigned.innerHTML += addTaskContacts(contact);
-    }
+// Farbe änderung der btn urgrend, medium und low 
+
+function changeBtnUrgrend() {
+  let btnUrgrend = document.getElementById('btnUrgrend');
+  if(btnUrgrend.style.backgroundColor = '#ffff'){
+    document.getElementById('btnUrgrend').style.backgroundColor = "#ff0000";
+    document.getElementById('btnUrgrend').style.color = '#ffff';
+    document.getElementById('btnMedium').style.backgroundColor = "#ffff";
+    document.getElementById('btnMedium').style.color = 'black';
+    document.getElementById('btnLow').style.backgroundColor = "#ffff";
+    document.getElementById('btnLow').style.color = 'black';
+  }
 }
 
-function dropdownToggle() {
-    let dropdownContainer = document.getElementById('addTask_dropdown');
-
-    if(dropdownContainer.style.display === 'none'){
-        dropdownContainer.style.display = 'block';
-    } else {
-        dropdownContainer.style.display = 'none';
-    }
-    let addTask_dropdown = document.querySelector('addTask_dropdown');
-    addTask_dropdown.style.height = addTask_dropdown.offsetHeight + 'px';
+function changeBtnMedium() {
+  let btnUrgrend = document.getElementById('btnMedium');
+  if(btnUrgrend.style.backgroundColor = '#ffff'){
+    document.getElementById('btnMedium').style.backgroundColor = "#ffa500";
+    document.getElementById('btnMedium').style.color = '#ffff';
+    document.getElementById('btnUrgrend').style.backgroundColor = "#ffff";
+    document.getElementById('btnUrgrend').style.color = 'black';
+    document.getElementById('btnLow').style.backgroundColor = "#ffff";
+    document.getElementById('btnLow').style.color = 'black';
+  }
 }
 
-function addTaskBtn() {
-    
+function changeBtnLow() {
+  let btnUrgrend = document.getElementById('btnLow');
+  if(btnUrgrend.style.backgroundColor = '#ffff'){
+    document.getElementById('btnLow').style.backgroundColor = "#008000";
+    document.getElementById('btnLow').style.color = '#ffff';
+    document.getElementById('btnUrgrend').style.backgroundColor = "#ffff";
+    document.getElementById('btnUrgrend').style.color = 'black';
+    document.getElementById('btnMedium').style.backgroundColor = "#ffff";
+    document.getElementById('btnMedium').style.color = 'black';
+  }
+  
 }
 
-function addTaskContacts(contact) {
-return`
-<option value="#">${contact.name.firstName} ${contact.name.secondName} <input type="checkbox" name="" id=""></option>
-`
+function filterFunction() {
+  let input, filter, select, options, i, txtValue, a;
+  input = document.getElementById("dropdownInput");
+  filter = input.value.toUpperCase();
+  select = document.getElementById("myDropdown");
+  options = select.getElementsByTagName("a");
+  for (i = 0; i < options.length; i++) {
+      txtValue = options[i].textContent || options[i].innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          options[i].style.display = "";
+      } else {
+          options[i].style.display = "none";
+      }
+  }
+}
+
+
+function toggleDropdown() {
+  let dropdownContent = document.getElementById('myDropdown');
+  let arrow = document.getElementById('arrow');
+  dropdownContent.classList.toggle('show');
+  document.getElementById('dropdownInput').classList.toggle('d-none');
+  document.getElementById('dropbtn').classList.toggle('d-none');
+  arrow.innerHTML = `&#11205;`;
+ 
+}
+
+function toggledropbtn() {
+  let dropdownContent = document.getElementById('myDropdown');
+  let arrow = document.getElementById('arrow');
+  dropdownContent.classList.toggle('show');
+  document.getElementById('dropdownInput').classList.toggle('d-none');
+  document.getElementById('dropbtn').classList.toggle('d-none');
+  arrow.innerHTML = `&#11206;`;
+  
 }
