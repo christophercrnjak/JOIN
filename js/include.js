@@ -1,51 +1,21 @@
-//
+  // This function loops through all elements in the document that have the attribute "w3-include-html",
+  // replacing the content of those elements with the content of an external HTML file
+  // specified in the "w3-include-html" attribute.
+  // If the file is successfully retrieved, its content is inserted into the respective element.
+  // If an error occurs (e.g., file not found), "Page not found." is displayed in the element.
 
-function includeHTML() {
-  var z, i, elmnt, file, xhttp;
-  /* Loop through a collection of all HTML elements: */
-  z = document.getElementsByTagName("*");
-  for (i = 0; i < z.length; i++) {
-    elmnt = z[i];
-    /*search for elements with a certain atrribute:*/
-    file = elmnt.getAttribute("w3-include-html");
-    if (file) {
-      /* Make an HTTP request using the attribute value as the file name: */
-      xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function () {
-        if (this.readyState == 4) {
-          if (this.status == 200) {
-            elmnt.innerHTML = this.responseText;
-          }
-          if (this.status == 404) {
-            elmnt.innerHTML = "Page not found.";
-          }
-          /* Remove the attribute, and call this function once more: */
-          elmnt.removeAttribute("w3-include-html");
-          includeHTML();
-        }
-      };
-      xhttp.open("GET", file, true);
-      xhttp.send();
-      /* Exit the function: */
-      return;
+
+async function includeHTML() {
+  let includeElements = document.querySelectorAll("[w3-include-html]");
+
+  for (let element of includeElements) {
+    let file = element.getAttribute("w3-include-html");
+    let response = await fetch(file);
+    if (response.ok) {
+      let text = await response.text();
+      element.innerHTML = text;
+    } else {
+      element.innerHTML = "Page not found.";
     }
   }
 }
-
-// Durch das Umschreiben der Funktion wird die Sidebar nicht mehr angezeigt,
-// es wird auch keine Fehler angezeigt wo durch man erkennen kann warum dort nix erscheint.
-
-// async function includeHTML() {
-//   let includeElements = document.querySelector("[w3-include-html]");
-
-//   for (let i = 0; i < includeElements.length; i++) {
-//     let element = includeElements[i];
-//     file = element.getAttribute("w3-include-html");
-//     let response = await fetch(file);
-//     if (response.ok) {
-//       element = await response.text();
-//     } else {
-//       element.innerHTML = "Page not found.";
-//     }
-//   }
-// }

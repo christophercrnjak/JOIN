@@ -36,12 +36,9 @@ function selectFromDropdown(element, imageUrl, firstName, secondName) {
     let dropdownList = document.getElementById("dropdownList");
     dropdownList.appendChild(imageElement);
     element.classList.toggle("selected");
-
-    // Eventlistener, um das Element auszuwählen und zu entfernen
     imageElement.addEventListener("click", function () {
       dropdownList.removeChild(imageElement);
-
-      // Entferne das entsprechende Element aus dem selectedFormDropdowm-Array
+      element.classList.toggle("selected");
       selectedFormDropdowm = selectedFormDropdowm.filter(
         (item) =>
           !(item.firstName === firstName && item.secondName === secondName)
@@ -49,7 +46,6 @@ function selectFromDropdown(element, imageUrl, firstName, secondName) {
     });
   }
 }
-
 
 function isItemSelected(imageUrl, firstName, secondName) {
   return selectedFormDropdowm.some(
@@ -114,13 +110,11 @@ function filterFunction() {
   }
 }
 
-// Funktion, um das Dropdown-Menü zu öffnen oder zu schließen
 function toggleDropdown(open = null) {
   let dropdownContent = document.getElementById("dropdown");
   let arrow = document.getElementById("arrow");
   let isOpen = dropdownContent.classList.contains("show");
 
-  // Wenn der open-Parameter übergeben wird, aktualisiere den Zustand des Dropdown-Menüs entsprechend
   if (open !== null) {
     if (open && !isOpen) {
       dropdownContent.classList.add("show");
@@ -131,14 +125,13 @@ function toggleDropdown(open = null) {
       dropdownContent.classList.remove("show");
       document.getElementById("dropdownInput").classList.remove("d-none");
       document.getElementById("dropbtn").classList.remove("d-none");
-      arrow.innerHTML = ""; // Hier eventuell den Pfeilinhalt zurücksetzen, je nach Bedarf
+      arrow.innerHTML = "";
     }
   } else {
-    // Andernfalls, wenn kein Parameter übergeben wird, wechsle einfach den Zustand des Dropdown-Menüs
     dropdownContent.classList.toggle("show");
     document.getElementById("dropdownInput").classList.toggle("d-none");
     document.getElementById("dropbtn").classList.toggle("d-none");
-    arrow.innerHTML = isOpen ? "" : `&#11205;`; // Hier eventuell den Pfeilinhalt zurücksetzen, je nach Bedarf
+    arrow.innerHTML = isOpen ? "" : `&#11205;`;
   }
 }
 
@@ -161,14 +154,11 @@ function removeToJson() {
 
 function setupDropdownCloseListener() {
   window.onload = function () {
-    // Setze Event-Listener auf das Dokument
     document.addEventListener("mousedown", function (event) {
-      // Prüfe, ob das geklickte Element nicht das Dropdown-Eingabefeld oder das Dropdown-Menü selbst ist
       if (
         !event.target.matches("#dropdownInput") &&
         !event.target.closest("#dropdown")
       ) {
-        // Schließe das Dropdown-Menü
         toggleDropdown(false);
       }
     });
