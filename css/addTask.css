@@ -147,11 +147,18 @@ body{
 }
 
 /* Change color of dropdown links on hover */
-.dropdown_content a:hover {background-color: #ddd;}
+.dropdown_content a:hover {
+  background-color: var(--bgdarkblue);
+  color: #ffff !important;
+}
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
 
+.selected {
+  background-color: var(--bgdarkblue); /* Hier Ihre gewünschte Hintergrundfarbe einfügen */
+  color: #ffff !important;
+}
 .arrow {
   position: absolute;
   top: 10px;
@@ -201,4 +208,11 @@ input[type='checkbox']{
 }
 .gap {
   gap: 16px;
+}
+.dropdown_list {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  width: 360px;
+  height: 36px;
 }
