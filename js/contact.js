@@ -28,12 +28,15 @@ function loadContacts() {
     content.innerHTML = contactList;
 }
 
+
 function openDialog() {
     let dialog = document.getElementById('dialog');
+    dialog.classList.remove('close');
     dialog.classList.add('open');
 }
 
 function closeDialog() {
     let dialog = document.getElementById('dialog');
-    dialog.classList.remove('open');
+    dialog.classList.add('close');
+
 }
