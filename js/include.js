@@ -1,9 +1,8 @@
-  // This function loops through all elements in the document that have the attribute "w3-include-html",
-  // replacing the content of those elements with the content of an external HTML file
-  // specified in the "w3-include-html" attribute.
-  // If the file is successfully retrieved, its content is inserted into the respective element.
-  // If an error occurs (e.g., file not found), "Page not found." is displayed in the element.
-
+// This function loops through all elements in the document that have the attribute "w3-include-html",
+// replacing the content of those elements with the content of an external HTML file
+// specified in the "w3-include-html" attribute.
+// If the file is successfully retrieved, its content is inserted into the respective element.
+// If an error occurs (e.g., file not found), "Page not found." is displayed in the element.
 
 async function includeHTML() {
   let includeElements = document.querySelectorAll("[w3-include-html]");
