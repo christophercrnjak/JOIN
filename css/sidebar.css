@@ -87,9 +87,17 @@
 .section_sidebar img {
     padding-right: 8px;
 }
+.sidebar_footer a{
+    font-size: 16px !important;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
 
 .sidebar_footer a:hover {
     color: var(--blue);
+    transform: scale(1.2) !important;
+    font-weight: 900;
 }
 
 .sidebar_footer {

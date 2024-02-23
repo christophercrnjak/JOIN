@@ -29,23 +29,34 @@ function dropdownHtml(dropdownList) {
 }
 
 function selectFromDropdown(element, imageUrl, firstName, secondName) {
-  if (!isItemSelected(imageUrl, firstName, secondName)) {
+  const isSelected = isItemSelected(imageUrl, firstName, secondName);
+  let dropdownList = document.getElementById("dropdownList");
+
+  if (!isSelected) {
     selectedFormDropdowm.push({ imageUrl, firstName, secondName });
     let imageElement = document.createElement("img");
     imageElement.src = imageUrl;
-    let dropdownList = document.getElementById("dropdownList");
     dropdownList.appendChild(imageElement);
-    element.classList.toggle("selected");
+    element.classList.add("selected");
     imageElement.addEventListener("click", function () {
+      dropdownList.style.backgroundColor = ''; 
       dropdownList.removeChild(imageElement);
-      element.classList.toggle("selected");
-      selectedFormDropdowm = selectedFormDropdowm.filter(
-        (item) =>
-          !(item.firstName === firstName && item.secondName === secondName)
-      );
+      removeFromSelectedItems(firstName, secondName);
+      element.classList.remove("selected");
+    });
+  } else {
+    removeFromSelectedItems(firstName, secondName);
+    element.classList.remove("selected");
+
+   
+    dropdownList.addEventListener("click", function () {
+      dropdownList.style.backgroundColor = ''; 
+      dropdownList.removeChild(imageElement);
+      removeFromSelectedItems(firstName, secondName);
     });
   }
 }
+
 
 function isItemSelected(imageUrl, firstName, secondName) {
   return selectedFormDropdowm.some(
@@ -56,6 +67,12 @@ function isItemSelected(imageUrl, firstName, secondName) {
   );
 }
 
+function removeFromSelectedItems(firstName, secondName) {
+  selectedFormDropdowm = selectedFormDropdowm.filter(
+    (item) =>
+      !(item.firstName === firstName && item.secondName === secondName)
+  );
+}
 // Farbe änderung der btn urgrend, medium und low
 
 function changeBtnUrgrend() {
