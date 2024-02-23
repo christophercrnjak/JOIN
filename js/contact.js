@@ -20,12 +20,22 @@ function loadContacts() {
             displayedLetters.push(firstLetter);
             contactList += `<div class="first_letter"><h3>${firstLetter}</h3></div>`;
         }
-        contactList += `<div class="persons_details">
+        contactList += `<div onclick="changeBackground(this);selectPerson(${i})" id="persons_details" class="persons_details">
                             <div class="persons" style="background-color: ${persons.name.color};"> ${firstLetter}${secondLetter} </div>
                             <div class="person_details">${persons.name.firstName} ${persons.name.secondName}<br><div class = "email">${persons.mail}</div></div>
                        </div>`;
     }
     content.innerHTML = contactList;
+}
+
+function selectPerson(index) {
+    const selectedPerson = person[index];
+    const selectedPersonElement = document.getElementById('selectedPerson');
+    selectedPersonElement.innerHTML = `
+                                        <div class="persons_details">
+                                            <div class="persons" style="background-color: ${selectedPerson.name.color};">${selectedPerson.name.firstName.charAt(0).toUpperCase()}${selectedPerson.name.secondName.charAt(0).toUpperCase()}</div>
+                                            <div class="person_details">${selectedPerson.name.firstName} ${selectedPerson.name.secondName}<br><div class="email">${selectedPerson.mail}</div></div>
+                                        </div>`;
 }
 
 
@@ -39,4 +49,13 @@ function closeDialog() {
     let dialog = document.getElementById('dialog');
     dialog.classList.add('close');
 
+}
+function changeBackground(element) {
+    element.parentElement.querySelectorAll('.persons_details').forEach(function(el) {
+        el.classList.remove('active');
+    });
+    element.classList.add('active');
+    setTimeout(function() {
+        element.classList.add('active');
+    }, 100);
 }

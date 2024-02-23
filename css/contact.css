@@ -104,7 +104,6 @@ body {
 
 .persons_details {
     display: flex;
-    gap: 35px;
     margin-top: 15px;
     margin-bottom: 21px;
     font-weight: 400;
@@ -114,13 +113,18 @@ body {
     padding: 15px 24px 15px 24px;
     gap: 35px;
     margin-right: 24px;
+    cursor: pointer;
+    color: black;
 }
 
 .persons_details:hover {
     background: linear-gradient(180deg, #F9F9F9 0%, #F0F0F0 100%);
-    cursor: pointer;
+    
 }
-
+.persons_details.active{
+    background-color: rgba(42, 54, 71, 1);
+    color:white;
+}
 .email {
     font-size: 16px;
     line-height: 19.2px;
@@ -136,6 +140,11 @@ body {
     margin-top: 206px;
     margin-left: 55px;
     margin-right: 128px;
+    flex-direction: column;
+}
+.better_team_text{
+    display: flex;
+    align-items: center;
 }
 
 .better_team h1 {
@@ -152,6 +161,7 @@ body {
     font-size: 27px;
     font-weight: 400;
     line-height: 32.4px;
+    margin-left: 30px;
 
 }
 @keyframes moveInRight {
@@ -367,4 +377,12 @@ input[type="tel"] {
 .display_center_b .create_button:hover {
     background: rgba(41, 171, 226, 1);
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.selected_person{
+    display: flex;
+    margin-top: 32px;
+    margin-right: 229px;
+    justify-content: center;
+    align-items: center;
 }
