@@ -97,7 +97,7 @@
 .sidebar_footer a:hover {
     color: var(--blue);
     transform: scale(1.2) !important;
-    font-weight: 900;
+    font-weight: 600;
 }
 
 .sidebar_footer {
