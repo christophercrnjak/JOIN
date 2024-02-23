@@ -40,9 +40,15 @@
                 <div class="search_add">
                     <div class="search">
                         <input id="task_to_be_found" onkeydown="searchTask()" type="search" placeholder="Find Task">
-                            
+                        <hr>
+                        <div class="search_image"><img src="assets/img/search.svg" alt=""></div>
                     </div>
-                    <a href="addTask.html" class="add_task_btn"> Add task <span class="plus_add_btn">+</span></a>
+                    <a href="addTask.html" class="add_task_btn"> Add task <span class="plus_add_btn">
+                        <div class="plus">
+                            <div class="line_add_btn_horizont"></div>
+                            <div class="line_add_btn_vertical"></div>
+                        </div>
+                    </span></a>
                 </div>
         </header>
 
@@ -53,7 +59,12 @@
             <div class="board_column" ondrop="moveTo('toDo')" ondragover="allowDrop(event)">
                 <div class="column_head">
                     <div class="column_head_text">To do</div>
-                    <a href="addTask.html" class="column_head_add_btn">+</a>
+                    <a href="addTask.html" class="column_head_add_btn">
+                        
+                            <div class="line_add_btn_horizont_columnhheader"></div>
+                            <div class="line_add_btn_vertical_columnhheader"></div>
+                       
+                    </a>
                     <a href="addTask.html" class="column_head_add_btn_mobile">
                         <div class="line_add_btn_horizont_column_head"></div>
                         <div class="line_add_btn_vertical_column_head"></div>
@@ -66,7 +77,10 @@
             <div class="board_column" ondrop="moveTo('inProgress')" ondragover="allowDrop(event)">
                 <div class="column_head">
                     <div class="column_head_text">In progress</div>
-                    <a href="addTask.html" class="column_head_add_btn">+</a>
+                    <a href="addTask.html" class="column_head_add_btn"> 
+                        <div class="line_add_btn_horizont_columnhheader"></div>
+                        <div class="line_add_btn_vertical_columnhheader"></div>
+                    </a>
                     <a href="addTask.html" class="column_head_add_btn_mobile">
                         <div class="line_add_btn_horizont_column_head"></div>
                         <div class="line_add_btn_vertical_column_head"></div>
@@ -79,7 +93,10 @@
             <div class="board_column" ondrop="moveTo('awaitFeedback')" ondragover="allowDrop(event)">
                 <div class="column_head">
                     <div class="column_head_text">Await feedback</div>
-                    <a href="addTask.html" class="column_head_add_btn">+</a>
+                    <a href="addTask.html" class="column_head_add_btn"> 
+                        <div class="line_add_btn_horizont_columnhheader"></div>
+                        <div class="line_add_btn_vertical_columnhheader"></div>
+                   </a>
                     <a href="addTask.html" class="column_head_add_btn_mobile">
                         <div class="line_add_btn_horizont_column_head"></div>
                         <div class="line_add_btn_vertical_column_head"></div>
@@ -92,7 +109,10 @@
             <div class="board_column" ondrop="moveTo('done')" ondragover="allowDrop(event)">
                 <div class="column_head">
                     <div class="column_head_text">Done</div>
-                    <a href="addTask.html" class="column_head_add_btn">+</a>
+                    <a href="addTask.html" class="column_head_add_btn"> 
+                        <div class="line_add_btn_horizont_columnhheader"></div>
+                        <div class="line_add_btn_vertical_columnhheader"></div>
+                    </a>
                     <a href="addTask.html" class="column_head_add_btn_mobile">
                         <div class="line_add_btn_horizont_column_head"></div>
                         <div class="line_add_btn_vertical_column_head"></div>

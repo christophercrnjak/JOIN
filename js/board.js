@@ -77,24 +77,27 @@ function filterTasks(toDo, inProgress, awaitFeedback, done, search_content) {
 
         case 'toDo': // if value = 'toDo' true, 
             // search filter and render if no searching, in dependance of searching title oder description
-            if(!search_content || task.title.toLowerCase().includes(search_content) || task.description.toLowerCase().includes(search_content)) {
+            if(!search_content || 
+                task.title.toLowerCase().includes(search_content) || 
+                task.description.toLowerCase().includes(search_content) || 
+                task.category.toLowerCase().includes(search_content)) {
             // render html of task
             toDo.innerHTML += taskHTML(task, i);
             // render task special content
             renderTaskElements(i)}
             break;
         case 'inProgress': 
-            if(!search_content || task.title.toLowerCase().includes(search_content) || task.description.toLowerCase().includes(search_content)) {
+            if(!search_content || task.title.toLowerCase().includes(search_content) || task.description.toLowerCase().includes(search_content) || task.category.toLowerCase().includes(search_content)) {
             inProgress.innerHTML += taskHTML(task, i);
             renderTaskElements(i)}
             break;
         case 'awaitFeedback':
-            if(!search_content || task.title.toLowerCase().includes(search_content) || task.description.toLowerCase().includes(search_content)) {
+            if(!search_content || task.title.toLowerCase().includes(search_content) || task.description.toLowerCase().includes(search_content) || task.category.toLowerCase().includes(search_content)) {
             awaitFeedback.innerHTML += taskHTML(task, i);
             renderTaskElements(i)}
             break;
         case 'done':
-            if(!search_content || task.title.toLowerCase().includes(search_content) || task.description.toLowerCase().includes(search_content)) {
+            if(!search_content || task.title.toLowerCase().includes(search_content) || task.description.toLowerCase().includes(search_content) || task.category.toLowerCase().includes(search_content)) {
             done.innerHTML += taskHTML(task, i);
             renderTaskElements(i)}
             break;
