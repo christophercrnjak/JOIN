@@ -88,16 +88,16 @@
     padding-right: 8px;
 }
 .sidebar_footer a{
-    font-size: 16px !important;
-    transition: transform 0.3s ease;
-    display: inline-block;
+    display: grid;
+  place-items: center;
+  font-size: 16px;
+  transition: font-size 0.2s ease-in-out
 }
 
 
 .sidebar_footer a:hover {
     color: var(--blue);
-    transform: scale(1.2) !important;
-    font-weight: 600;
+    font-size: 18px;
 }
 
 .sidebar_footer {
