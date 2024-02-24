@@ -37,20 +37,6 @@ a {
                 font-weight: 700;
             }
 
-            .line_add_btn_horizont {
-                background-color: white;
-                width: 18.67px;
-                height: 2px;
-                position: relative;
-            }
-
-            .line_add_btn_vertical {
-                background-color: white;
-                width: 2px;
-                height: 18.67px;
-                position: absolute;
-            }
-
             .add_task_btn_mobile {
                 width: 40px;
                 height: 40px;
@@ -94,36 +80,57 @@ a {
                 width: 32px;
                 height: 32px;
                 margin: 8px 16px 8px;
-            }
-
-            .plus {
-                width: 18.67px;
-                height: 18.67px;
-                display: flex;
-                position: relative;
-                justify-content: center;
-                align-items: center;
+                cursor: pointer;
             }
                 
                 .add_task_btn {
                     background-color: var(--bgdarkblue);
-                    padding:  8px 16px 8px 16px;
                     border-radius: 10px;
                     height: 48px;
                     width: 160px;
                     border: 1px solid rgb(41, 54, 71);
-                    color: white;
                     display: flex;
                     justify-content: center;
                     align-items: center;
+                }
+
+                .text_add_btn {
                     font-size: 21px;
                     font-weight: 700;
+                    color: white;
                 }
                 .plus_add_btn {
-                    font-size: 32px;
-                    padding-left: 10px;
-                    padding-bottom: 4px;
+                   margin-left: 4px;
+                    width: 32px;
+                    height: 32px;
+                    display: flex;
+                    position: relative;
+                    justify-content: center;
+                    align-items: center;
                 }
+
+                    .plus_add_btn > div {
+                        width: 18.67px;
+                        height: 18.67px;
+                        display: flex;
+                        position: relative;
+                        justify-content: center;
+                        align-items: center;
+                    }
+
+                        .line_add_btn_horizont {
+                            background-color: white;
+                            width: 18.67px;
+                            height: 2px;
+                            position: absolute;
+                        }
+
+                        .line_add_btn_vertical {
+                            background-color: white;
+                            width: 2px;
+                            height: 18.67px;
+                            position: absolute;
+                        }
     
                 
         .board_content {

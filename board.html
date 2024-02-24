@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="./css/sidebar.css">
     <link rel="stylesheet" href="./Fonts/Inter-VariableFont_slnt,wght.ttf">
     <script src="./js/include.js"></script>
-  
+
 </head>
 
 <body onload="includeHTML(); init()">
@@ -22,8 +22,8 @@
 
     <!-- DIALOG SHOW MORE TASK INFORMATIONS -->
     <div id="dialog_container" onclick="close_open_Dialog()" class="dialog_container d-none">
-        
-        <div id="task_dialog_container" onclick="doNotClose(event)" class="task_dialog" >
+
+        <div id="task_dialog_container" onclick="doNotClose(event)" class="task_dialog">
         </div>
     </div>
 
@@ -37,33 +37,36 @@
                     <div class="line_add_btn_vertical"></div>
                 </a>
             </div>
-                <div class="search_add">
-                    <div class="search">
-                        <input id="task_to_be_found" onkeydown="searchTask()" type="search" placeholder="Find Task">
-                        <hr>
-                        <div class="search_image"><img src="assets/img/search.svg" alt=""></div>
-                    </div>
-                    <a href="addTask.html" class="add_task_btn"> Add task <span class="plus_add_btn">
-                        <div class="plus">
+            <div class="search_add">
+                <div class="search">
+                    <input id="task_to_be_found" onkeydown="searchTask()" type="search" placeholder="Find Task">
+                    <hr>
+                    <div class="search_image" onclick="searchTask()"><img src="assets/img/search.svg" alt=""></div>
+                </div>
+                <a href="addTask.html" class="add_task_btn">
+                    <div class="text_add_btn">Add task</div>
+                    <div class="plus_add_btn">
+                        <div>
                             <div class="line_add_btn_horizont"></div>
                             <div class="line_add_btn_vertical"></div>
                         </div>
-                    </span></a>
-                </div>
+                    </div>
+                </a>
+            </div>
         </header>
 
         <!-- KANBAN BOARD CONTENT -->
         <section class="board_content">
-            
+
             <!-- To do -->
             <div class="board_column" ondrop="moveTo('toDo')" ondragover="allowDrop(event)">
                 <div class="column_head">
                     <div class="column_head_text">To do</div>
                     <a href="addTask.html" class="column_head_add_btn">
-                        
-                            <div class="line_add_btn_horizont_columnhheader"></div>
-                            <div class="line_add_btn_vertical_columnhheader"></div>
-                       
+
+                        <div class="line_add_btn_horizont_columnhheader"></div>
+                        <div class="line_add_btn_vertical_columnhheader"></div>
+
                     </a>
                     <a href="addTask.html" class="column_head_add_btn_mobile">
                         <div class="line_add_btn_horizont_column_head"></div>
@@ -72,12 +75,12 @@
                 </div>
                 <div id="task_container_Todo" class="task_container"></div>
             </div>
-            
+
             <!-- In progress -->
             <div class="board_column" ondrop="moveTo('inProgress')" ondragover="allowDrop(event)">
                 <div class="column_head">
                     <div class="column_head_text">In progress</div>
-                    <a href="addTask.html" class="column_head_add_btn"> 
+                    <a href="addTask.html" class="column_head_add_btn">
                         <div class="line_add_btn_horizont_columnhheader"></div>
                         <div class="line_add_btn_vertical_columnhheader"></div>
                     </a>
@@ -93,10 +96,10 @@
             <div class="board_column" ondrop="moveTo('awaitFeedback')" ondragover="allowDrop(event)">
                 <div class="column_head">
                     <div class="column_head_text">Await feedback</div>
-                    <a href="addTask.html" class="column_head_add_btn"> 
+                    <a href="addTask.html" class="column_head_add_btn">
                         <div class="line_add_btn_horizont_columnhheader"></div>
                         <div class="line_add_btn_vertical_columnhheader"></div>
-                   </a>
+                    </a>
                     <a href="addTask.html" class="column_head_add_btn_mobile">
                         <div class="line_add_btn_horizont_column_head"></div>
                         <div class="line_add_btn_vertical_column_head"></div>
@@ -109,7 +112,7 @@
             <div class="board_column" ondrop="moveTo('done')" ondragover="allowDrop(event)">
                 <div class="column_head">
                     <div class="column_head_text">Done</div>
-                    <a href="addTask.html" class="column_head_add_btn"> 
+                    <a href="addTask.html" class="column_head_add_btn">
                         <div class="line_add_btn_horizont_columnhheader"></div>
                         <div class="line_add_btn_vertical_columnhheader"></div>
                     </a>
@@ -125,6 +128,7 @@
 
     <!-- JAVASCRIPT FOR THE KANBAN BOARD -->
     <script src="./js/board.js"></script>
+    <script src="./js/board_dialog.js"></script>
 </body>
 
 </html>
