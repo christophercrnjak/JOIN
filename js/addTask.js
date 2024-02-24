@@ -124,41 +124,14 @@ function filterFunction() {
   }
 }
 
-
-function toggleDropdown(open = null) {
-  let isOpen = true;
-  let dropdownContent = document.getElementById("dropdownContent");
-  let dropdownInput = document.getElementById("dropdownInput");
-  let dropbtn = document.getElementById("dropbtn");
-  let arrow = document.getElementById("arrow");
-
-  if (open !== null) {
-    if (open && !isOpen) {
-      dropdownContent.classList.add("show");
-      dropdownInput.classList.add("d-none");
-      dropbtn.classList.add("d-none");
-      arrow.style.backgroundImage = 'url("./assets/img/arrowDropDown.svg")';
-    } else if (!open && isOpen) {
-      dropdownContent.classList.add("show");
-      dropdownInput.classList.add("d-none");
-      dropbtn.classList.add("d-none");
-      arrow.classList.add("rotated"); // Klasse hinzufügen, um das Bild zu drehen
-    }
-  } else {
-     dropdownContent.classList.add("show");
-    dropdownInput.classList.add("d-none");
-    dropbtn.classList.add("d-none");
-    arrow.classList.add("rotated"); // Klasse hinzufügen, um das Bild zu drehen
-  }
-}
-
 function toggledropbtn() {
   let dropdownContent = document.getElementById("dropdown");
 
   if (!dropdownContent.classList.contains("d-none")) {
-    dropdownContent.classList.toggle("show");
-    document.getElementById("dropdownInput").classList.toggle("d-none");
-    document.getElementById("dropbtn").classList.toggle("d-none");
+      dropdownContent.classList.toggle("show");
+      document.getElementById("dropdownInput").classList.toggle("d-none");
+      document.getElementById("dropbtn").classList.toggle("d-none");
+      document.getElementById("arrow").classList.toggle("rotated");
   }
 }
 
