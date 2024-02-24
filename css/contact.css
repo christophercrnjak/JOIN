@@ -119,12 +119,14 @@ body {
 
 .persons_details:hover {
     background: linear-gradient(180deg, #F9F9F9 0%, #F0F0F0 100%);
-    
+
 }
-.persons_details.active{
+
+.persons_details.active {
     background-color: rgba(42, 54, 71, 1);
-    color:white;
+    color: white;
 }
+
 .email {
     font-size: 16px;
     line-height: 19.2px;
@@ -142,9 +144,11 @@ body {
     margin-right: 128px;
     flex-direction: column;
 }
-.better_team_text{
+
+.better_team_text {
     display: flex;
     align-items: center;
+    margin-left: 55px;
 }
 
 .better_team h1 {
@@ -164,14 +168,16 @@ body {
     margin-left: 30px;
 
 }
+
 @keyframes moveInRight {
     from {
-      transform: translateX(100%);
+        transform: translateX(100%);
     }
+
     to {
-      transform: translateX(0);
+        transform: translateX(0);
     }
-  }
+}
 
 .background {
     display: none;
@@ -179,20 +185,21 @@ body {
 }
 
 .background.close {
-    transform: translateX(100%); 
+    transform: translateX(100%);
 }
-.background.open{
- display: flex;
+
+.background.open {
+    display: flex;
     position: fixed;
     background-color: rgba(0, 0, 0, 0.5);
     width: 100%;
     height: 100%;
     align-items: center;
-    justify-content: space-evenly;  
+    justify-content: space-evenly;
 }
 
 
-.display_center{
+.display_center {
     animation-name: moveInRight;
     animation-timing-function: ease-out;
     animation-duration: 300ms;
@@ -351,13 +358,14 @@ input[type="tel"] {
 
 .display_center_b img {
     margin: 0;
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     border-radius: 0;
     border: none;
     box-shadow: none;
     background: none;
-    margin-left: 4px;
+    margin-left: 8px;
+    margin-top: 4px;
 }
 
 .display_center_b .create_button {
@@ -379,10 +387,108 @@ input[type="tel"] {
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-.selected_person{
+.selected_person {
     display: flex;
     margin-top: 32px;
-    margin-right: 229px;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    animation: moveInRight 0.5s forwards;
+}
+
+.selected_person .persons {
+    width: 120px;
+    height: 120px;
+    font-size: 47px;
+    text-align: center;
+    font-weight: 500;
+    line-height: 56.4px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+    border: 3px solid rgba(255, 255, 255, 1);
+    border-radius: 70px;
+    margin-right: 55px;
+}
+
+.selected_person .persons_details {
+    font-size: 47px;
+    font-weight: 500;
+    line-height: 56.4px;
+    cursor: unset;
+    gap: 6px;
+}
+
+.button_contacts text {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19.2px;
+}
+
+.button_contacts {
+    margin-top: 8px;
+    display: flex;
+    gap: 16px;
+}
+
+.button_contacts button {
+    align-items: center;
+    display: flex;
+}
+
+.button_contacts img {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    color: rgba(42, 54, 71, 1);
+}
+
+.button_contacts h3 {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+    
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    margin-right: 254px;
+    margin-top: 21px;
+}
+
+.info h3 {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: rgba(0, 0, 0, 1);
+    margin-bottom: 59px;
+}
+
+.info h4 {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.emails {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: rgba(0, 124, 238, 1);
+    margin-bottom: 22px;
+}
+.info p{
+font-size: 16px;
+font-weight: 400;
+line-height: 19px;
+letter-spacing: 0em;
+text-align: left;
 }
