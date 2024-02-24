@@ -290,5 +290,5 @@ function calcPositionMember(i) {
 }
 
 
-// ****** DIALOG FUNCTIONS *****
+
 
