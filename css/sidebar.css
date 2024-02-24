@@ -1,4 +1,3 @@
-
 /* head Navbar  */
 
 .head_main_navbar {
@@ -8,11 +7,13 @@
     align-items: center;
     width: 100%;
     justify-content: flex-end;
-    gap: 50%; /* überarbeiten bei Monitor größe*/
+    gap: 50%;
+    /* überarbeiten bei Monitor größe*/
     position: fixed;
     right: 0px;
 
 }
+
 .headnav_text {
     position: absolute;
     left: 300px;
@@ -22,6 +23,7 @@
     height: 3rem;
     padding: 4px;
 }
+
 .headnavbar_icon {
     display: flex;
     align-items: center;
@@ -55,7 +57,7 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-   
+
 }
 
 .side_navbar_section {
@@ -67,9 +69,11 @@
     padding-bottom: 8px;
     width: 232px;
 }
-.side_navbar_section a{
-   padding-top: 6px;
+
+.side_navbar_section a {
+    padding-top: 6px;
 }
+
 .side_navbar_section:hover {
     background-color: #39495f;
     cursor: pointer;
@@ -87,11 +91,12 @@
 .section_sidebar img {
     padding-right: 8px;
 }
-.sidebar_footer a{
+
+.sidebar_footer a {
     display: grid;
-  place-items: center;
-  font-size: 16px;
-  transition: font-size 0.2s ease-in-out
+    place-items: center;
+    font-size: 16px;
+    transition: font-size 0.2s ease-in-out
 }
 
 
@@ -105,6 +110,7 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    
+
 }
+
 /* Aktives Element #091931 */

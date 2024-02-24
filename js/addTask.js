@@ -39,7 +39,7 @@ function selectFromDropdown(element, imageUrl, firstName, secondName) {
     dropdownList.appendChild(imageElement);
     element.classList.add("selected");
     imageElement.addEventListener("click", function () {
-      dropdownList.style.backgroundColor = ''; 
+      dropdownList.style.backgroundColor = "";
       dropdownList.removeChild(imageElement);
       removeFromSelectedItems(firstName, secondName);
       element.classList.remove("selected");
@@ -48,15 +48,13 @@ function selectFromDropdown(element, imageUrl, firstName, secondName) {
     removeFromSelectedItems(firstName, secondName);
     element.classList.remove("selected");
 
-   
     dropdownList.addEventListener("click", function () {
-      dropdownList.style.backgroundColor = ''; 
+      dropdownList.style.backgroundColor = "";
       dropdownList.removeChild(imageElement);
       removeFromSelectedItems(firstName, secondName);
     });
   }
 }
-
 
 function isItemSelected(imageUrl, firstName, secondName) {
   return selectedFormDropdowm.some(
@@ -69,8 +67,7 @@ function isItemSelected(imageUrl, firstName, secondName) {
 
 function removeFromSelectedItems(firstName, secondName) {
   selectedFormDropdowm = selectedFormDropdowm.filter(
-    (item) =>
-      !(item.firstName === firstName && item.secondName === secondName)
+    (item) => !(item.firstName === firstName && item.secondName === secondName)
   );
 }
 // Farbe änderung der btn urgrend, medium und low
@@ -127,38 +124,42 @@ function filterFunction() {
   }
 }
 
+
 function toggleDropdown(open = null) {
-  let dropdownContent = document.getElementById("dropdown");
+  let isOpen = true;
+  let dropdownContent = document.getElementById("dropdownContent");
+  let dropdownInput = document.getElementById("dropdownInput");
+  let dropbtn = document.getElementById("dropbtn");
   let arrow = document.getElementById("arrow");
-  let isOpen = dropdownContent.classList.contains("show");
 
   if (open !== null) {
     if (open && !isOpen) {
       dropdownContent.classList.add("show");
-      document.getElementById("dropdownInput").classList.add("d-none");
-      document.getElementById("dropbtn").classList.add("d-none");
-      arrow.innerHTML = `&#11205;`;
+      dropdownInput.classList.add("d-none");
+      dropbtn.classList.add("d-none");
+      arrow.style.backgroundImage = 'url("./assets/img/arrowDropDown.svg")';
     } else if (!open && isOpen) {
-      dropdownContent.classList.remove("show");
-      document.getElementById("dropdownInput").classList.remove("d-none");
-      document.getElementById("dropbtn").classList.remove("d-none");
-      arrow.innerHTML = "";
+      dropdownContent.classList.add("show");
+      dropdownInput.classList.add("d-none");
+      dropbtn.classList.add("d-none");
+      arrow.classList.add("rotated"); // Klasse hinzufügen, um das Bild zu drehen
     }
   } else {
-    dropdownContent.classList.toggle("show");
-    document.getElementById("dropdownInput").classList.toggle("d-none");
-    document.getElementById("dropbtn").classList.toggle("d-none");
-    arrow.innerHTML = isOpen ? "" : `&#11205;`;
+     dropdownContent.classList.add("show");
+    dropdownInput.classList.add("d-none");
+    dropbtn.classList.add("d-none");
+    arrow.classList.add("rotated"); // Klasse hinzufügen, um das Bild zu drehen
   }
 }
 
 function toggledropbtn() {
   let dropdownContent = document.getElementById("dropdown");
-  let arrow = document.getElementById("arrow");
-  dropdownContent.classList.toggle("show");
-  document.getElementById("dropdownInput").classList.toggle("d-none");
-  document.getElementById("dropbtn").classList.toggle("d-none");
-  arrow.innerHTML = `&#11206;`;
+
+  if (!dropdownContent.classList.contains("d-none")) {
+    dropdownContent.classList.toggle("show");
+    document.getElementById("dropdownInput").classList.toggle("d-none");
+    document.getElementById("dropbtn").classList.toggle("d-none");
+  }
 }
 
 function pushToJson() {

@@ -161,13 +161,20 @@ body{
 }
 .arrow {
   position: absolute;
-  top: 10px;
+  top: 16px;
   left: 90%;
   transform: translateX(-50%);
   padding: 3px;
   cursor: pointer;
   z-index: 8;
   color: #000 !important;
+  height: 16px;
+  width: 16px;
+  background-image: url('/assets/img/arrowDropDown.svg');
+}
+
+.rotated {
+  transform: rotate(180deg);
 }
 
 #category {
