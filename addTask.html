@@ -27,14 +27,14 @@
                 <div for="">Description</div>
                 <textarea name="" id="description" cols="30" rows="5" placeholder="Enter a Description"></textarea>
 
-                  <div class="dropdown">
-                  <div id="arrow" class="arrow" onclick="toggledropbtn(); return false"><img src="" alt="" srcset=""></div>
-                  <div onclick="toggledropbtn(); return false" class="dropbtn" id="dropbtn">Select contacts assign</div>
-                  <input type="text" id="dropdownInput" onkeyup="filterFunction()" class="d-none">
-                  <div id="dropdown" class="dropdown_content">
-                  </div>
-              </div>
-              <div class="dropdown_list" id="dropdownList"></div>
+                <div class="dropdown">
+                    <div id="arrow" class="arrow" onclick="toggledropbtn(); return false"><img src="" alt="" srcset=""></div>
+                    <div onclick="toggledropbtn(); return false" class="dropbtn" id="dropbtn">Select contacts assign</div>
+                    <input type="text" id="dropdownInput" onkeyup="filterFunction()" class="d-none">
+                    <div id="dropdown" class="dropdown_content">
+                    </div>
+                </div>
+                <div class="dropdown_list" id="dropdownList"></div>
 
             </form>
 
@@ -43,17 +43,17 @@
                 <input type="date" name="" id="">
                 <div for="prio">Prio</div>
                 <div class="btn_addTask_list">
-                    <a class="btn_addTask" id="btnUrgrend" onclick="changeBtnUrgrend()">Urgrend <img
+                    <a class="btn_addTask" id="btnUrgrend" onclick="changePriority('urgrend')">Urgrend <img id="btnUrgrendImg"
                             src="assets/img/Priority_symbols_Urgent.png" alt="" srcset=""></a>
-                    <a class="btn_addTask" id="btnMedium" onclick="changeBtnMedium()">Medium <img
+                    <a class="btn_addTask" id="btnMedium" onclick="changePriority('medium')">Medium <img id="btnMediumImg"
                             src="assets/img/Priority_symbols_Medium.png" alt="" srcset=""></a>
-                    <a class="btn_addTask" id="btnLow" onclick="changeBtnLow()">Low <img
+                    <a class="btn_addTask" id="btnLow" onclick="changePriority('low')">Low <img id="btnLowImg"
                             src="assets/img/Priority_symbols_Low.png" alt="" srcset=""></a>
                 </div>
-                <div for="category">Category</div>
-                <select name="category" id="category">
-                    <option value="#">Technical Task</option>
-                    <option value="#">User Story</option>
+                <div>Category</div>
+                <select id="category" class="category">
+                    <option class="category_option" >Technical Task</option>
+                    <option class="category_option" >User Story</option>
                 </select>
                 <div for="Subtasks">Subtasks</div>
                 <input type="text" placeholder="&#10010;">

@@ -1,19 +1,22 @@
 let contacts = [];
-let selectedFormDropdowm = [];
+let selectedFormDropdown = [];
+let prio = [];
+
 
 function addTaskInit() {
   renderDropList();
 }
 
 async function renderDropList() {
-  let response = await fetch("assets/json/contacts.json");
+  // render the drop down menu form the
+  let response = await fetch('assets/json/contacts.json');
   let responseAsJson = await response.json();
-  let dropdown = document.getElementById("dropdown");
+  let dropdown = document.getElementById('dropdown');
 
-  dropdown.innerHTML = "";
+  dropdown.innerHTML = '';
   for (let i = 0; i < responseAsJson.length; i++) {
-    let element = responseAsJson[i];
-    dropdown.innerHTML += dropdownHtml(element);
+    let e = responseAsJson[i];
+    dropdown.innerHTML += dropdownHtml(e);
   }
 }
 
@@ -28,28 +31,29 @@ function dropdownHtml(dropdownList) {
   `;
 }
 
-function selectFromDropdown(element, imageUrl, firstName, secondName) {
-  const isSelected = isItemSelected(imageUrl, firstName, secondName);
-  let dropdownList = document.getElementById("dropdownList");
+function selectFromDropdown(e, imageUrl, firstName, secondName) {
+  // Select for the Drop Down
+  let isSelected = isItemSelected(imageUrl, firstName, secondName);
+  let dropdownList = document.getElementById('dropdownList');
 
   if (!isSelected) {
-    selectedFormDropdowm.push({ imageUrl, firstName, secondName });
-    let imageElement = document.createElement("img");
+    selectedFormDropdown.push({ imageUrl, firstName, secondName });
+    let imageElement = document.createElement('img');
     imageElement.src = imageUrl;
     dropdownList.appendChild(imageElement);
-    element.classList.add("selected");
-    imageElement.addEventListener("click", function () {
-      dropdownList.style.backgroundColor = "";
+    e.classList.add('selected');
+    imageElement.addEventListener('click', function () {
+      dropdownList.style.backgroundColor = '';
       dropdownList.removeChild(imageElement);
       removeFromSelectedItems(firstName, secondName);
-      element.classList.remove("selected");
+      e.classList.remove('selected');
     });
   } else {
     removeFromSelectedItems(firstName, secondName);
-    element.classList.remove("selected");
+    e.classList.remove('selected');
 
-    dropdownList.addEventListener("click", function () {
-      dropdownList.style.backgroundColor = "";
+    dropdownList.addEventListener('click', function () {
+      dropdownList.style.backgroundColor = '';
       dropdownList.removeChild(imageElement);
       removeFromSelectedItems(firstName, secondName);
     });
@@ -57,7 +61,8 @@ function selectFromDropdown(element, imageUrl, firstName, secondName) {
 }
 
 function isItemSelected(imageUrl, firstName, secondName) {
-  return selectedFormDropdowm.some(
+  // checked if the seceted Item are in the array
+  return selectedFormDropdown.some(
     (item) =>
       item.imageUrl === imageUrl &&
       item.firstName === firstName &&
@@ -66,72 +71,110 @@ function isItemSelected(imageUrl, firstName, secondName) {
 }
 
 function removeFromSelectedItems(firstName, secondName) {
-  selectedFormDropdowm = selectedFormDropdowm.filter(
+  // remove the selected items form the arry
+  selectedFormDropdown = selectedFormDropdown.filter(
     (item) => !(item.firstName === firstName && item.secondName === secondName)
   );
 }
+
 // Farbe änderung der btn urgrend, medium und low
 
-function changeBtnUrgrend() {
-  let btnUrgrend = document.getElementById("btnUrgrend");
-  if ((btnUrgrend.style.backgroundColor = "#ffff")) {
-    document.getElementById("btnUrgrend").style.backgroundColor = "#ff0000";
-    document.getElementById("btnUrgrend").style.color = "#ffff";
-    document.getElementById("btnMedium").style.backgroundColor = "#ffff";
-    document.getElementById("btnMedium").style.color = "black";
-    document.getElementById("btnLow").style.backgroundColor = "#ffff";
-    document.getElementById("btnLow").style.color = "black";
+function changePriority(priority) {
+  resetStyles(); // Setze alle Buttons und Bilder auf Standardwerte
+  removePreviousPriority(); // Vorherige Priorität aus dem Array löschen
+
+  // Basierend auf der übergebenen Priorität die entsprechenden Änderungen vornehmen
+  switch (priority) {
+      case 'urgrend':
+          setPriorityStyles('#ff0000', '#ffff', '/assets/img/prio_ungrent.svg', 'urgrend');
+          break;
+      case 'medium':
+          setPriorityStyles('#ffa500', '#ffff', 'assets/img/prio_medium.svg', 'medium');
+          break;
+      case 'low':
+          setPriorityStyles('#008000', '#ffff', 'assets/img/prio_low.svg', 'low');
+          break;
+      default:
+          break;
   }
 }
 
-function changeBtnMedium() {
-  let btnUrgrend = document.getElementById("btnMedium");
-  if ((btnUrgrend.style.backgroundColor = "#ffff")) {
-    document.getElementById("btnMedium").style.backgroundColor = "#ffa500";
-    document.getElementById("btnMedium").style.color = "#ffff";
-    document.getElementById("btnUrgrend").style.backgroundColor = "#ffff";
-    document.getElementById("btnUrgrend").style.color = "black";
-    document.getElementById("btnLow").style.backgroundColor = "#ffff";
-    document.getElementById("btnLow").style.color = "black";
+function resetStyles() {
+  let btnUrgrend = document.getElementById('btnUrgrend');
+  let btnMedium = document.getElementById('btnMedium');
+  let btnLow = document.getElementById('btnLow');
+
+  let imgUrgrend = document.getElementById('btnUrgrendImg');
+  let imgMedium = document.getElementById('btnMediumImg');
+  let imgLow = document.getElementById('btnLowImg');
+
+  let buttons = [btnUrgrend, btnMedium, btnLow];
+  let images = [imgUrgrend, imgMedium, imgLow];
+
+  buttons.forEach(function(button) {
+      button.style.backgroundColor = '#ffff';
+      button.style.color = 'black';
+  });
+
+  images.forEach(function(image) {
+      switch (image.id) {
+          case 'btnUrgrendImg':
+              image.src = 'assets/img/Priority_symbols_Urgent.png';
+              break;
+          case 'btnMediumImg':
+              image.src = 'assets/img/Priority_symbols_Medium.png';
+              break;
+          case 'btnLowImg':
+              image.src = 'assets/img/Priority_symbols_Low.png';
+              break;
+          default:
+              break;
+      }
+  });
+}
+
+function removePreviousPriority() {
+  if (prio.length > 0) {
+      prio.pop();
   }
 }
 
-function changeBtnLow() {
-  let btnUrgrend = document.getElementById("btnLow");
-  if ((btnUrgrend.style.backgroundColor = "#ffff")) {
-    document.getElementById("btnLow").style.backgroundColor = "#008000";
-    document.getElementById("btnLow").style.color = "#ffff";
-    document.getElementById("btnUrgrend").style.backgroundColor = "#ffff";
-    document.getElementById("btnUrgrend").style.color = "black";
-    document.getElementById("btnMedium").style.backgroundColor = "#ffff";
-    document.getElementById("btnMedium").style.color = "black";
-  }
+function setPriorityStyles(bgColor, textColor, imgSrc, priority) {
+  var button = document.getElementById('btn' + priority.charAt(0).toUpperCase() + priority.slice(1));
+  var image = document.getElementById('btn' + priority.charAt(0).toUpperCase() + priority.slice(1) + 'Img');
+
+  button.style.backgroundColor = bgColor;
+  button.style.color = textColor;
+  image.src = imgSrc;
+
+  prio.push(priority);
 }
 
 function filterFunction() {
+  // Filter on the drop Down menu
   let input, filter, div, options, i, txtValue;
-  input = document.getElementById("dropdownInput");
+  input = document.getElementById('dropdownInput');
   filter = input.value.toUpperCase();
-  div = document.getElementById("dropdown");
-  options = div.getElementsByClassName("dropdown_assign");
+  div = document.getElementById('dropdown');
+  options = div.getElementsByClassName('dropdown_assign');
   for (i = 0; i < options.length; i++) {
     txtValue = options[i].textContent || options[i].innerText;
     if (txtValue.toUpperCase().indexOf(filter) > -1) {
-      options[i].style.display = "";
+      options[i].style.display = '';
     } else {
-      options[i].style.display = "none";
+      options[i].style.display = 'none';
     }
   }
 }
 
 function toggledropbtn() {
-  let dropdownContent = document.getElementById("dropdown");
+  let dropdownContent = document.getElementById('dropdown');
 
-  if (!dropdownContent.classList.contains("d-none")) {
-      dropdownContent.classList.toggle("show");
-      document.getElementById("dropdownInput").classList.toggle("d-none");
-      document.getElementById("dropbtn").classList.toggle("d-none");
-      document.getElementById("arrow").classList.toggle("rotated");
+  if (!dropdownContent.classList.contains('d-none')) {
+    dropdownContent.classList.toggle('show');
+    document.getElementById('dropdownInput').classList.toggle('d-none');
+    document.getElementById('dropbtn').classList.toggle('d-none');
+    document.getElementById('arrow').classList.toggle('rotated');
   }
 }
 
@@ -143,15 +186,4 @@ function removeToJson() {
   // Remove the Add Task inputs in to a JSON
 }
 
-function setupDropdownCloseListener() {
-  window.onload = function () {
-    document.addEventListener("mousedown", function (event) {
-      if (
-        !event.target.matches("#dropdownInput") &&
-        !event.target.closest("#dropdown")
-      ) {
-        toggleDropdown(false);
-      }
-    });
-  };
-}
+
