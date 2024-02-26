@@ -23,7 +23,7 @@
         <div id="container" class="addTaskForms">
             <form class="addTaskForm border_right">
                 <div for=" ">Title<span>*</span></div>
-                <input id="titleAddtask" type="text" placeholder="Enter a title">
+                <input id="titleAddtask" type="text" placeholder="Enter a title" required>
                 <div for="">Description</div>
                 <textarea name="" id="description" cols="30" rows="5" placeholder="Enter a Description"></textarea>
 
@@ -40,9 +40,9 @@
 
             <form class="display_center addTaskForm">
                 <div for="text">Due date<span>*</span></div>
-                <input type="date" name="" id="">
+                <input type="date" name="" id="AddTaskDate" required>
                 <div for="prio">Prio</div>
-                <div class="btn_addTask_list">
+                <div class="btn_addTask_list" id="btnAddTaskPrio">
                     <a class="btn_addTask" id="btnUrgrend" onclick="changePriority('urgrend')">Urgrend <img id="btnUrgrendImg"
                             src="assets/img/Priority_symbols_Urgent.png" alt="" srcset=""></a>
                     <a class="btn_addTask" id="btnMedium" onclick="changePriority('medium')">Medium <img id="btnMediumImg"
@@ -50,11 +50,12 @@
                     <a class="btn_addTask" id="btnLow" onclick="changePriority('low')">Low <img id="btnLowImg"
                             src="assets/img/Priority_symbols_Low.png" alt="" srcset=""></a>
                 </div>
-                <div>Category</div>
-                <select id="category" class="category">
-                    <option class="category_option" >Technical Task</option>
-                    <option class="category_option" >User Story</option>
-                </select>
+                
+                <div><div>Category<span>*</span></div>
+                <div class="dropdown_category" id="categoryDropDownBtn" onclick="categoryDropDownBtn()">Select task category</div>
+                </div>
+                <div id="dropdownCategory" class="dropdown_content dropdownCategory"></div>
+                
                 <div for="Subtasks">Subtasks</div>
                 <input type="text" placeholder="&#10010;">
 

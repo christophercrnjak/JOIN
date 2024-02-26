@@ -183,17 +183,6 @@ body{
   left: 87%;
 }
 
-.category {
-  width: 360px;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-  background-color: white;
-  background-position: right 10px center;
-  background-repeat: no-repeat;
-  padding: 12px 20px 12px 40px;
-}
-
 .create_clear_task {
   align-items: flex-start;
   width: 840px;
@@ -228,4 +217,29 @@ input[type='checkbox']{
   flex-direction: row;
   width: 360px;
   height: 36px;
+}
+
+.dropdown_category {
+  width: 360px;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-position: right 10px center;
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+}
+ .dropdownCategory  {
+  position: relative;
+  top:-20px;
+  right: -5px;
+  background-color: #f9f9f9;
+  min-width: 150px;
+  padding: 5px;
+  height: 50px;
+}
+
+dropdownCategory a{
+  text-decoration: none;
+    color: white;
+    
 }
