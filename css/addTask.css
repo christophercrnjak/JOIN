@@ -1,87 +1,104 @@
-body{
+body {
   background-color: var(--bgwhite);
 }
 
 .main_addTask {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: flex-start;
-    flex-direction: column;
-    height: 100vh;
-    width: 100%;
-    background-color: var(--bgwhite);
-    padding-left: 280px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: column;
+
+  height: 100vh;
+  width: 100%;
+  background-color: var(--bgwhite);
+  padding-left: 280px;
 }
 
-
+.AddTask_head{
+  margin-top: 10%;
+}
 .AddTask_head h1 {
-    margin-top: 25px;
-    font-size: 61px;
-    
-    
-}
-.addTaskForms {
-    gap: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: baseline;
-}
-.addTaskForm {
- display: flex;
- align-items: flex-start;
- flex-direction: column;
- justify-content: center;
- gap: 10px; 
- height: 378px;
- width: 440px;
+  
+  font-size: 61px;
 }
 
-.border_right{
-    border-right: 1px solid #bebebe;
+.addTaskForms {
+  gap: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+}
+
+.addTaskForm {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  height: 378px;
+  width: 440px;
+}
+
+.border_right {
+  border-right: 1px solid #bebebe;
 }
 
 .addTaskForm span {
-    color: red;
+  color: red;
 }
+
 .addTaskForm input {
-    background-image: url();
-    width: 360px;
+  background-image: url();
+  width: 360px;
 }
+
 .addTaskForm textarea {
-    width: 360px;
+  width: 360px;
 }
 
 #description {
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    background-color: white;
-    background-position: right 10px center; 
-    background-repeat: no-repeat;
-    padding: 12px 20px 12px 40px;
-  }
- 
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  height: 136px;
+  width: 440px;
+  background-color: white;
+  background-position: right 10px center;
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+}
+
+#description textarea::placeholder{
+  color: var(--grey);
+}
 
 .btn_addTask_list {
-    display: flex;
-    width: 360px;   
-    gap:8px;
-    cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 360px;
+  gap: 8px;
+  cursor: pointer;
 }
-  .btn_addTask {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #ffffff;
-    color: black;
-    gap:8px;
-    padding: 16px 8px;
-    height: 56px;
-    width: 120px ;
-    border-radius: 10px;
-    
-  }
 
+.btn_addTask {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  color: black;
+  gap: 8px;
+  padding: 16px 8px;
+  height: 56px;
+  width: 120px;
+  border-radius: 10px;
+
+}
+
+.btn_addTask:hover {
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
 
 /* Stil für das Dropdown-Menü */
 .dropdown {
@@ -116,6 +133,7 @@ body{
   color: black;
   padding: 12px;
   border: 2px solid var(--grey);
+  border-radius: 5px;
   cursor: pointer;
   width: 360px;
 }
@@ -133,7 +151,7 @@ body{
   position: absolute;
   background-color: #ffffff;
   width: 360px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 
@@ -154,12 +172,16 @@ body{
 }
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show {display:block;}
+.show {
+  display: block;
+}
 
 .selected {
-  background-color: var(--bgdarkblue); /* Hier Ihre gewünschte Hintergrundfarbe einfügen */
+  background-color: var(--bgdarkblue);
+  /* Hier Ihre gewünschte Hintergrundfarbe einfügen */
   color: #ffff !important;
 }
+
 .arrow {
   position: absolute;
   top: 16px;
@@ -189,28 +211,34 @@ body{
   display: flex;
   justify-content: space-between;
 }
+
 .addTask_btns {
   display: flex;
   gap: 18px;
 }
+
 .create_clear_task span {
   color: red;
 }
+
 .addTask_btn {
   padding: 16px;
 }
 
-input[type='checkbox']{
+input[type='checkbox'] {
   width: 16px;
 }
+
 .dropdown_assign {
   display: flex;
   justify-content: space-between;
   text-align: center;
 }
+
 .gap {
   gap: 16px;
 }
+
 .dropdown_list {
   display: flex;
   justify-content: flex-start;
@@ -228,9 +256,10 @@ input[type='checkbox']{
   background-repeat: no-repeat;
   padding: 12px 20px 12px 40px;
 }
- .dropdownCategory  {
+
+.dropdownCategory {
   position: relative;
-  top:-20px;
+  top: -20px;
   right: -5px;
   background-color: #f9f9f9;
   min-width: 150px;

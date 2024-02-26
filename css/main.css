@@ -152,6 +152,11 @@ input[type="search"] {
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
+
+input:focus {
+  border-color: var(--blue);
+  outline: var(--blue);
+}
 /* clears the ‘X’ from Internet Explorer */
 input[type=search]::-ms-clear { display: none; width : 0; height: 0; };
 input[type=search]::-ms-reveal { display: none; width : 0; height: 0; };

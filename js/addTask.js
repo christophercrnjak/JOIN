@@ -120,20 +120,13 @@ function changePriority(priority) {
 
   if (priority === "urgrend") {
     setPriorityStyles(
-      "#ff0000",
-      "#ffff",
-      "/assets/img/prio_ungrent.svg",
-      "urgrend"
+      "#FF3D00","#ffff","/assets/img/prio_ungrent.svg","urgrend"
     );
   } else if (priority === "medium") {
     setPriorityStyles(
-      "#ffa500",
-      "#ffff",
-      "assets/img/prio_medium.svg",
-      "medium"
-    );
+      "#FFA800","#ffff","assets/img/prio_medium.svg","medium");
   } else if (priority === "low") {
-    setPriorityStyles("#008000", "#ffff", "assets/img/prio_low.svg", "low");
+    setPriorityStyles("#7AE229", "#ffff", "assets/img/prio_low.svg", "low");
   }
 }
 
