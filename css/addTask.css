@@ -255,3 +255,42 @@ input[type='checkbox']{
   background-repeat: no-repeat;
   padding: 12px 20px 12px 40px;
 }
+
+/* .member_cycle {
+  width: 32px;
+  height: 32px;
+  border-radius: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 12px;
+}
+.orange {
+  background-color: var(--orange);
+}
+.turquoise {
+  background-color: var(--turquoise);
+}
+.darkslateblue {
+  background-color: var(--darkslateblue);
+}
+.violet {
+  background-color: var(--violet);
+}
+.mediumslateblue {
+  background-color: var(--mediumslateblue);
+}
+.blueviolet {
+  background-color: var(--blueviolet);
+}
+.yellow {
+  background-color: var(--yellow);
+}
+.red {
+  background-color: var(--red);
+}
+.deepskyblue {
+  background-color: var(--deepskyblue); 
+}
+*/
