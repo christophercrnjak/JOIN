@@ -17,6 +17,8 @@
         border-radius: 30px;
         background-color: white;
         padding: 48px 40px 48px 40px;
+        max-height: 95%;
+        overflow: auto;
     }
 
         .category_close {

@@ -5,6 +5,10 @@
 }
 
 #close_section_edit {
+    margin-bottom: 0;
+}
+
+#close_section_edit {
     display: flex;
     justify-content: end;
 }
@@ -146,6 +150,10 @@
 
 /***** Assigned to Section *****/
 
+#assignedTo_section_edit {
+    max-height: 440px;
+}
+
 .dropdown {
     display: flex;
     justify-content: space-between;
@@ -176,6 +184,10 @@
     margin-top: 8px;
 }
 
+.flexDirection {
+    flex-direction: column;
+}
+
 .selected_member_cycle {
     width: 42px;
     height: 42px;
@@ -185,5 +197,25 @@
     align-items: center;
     color: white;
     font-size: 12px;
+    
 }
 
+.dropdown_contact_row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 16px;
+    padding-right: 16px;
+    align-items: center;
+}
+
+.dropdownNames {
+    margin-left: 16px;
+}
+
+.dropdown_contact_image_name {
+    font-size: 20px;
+    font-weight: 400;
+    align-items: center;
+    display: flex;
+}

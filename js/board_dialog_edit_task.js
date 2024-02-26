@@ -1,7 +1,9 @@
 // variable which represents the active and selected priority status in edit dialog 
 // used for chage priority in json in edit dialog by click OK
 let prioStatusEdit = '';
-let contacts = [];
+let contactsOfCurrentTask = [];
+let contacts =[];
+let dropdownStatus = false;
 
 // delete dialog container content and call functions built edit-content
 function renderEditDialog(taskId) {
@@ -12,7 +14,7 @@ function renderEditDialog(taskId) {
     renderDueDateEditDialog(taskId);
     renderPrioEditDialog(taskId);
     renderAssigedToEditDialog(taskId);
-    renderSubtasksEditDialog(taskId);
+    // renderSubtasksEditDialog(taskId);
 }
 
 // HTML of main structure of edit dialog
@@ -207,18 +209,21 @@ function lowActivHTML() {
 async function renderAssigedToEditDialog(taskId){
     await loadContacts();
     let container = document.getElementById('assignedTo_section_edit');
-    container.innerHTML = assigedToEditHTML();
+    container.innerHTML = assigedToEditHTML(taskId);
     renderSelectedContacts(taskId);
 }
 
-function assigedToEditHTML() {
+function assigedToEditHTML(taskId) {
     return `
     <div class="header_text_edit_section">Assiged to</div>
-    <a class="dropdown" onclick="showContactList()">
-        <div class="dropdown_text">Select contacts to assign</div>
-        <div class="dopdown_img_inactive"><img src="assets/img/arrowDropDown.svg" alt=""></div>
-        <div class="dopdown_img_active d-none"></div>
-    </a>
+    <div class="dropdown">
+        <div class="dropdown_text"> 
+            Select contacts to assign
+        </div>
+        <a class="dopdown_img_inactive" id="dropdown_arrow" onclick="rotateArrow(${taskId})">
+            <img src="assets/img/arrowDropDown.svg">
+        </a>
+    </div>
     <div id="selectedContactsSection" class="selectedContacts">
 
     </div>
@@ -228,6 +233,7 @@ function assigedToEditHTML() {
 async function loadContacts() {
     let resp = await fetch('assets/json/contacts.json'); 
     contacts = await resp.json(); 
+    console.log(contacts);
 }
 
 function renderSelectedContacts(taskId) {
@@ -250,6 +256,65 @@ function selectedTaskMemberHTML(firstCharacter, secondCharacter, colorClass, tas
 }
 
 
+function rotateArrow(taskId) {
+    let arrow_section = document.getElementById('dropdown_arrow')
+    if (dropdownStatus == false){
+        arrow_section.style.rotate = '200grad';
+        dropdownStatus = true;
+        showContactList(taskId);
+    } else {
+        arrow_section.style.rotate = '0grad';
+        dropdownStatus = false;
+        renderSelectedContacts(taskId);
+        document.getElementById('selectedContactsSection').classList.toggle('flexDirection');
+    }
+    
+}
+
+function showContactList(taskId) {
+    let container = document.getElementById('selectedContactsSection');
+    container.innerHTML = '';
+    for (let i = 0; i < contacts.length; i++) {
+        container.innerHTML += editContactListHTML(taskId, i);
+        renderMemberImageDropdown(taskId, i);
+    }
+    document.getElementById('selectedContactsSection').classList.toggle('flexDirection');
+}
+
+function editContactListHTML(taskId, contactId) {
+    let contact = contacts[contactId].name;
+    return `
+        <div class="dropdown_contact_row">
+            <div class="dropdown_contact_image_name">
+                <div id="character_image${taskId}${contactId}"></div>
+                <div class="dropdownNames">${contact.firstName} ${contact.secondName}</div>
+            </div> 
+            <div>
+                <img src="assets/img/check_button_unchecked.png">
+            </div>
+        </div>
+    `;
+}
+
+function renderMemberImageDropdown(taskId, contactId) {
+    let container = document.getElementById(`character_image${taskId}${contactId}`);
+    let firstCharacter = contacts[contactId].name.firstName.charAt(0);
+    let secondCharacter = contacts[contactId].name.secondName.charAt(0);
+    container.innerHTML = dropdownContactHTML(firstCharacter, secondCharacter, taskId, contactId);   
+    setcycleColor(taskId, contactId);
+}
+
+function dropdownContactHTML(firstCharacter, secondCharacter, taskId, contactId) {
+    return `
+        <div id="selected_task_member${taskId}${contactId}" class="selected_member_cycle">${firstCharacter}${secondCharacter}</div>
+    `;
+}
+
+function setcycleColor(taskId, contactId) {
+    let cycle = document.getElementById(`selected_task_member${taskId}${contactId}`);
+    let color = contacts[contactId].name.color;
+    cycle.style.backgroundColor = `${color}`;
+}
 
 
 
