@@ -32,6 +32,33 @@
             <div id="selectedPerson" class="selected_person">
             </div>
         </div>
+        
+        <div id="editPersons" class="background">
+            <div class="display_center add_dialog">
+                <div class="left"><img src="assets/img/join_logo_vector.svg">
+                    <h2>Edit contact</h2>
+                <div class="underline"></div>
+                </div>
+
+                <div class="right">
+                    <div id="selectedPersonInitials">
+                    <img o src="./assets/img/person_white.png"></div>
+                    <form>
+                        <div class="add_contact">
+                            <img onclick="closePerson()" src="./assets/img/close.png">
+                            <input type="hidden" id="selectedPersonIndex">
+                            <input type="text" required placeholder="Name">
+                            <input type="email" required placeholder="Email">
+                            <input type="tel" required placeholder="Phone">
+                        </div>
+                        <div class="display_center_b">
+                            <button onclick="deletePerson()" class="delete_button">Delete</button>
+                            <button onclick="createContact()" class="save_button">Save<img src="./assets/img/check.png"></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
 
         <div id="dialog" class="background">
@@ -39,6 +66,7 @@
                 <div class="left"><img src="assets/img/join_logo_vector.svg">
                     <h2>Add contact</h2>
                     <h3>Tasks are better with a team!</h3>
+                <div class="underline"></div>
                 </div>
 
                 <div class="right">

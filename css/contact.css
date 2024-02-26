@@ -236,6 +236,14 @@ body {
     line-height: 32.4px;
     color: white;
 }
+.underline{
+    border-bottom-style: solid;
+    border-bottom-color: rgba(41, 171, 226, 1);
+    border-width: 3px;
+    box-sizing: unset;
+    width: 90px;
+    border-radius: 10px;
+}
 
 .right img {
     margin-bottom: 50px;
@@ -274,6 +282,10 @@ body {
     border: 1px solid rgba(209, 209, 209, 1)
 }
 
+.right input:hover {
+    border: 1px solid rgba(41, 171, 226, 1)
+}
+
 .right input[type="email"] {
     background-image: url(../assets/img/mail.png);
     background-repeat: no-repeat;
@@ -287,6 +299,10 @@ body {
     border-radius: 10px;
     padding: 13px 21px 13px 21px;
     border: 1px solid rgba(209, 209, 209, 1)
+}
+
+.right input:hover {
+    border: 1px solid rgba(41, 171, 226, 1)
 }
 
 input[type="tel"] {
@@ -387,6 +403,7 @@ input[type="tel"] {
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
+
 .selected_person {
     display: flex;
     margin-top: 32px;
@@ -441,13 +458,21 @@ input[type="tel"] {
     color: rgba(42, 54, 71, 1);
 }
 
+
 .button_contacts h3 {
     font-size: 16px;
     font-weight: 400;
     line-height: 19px;
     letter-spacing: 0em;
     text-align: left;
-    
+}
+.button_contacts h3:hover{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: rgba(41, 171, 226, 1);
 }
 
 .info {
@@ -485,10 +510,58 @@ input[type="tel"] {
     color: rgba(0, 124, 238, 1);
     margin-bottom: 22px;
 }
-.info p{
-font-size: 16px;
-font-weight: 400;
-line-height: 19px;
-letter-spacing: 0em;
-text-align: left;
+
+.info p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+.display_center_b .save_button{
+    width: 111px;
+    height: 57px;
+    padding: 16px;
+    border-radius: 10px;
+    gap: 4px;
+    background: rgba(42, 54, 71, 1);
+    color: white;
+}
+.display_center_b .save_button:hover{
+    background: rgba(41, 171, 226, 1);
+}
+.save_button img{
+    width: 16px;
+height: 16px;
+}
+.display_center_b .delete_button{
+    width: 113px;
+height: 55px;
+padding: 15px 24px 15px 24px;
+border-radius: 8px;
+border: 1px;
+gap: 10px;
+margin-right: 25px;
+border: 1px solid rgba(42, 54, 71, 1);
+}
+#selectedPersonInitials{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 97px;
+}
+
+#selectedPersonInitials .persons{
+    width: 120px;
+    height: 120px;
+    font-family: Inter;
+    font-size: 47px;
+    font-weight: 500;
+    line-height: 56px;
+    letter-spacing: 0em;
+    text-align: center;
+    border-radius: 70px;
+    border: 3px solid rgba(255, 255, 255, 1);
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+
 }
