@@ -151,7 +151,7 @@
 /***** Assigned to Section *****/
 
 #assignedTo_section_edit {
-    max-height: 440px;
+    max-height: 338px;
 }
 
 .dropdown {
@@ -180,8 +180,9 @@
 .selectedContacts {
     width: 100%;
     display: flex;
-    gap: 8px;
     margin-top: 8px;
+    max-height: 322px;
+    overflow: auto;
 }
 
 .flexDirection {
@@ -207,6 +208,7 @@
     padding-left: 16px;
     padding-right: 16px;
     align-items: center;
+    margin-bottom: 16px;
 }
 
 .dropdownNames {
@@ -218,4 +220,59 @@
     font-weight: 400;
     align-items: center;
     display: flex;
+}
+
+.dropdown_contact_image_name img {
+    cursor: pointer;
+}
+
+.contactOfTask {
+    background-color: var(--bgdarkblue);
+    border-radius: 10px;
+    color: white;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+#subtask_section_edit {
+    margin-top: 30px;
+}
+
+#subtask_section_edit input {
+    background-image: url(/assets/img/plus.svg);
+    border-radius: 10px;
+    padding-left: 21px;
+}
+
+.unordered-list_subtasks {
+    margin-top: 14.5px;
+    margin-left: 40px;
+}
+
+.unordered-list_subtasks ul li{
+    margin-bottom: 8px;
+    
+}
+
+#ok_section_edit {
+    display: flex;
+    width: 100%;
+    justify-content: end;
+    cursor: pointer;
+}
+
+.confirm_btn_edit {
+    background-color: var(--bgdarkblue);
+    color: white;
+    font-size: 21px;
+    font-weight: 700;
+    display: flex;
+    padding: 16px;
+    width: fit-content;
+    border-radius: 10px;
+}
+
+.confirm_btn_edit img {
+    width: 24px;
+    height: 24px;
 }

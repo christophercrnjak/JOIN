@@ -14,7 +14,7 @@ function renderEditDialog(taskId) {
     renderDueDateEditDialog(taskId);
     renderPrioEditDialog(taskId);
     renderAssigedToEditDialog(taskId);
-    // renderSubtasksEditDialog(taskId);
+    renderSubtasksEditDialog(taskId);
 }
 
 // HTML of main structure of edit dialog
@@ -32,7 +32,12 @@ function editDialogHTML() {
     <div id="dueDate_section_edit" class="distance"></div>
     <div id="prio_section_edit" class="distance"></div>
     <div id="assignedTo_section_edit" class="distance"></div>
-    <div id="ok_section_edit" class="distance"></div>
+    <div id="subtask_section_edit" class="distance"></div>
+    <div id="ok_section_edit" class="distance">
+        <a class="confirm_btn_edit">
+        OK <img src="assets/img/check.svg">
+        </a>
+    </div>
     `;
 }
 
@@ -277,6 +282,7 @@ function showContactList(taskId) {
     for (let i = 0; i < contacts.length; i++) {
         container.innerHTML += editContactListHTML(taskId, i);
         renderMemberImageDropdown(taskId, i);
+        renderCheckBoxEdit(taskId, i);
     }
     document.getElementById('selectedContactsSection').classList.toggle('flexDirection');
 }
@@ -284,16 +290,45 @@ function showContactList(taskId) {
 function editContactListHTML(taskId, contactId) {
     let contact = contacts[contactId].name;
     return `
-        <div class="dropdown_contact_row">
+        <div id="dropdown_contact${taskId}${contactId}" class="dropdown_contact_row">
             <div class="dropdown_contact_image_name">
                 <div id="character_image${taskId}${contactId}"></div>
                 <div class="dropdownNames">${contact.firstName} ${contact.secondName}</div>
             </div> 
-            <div>
-                <img src="assets/img/check_button_unchecked.png">
+            <div >
+                <a id="checkbox_edit${taskId}${contactId}" onclick="deleteContactFromTask(${taskId}, ${contactId})">
+                    
+                </a>
             </div>
         </div>
     `;
+}
+
+function renderCheckBoxEdit(taskId, contactId) {
+    let container_checkbox = document.getElementById(`checkbox_edit${taskId}${contactId}`);
+    let container_dropdown_contact = document.getElementById(`dropdown_contact${taskId}${contactId}`);
+    let contact = contacts[contactId].name;
+    let selectedContactStatus = checkContactSelected(`${contact.firstName}`, `${contact.secondName}`, taskId)
+    let cycle = document.getElementById(`selected_task_member${taskId}${contactId}`);
+
+    if (selectedContactStatus == true) {
+        container_checkbox.innerHTML = `<img src="assets/img/check_button_checked_white.svg">`;
+        container_dropdown_contact.classList.toggle('contactOfTask');
+        cycle.style.border = 'solid 3px white';
+    } else {
+        container_checkbox.innerHTML = `<img src="assets/img/check_button_unchecked.svg">`;
+    } 
+}
+
+function checkContactSelected(firstName, secondName, taskId) {
+    let taskContacts = tasks[taskId].contacts;
+    for (let i = 0; i < taskContacts.length; i++) {
+        let contact = tasks[taskId].contacts[i];
+        if (firstName == contact.firstName && secondName == contact.secondName) {
+            return true
+        }
+    }
+
 }
 
 function renderMemberImageDropdown(taskId, contactId) {
@@ -314,9 +349,42 @@ function setcycleColor(taskId, contactId) {
     let cycle = document.getElementById(`selected_task_member${taskId}${contactId}`);
     let color = contacts[contactId].name.color;
     cycle.style.backgroundColor = `${color}`;
+    
 }
 
 
+function deleteContactFromTask(taskId, contactId) {
+    tasks[taskId].contacts.splice(contactId, 1);
+    showContactList(taskId);
+    document.getElementById('selectedContactsSection').classList.toggle('flexDirection');
+}
 
+function renderSubtasksEditDialog(taskId) {
+    let container = document.getElementById('subtask_section_edit');
+    container.innerHTML = subtaskListEditHTML();
+    added_subtasks_edit(taskId);
+}
 
+function subtaskListEditHTML() {
+    return `
+        <div class="header_text_edit_section">Subtasks</div>
+        <input type="text" placeholder="Add new subtask">
+        <div class="unordered-list_subtasks">
+            <ul id="added_subtasks_edit"></ul>
+        </div>
+    `;
+}
+
+function added_subtasks_edit(taskId) {
+    let container = document.getElementById('added_subtasks_edit');
+    container.innerHTML = '';
+    let subtasks = tasks[taskId].subtasks;
+    for (let i = 0; i < subtasks.length; i++) {
+        let subtask = subtasks[i].name;
+        container.innerHTML += `
+            <li>${subtask}</li>
+        `;
+        
+    }
+}
 

@@ -133,12 +133,20 @@ a {
                         }
     
                 
+        .board_content_main {
+            display: flex;
+        justify-content: center;
+        }
+
         .board_content {
             display: flex;
             margin: 64px 30px 64px;
             height: 100%;
             gap: 26px;
         }
+
+        
+    
             .board_column {
                 width: 25%;
                 height: 100%;
@@ -185,7 +193,7 @@ a {
                         width: 24px;
                         height: 24px;
                         border-radius: 8px;
-                        border: 3px solid var(--bgdarkblue);
+                        border: 2px solid var(--bgdarkblue);
                         display: flex;
                         justify-content: center;
                         align-items: center;
@@ -218,6 +226,7 @@ a {
                     flex-direction: column;
                     gap: 16px;
                     min-height: 500px;
+                    max-width: 252px;
                 }
                     .no_task {
                         width: 100%;
