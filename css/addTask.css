@@ -242,4 +242,16 @@ input[type='checkbox']{
   position: relative;
   top: 40px;
   left: 300px;
+  cursor: pointer;
+}
+
+.subtasklist_element {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 360px;
+  font-size: 16px;
+  background-position: right 10px center;
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
 }

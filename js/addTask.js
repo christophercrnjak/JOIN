@@ -4,6 +4,7 @@ let categorys = ["Technical Task", "User Stroy"];
 let selectedFormDropdown = [];
 let prio = [];
 let pushCategory = [];
+let subtasklists = [];
 
 function addTaskInit() {
   renderDropList();
@@ -206,6 +207,37 @@ function pushCategoryInTo(element) {
     pushCategory.shift();
   }
 }
+
+function pushToSubtasks(){
+  let subtasksInput =  document.getElementById('subtasksInput').value;
+  subtasklists.push(subtasksInput);
+  rendersubtasklist();
+}
+
+function rendersubtasklist(){
+  let rendersubtasklist = document.getElementById('subtasklist');
+  rendersubtasklist.innerHTML = '';
+  for (let i = 0; i < subtasklists.length; i++) {
+    let subtaskHTML = subtasklists[i];
+    rendersubtasklist.innerHTML += subtasklistHTML(subtaskHTML,i);
+    console.log(subtaskHTML);
+  }
+  subtasklistHTML();
+}
+function removeSubtask(i){
+subtasklists.splice(i,1)
+rendersubtasklist();
+}
+
+ function subtasklistHTML(subtaskHTML,i){
+  return`
+  <div class="subtasklist_element">
+    <p>${subtaskHTML}</p>
+  <div>
+    <img onclick="removeSubtask(${i})" class="" src="/assets/img/delete_dark.svg">
+  </div>
+  </div>`;
+ }
 
 function pushToJson() {
   // Push the Add Task inputs in to a JSON

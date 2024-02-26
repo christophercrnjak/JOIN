@@ -57,7 +57,7 @@
                 <div id="dropdownCategory" class="dropdown_content dropdownCategory"></div>
                 <div class="Subtask">
                     <div for="Subtasks">Subtasks</div>
-                    <div class="subtaskIcons"><img src="/assets/img/subtasksPlus.svg"><img class="d-none" src="/assets/img/check_dark.svg"></div>
+                    <div class="subtaskIcons"><img onclick="pushToSubtasks()" src="/assets/img/subtasksPlus.svg"><img class="d-none" src="/assets/img/check_dark.svg"></div>
                     <input type="text" class="subtasksInput" id="subtasksInput" placeholder="Add new Subtask">
                     <div id="subtasklist"></div>
                 </div>
@@ -69,8 +69,8 @@
         <div class="create_clear_task">
             <p><span>*</span>This Field is required</p>
             <div class="addTask_btns">
-                <button class="btn_grey addTask_btn" onclick="pushToJson()">Clear &#10006;</button>
-                <button class="btn_transparent addTask_btn" onclick="removeToJson()"> Create Task &#10003;</button>
+                <button class="btn_transparent addTask_btn" onclick="pushToJson()">Clear &#10006;</button>
+                <button class="btn_grey addTask_btn display_center gap" onclick="removeToJson()"> Create Task <img src="/assets/img/check.png"></button>
             </div>
         </div>
     </div>
