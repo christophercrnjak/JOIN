@@ -238,8 +238,8 @@ input[type='checkbox']{
   height: 50px;
 }
 
-dropdownCategory a{
-  text-decoration: none;
-    color: white;
-    
+.subtaskIcons {
+  position: relative;
+  top: 40px;
+  left: 300px;
 }
