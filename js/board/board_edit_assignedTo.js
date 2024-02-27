@@ -1,11 +1,16 @@
 let contacts =[];
 let dropdownStatus = false;
+let contactsOfCurrentTask = [];
 
 async function renderAssigedToEditDialog(taskId){
     await loadContacts();
+    contactsOfCurrentTask = tasks[taskId].contacts;
+    console.log(contactsOfCurrentTask);
+    console.log(tasks[0].contacts);
     let container = document.getElementById('assignedTo_section_edit');
     container.innerHTML = assigedToEditHTML(taskId);
     renderSelectedContacts(taskId);
+
 }
 
 function assigedToEditHTML(taskId) {
@@ -39,15 +44,15 @@ async function loadContacts() {
 }
 
 function renderSelectedContacts(taskId) {
-    let task = tasks[taskId];
     let container = document.getElementById(`selectedContactsSection`);
     container.innerHTML = '';
-    for (let i = 0; i < task.contacts.length; i++) {
-        let contact = task.contacts[i];
+    for (let i = 0; i < contactsOfCurrentTask.length; i++) {
+        let contact = contactsOfCurrentTask[i];
         let firstCharacter = contact.firstName.charAt(0);
         let secondCharacter = contact.secondName.charAt(0);
         let colorClass = contact.color;
-        container.innerHTML += selectedTaskMemberHTML(firstCharacter, secondCharacter, colorClass, taskId, i);   
+        container.innerHTML += selectedTaskMemberHTML(firstCharacter, secondCharacter, colorClass, taskId, i); 
+        console.log(contactsOfCurrentTask); 
     }
 }
 
@@ -139,14 +144,15 @@ function renderCheckBoxEdit(taskId, contactId) {
 }
 
 function checkContactSelected(firstName, secondName, taskId) {
-    let taskContacts = tasks[taskId].contacts;
-    for (let i = 0; i < taskContacts.length; i++) {
-        let contact = tasks[taskId].contacts[i];
+    
+    for (let i = 0; i < contactsOfCurrentTask.length; i++) {
+        let contact = contactsOfCurrentTask[i];
         if (firstName == contact.firstName && secondName == contact.secondName) {
             return true
         }
     }
-
+    console.log(contactsOfCurrentTask);
+    console.log(tasks[0].contacts);
 }
 
 function renderMemberImageDropdown(taskId, contactId) {
@@ -172,13 +178,15 @@ function setcicleColor(taskId, contactId) {
 
 function deleteContactFromTask(firstName, secondName, taskId) {
     let index_of_deleted_name = findDeleteNameInArray(firstName, secondName, taskId);
-    tasks[taskId].contacts.splice(index_of_deleted_name, 1);
+    contactsOfCurrentTask.splice(index_of_deleted_name, 1);
     showContactList(taskId);
     document.getElementById('selectedContactsSection').classList.toggle('flexDirection');
+    console.log(contactsOfCurrentTask);
+    console.log(tasks[0].contacts);
 }
 
 function findDeleteNameInArray(firstName, secondName, taskId) {
-    let contacts = tasks[taskId].contacts;
+    let contacts = contactsOfCurrentTask;
     let index;
     for (let i = 0; i < contacts.length; i++) {
         let contact = contacts[i];
@@ -186,6 +194,8 @@ function findDeleteNameInArray(firstName, secondName, taskId) {
             index = i;
         }
     }
+    console.log(contactsOfCurrentTask);
+    console.log(tasks[0].contacts);
     return index;
 }
 
@@ -194,13 +204,15 @@ function selectContactforTask(taskId, contactId) {
     let firstName = contact.firstName;
     let secondName = contact.secondName;
     let color = findOutColorClass(contactId);
-    tasks[taskId].contacts.push(
+    contactsOfCurrentTask.push(
         {
             "firstName": `${firstName}`,
             "secondName": `${secondName}`,
             "color": `${color}`
         },
     );
+    console.log(contactsOfCurrentTask);
+    console.log(tasks[0].contacts);
     showContactList(taskId);
     document.getElementById('selectedContactsSection').classList.toggle('flexDirection');
 }
