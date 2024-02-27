@@ -13,8 +13,12 @@
     <link rel="stylesheet" href="./css/task_dialog_edit.css">
     <link rel="stylesheet" href="./Fonts/Inter-VariableFont_slnt,wght.ttf">
     <script src="./js/include.js"></script>
-
-
+    <script src="./js/board/board_main.js"></script>
+    <script src="./js/board/board_taskdetails.js"></script>
+    <script src="./js/board/board_edit.js"></script>
+    <script src="./js/board/board_edit_assignedTo.js"></script>
+    <script src="./js/board/board_edit_subtask.js"></script>
+    
 
 </head>
 
@@ -42,7 +46,7 @@
             </div>
             <div class="search_add">
                 <div class="search">
-                    <input id="task_to_be_found" onkeydown="searchTask()" type="search" placeholder="Find Task">
+                    <input id="task_to_be_found" onkeyup="searchTask()" type="search" placeholder="Find Task">
                     <hr>
                     <div class="search_image" onclick="searchTask()"><img src="assets/img/search.svg" alt=""></div>
                 </div>
@@ -131,9 +135,7 @@
     </div>
 
     <!-- JAVASCRIPT FOR THE KANBAN BOARD -->
-    <script src="./js/board.js"></script>
-    <script src="./js/board_dialog_taskdetails.js"></script>
-    <script src="./js/board_dialog_edit_task.js"></script>
+   
 </body>
 
 </html>

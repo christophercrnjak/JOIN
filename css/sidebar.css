@@ -102,7 +102,7 @@
 
 .sidebar_footer a:hover {
     color: var(--blue);
-    font-size: 18px;
+    outline: var(--blue);
 }
 
 .sidebar_footer {
