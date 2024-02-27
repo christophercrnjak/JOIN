@@ -21,6 +21,7 @@
   --blue: #29abe2;
   --overlaybgwhite: #ffff;
   --grey: #d1d1d1;
+  --marineblue: #091931;
 
   /* member-colors 
      compared to https://codepen.io/pavlovsk/pen/zYvbGKe 
@@ -157,6 +158,13 @@ input:focus {
   border-color: var(--blue);
   outline: var(--blue);
 }
+
+textarea:focus {
+  border: 5px solid var(--blue);
+  outline: var(--blue);
+}
+
+
 /* clears the ‘X’ from Internet Explorer */
 input[type=search]::-ms-clear { display: none; width : 0; height: 0; };
 input[type=search]::-ms-reveal { display: none; width : 0; height: 0; };

@@ -13,6 +13,7 @@ function renderDialogTask(taskId){
     let container = document.getElementById('task_dialog_container');
     let task = tasks[taskId];
     container.innerHTML = taskDialogHTML(task, taskId);
+    chabgeDueDateFormat(taskId);
     setColorOfCategoryInDialog(taskId);
     renderPriorityDialog(taskId);
     renderAssigedToDialog(taskId);
@@ -32,7 +33,7 @@ function taskDialogHTML(task, taskId) {
             <div onclick="doNotClose(event)" class="task_title_dialog">${task.title}</div>
             <div onclick="doNotClose(event)" class="task_description_dialog">${task.description}</div>
             <div onclick="doNotClose(event)" class="due_Date_dialog">
-                Due date: <span class="duedate">${task.dueDate}</span>
+                Due date: <span id="dueDateTaskDetails" class="duedate">${task.dueDate}</span>
             </div>
             <div onclick="doNotClose(event)" class="priority_dialog">
                 Priority: <span >${task.priority}</span><div id="prio_image"></div>
@@ -60,6 +61,12 @@ function taskDialogHTML(task, taskId) {
                 </div>
             </div>
     `;
+}
+
+function chabgeDueDateFormat(taskId) {
+    let container = document.getElementById('dueDateTaskDetails');
+    let date = changeDueDateFormatInLongYear(taskId);
+    container.innerHTML = `${date}`;
 }
 
 

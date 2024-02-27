@@ -112,12 +112,12 @@ function showContactList(taskId, searchValue) {
 function editContactListHTML(taskId, contactId) {
     let contact = contacts[contactId].name;
     return `
-        <div id="dropdown_contact${taskId}${contactId}" class="dropdown_contact_row">
+        <div onclick="deleteContactFromTask('${contact.firstName}', '${contact.secondName}', ${taskId})" id="dropdown_contact${taskId}${contactId}" class="dropdown_contact_row">
             <div class="dropdown_contact_image_name">
                 <div id="character_image${taskId}${contactId}"></div>
                 <div class="dropdownNames">${contact.firstName} ${contact.secondName}</div>
             </div> 
-            <div >
+            <div class="checkbox_edit">
                 <a id="checkbox_edit${taskId}${contactId}" onclick="deleteContactFromTask('${contact.firstName}', '${contact.secondName}', ${taskId})">
                     
                 </a>
@@ -140,6 +140,7 @@ function renderCheckBoxEdit(taskId, contactId) {
     } else {
         container_checkbox.innerHTML = `<img onclick="" src="assets/img/check_button_unchecked.svg">`;
         container_checkbox.setAttribute('onclick', `selectContactforTask(${taskId}, ${contactId})`);
+        container_dropdown_contact.setAttribute('onclick', `selectContactforTask(${taskId}, ${contactId})`)
     } 
 }
 
