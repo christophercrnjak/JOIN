@@ -23,6 +23,10 @@ async function init() {
 async function fetchTasks() {
   let resp = await fetch("assets/json/tasks.json");
   tasks = await resp.json();
+  tasks = tasks.map((task) => {
+    let [DD, MM, YY] = task.dueDate.split("/");
+    return { ...task, dueDate: new Date(`20${YY}-${MM}-${DD}`) };
+  });
 }
 
 async function fetchContacts() {
@@ -67,99 +71,48 @@ function calcSumOfAmounts() {
 }
 
 function renderToDoAmount() {
-  let toDoAmountElement = document.getElementById("toDoAmount");
-  if (toDoAmount != 0) {
-    toDoAmountElement.innerHTML = toDoAmount;
-  } else {
-    toDoAmountElement.innerHTML = "0";
-  }
+  let toDoAmountElement = document.getElementById("to_do_amount");
+  toDoAmountElement.innerHTML = toDoAmount;
 }
 
 function renderDoneAmount() {
-  let doneAmountElement = document.getElementById("doneAmount");
-  if (doneAmount != 0) {
-    doneAmountElement.innerHTML = doneAmount;
-  } else {
-    doneAmountElement.innerHTML = "0";
-  }
+  let doneAmountElement = document.getElementById("done_amount");
+  doneAmountElement.innerHTML = doneAmount;
 }
 
 function renderAllAmount() {
-  let allAmountElement = document.getElementById("allAmounts");
-  if (allAmounts != 0) {
-    allAmountElement.innerHTML = allAmounts;
-  } else {
-    allAmountElement.innerHTML = "0";
-  }
+  let allAmountElement = document.getElementById("all_amounts");
+  allAmountElement.innerHTML = allAmounts;
 }
 
 function renderInProgressAmount() {
-  let inProgressAmountElement = document.getElementById("inProgressAmount");
-  if (inProgressAmount != 0) {
-    inProgressAmountElement.innerHTML = inProgressAmount;
-  } else {
-    inProgressAmountElement.innerHTML = "0";
-  }
+  let inProgressAmountElement = document.getElementById("in_progress_amount");
+  inProgressAmountElement.innerHTML = inProgressAmount;
 }
 
 function renderAwaitingFeedbackAmount() {
   let awaitingFeedbackAmountElement = document.getElementById(
-    "awaitingFeedbackAmount"
+    "awaiting_feedback_amount"
   );
-  if (awaitingFeedbackAmount != 0) {
-    awaitingFeedbackAmountElement.innerHTML = awaitingFeedbackAmount;
-  } else {
-    awaitingFeedbackAmountElement.innerHTML = "0";
-  }
+  awaitingFeedbackAmountElement.innerHTML = awaitingFeedbackAmount;
 }
 
 function getNextDueDate() {
-  // excludes the tasks which are done
-  let tasksNotDone = tasks.filter((taskElement) => {
-    return taskElement.status != "done";
-  });
-
-  // create a new array called dueDates which only gives the dueDate-value of those tasks
-  let dueDates = tasksNotDone.map((dueDates) => {
-    return dueDates.dueDate;
-  });
-
-  // changes the format of this string (DD/MM/YY to YY/MM/DD)
-  let newArray = dueDates.map((dateString) => {
-    let [DD, MM, YY] = dateString.split("/");
-    let newDateString = /*html*/ `${YY}/${MM}/${DD}`;
-
-    return newDateString;
-  });
-
-  // puts it into an date format and sort it from small to big
-  let formatedDueDates = newArray.sort((a, b) => {
-    let dateA = new Date(
-      "20" + a.replace(/(\d{2})\/(\d{2})\/(\d{2})/, "$1-$2-$3")
-    );
-    let dateB = new Date(
-      "20" + b.replace(/(\d{2})\/(\d{2})\/(\d{2})/, "$1-$2-$3")
-    );
-
-    return dateA - dateB;
-  });
+  let tasksNotDone = tasks
+    .filter((task) => task.status != "done")
+    .sort((a, b) => a.dueDate - b.dueDate);
 
   // outputs the first value of this array
-  let firstValue = formatedDueDates[0];
-
-  // format the last value as 'July 11, 2024'
-  let lastValue = new Date(
-    "20" + firstValue.replace(/(\d{2})\/(\d{2})\/(\d{2})/, "$1-$2-$3")
-  );
+  let parsedValue = tasksNotDone[0].dueDate;
   nextDueDate = new Intl.DateTimeFormat("en-US", {
     month: "long",
     day: "numeric",
     year: "numeric",
-  }).format(lastValue);
+  }).format(parsedValue);
 }
 
 function renderNextDueDate() {
-  let nextDueDateElement = document.getElementById("nextDueDate");
+  let nextDueDateElement = document.getElementById("next_due_date");
   nextDueDateElement.innerHTML = nextDueDate;
 }
 
@@ -174,11 +127,7 @@ function calcUrgentAmount() {
 
 function renderUrgentAmount() {
   let urgentAmountElement = document.getElementById("urgent_amount");
-  if (urgentAmount != 0) {
-    urgentAmountElement.innerHTML = urgentAmount;
-  } else {
-    urgentAmountElement.innerHTML = "0";
-  }
+  urgentAmountElement.innerHTML = urgentAmount;
 }
 
 function getUserName() {
