@@ -1,7 +1,7 @@
 let contacts = [];
 let categorys = ["Technical Task", "User Stroy"];
 
-let selectedFormDropdown = [];
+let selectedFromDropdown = [];
 let prio = [];
 let pushCategory = [];
 let subtasklists = [];
@@ -22,67 +22,66 @@ async function renderDropList() {
   dropdown.innerHTML = "";
   for (let i = 0; i < responseAsJson.length; i++) {
     let e = responseAsJson[i];
-    dropdown.innerHTML += dropdownHtml(e);
+    dropdown.innerHTML += dropdownHtml(e,[i]);
   }
 }
 
-function dropdownHtml(dropdownList) {
+function dropdownHtml(dropdownList, i) {
   return `
-  <a class="dropdown_assign" onclick="selectFromDropdown(this, '${dropdownList["image"]}', '${dropdownList["name"]["firstName"]}', '${dropdownList["name"]["secondName"]}')">
+  <a class="dropdown_assign" id="${i}" onclick="selectFromDropdown('${dropdownList["name"]["color"]}', '${dropdownList["name"]["firstName"]}', '${dropdownList["name"]["secondName"]}',${i})">
     <div class="display_center gap">
-    <img src="${dropdownList["image"]}">${dropdownList["name"]["firstName"]} ${dropdownList["name"]["secondName"]}
+          <div class="member_cicle" style='background-color:${dropdownList['name']['color']};'>
+            ${dropdownList["name"]["firstName"].charAt(0)}
+            ${dropdownList["name"]["secondName"].charAt(0)}
+          </div>
+        ${dropdownList["name"]["firstName"]} ${dropdownList["name"]["secondName"]}
     </div>
     <img src="assets/img/Check_btn.svg">
   </a>
   `;
 }
 
-function selectFromDropdown(e, imageUrl, firstName, secondName) {
+function selectFromDropdown(color, firstName, secondName, i) {
   // Select for the Drop Down
-  let isSelected = isItemSelected(imageUrl, firstName, secondName);
-  let dropdownList = document.getElementById("dropdownList");
+  let dropdownList = document.getElementById('dropdownList');
+  let selectedId = i;
+    selectedFromDropdown.push({ color, firstName, secondName });
+      dropdownList.innerHTML += dropdownHtmlMemberCircle(color, firstName, secondName,selectedId);
+      document.getElementById(i).classList.add('selected');
+      
+}
 
-  if (isSelected) {
-    // It another priority button is seleced, the other pervisously selected one will be changed
-    removeFromSelectedItems(firstName, secondName);
-    e.classList.remove("selected");
+function dropdownHtmlMemberCircle(color, firstName, secondName){
+  return `
+    <div onclick="removeFromSelectedItems('${firstName}')" class="member_cicle" style="background-color:${color};">
+      ${firstName.charAt(0)}
+      ${secondName.charAt(0)}
+    </div>
+  `;
+}
 
-    dropdownList.addEventListener("click", function () {
-      dropdownList.style.backgroundColor = "";
-      dropdownList.removeChild(imageElement);
-      removeFromSelectedItems(firstName, secondName);
-    });
-  } else {
-    selectedFormDropdown.push({ imageUrl, firstName, secondName });
-    let imageElement = document.createElement("img");
-    imageElement.src = imageUrl;
-    dropdownList.appendChild(imageElement);
-    e.classList.add("selected");
-    imageElement.addEventListener("click", function () {
-      dropdownList.style.backgroundColor = "";
-      dropdownList.removeChild(imageElement);
-      removeFromSelectedItems(firstName, secondName);
-      e.classList.remove("selected");
-    });
+function removeFromSelectedItems(firstName) {
+  // Durchsuche das Array nach dem Element mit dem gegebenen Vornamen und entferne es
+  for (let i = 0; i < selectedFromDropdown.length; i++) {
+    if (selectedFromDropdown[i].firstName === firstName) {
+      selectedFromDropdown.splice(i, 1);
+      
+      // Entferne das entsprechende DOM-Element aus der Dropdown-Liste
+      let dropdownList = document.getElementById('dropdownList');
+      let elements = dropdownList.getElementsByClassName('member_cicle');
+      for (let j = 0; j < elements.length; j++) {
+        let textContent = elements[j].textContent;
+        if (textContent.includes(firstName.charAt(0))) {
+          dropdownList.removeChild(elements[j]);
+          break; // Breche die Schleife ab, sobald das Element entfernt wurde
+        }
+      }
+      
+      break; // Breche die Schleife ab, sobald das Element entfernt wurde
+    }
   }
 }
 
-function isItemSelected(imageUrl, firstName, secondName) {
-  // checked if the seceted Item are in the array
-  return selectedFormDropdown.some(
-    (item) =>
-      item.imageUrl === imageUrl &&
-      item.firstName === firstName &&
-      item.secondName === secondName
-  );
-}
-
-function removeFromSelectedItems(firstName, secondName) {
-  // remove the selected items form the arry
-  selectedFormDropdown = selectedFormDropdown.filter(
-    (item) => !(item.firstName === firstName && item.secondName === secondName)
-  );
-}
 
 function filterFunction() {
   // Filter on the drop Down menu

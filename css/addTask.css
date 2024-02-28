@@ -14,12 +14,11 @@ body {
 }
 
 .AddTask_head{
-  margin-top: 10%;
-}
-.AddTask_head h1 {
-  
+  margin-top: 11%; 
   font-size: 61px;
+  font-weight: 700;
 }
+
 
 .addTaskForms {
   gap: 80px;
@@ -65,6 +64,12 @@ body {
   background-position: right 10px center;
   background-repeat: no-repeat;
   padding: 12px 20px 12px 40px;
+}
+
+
+textarea#description {
+  height: 96px;
+  width: 360px;
 }
 
 #description textarea::placeholder{
@@ -173,7 +178,17 @@ body {
   width: 24px;
   background-image: url('/assets/img/arrowDropDown.svg');
 }
-
+.member_cicle {
+  width: 42px;
+  height: 42px;
+  border-radius: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  font-size: 12px;
+  
+}
 .arrow:hover {
   background-color: #dadada;
   border-radius: 50%;
@@ -263,42 +278,3 @@ input[type='checkbox'] {
   background-repeat: no-repeat;
   padding: 12px 20px 12px 40px;
 }
-
-/* .member_cycle {
-  width: 32px;
-  height: 32px;
-  border-radius: 42px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-size: 12px;
-}
-.orange {
-  background-color: var(--orange);
-}
-.turquoise {
-  background-color: var(--turquoise);
-}
-.darkslateblue {
-  background-color: var(--darkslateblue);
-}
-.violet {
-  background-color: var(--violet);
-}
-.mediumslateblue {
-  background-color: var(--mediumslateblue);
-}
-.blueviolet {
-  background-color: var(--blueviolet);
-}
-.yellow {
-  background-color: var(--yellow);
-}
-.red {
-  background-color: var(--red);
-}
-.deepskyblue {
-  background-color: var(--deepskyblue); 
-}
-*/

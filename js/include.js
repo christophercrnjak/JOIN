@@ -17,4 +17,22 @@ async function includeHTML() {
       element.innerHTML = "Page not found.";
     }
   }
+  setActiveLink();
 }
+
+    // Funktion zum Hinzufügen der 'active' Klasse basierend auf dem URL-Parameter
+    function setActiveLink() {
+      // Aktuelle URL abrufen
+      var url = window.location.href;
+      // Alle Links in der Seitenleiste auswählen
+      var links = document.querySelectorAll('.side_navbar_section');
+
+      // Durch alle Links iterieren
+      links.forEach(function(link) {
+          // Überprüfen, ob der href des Links in der URL enthalten ist
+          if (url.includes(link.getAttribute('href'))) {
+              // Wenn ja, füge die Klasse 'active' hinzu
+              link.classList.add('active');
+          }
+      });
+  }
