@@ -5,7 +5,6 @@
       "secondName": "Mayer",
       "color": "#FF7A00"
     },
-    "image":"assets/img/img_name_icon/Anton.svg",
     "mail": "anton@gmail.com",
     "password": "",
     "lockedIn": false
@@ -16,7 +15,6 @@
       "secondName": "Schulz",
       "color": "#9327FF"
     },
-    "image":"assets/img/img_name_icon/Anja.svg",
     "mail": "schulz@hotmail.de",
     "password": "",
     "lockedIn": true
@@ -27,7 +25,6 @@
       "secondName": "Ziegler",
       "color": "#6E52FF"
     },
-    "image":"assets/img/img_name_icon/Benedikt.svg",
     "mail": "benedikt@gmail.com",
     "password": "",
     "lockedIn": false
@@ -38,7 +35,6 @@
       "secondName": "Eisenberg",
       "color": "#FC71FF"
     },
-    "image":"assets/img/img_name_icon/David.svg",
     "mail": "davidberg@gmail.com",
     "password": "",
     "lockedIn": false
@@ -49,7 +45,6 @@
       "secondName": "Fischer",
       "color": "#FFBB2B"
     },
-    "image":"assets/img/img_name_icon/Eva.svg",
     "mail": "eva@gmail.com",
     "password": "",
     "lockedIn": false
@@ -60,7 +55,6 @@
       "secondName": "Mauer",
       "color": "#1FD7C1"
     },
-    "image":"assets/img/img_name_icon/Emmanuel.svg",
     "mail": "emmanuelma@gmail.com",
     "password": "",
     "lockedIn": false
@@ -71,7 +65,6 @@
       "secondName": "Bauer",
       "color": "#462F8A"
     },
-    "image":"assets/img/img_name_icon/Marcel.svg",
     "mail": "bauer@gmail.com",
     "password": "",
     "lockedIn": false
