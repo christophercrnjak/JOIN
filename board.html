@@ -69,15 +69,11 @@
                 <div class="board_column" ondrop="moveTo('toDo')" ondragover="allowDrop(event)">
                     <div class="column_head">
                         <div class="column_head_text">To do</div>
-                        <a href="addTask.html" class="column_head_add_btn">
-
-                            <div class="line_add_btn_horizont_columnhheader"></div>
-                            <div class="line_add_btn_vertical_columnhheader"></div>
-
+                        <a id="column_head_add_btn" href="addTask.html" class="column_head_add_btn">
+                           
                         </a>
-                        <a href="addTask.html" class="column_head_add_btn_mobile">
-                            <div class="line_add_btn_horizont_column_head"></div>
-                            <div class="line_add_btn_vertical_column_head"></div>
+                        <a id="column_head_add_btn_mobile" href="addTask.html" class="column_head_add_btn_mobile">
+                            
                         </a>
                     </div>
                     <div id="task_container_Todo" class="task_container"></div>
@@ -87,13 +83,11 @@
                 <div class="board_column" ondrop="moveTo('inProgress')" ondragover="allowDrop(event)">
                     <div class="column_head">
                         <div class="column_head_text">In progress</div>
-                        <a href="addTask.html" class="column_head_add_btn">
-                            <div class="line_add_btn_horizont_columnhheader"></div>
-                            <div class="line_add_btn_vertical_columnhheader"></div>
+                        <a id="add_btn_InProgress" href="addTask.html" class="column_head_add_btn">
+                            
                         </a>
                         <a href="addTask.html" class="column_head_add_btn_mobile">
-                            <div class="line_add_btn_horizont_column_head"></div>
-                            <div class="line_add_btn_vertical_column_head"></div>
+                            <img src="assets/img/plus_btn.svg">
                         </a>
                     </div>
                     <div id="task_container_InProgress" class="task_container"></div>
@@ -103,13 +97,11 @@
                 <div class="board_column" ondrop="moveTo('awaitFeedback')" ondragover="allowDrop(event)">
                     <div class="column_head">
                         <div class="column_head_text">Await feedback</div>
-                        <a href="addTask.html" class="column_head_add_btn">
-                            <div class="line_add_btn_horizont_columnhheader"></div>
-                            <div class="line_add_btn_vertical_columnhheader"></div>
+                        <a id="add_btn_AwaitFeedback" href="addTask.html" class="column_head_add_btn">
+                            
                         </a>
                         <a href="addTask.html" class="column_head_add_btn_mobile">
-                            <div class="line_add_btn_horizont_column_head"></div>
-                            <div class="line_add_btn_vertical_column_head"></div>
+                            <img src="assets/img/plus_btn.svg">
                         </a>
                     </div>
                     <div id="task_container_AwaitFeedback" class="task_container"></div>
@@ -119,13 +111,11 @@
                 <div class="board_column" ondrop="moveTo('done')" ondragover="allowDrop(event)">
                     <div class="column_head">
                         <div class="column_head_text">Done</div>
-                        <a href="addTask.html" class="column_head_add_btn">
-                            <div class="line_add_btn_horizont_columnhheader"></div>
-                            <div class="line_add_btn_vertical_columnhheader"></div>
+                        <a id="add_btn_Done" href="addTask.html" class="column_head_add_btn">
+                            
                         </a>
                         <a href="addTask.html" class="column_head_add_btn_mobile">
-                            <div class="line_add_btn_horizont_column_head"></div>
-                            <div class="line_add_btn_vertical_column_head"></div>
+                            <img src="assets/img/plus_btn.svg">
                         </a>
                     </div>
                     <div id="task_container_Done" class="task_container"></div>
@@ -135,7 +125,9 @@
     </div>
 
     <!-- JAVASCRIPT FOR THE KANBAN BOARD -->
-   
+   <script src="js/board/board_hover.js">
+       
+   </script>
 </body>
 
 </html>

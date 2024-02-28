@@ -296,4 +296,15 @@ function calcPositionMember(i) {
 
 
 
+// ***** Global function *****
+
+function changeDueDateFormatInLongYear(taskId) {
+    let date = tasks[taskId].dueDate;
+    date = date.split('/');
+    let year = parseInt(date[2]); 
+    year = year + 2000;
+    let newDate = date[0] + '/' + date[1] + '/' + year;
+    return newDate
+}
+
 

@@ -69,12 +69,14 @@ function renderDescriptionEditDialog(taskId) {
 // show Due Date input to change content of Due Date via inputfield
 function renderDueDateEditDialog(taskId) {
     let container = document.getElementById('dueDate_section_edit');
-    let date = tasks[taskId].dueDate;
+    let newDate = changeDueDateFormatInLongYear(taskId)
     container.innerHTML = `
     <div class="header_text_edit_section">Due Date</div>
-    <input id="edit_input_dueDate" type="text" value="${date}">
+    <input id="edit_input_dueDate" type="text" value="${newDate}">
     `;
 }
+
+
 
 
 // *** priority *** //
