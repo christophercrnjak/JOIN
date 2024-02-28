@@ -16,6 +16,11 @@
     font-weight: 400;
 }
 
+.flexDirection {
+    flex-direction: column;
+    display: flex;
+}
+
 
 /***** Title Section *****/
 
@@ -154,152 +159,248 @@
     max-height: 338px;
 }
 
-.dropdown {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    font-size: 16px;
-    font-weight: 400;
-    cursor: pointer;
+    .dropdown {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        position: relative;
+    }
+
+        .dropdown_text {
+            color: black;
+            padding-left: 21px;
+            border-radius: 10px;
+            border: 2px solid #ccc;
+            font-size: 16px;
+            font-weight: 400;
+            padding: 12px 20px 12px 21px;
+            width: 100%;
+        }
+
+        .dropdown_text:hover {
+            border: solid 1px #A8A8A8;
+            border-radius: 10px;
+        }
+
+        #dropdown_input {
+            width: 100%;
+        }
+
+            #search_contacts_edit {
+                border: 2px solid #ccc;
+                background-image: none;
+                width: 100%;
+                border-radius: 10px;
+                padding: 12px 56px 12px 21px;
+                color: black;
+                font-size: 16px;
+                font-weight: 400;
+                cursor: pointer;
+            }
+
+            #search_contacts_edit:focus {
+                border: solid 1px var(--blue);
+                outline: var(--blue);
+            }  
+
+        .dopdown_img_inactive {
+            width: 24px;
+            height: 24px;
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            bottom: 12px;
+        }
+
+        .selectedContacts {
+            width: 100%;
+            display: flex;
+            margin-top: 8px;
+            max-height: 322px;
+            overflow: auto;
+            gap: 8px;
+        }
+
+            .dropdown_contact_row {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                padding: 7px 16px 7px 16px;
+                align-items: center;
+            }
+
+            .dropdown_contact_row:hover {
+                background-color: rgb(235, 235, 235);
+                border-radius: 10px;
+            }
+
+            /* include via js */
+            .contactOfTask {
+                background-color: var(--bgdarkblue);
+                border-radius: 10px;
+                color: white;
+                padding-top: 7px;
+                padding-bottom: 7px;
+            }
+
+             /* include via js */
+            .contactOfTask:hover {
+                background-color: var(--marineblue);
+            }
+
+                .dropdown_contact_image_name {
+                    font-size: 20px;
+                    font-weight: 400;
+                    align-items: center;
+                    display: flex;
+                }
+
+                .dropdown_contact_image_name img {
+                    cursor: pointer;
+                }
+
+                    .selected_member_cicle {
+                        width: 42px;
+                        height: 42px;
+                        border-radius: 42px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        color: white;
+                        font-size: 12px;
+
+                    }
+
+                    .dropdownNames {
+                        margin-left: 16px;
+                    }
+
+                .checkbox_edit {
+                    width: 24px;
+                    height: 24px;
+                    display: flex;
+                    justify-content: center;
+                    padding-top: 3px;
+                }
+                
+                .checkbox_edit:hover {
+                    background-color: rgba(255, 255, 255,0.9);
+                    border-radius: 25px;
+                    cursor: pointer;
+                }
+
+
+/***** Subtask Section *****/
+
+#subtask_section_edit {
+    margin-top: 30px;
+}
+
+.input_section_edit_subtask {
     position: relative;
 }
 
-.dropdown_text:hover {
-    border: solid 1px #A8A8A8;
-    border-radius: 10px;
-}
-
-.dropdown_text {
-    color: black;
-    padding-left: 21px;
-    border-radius: 10px;
-    border: 2px solid #ccc;
-    font-size: 16px;
-    font-weight: 400;
-    padding: 12px 20px 12px 21px;
-    width: 100%;
-}
-
-
-.dopdown_img_inactive {
-    width: 24px;
-    height: 24px;
+.add_btn_subtask_edit {
     position: absolute;
     top: 12px;
     right: 16px;
     bottom: 12px;
 }
 
-.selectedContacts {
-    width: 100%;
-    display: flex;
-    margin-top: 8px;
-    max-height: 322px;
-    overflow: auto;
-    gap: 8px;
-}
+     #subtask_section_edit input {
+        border: 2px solid #ccc;
+        background-image: none;
+        width: 100%;
+        border-radius: 10px;
+        padding: 12px 50px 12px 21px;
+        color: black;
+        font-size: 16px;
+        font-weight: 400;
+        cursor: pointer;
+    }
 
-#allContactsforChoice {
-    display: flex;
-    flex-direction: column;
-}
+    #subtask_section_edit input:focus {
+        border: solid 1px var(--blue);
+        outline: var(--blue);
+    }  
 
-.flexDirection {
-    flex-direction: column;
-    display: flex;
-}
+    .unordered-list_subtasks {
+        margin-top: 14.5px;
 
-.selected_member_cicle {
-    width: 42px;
-    height: 42px;
-    border-radius: 42px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 12px;
-    
-}
+    }
 
-.dropdown_contact_row {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 7px 16px 7px 16px;
-    align-items: center;
-}
+        #added_subtasks_edit {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 8px;
+        }
 
-.dropdown_contact_row:hover {
-    background-color: rgb(235, 235, 235);
-    border-radius: 10px;
-}
+            .subtask_list_row_main:hover {
+                background-color: rgb(235, 235, 235);
+                border-radius: 10px;
+            }
 
-.dropdownNames {
-    margin-left: 16px;
-}
+            .subtask_list_row_main:hover .edit_btn_subtask,
+            .subtask_list_row_main:hover .line_subtask, 
+            .subtask_list_row_main:hover .delete_btn_subtask {
+                display: flex;
+            }
 
-.dropdown_contact_image_name {
-    font-size: 20px;
-    font-weight: 400;
-    align-items: center;
-    display: flex;
-}
+                .subtask_list_row {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    gap: 12px;
+                }
 
-.dropdown_contact_image_name img {
-    cursor: pointer;
-}
+                    .subtask_name_edit {
+                        display: flex;
+                        padding-top: 6px;
+                        padding-bottom: 6px;
+                        font-size: 16px;
+                        font-weight: 400;
+                    }
 
-.contactOfTask {
-    background-color: var(--bgdarkblue);
-    border-radius: 10px;
-    color: white;
-    padding-top: 7px;
-    padding-bottom: 7px;
-}
+                        .point {
+                        margin-right: 10px;
+                        padding-left: 20px;
+                        }
 
-.contactOfTask:hover {
-    background-color: var(--marineblue);
-}
+                    .subtask_delete_and_edit_editDialog {
+                        display: flex;
+                        padding-right: 16px;
+                        align-items: center;
+                    }
 
-.checkbox_edit {
-    width: 24px;
-    height: 24px;
-    display: flex;
-    justify-content: center;
-    padding-top: 3px;
-    
-}
+                        .subtask_delete_and_edit_editDialog a:hover path {
+                            fill: #29ABE2; 
+                            cursor: pointer; 
+                        }
 
-.checkbox_edit:hover {
-    background-color: rgba(255, 255, 255,0.9);
-    border-radius: 25px;
-    cursor: pointer;
-}
+                        .edit_btn_subtask {
+                            display: none;
+                        }
 
-#subtask_section_edit {
-    margin-top: 30px;
-}
+                        .line_subtask {
+                            background-color: #D1D1D1;
+                            height: 24px;
+                            width: 1px;
+                            margin-left: 8px;
+                            margin-right: 8px;
+                            display: none;
+                        }
 
-#subtask_section_edit input {
-    background-image: url(/assets/img/plus.svg);
-    border-radius: 10px;
-    padding-left: 21px;
-}
+                        .delete_btn_subtask {
+                            display: none;
+                        }
 
-.unordered-list_subtasks {
-    margin-top: 14.5px;
-    margin-left: 40px;
-}
 
-.unordered-list_subtasks ul li{
-    margin-bottom: 8px;
-   
-}
+/***** OK Section *****/
 
-.unordered-list_subtasks ul li a {
-     color: black;
-}
 
 #ok_section_edit {
     display: flex;
@@ -324,27 +425,6 @@
     height: 24px;
 }
 
-#search_contacts_edit {
-    border: 2px solid #ccc;
-    background-image: none;
-    width: 100%;
-    border-radius: 10px;
-    padding: 12px 56px 12px 21px;
-    color: black;
-    font-size: 16px;
-    font-weight: 400;
-    cursor: pointer;
-}
 
-#search_contacts_edit:focus {
-    border: solid 1px var(--blue);
-    outline: var(--blue);
-}  
 
-#dropdown_main {
-    position: relative;
-}
 
-#dropdown_input {
-    width: 100%;
-}

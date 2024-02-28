@@ -55,33 +55,58 @@ a {
             }
 
             .search {
-                width: 312px;
-                height: 48px;
-                border: 2px solid #ccc;
-                border-radius: 10px;
-                background-color: white;
-                align-items: center;
                 display: flex;
+                justify-content: space-between;
+                align-items: center;
+                position: relative;
+                width: 312px;
             }
 
-            .search > hr {
+                .search > input {
+                    border: 2px solid #ccc !important;
+                    border-radius: 10px;
+                    background-color: white;
+                    width: 100%;
+                    padding: 12px 56px 12px 21px !important;
+                    color: black;
+                    font-size: 16px;
+                    font-weight: 400;
+                    cursor: pointer;
+                }
+
+                .search > input:focus {
+                    border: solid 1px var(--blue) !important;
+                    outline: var(--blue) !important;
+                }
+
+                .search > input:hover {
+                    border: solid 1px #A8A8A8 !important;
+                }
+            
+                .search > hr {
                 display: flex;
                 height: 31px;
                 width: 1px;
-                background-color: rgba(209, 209, 209, 1);
                 border-style: none;
                 margin-left: 1px;
-            }
+                position: absolute;
+                left: 248px;
+                background-color: #D1D1D1;
+                }
 
-            .search > .search_image {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 32px;
-                height: 32px;
-                margin: 8px 16px 8px;
-                cursor: pointer;
-            }
+                .search > .search_image {
+                    position: absolute;
+                    top: 7px;
+                    right: 16px;
+                    bottom: 8px;
+                    cursor: pointer;
+                }
+
+                .search > .search_image:hover {
+                   background-color: rgb(238, 238, 238);
+                   border-radius: 20px;
+                }
+
                 
                 .add_task_btn {
                     background-color: var(--bgdarkblue);

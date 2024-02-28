@@ -165,12 +165,13 @@
                 justify-content: end;
                 align-items: center;
                 width: 100%;
-              
+                font-size: 16px;
+                font-weight: 400;
             }
 
             .delete_and_edit img{
-                width: 25px;
-                height: 25px;
+                width: 16px;
+                height: 18px;
                 margin-right: 8px;
             }
 
@@ -178,6 +179,25 @@
                 display: flex;
                 align-items: center;
                 color: var(--bgdarkblue);
+            }
+
+            .delete_and_edit a:hover{
+                font-weight: 700;
+                color: #29ABE2;
+            }
+
+            .delete_and_edit a:hover path {
+                fill: #29ABE2; 
+                cursor: pointer; 
+            }
+
+            .delete_and_edit a:hover path {
+                fill: #29ABE2; 
+                cursor: pointer; 
+            }
+
+            .delet_text {
+                margin-left: 8px;
             }
 
                 .line_task {

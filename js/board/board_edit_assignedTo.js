@@ -5,8 +5,6 @@ let contactsOfCurrentTask = [];
 async function renderAssigedToEditDialog(taskId){
     await loadContacts();
     contactsOfCurrentTask = tasks[taskId].contacts;
-    console.log(contactsOfCurrentTask);
-    console.log(tasks[0].contacts);
     let container = document.getElementById('assignedTo_section_edit');
     container.innerHTML = assigedToEditHTML(taskId);
     renderSelectedContacts(taskId);
@@ -126,6 +124,7 @@ function editContactListHTML(taskId, contactId) {
     `;
 }
 
+// 
 function renderCheckBoxEdit(taskId, contactId) {
     let container_checkbox = document.getElementById(`checkbox_edit${taskId}${contactId}`);
     let container_dropdown_contact = document.getElementById(`dropdown_contact${taskId}${contactId}`);
@@ -152,8 +151,6 @@ function checkContactSelected(firstName, secondName, taskId) {
             return true
         }
     }
-    console.log(contactsOfCurrentTask);
-    console.log(tasks[0].contacts);
 }
 
 function renderMemberImageDropdown(taskId, contactId) {
@@ -182,8 +179,6 @@ function deleteContactFromTask(firstName, secondName, taskId) {
     contactsOfCurrentTask.splice(index_of_deleted_name, 1);
     showContactList(taskId);
     document.getElementById('selectedContactsSection').classList.toggle('flexDirection');
-    console.log(contactsOfCurrentTask);
-    console.log(tasks[0].contacts);
 }
 
 function findDeleteNameInArray(firstName, secondName, taskId) {
@@ -195,8 +190,6 @@ function findDeleteNameInArray(firstName, secondName, taskId) {
             index = i;
         }
     }
-    console.log(contactsOfCurrentTask);
-    console.log(tasks[0].contacts);
     return index;
 }
 
@@ -212,8 +205,6 @@ function selectContactforTask(taskId, contactId) {
             "color": `${color}`
         },
     );
-    console.log(contactsOfCurrentTask);
-    console.log(tasks[0].contacts);
     showContactList(taskId);
     document.getElementById('selectedContactsSection').classList.toggle('flexDirection');
 }

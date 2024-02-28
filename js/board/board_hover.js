@@ -1,3 +1,6 @@
+ // *** Hover of add  btn kanban Board *** //
+ 
+
  // Element mit der ID 'meinElement' auswählen
  let element = document.getElementById('column_head_add_btn');
 
@@ -103,3 +106,7 @@ element3.addEventListener('mouseout', function() {
 // Bildquelle zurücksetzen
 imgElement3.src = bildQuelle3;
 });
+
+
+
+ 
