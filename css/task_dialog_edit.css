@@ -306,6 +306,7 @@
     top: 12px;
     right: 16px;
     bottom: 12px;
+    height: fit-content;
 }
 
      #subtask_section_edit input {

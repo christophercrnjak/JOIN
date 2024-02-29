@@ -1,16 +1,16 @@
 
 function renderSubtasksEditDialog(taskId) {
     let container = document.getElementById('subtask_section_edit');
-    container.innerHTML = subtaskListEditHTML();
+    container.innerHTML = subtaskListEditHTML(taskId);
     added_subtasks_edit(taskId);
 }
 
-function subtaskListEditHTML() {
+function subtaskListEditHTML(taskId) {
     return `
         <div class="header_text_edit_section">Subtasks</div>
         <div class="input_section_edit_subtask">
-            <input type="text" placeholder="Add new subtask">
-            <a class="add_btn_subtask_edit">
+            <input id="add_new_subtask_input" type="text" placeholder="Add new subtask">
+            <a class="add_btn_subtask_edit" onclick="take_over_new_Subtask(${taskId})">
                 <img src="assets/img/addSubtask_btn.svg">
             </a>
         </div>
@@ -95,5 +95,16 @@ function take_over_new_content_of_Task(subtaskId, taskId) {
     tasks[taskId].subtasks[subtaskId].name = `${content}`;
     console.log(tasks[taskId].subtasks);
     renderSubtasksEditDialog(taskId);
+}
 
+function take_over_new_Subtask(taskId) {
+    let content = document.getElementById('add_new_subtask_input').value;
+    tasks[taskId].subtasks.push(
+        {
+        "name": `${content}`,
+        "done": true
+        },
+    );
+    console.log(tasks[taskId].subtasks);
+    renderSubtasksEditDialog(taskId);
 }
