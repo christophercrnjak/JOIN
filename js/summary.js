@@ -147,3 +147,8 @@ function renderUserName() {
   userNameElement.innerHTML = userName;
   comma.innerHTML = ",";
 }
+
+function changeImage(currentImage) {
+  let img = document.getElementById(`${currentImage}`);
+  img.sort = "bla.jpg";
+}

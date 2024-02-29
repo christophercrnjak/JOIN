@@ -10,12 +10,13 @@ body {
 }
 
 .container {
-  margin-left: 328px;
-  padding-top: 206px;
+  margin-left: 232px;
+  padding-top: 96px;
   display: flex;
   flex-direction: column;
   row-gap: 56px;
   width: 70%;
+  height: 100%;
   max-width: 1300px;
   min-width: 950px;
 }
@@ -145,6 +146,9 @@ hr {
   width: 100%;
   gap: 28px;
   height: 33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .third_row a {
@@ -157,6 +161,7 @@ hr {
   flex-direction: column;
   row-gap: 3px;
   width: 50%;
+  text-align: center;
 }
 
 .welcome_message p {
