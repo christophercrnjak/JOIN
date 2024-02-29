@@ -148,7 +148,7 @@ function renderUserName() {
   comma.innerHTML = ",";
 }
 
-function changeImage(currentImage) {
-  let img = document.getElementById(`${currentImage}`);
-  img.sort = "bla.jpg";
+function changeImage(element) {
+  let img = document.querySelector("img");
+  img.src = "bla.jpg";
 }
