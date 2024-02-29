@@ -6,16 +6,17 @@
     padding: 20px, 20px, 40px, 348px;
     align-items: center;
     width: 100%;
-    justify-content: flex-end;
+    justify-content: space-between;
     height:  96px;
     /* überarbeiten bei Monitor größe*/
     position: fixed;
 
 }
-
 .headnav_text {
-    position: absolute;
-    left: 300px;
+    padding-left: 360px;
+}
+.logo_join_responsiv {
+    display: none;
 }
 
 #navbarHeadIcon {
@@ -29,6 +30,7 @@
     align-items: center;
     justify-content: center;
     gap: 6px;
+    cursor: pointer;
 }
 
 /* Sidebar  */
@@ -115,19 +117,39 @@
 .active {
     background-color: var(--sideAtkivColor);
   }
-/* Aktives Element #091931 */
+
 
 @media(max-width: 1000px) {
+    .head_main_navbar {
+        font-size: 14px;
+    }
+    .logo_join_responsiv {
+        display: flex;
+        margin-left: 16px;
+        height: 48px;
+        width: 48px;
+    }
+    #navbarHeadIcon_help {
+        display: none;
+    }
+    .headnav_text {
+        display: none;
+    }
     .sidebar {
-        height: 10vh; 
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        height: 80px; 
         width: 100%;
         bottom: 0;
-       
+        font-size: 14px;
     }
     .side_navbar {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
+    height: 80px; 
+    width: 80px;
     width: 100%;
     }
     .logo_sidebar {
@@ -137,13 +159,17 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 16px;
+        padding: 0;
     }
     .side_navbar_section img {
         padding: 0;
     }
-    .side_navbar_section div {
-        display: none;
+    .side_navbar a{
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      padding: 15px, 0px, 15px, 0px;
+      border-radius: 8px;
     }
     .side_navbar_section {
         width: 100%;
@@ -152,4 +178,8 @@
     .sidebar_footer {
         display: none;
     }
+}
+
+@media(max-width: 1000px) {
+    
 }
