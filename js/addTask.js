@@ -9,6 +9,7 @@ let subtasklists = [];
 function addTaskInit() {
   renderDropList();
   renderCategoryDropDown();
+  includeHTML();
 }
 
 // Selected contacts assign

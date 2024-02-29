@@ -17,15 +17,9 @@ async function includeHTML() {
       element.innerHTML = "Page not found.";
     }
   }
-  setActiveLink();
+ 
 }
 
-    function setActiveLink() {
-      let url = window.location.href;
-      let links = document.querySelectorAll('.side_navbar_section');
-      links.forEach(function(link) {
-          if (url.includes(link.getAttribute('href'))) {
-              link.classList.add('active');
-          }
-      });
+  function myFunction() {
+    document.getElementById("footer_notice").classList.toggle("show");
   }
