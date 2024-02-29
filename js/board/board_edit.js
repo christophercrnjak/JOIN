@@ -5,7 +5,7 @@ let prioStatusEdit = '';
 // delete dialog container content and call functions built edit-content
 function renderEditDialog(taskId) {
     let container = document.getElementById('task_dialog_container')
-    container.innerHTML = editDialogHTML();
+    container.innerHTML = editDialogHTML(taskId);
     renderTitleEditDialog(taskId);
     renderDescriptionEditDialog(taskId);
     renderDueDateEditDialog(taskId);
@@ -15,7 +15,7 @@ function renderEditDialog(taskId) {
 }
 
 // HTML of main structure of edit dialog
-function editDialogHTML() {
+function editDialogHTML(taskId) {
     return `
     <div id="close_section_edit" class="distance">
         <a onclick="close_open_Dialog()" class="close">
@@ -29,8 +29,8 @@ function editDialogHTML() {
     <div id="prio_section_edit" class="distance"></div>
     <div id="assignedTo_section_edit" class="distance flexDirection"></div>
     <div id="subtask_section_edit" class="distance flexDirection"></div>
-    <div onclick="confirmInputsOfEditDialog()" id="ok_section_edit" class="distance">
-        <a class="confirm_btn_edit">
+    <div id="ok_section_edit" class="distance">
+        <a onclick="confirmInputsOfEditDialog(${taskId})" class="confirm_btn_edit">
         OK <img src="assets/img/check.svg">
         </a>
     </div>
@@ -219,4 +219,30 @@ function lowActivHTML() {
             <img id="btnLow_img" src="assets/img/Prio_low_white.svg" alt="" srcset="">
         </a>
     `;
+}
+
+function confirmInputsOfEditDialog(taskId) {
+    new_content = getNewContentOfEditDialog();
+    tasks[taskId].title = new_content.new_title;
+    tasks[taskId].description = new_content.new_description;
+    tasks[taskId].dueDate = new_content.new_Due_Date;
+    tasks[taskId].priority = new_content.new_priority;
+    close_open_Dialog();
+    close_open_Dialog(taskId);
+}
+
+function getNewContentOfEditDialog() {
+    let new_title = document.getElementById('edit_input_title');
+    let new_description = document.getElementById('edit_input_description');
+    let new_Due_Date = document.getElementById('edit_input_dueDate');
+    let new_priority = prioStatusEdit;
+
+    return {
+        new_title: new_title,
+        new_description: new_description,
+        new_Due_Date: new_Due_Date,
+        new_priority: new_priority
+
+    };
+
 }
