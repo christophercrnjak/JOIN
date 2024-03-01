@@ -33,8 +33,8 @@
               <a
                 href="./board.html"
                 class="task display_center"
-                onmouseover="hover(this)"
-                onmouseout="unhover(this)"
+                onmouseover="hover(this, './assets/img/pencil_white.svg')"
+                onmouseout="unhover(this, './assets/img/pencil.svg')"
               >
                 <img src="./assets/img/pencil.svg" />
                 <div class="display_center flex_direction_column">
@@ -42,7 +42,12 @@
                   <div class="task_name">To-Do</div>
                 </div>
               </a>
-              <a href="./board.html" class="task display_center">
+              <a
+                href="./board.html"
+                class="task display_center"
+                onmouseover="hover(this, './assets/img/hook_white.svg')"
+                onmouseout="unhover(this, './assets/img/hook.svg')"
+              >
                 <img src="./assets/img/hook.svg" />
                 <div class="display_center flex_direction_column">
                   <div class="task_amount" id="done_amount"></div>
