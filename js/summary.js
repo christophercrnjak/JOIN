@@ -148,7 +148,12 @@ function renderUserName() {
   comma.innerHTML = ",";
 }
 
-function changeImage(element) {
-  let img = document.querySelector("img");
-  img.src = "bla.jpg";
+function hover(element) {
+  let img = element.querySelector("img");
+  img.setAttribute("src", "./assets/img/pencil_white.svg");
+}
+
+function unhover(element) {
+  let img = element.querySelector("img");
+  img.setAttribute("src", "./assets/img/pencil.svg");
 }

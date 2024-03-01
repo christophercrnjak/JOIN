@@ -3,27 +3,28 @@ body {
   background-color: var(--bgwhite);
 }
 
-.wrapper {
-  display: flex;
-  align-items: center;
-  gap: 80px;
-}
-
 .container {
-  margin-left: 232px;
+  padding-left: 232px;
   padding-top: 96px;
   display: flex;
   flex-direction: column;
-  row-gap: 56px;
-  width: 70%;
+  justify-content: center;
+  align-items: center;
   height: 100%;
-  max-width: 1300px;
   min-width: 950px;
 }
 
-header {
+section {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 56px;
+}
+
+header {
+  width: 90%;
   gap: 30px;
+  display: flex;
   align-items: center;
 }
 
@@ -48,6 +49,7 @@ h2 {
 }
 
 main {
+  width: 90%;
   gap: 80px;
 }
 
@@ -143,7 +145,6 @@ hr {
 }
 
 .third_row {
-  width: 100%;
   gap: 28px;
   height: 33%;
   display: flex;
@@ -152,8 +153,9 @@ hr {
 }
 
 .third_row a {
-  width: 33%;
-  min-width: 132px;
+  /* width: 33%; */
+  width: 192px;
+  height: 192px;
 }
 
 .welcome_message {
