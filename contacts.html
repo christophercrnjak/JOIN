@@ -47,13 +47,13 @@
                         <div class="add_contact">
                             <img onclick="closePerson()" src="./assets/img/close.png">
                             <input type="hidden" id="selectedPersonIndex">
-                            <input type="text" required placeholder="Name">
-                            <input type="email" required placeholder="Email">
-                            <input type="tel" required placeholder="Phone">
+                            <input id="name" type="text" required placeholder="Name">
+                            <input id="email" type="email" required placeholder="Email">
+                            <input id="phone" type="tel" required minlength="10" maxlength="15" pattern="[0-9]+" placeholder="Phone">
                         </div>
                         <div class="display_center_b">
-                            <button onclick="deletePerson()" class="delete_button">Delete</button>
-                            <button onclick="createContact()" class="save_button">Save<img src="./assets/img/check.png"></button>
+                            <button onclick="deletePerson(); closePerson();" class="delete_button">Delete</button>
+                            <button onclick="saveChanges()" class="save_button">Save<img src="./assets/img/check.png"></button>
                         </div>
                     </form>
                 </div>
@@ -74,18 +74,21 @@
                     <form>
                         <div class="add_contact">
                             <img onclick="closeDialog()" src="./assets/img/close.png">
-                            <input id="name" type="text" required placeholder="Name">
-                            <input id="email" type="email" required placeholder="Email">
-                            <input id="phone" type="tel" required placeholder="Phone">
+                            <input id="input_name"  type="text" required placeholder="Name">
+                            <input id="input_email" type="email" required placeholder="Email">
+                            <input id="input_phone" type="tel" required pattern="[0-9]+" placeholder="Phone">
                         </div>
                         <div class="display_center_b">
                             <button onclick="closeDialog()">Cancel<img src="./assets/img/close.png"></button>
-                            <button onclick="createContact()" class="create_button">Create contact<img src="./assets/img/check.png"></button>
+                            <button type="button" onclick="createContact()" class="create_button">Create contact<img src="./assets/img/check.png"></button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="success">
+        <p>Contact succesfully created</p>
     </div>
 </body>
 
