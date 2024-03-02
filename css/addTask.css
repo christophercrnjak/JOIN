@@ -1,44 +1,47 @@
 body {
   background-color: var(--bgwhite);
-  display: flex;
   height: 100vh;
   width: 100%;
+  display: flex;
 }
 
 .main_addTask {
-  justify-content: space-between;
+  display: flex;
+  justify-content: center;
   align-items: flex-start;
   flex-direction: column;
   background-color: var(--bgwhite);
-  padding-left: 20%;
+  padding-left: 300px;
+  height: 93%;
 }
 
+.right {
+  border-left: 1px solid #c7c7c7;
+  padding-left: 50px;
+}
 .AddTask_head{
-  margin-top: 11%; 
+  margin-top: 15%; 
   font-size: 61px;
   font-weight: 700;
+  margin-bottom: 1%;
 }
 
-
-.addTaskForms {
-  gap: 80px;
+.addTaskForms{
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: baseline;
+  width: 100%;
+  gap: 50px;
+  flex: 1;
 }
+
 
 .addTaskForm {
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  justify-content: center;
-  gap: 10px;
-  height: 378px;
-  width: 440px;
-}
-
-.border_right {
-  border-right: 1px solid #bebebe;
+ display: flex;
+ justify-content: center;
+ align-items: flex-start;
+ flex-direction: column;
 }
 
 .addTaskForm span {
@@ -64,8 +67,8 @@ body {
   background-position: right 10px center;
   background-repeat: no-repeat;
   padding: 12px 20px 12px 40px;
+  margin-bottom: 16px;
 }
-
 
 textarea#description {
   height: 96px;
@@ -97,7 +100,6 @@ textarea#description {
   height: 56px;
   width: 120px;
   border-radius: 10px;
-
 }
 
 .btn_addTask:hover {
@@ -108,15 +110,12 @@ textarea#description {
 .dropdown {
   position: relative;
   display: inline-block;
-
 }
 
 /* Stil für aktiven Eintrag im Dropdown-Menü */
 .dropdown_content li:hover {
   background-color: #ddd;
 }
-
-
 
 /* Dropdown Button */
 .dropbtn {
@@ -155,8 +154,8 @@ textarea#description {
   color: #ffff !important;
 }
 
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show {
+/* show_task_task the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show_task {
   display: block;
 }
 
@@ -187,8 +186,8 @@ textarea#description {
   align-items: center;
   color: #ffffff;
   font-size: 12px;
-  
 }
+
 .arrow:hover {
   background-color: #dadada;
   border-radius: 50%;
@@ -200,10 +199,9 @@ textarea#description {
 }
 
 .create_clear_task {
-  align-items: flex-start;
-  width: 840px;/* rework*/
   display: flex;
   justify-content: space-between;
+  width: 100%;
 }
 
 .addTask_btns {
@@ -227,10 +225,6 @@ input[type='checkbox'] {
   display: flex;
   justify-content: space-between;
   text-align: center;
-}
-
-.gap {
-  gap: 16px;
 }
 
 .dropdown_list {
@@ -277,24 +271,4 @@ input[type='checkbox'] {
   background-position: right 10px center;
   background-repeat: no-repeat;
   padding: 12px 20px 12px 40px;
-}
-
-@media(max-width: 1200px) {
-  body {
-    background-color: var(--bgwhite);
-    display: flex;
-    width: 100%;
-  }
-  .main_addTask {
-    display: flex;
-    height: 100%;
-    padding-left: 8px;
-    padding-right: 8px;
-    padding-bottom: 80px;
-  }
-  .addTaskForms {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
 }
