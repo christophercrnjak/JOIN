@@ -240,73 +240,73 @@ function renderContainer(){
 
 function renderHtml() {
   return`
- 
-<!-- Head content add task -->
+  <!-- Head content add task -->
 
-<div class="main_addTask">
-    <header class="AddTask_head"> Add Task</header>
-
-<!-- Main section add task -->
-
-    <div class="addTaskForms">
-<!-- section add task -->
-<!-- First section  -->
-
-        <section class="addTaskForm  ">
-            <div for=" ">Title<span>*</span></div>
-            <input id="titleAddtask" type="text" placeholder="Enter a title" required>
-            <div for="">Description</div>
-            <textarea name="" id="description" placeholder="Enter a Description"></textarea>
-
-            <div class="dropdown">
-                <div id="arrow" class="arrow" onclick="toggledropbtn(); return false"><img src="" alt="" srcset=""></div>
-                <div onclick="toggledropbtn(); return false" class="dropbtn" id="dropbtn">Select contacts assign</div>
-                <input type="text" id="dropdownInput" onkeyup="filterFunction()" class="d-none">
-                <div id="dropdown" class="dropdown_content">
-                </div>
-            </div>
-            <div class="dropdown_list" id="dropdownList"></div>
-        </section>
-
-<!-- Secound section  -->
-
-        <section class="addTaskForm right">
-            <div for="text">Due date<span>*</span></div>
-            <input type="date" name="" id="AddTaskDate" required>
-            <div for="prio">Prio</div>
-            <div class="btn_addTask_list" id="btnAddTaskPrio">
-                <a class="btn_addTask" id="btnUrgrend" onclick="changePriority('urgrend')">Urgrend <img id="btnUrgrendImg"
-                        src="assets/img/Priority_symbols_Urgent.png"></a>
-                <a class="btn_addTask" id="btnMedium" onclick="changePriority('medium')">Medium <img id="btnMediumImg"
-                        src="assets/img/Priority_symbols_Medium.png"></a>
-                <a class="btn_addTask" id="btnLow" onclick="changePriority('low')">Low <img id="btnLowImg"
-                        src="assets/img/Priority_symbols_Low.png"></a>
-            </div>
-            
-            <div><div>Category<span>*</span></div>
-            <div class="dropdown_category" id="categoryDropDownBtn" onclick="categoryDropDownBtn()">Select task category</div>
-            </div>
-            <div id="dropdownCategory" class="dropdown_content dropdownCategory"></div>
-            <div class="Subtask">
-                <div for="Subtasks">Subtasks</div>
-                <div class="subtaskIcons"><img onclick="pushToSubtasks()" src="/assets/img/subtasksPlus.svg"><img class="d-none" src="/assets/img/check_dark.svg"></div>
-                <input type="text" class="subtasksInput" id="subtasksInput" placeholder="Add new Subtask">
-                <div id="subtasklist"></div>
-            </div>
-        </section>
-
+  <div class="main_addTask">
+      <header class="AddTask_head"> Add Task</header>
+  
+  <!-- Main section add task -->
+  
+      <div class="addTaskForms">
+  <!-- section add task -->
+  <!-- First section  -->
+  
+          <section class="addTaskForm">
+              <div class="title_head">Title<span>*</span></div>
+              <input id="titleAddtask" type="text" placeholder="Enter a title" required>
+              <div class="description_head">Description</div>
+              <textarea id="description" placeholder="Enter a Description"></textarea>
+              <div class="assign_head">Assigned to </div>
+              <div class="dropdown">
+                  <div id="arrow" class="arrow" onclick="toggledropbtn(); return false"><img src="" alt="" srcset=""></div>
+                  <div onclick="toggledropbtn(); return false" class="dropbtn" id="dropbtn">Select contacts assign</div>
+                  <input type="text" id="dropdownInput" onkeyup="filterFunction()" class="d-none">
+                  <div id="dropdown" class="dropdown_content">
+                  </div>
+              </div>
+              <div class="dropdown_list" id="dropdownList"></div>
+          </section>
+  
+  <!-- Secound section  -->
+  
+          <section class="addTaskForm right">
+              <div class="date_head">Due date<span>*</span></div>
+              <input type="date" id="AddTaskDate" required>
+              <div class="prio_head">Prio</div>
+              <div class="btn_addTask_list" id="btnAddTaskPrio">
+                  <a class="btn_addTask" id="btnUrgrend" onclick="changePriority('urgrend')">Urgrend <img id="btnUrgrendImg"
+                          src="assets/img/Priority_symbols_Urgent.png"></a>
+                  <a class="btn_addTask" id="btnMedium" onclick="changePriority('medium')">Medium <img id="btnMediumImg"
+                          src="assets/img/Priority_symbols_Medium.png"></a>
+                  <a class="btn_addTask" id="btnLow" onclick="changePriority('low')">Low <img id="btnLowImg"
+                          src="assets/img/Priority_symbols_Low.png"></a>
+              </div>
+          
+                
+                      <div class="category_head">Category<span>*</span></div>
+                      <div class="dropdown_category" id="categoryDropDownBtn" onclick="categoryDropDownBtn()">Select task category</div>
+                      <div id="dropdownCategory" class="dropdown_content dropdownCategory"></div>
+    
+       
+              <div class="subtasks_head">Subtasks</div>
+                  <div class="subtaskIcons"><img onclick="pushToSubtasks()" src="/assets/img/subtasksPlus.svg"><img class="d-none" src="/assets/img/check_dark.svg"></div>
+                  <input type="text" class="subtasksInput" id="subtasksInput" placeholder="Add new Subtask">
+                  <div id="subtasklist"></div>
+          
+          </section>
+  
+      </div>
+             
+      <div class="create_clear_task">
+      <p><span>*</span>This Field is required</p>
+      <div class="addTask_btns">
+          <button class="btn_transparent addTask_btn" onclick="pushToJson()">Clear <img src="/assets/img/close.png"></button>
+          <button class="btn_grey addTask_btn display_center gap" onclick="removeToJson()"> Create Task <img src="/assets/img/check.png"></button>
+      </div>
     </div>
-           
-    <div class="create_clear_task">
-    <p><span>*</span>This Field is required</p>
-    <div class="addTask_btns">
-        <button class="btn_transparent addTask_btn" onclick="pushToJson()">Clear <img src="/assets/img/close.png"></button>
-        <button class="btn_grey addTask_btn display_center gap" onclick="removeToJson()"> Create Task <img src="/assets/img/check.png"></button>
-    </div>
+    
   </div>
   
-</div>
-
   `;
 }
 function pushToJson() {

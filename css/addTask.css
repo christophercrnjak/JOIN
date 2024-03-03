@@ -57,6 +57,18 @@ body {
   width: 360px;
 }
 
+.assign_head, 
+.category_head, 
+.description_head,
+.prio_head,
+.date_head,
+.title_head,
+.subtasks_head
+{
+  margin-top: 12px;
+  margin-bottom: 8px;
+}
+
 #description {
   border: 2px solid #ccc;
   border-radius: 4px;
@@ -67,7 +79,6 @@ body {
   background-position: right 10px center;
   background-repeat: no-repeat;
   padding: 12px 20px 12px 40px;
-  margin-bottom: 16px;
 }
 
 textarea#description {
