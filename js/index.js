@@ -3,8 +3,13 @@ let mail = document.getElementById("mail");
 let password = document.getElementById("password");
 let currentUser = [];
 
+// document.addEventListener("DOMContentLoaded", init);
+
 async function init() {
   await loadUsers();
+  // setTimeout(function () {
+  //   document.querySelector(".logo").classList.add("move-logo");
+  // }, 1000);
 }
 
 function handleLogIn() {

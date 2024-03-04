@@ -18,10 +18,17 @@ body {
   align-items: center;
 }
 
+.move-logo {
+  transform: translate(0, 0);
+}
+
 .logo {
   position: absolute;
-  top: 80px;
-  left: 77px;
+  inset: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 500ms ease-in-out;
 }
 
 .sign_up {
