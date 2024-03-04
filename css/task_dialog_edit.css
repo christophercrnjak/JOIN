@@ -390,7 +390,7 @@
                     }
 
                         .subtask_delete_and_edit_editDialog a:hover path {
-                            fill: #29ABE2; 
+                            fill: var(--blue); 
                             cursor: pointer; 
                         }
 
@@ -421,7 +421,7 @@
                     justify-content: space-between;
                     align-items: center;
                     gap: 12px;
-                    border-bottom: 2px solid #29ABE2 !important;
+                    border-bottom: 2px solid var(--blue) !important;
                  
                 }
 
@@ -479,7 +479,7 @@
 }
 
 .confirm_btn_edit:hover {
-    background-color: #29ABE2;
+    background-color: var(--blue);
     box-shadow: 0px 4px 4px 0px #00000040;
 }
 

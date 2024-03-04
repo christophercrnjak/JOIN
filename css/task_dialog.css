@@ -183,16 +183,11 @@
 
             .delete_and_edit a:hover{
                 font-weight: 700;
-                color: #29ABE2;
+                color: var(--blue);
             }
 
             .delete_and_edit a:hover path {
-                fill: #29ABE2; 
-                cursor: pointer; 
-            }
-
-            .delete_and_edit a:hover path {
-                fill: #29ABE2; 
+                fill: var(--blue); 
                 cursor: pointer; 
             }
 

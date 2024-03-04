@@ -126,9 +126,9 @@ a {
                 }
 
                 .add_task_btn:hover {
-                    background-color: #29ABE2;
+                    background-color: var(--blue);
                     box-shadow: 0px 4px 4px 0px #00000040;
-                    border-color: #29ABE2;
+                    border-color: var(--blue);
                     
                 }
 
@@ -198,13 +198,17 @@ a {
                 }
 
                 .column_head_add_btn_mobile {
-                    width: 30px;
-                    height: 30px;
+                    width: 31px;
+                    height: 34px;
                     border-radius: 10px;
                     display: none;
                     justify-content: center;
                     align-items: center;
-                    
+                }
+
+                .column_head_add_btn_mobile svg:hover rect,
+                .column_head_add_btn_mobile svg:hover path {
+                    stroke: var(--blue);
                 }
 
                 .line_add_btn_horizont_column_head {
@@ -227,13 +231,19 @@ a {
                         color: rgba(66, 82, 110, 1);
                         font-size: 20px;
                     }
+
                     .column_head_add_btn {
-                        width: 24px;
-                        height: 24px;
+                        width: 25px;
+                        height: 25px;
                         display: flex;
                         justify-content: center;
                         align-items: center;
                         position: relative;
+                    }
+
+                    .column_head_add_btn svg:hover rect,
+                    .column_head_add_btn svg:hover path {
+                        stroke: var(--blue);
                     }
 
 
@@ -446,6 +456,7 @@ a {
                                         margin-right: 16px;
                                     }
                                    
+                                   
 
                                     .container {
                                         row-gap: 24px;
@@ -473,13 +484,16 @@ a {
                                         width: 100%;
                                     }
 
-                                    
-
                                     .task {
                                         max-width: 252px;
                                     }
 
                                 @media(max-width: 840px) {
+                                    
+                                    .board_content_main {
+                                        justify-content: start;
+                                    }
+                                    
                                     .board_content {
                                         flex-direction: column;
                                     }
@@ -496,6 +510,7 @@ a {
                                         overflow-x: overlay;
                                         min-height: 0px;
                                         flex-direction: row;
+                                        max-width: none;
                                     }
                                 }
                             }
