@@ -5,9 +5,8 @@ body {
 
 .container {
   padding-left: 232px;
-  padding-top: 96px;
+  /* padding-top: 96px; */
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100%;
@@ -153,9 +152,9 @@ hr {
 }
 
 .third_row a {
-  /* width: 33%; */
-  width: 192px;
-  height: 192px;
+  width: 33%;
+  /* width: 192px; */
+  height: 175px;
 }
 
 .welcome_message {
