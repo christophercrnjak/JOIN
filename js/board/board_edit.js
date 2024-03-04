@@ -31,7 +31,7 @@ function editDialogHTML(taskId) {
     <div id="subtask_section_edit" class="distance flexDirection"></div>
     <div id="ok_section_edit" class="distance">
         <a onclick="confirmInputsOfEditDialog(${taskId})" class="confirm_btn_edit">
-        OK <img src="assets/img/check.svg">
+        Ok <img src="assets/img/check.svg">
         </a>
     </div>
     `;
