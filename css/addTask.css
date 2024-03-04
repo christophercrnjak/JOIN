@@ -197,6 +197,7 @@ textarea#description {
   align-items: center;
   color: #ffffff;
   font-size: 12px;
+  margin-right: 8px;
 }
 
 .arrow:hover {

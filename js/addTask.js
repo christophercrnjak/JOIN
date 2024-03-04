@@ -24,19 +24,27 @@ async function renderDropList() {
   dropdown.innerHTML = "";
   for (let i = 0; i < responseAsJson.length; i++) {
     let e = responseAsJson[i];
-    dropdown.innerHTML += dropdownHtml(e,[i]);
+    dropdown.innerHTML += dropdownHtml(e, [i]);
   }
 }
 
 function dropdownHtml(dropdownList, i) {
   return `
-  <a class="dropdown_assign" id="${i}" onclick="selectFromDropdown('${dropdownList["name"]["color"]}', '${dropdownList["name"]["firstName"]}', '${dropdownList["name"]["secondName"]}',${i})">
+  <a class="dropdown_assign" id="${i}" onclick="selectFromDropdown('${
+    dropdownList["name"]["color"]
+  }', '${dropdownList["name"]["firstName"]}', '${
+    dropdownList["name"]["secondName"]
+  }',${i})">
     <div class="display_center gap">
-          <div class="member_cicle" style='background-color:${dropdownList['name']['color']};'>
+          <div class="member_cicle" style='background-color:${
+            dropdownList["name"]["color"]
+          };'>
             ${dropdownList["name"]["firstName"].charAt(0)}
             ${dropdownList["name"]["secondName"].charAt(0)}
           </div>
-        ${dropdownList["name"]["firstName"]} ${dropdownList["name"]["secondName"]}
+        ${dropdownList["name"]["firstName"]} ${
+    dropdownList["name"]["secondName"]
+  }
     </div>
     <img src="assets/img/Check_btn.svg">
   </a>
@@ -45,15 +53,19 @@ function dropdownHtml(dropdownList, i) {
 
 function selectFromDropdown(color, firstName, secondName, i) {
   // Select for the Drop Down
-  let dropdownList = document.getElementById('dropdownList');
+  let dropdownList = document.getElementById("dropdownList");
   let selectedId = i;
-    selectedFromDropdown.push({ color, firstName, secondName });
-      dropdownList.innerHTML += dropdownHtmlMemberCircle(color, firstName, secondName,selectedId);
-      document.getElementById(i).classList.add('selected');
-      
+  selectedFromDropdown.push({ color, firstName, secondName });
+  dropdownList.innerHTML += dropdownHtmlMemberCircle(
+    color,
+    firstName,
+    secondName,
+    selectedId
+  );
+  document.getElementById(i).classList.add("selected");
 }
 
-function dropdownHtmlMemberCircle(color, firstName, secondName){
+function dropdownHtmlMemberCircle(color, firstName, secondName) {
   return `
     <div onclick="removeFromSelectedItems('${firstName}')" class="member_cicle" style="background-color:${color};">
       ${firstName.charAt(0)}
@@ -67,10 +79,10 @@ function removeFromSelectedItems(firstName) {
   for (let i = 0; i < selectedFromDropdown.length; i++) {
     if (selectedFromDropdown[i].firstName === firstName) {
       selectedFromDropdown.splice(i, 1);
-      
+
       // Entferne das entsprechende DOM-Element aus der Dropdown-Liste
-      let dropdownList = document.getElementById('dropdownList');
-      let elements = dropdownList.getElementsByClassName('member_cicle');
+      let dropdownList = document.getElementById("dropdownList");
+      let elements = dropdownList.getElementsByClassName("member_cicle");
       for (let j = 0; j < elements.length; j++) {
         let textContent = elements[j].textContent;
         if (textContent.includes(firstName.charAt(0))) {
@@ -78,12 +90,11 @@ function removeFromSelectedItems(firstName) {
           break; // Breche die Schleife ab, sobald das Element entfernt wurde
         }
       }
-      
+
       break; // Breche die Schleife ab, sobald das Element entfernt wurde
     }
   }
 }
-
 
 function filterFunction() {
   // Filter on the drop Down menu
@@ -121,11 +132,18 @@ function changePriority(priority) {
 
   if (priority === "urgrend") {
     setPriorityStyles(
-      "#FF3D00","#ffff","/assets/img/prio_ungrent.svg","urgrend"
+      "#FF3D00",
+      "#ffff",
+      "/assets/img/prio_ungrent.svg",
+      "urgrend"
     );
   } else if (priority === "medium") {
     setPriorityStyles(
-      "#FFA800","#ffff","assets/img/prio_medium.svg","medium");
+      "#FFA800",
+      "#ffff",
+      "assets/img/prio_medium.svg",
+      "medium"
+    );
   } else if (priority === "low") {
     setPriorityStyles("#7AE229", "#ffff", "assets/img/prio_low.svg", "low");
   }
@@ -166,10 +184,10 @@ function removePreviousPriority() {
 }
 
 function setPriorityStyles(bgColor, textColor, imgSrc, priority) {
-  var button = document.getElementById(
+  let button = document.getElementById(
     "btn" + priority.charAt(0).toUpperCase() + priority.slice(1)
   );
-  var image = document.getElementById(
+  let image = document.getElementById(
     "btn" + priority.charAt(0).toUpperCase() + priority.slice(1) + "Img"
   );
 
@@ -202,47 +220,47 @@ function pushCategoryInTo(element) {
   }
 }
 
-function pushToSubtasks(){
-  let subtasksInput =  document.getElementById('subtasksInput').value;
+function pushToSubtasks() {
+  let subtasksInput = document.getElementById("subtasksInput").value;
   subtasklists.push(subtasksInput);
   rendersubtasklist();
 }
 
-function rendersubtasklist(){
-  let rendersubtasklist = document.getElementById('subtasklist');
-  rendersubtasklist.innerHTML = '';
+function rendersubtasklist() {
+  let rendersubtasklist = document.getElementById("subtasklist");
+  rendersubtasklist.innerHTML = "";
   for (let i = 0; i < subtasklists.length; i++) {
     let subtaskHTML = subtasklists[i];
-    rendersubtasklist.innerHTML += subtasklistHTML(subtaskHTML,i);
+    rendersubtasklist.innerHTML += subtasklistHTML(subtaskHTML, i);
     console.log(subtaskHTML);
   }
   subtasklistHTML();
 }
-function removeSubtask(i){
-subtasklists.splice(i,1)
-rendersubtasklist();
+function removeSubtask(i) {
+  subtasklists.splice(i, 1);
+  rendersubtasklist();
 }
 
- function subtasklistHTML(subtaskHTML,i){
-  return`
+function subtasklistHTML(subtaskHTML, i) {
+  return `
   <div class="subtasklist_element">
     <p>${subtaskHTML}</p>
   <div>
     <img onclick="removeSubtask(${i})" class="" src="/assets/img/delete_dark.svg">
   </div>
   </div>`;
- }
+}
 
-function renderContainer(){
-  let container = document.getElementById('AddTaskContainer');
+function renderContainer() {
+  let container = document.getElementById("AddTaskContainer");
   container.innerHTML = renderHtml();
 }
 
 function renderHtml() {
-  return`
+  return `
   <!-- Head content add task -->
 
-  <div class="main_addTask">
+  <form class="main_addTask" onsubmit="pushToJson()">
       <header class="AddTask_head"> Add Task</header>
   
   <!-- Main section add task -->
@@ -289,8 +307,8 @@ function renderHtml() {
     
        
               <div class="subtasks_head">Subtasks</div>
-                  <div class="subtaskIcons"><img onclick="pushToSubtasks()" src="/assets/img/subtasksPlus.svg"><img class="d-none" src="/assets/img/check_dark.svg"></div>
-                  <input type="text" class="subtasksInput" id="subtasksInput" placeholder="Add new Subtask">
+                  <div class="subtaskIcons"><img  src="/assets/img/subtasksPlus.svg"><img class="d-none" src="/assets/img/check_dark.svg"></div>
+                  <input type="text" class="subtasksInput" onclick="pushToSubtasks()" id="subtasksInput" placeholder="Add new Subtask">
                   <div id="subtasklist"></div>
           
           </section>
@@ -300,19 +318,44 @@ function renderHtml() {
       <div class="create_clear_task">
       <p><span>*</span>This Field is required</p>
       <div class="addTask_btns">
-          <button class="btn_transparent addTask_btn" onclick="pushToJson()">Clear <img src="/assets/img/close.png"></button>
-          <button class="btn_grey addTask_btn display_center gap" onclick="removeToJson()"> Create Task <img src="/assets/img/check.png"></button>
+          <button class="btn_transparent addTask_btn" onclick="removeAllInputes()">Clear <img src="/assets/img/close.png"></button>
+          <button class="btn_grey addTask_btn display_center gap"> Create Task <img src="/assets/img/check.png"></button>
       </div>
     </div>
     
-  </div>
+  </form>
   
   `;
 }
 function pushToJson() {
   // Push the Add Task inputs in to a JSON
+  let title = document.getElementById("titleAddtask");
+  let description = document.getElementById("description");
+  let date = document.getElementById("AddTaskDate");
+
+  let task = {
+    title: title.value,
+    description: description.value,
+    contacts: selectedFromDropdown,
+    category: pushCategory,
+    dueDate: date.value,
+    priority: prio,
+    subtasks: subtasklists,
+    status: "inProgress",
+    createdDate: new Date().getTime(),
+  };
+  let jsonPush = JSON.stringify(task);
+  localStorage.setItem("task", jsonPush);
+
+  pushCategory.value = "";
+  selectedFromDropdown.value = "";
+  prio.value = "";
 }
 
-function removeToJson() {
-  // Remove the Add Task inputs in to a JSON
+function removeAllInputes() {
+  // Remove the Add Task inputs
+  selectedFromDropdown = [];
+  prio = [];
+  pushCategory = [];
+  subtasklists = [];
 }
