@@ -2,7 +2,10 @@ let loaded_contacts =[];
 let dropdownStatus = false;
 let contactsOfCurrentTask = [];
 
-
+/**
+ * test
+ * @param {*} taskId 
+ */
 // is called by function renderEditDialog() in board_edit.js file
 // set the main HTML structure
 async function renderAssigedToEditDialog(taskId){
