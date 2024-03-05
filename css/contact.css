@@ -133,7 +133,6 @@ body {
 }
 
 .better_team {
-    display: flex;
     gap: 30px;
     align-items: center;
     height: 73px;
@@ -145,7 +144,6 @@ body {
 .better_team_text {
     display: flex;
     align-items: center;
-    margin-left: 55px;
 }
 
 .better_team h1 {
@@ -168,7 +166,7 @@ body {
 
 @keyframes moveInRight {
     from {
-        transform: translateX(100%);
+        transform: translateX(400%);
     }
 
     to {
@@ -186,15 +184,22 @@ body {
 }
 
 .background.open {
-    display: flex;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 999;
     position: fixed;
-    background-color: rgba(0, 0, 0, 0.5);
-    width: 100%;
-    height: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: space-evenly;
 }
 
+.display_flex {
+    display: flex;
+    justify-content: center;
+}
 
 .display_center {
     animation-name: moveInRight;
@@ -243,7 +248,13 @@ body {
     border-radius: 10px;
 }
 
-.right img {
+.background_image img {
+    width: 42.67px;
+    height: 42.67px;
+
+}
+
+.background_image {
     margin-bottom: 50px;
     align-items: center;
     width: 120px;
@@ -254,6 +265,8 @@ body {
     background: rgba(217, 217, 217, 1);
     margin-top: 204px;
     margin-left: 83px;
+    display: flex;
+    justify-content: center;
 }
 
 .right {
@@ -324,11 +337,12 @@ input[type="tel"] {
     margin-right: 48px;
     flex-direction: column;
     margin-left: 72px;
+    margin-top: 48px;
 }
 
-.add_contact img {
-    width: 24px;
-    height: 24px;
+.add_contact .vector {
+    width: 13.5px;
+    height: 13.5px;
     margin-top: 48px;
     margin-left: 665px;
     background-color: white;
@@ -457,29 +471,38 @@ input[type="tel"] {
 .button_contacts button {
     align-items: center;
     display: flex;
+    overflow: unset;
 }
 
 .button_contacts img {
-    width: 24px;
-    height: 24px;
+    width: 18.28px;
+    height: 18.28px;
     margin-right: 8px;
 
 }
 
-.button_contacts button:hover {
-    color: rgba(41, 171, 226, 1);
+svg {
+    margin-right: 8px;
 }
 
+.button_contacts button:hover {
+    fill: rgba(41, 171, 226, 1);
+}
 
-.button_contacts h3 {
+.button_contacts button path:hover {
+    fill: rgba(41, 171, 226, 1);
+}
+
+.edit_delete_text {
     font-size: 16px;
     font-weight: 400;
     line-height: 19px;
     letter-spacing: 0em;
     text-align: left;
+    color: black;
 }
 
-.button_contacts h3:hover {
+.edit_delete_text:hover {
     font-size: 16px;
     font-weight: 700;
     line-height: 19px;
@@ -572,7 +595,6 @@ input[type="tel"] {
 #selectedPersonInitials .persons {
     width: 120px;
     height: 120px;
-    font-family: Inter;
     font-size: 47px;
     font-weight: 500;
     line-height: 56px;
@@ -610,35 +632,153 @@ input[type="tel"] {
 
 /*Mobile Version(responsive)*/
 
-@media(max-width:1460px) {
+@media(max-width:1480px) {
     .better_team {
         margin-right: 30px;
+    }
+
+    .add_dialog {
+        flex-direction: column;
+    }
+
+    .left {
+        padding: 66px 24px 66px 24px;
+        display: flex;
+        gap: 12px;
+        width: 396px;
+        height: 352px;
+        border-top-right-radius: 30px;
+        border-top-left-radius: 30px;
+        border-bottom-left-radius: 0;
+    }
+
+    .left h2 {
+        font-size: 47px;
+        line-height: 56.4px;
+    }
+
+    .left h3 {
+        font-size: 20px;
+        line-height: 24px;
+    }
+
+    .left img {
+        display: none;
+    }
+
+    .right {
+        padding: 66px 24px 66px 24px;
+        display: flex;
+        gap: 12px;
+        width: 396px;
+        height: 352px;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 30px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .background_image {
+        margin: 0;
+        position: fixed;
+        bottom: 600px;
+    }
+
+    .add_contact {
+        gap: 15px;
+        margin-top: 32px;
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+
+    .add_contact .vector {
+        background-color: unset;
+        margin: 0;
+        position: relative;
+        left: 310px;
+        bottom: 370px;
+    }
+
+    .add_contact path {
+        fill: white;
     }
 
     .better_team_text {
         margin-left: 0;
     }
-}
-@media(max-width:1360px){
-    .better_team{
-        margin-right: 30px;
-    }
-    .contacts{
-        width: 300px;
 
+    .display_center_b {
+        margin-top: 32px;
     }
-    .first_letter{
-        width: 260px;
+
+    .display_center_b .create_button {
+        border-radius: 10px;
+        padding: 18px 10px 18px 10px;
+        width: 202px;
+        height: 51px;
+        align-items: center;
     }
-    .contact_list{
-        margin-left: 16px;
+    .display_center_b .create_button:hover{
+        background: rgba(42, 54, 71, 1);
+        border: 1px solid rgba(42, 54, 71, 1);
+        box-shadow: none;
     }
-    .add{
-        margin-left: 16px;
-        width: 250px;
+
+    .display_center_b img {
+        margin-top: 0;
+        width: 15.49px;
+        height: 15.23px;
     }
-    .persons_details{
-        padding: 0;
-        margin-left: 6px;
+
+    .right input[type="text"] {
+        height: 41px;
     }
+
+    .right input[type="email"] {
+        height: 41px;
+    }
+
+    .right input[type="tel"] {
+        height: 41px;
+    }
+
+    .add_dialog {
+        flex-direction: column;
+    }
+
+    #selectedPersonInitials {
+        margin: 0;
+        position: fixed;
+        bottom: 600px;
+    }
+
+    .display_center_b .delete_button {
+        padding: 18px 10px 18px 10px;
+        width: 82px;
+        height: 51px;
+        border-radius: 10px;
+        gap: 10px;
+        font-size: 20px;
+        align-items: center;
+        border: 1px solid rgba(42, 54, 71, 1);
+    }
+    .display_center_b .delete_button:hover{
+        box-shadow: unset;
+        border: 1px solid rgba(42, 54, 71, 1);
+    }
+
+    .display_center_b .save_button {
+        width: 99px;
+    height: 51px;
+    align-items: center;
+    padding: 18px 10px 18px 10px;
+    gap: 4px;
+    }
+    .display_center_b .save_button:hover {
+        box-shadow: none;
+        background-color: rgba(42, 54, 71, 1);
+        border: 1px solid rgba(42, 54, 71, 1);
+    }
+    
 }
