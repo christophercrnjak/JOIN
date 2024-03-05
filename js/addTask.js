@@ -198,7 +198,7 @@ function setPriorityStyles(bgColor, textColor, imgSrc, priority) {
   prio.push(priority);
 }
 function categoryDropDownBtn() {
-  document.getElementById("dropdownCategory").classList.toggle("show_task");
+  document.getElementById("dropdownCategory").classList.toggle("show");
 }
 
 function renderCategoryDropDown() {
@@ -257,7 +257,7 @@ function renderContainer() {
 }
 
 function renderHtml() {
-  return `
+  return /*html*/ `
   <!-- Head content add task -->
 
   <form class="main_addTask" onsubmit="pushToJson()">
@@ -284,9 +284,7 @@ function renderHtml() {
               </div>
               <div class="dropdown_list" id="dropdownList"></div>
           </section>
-  
   <!-- Secound section  -->
-  
           <section class="addTaskForm right">
               <div class="date_head">Due date<span>*</span></div>
               <input type="date" id="AddTaskDate" required>
@@ -298,17 +296,13 @@ function renderHtml() {
                           src="assets/img/Priority_symbols_Medium.png"></a>
                   <a class="btn_addTask" id="btnLow" onclick="changePriority('low')">Low <img id="btnLowImg"
                           src="assets/img/Priority_symbols_Low.png"></a>
-              </div>
-          
-                
+              </div> 
                       <div class="category_head">Category<span>*</span></div>
                       <div class="dropdown_category" id="categoryDropDownBtn" onclick="categoryDropDownBtn()">Select task category</div>
-                      <div id="dropdownCategory" class="dropdown_content dropdownCategory"></div>
-    
-       
-              <div class="subtasks_head">Subtasks</div>
-                  <div class="subtaskIcons"><img  src="/assets/img/subtasksPlus.svg"><img class="d-none" src="/assets/img/check_dark.svg"></div>
-                  <input type="text" class="subtasksInput" onclick="pushToSubtasks()" id="subtasksInput" placeholder="Add new Subtask">
+                      <div id="dropdownCategory" class="dropdown_content_category"></div>     
+                  <div class="subtasks_head">Subtasks</div>
+                  <div class="subtaskIcons"><img onclick="pushToSubtasks()" src="/assets/img/subtasksPlus.svg"><img class="d-none" src="/assets/img/check_dark.svg"></div>
+                  <input type="text" class="subtasksInput" id="subtasksInput" placeholder="Add new Subtask">
                   <div id="subtasklist"></div>
           
           </section>
@@ -344,6 +338,7 @@ function pushToJson() {
     status: "inProgress",
     createdDate: new Date().getTime(),
   };
+
   let jsonPush = JSON.stringify(task);
   localStorage.setItem("task", jsonPush);
 

@@ -17,9 +17,20 @@ async function includeHTML() {
       element.innerHTML = "Page not found.";
     }
   }
- 
+  setActiveLink();
 }
 
-  function myFunction() {
+  function footerToggle() {
     document.getElementById("footer_notice").classList.toggle("show");
   }
+  function setActiveLink() {
+   
+    var url = window.location.href;
+    
+    var links = document.querySelectorAll('.side_navbar_section');
+    links.forEach(function(link) {
+        if (url.includes(link.getAttribute('href'))) {
+            link.classList.add('active');
+        }
+    });
+}
