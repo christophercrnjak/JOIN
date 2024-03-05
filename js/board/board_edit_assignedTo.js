@@ -3,11 +3,11 @@ let dropdownStatus = false;
 let contactsOfCurrentTask = [];
 
 /**
- * test
- * @param {*} taskId 
+ * is called by function renderEditDialog() in board_edit.js file,
+ * set the main HTML structure
+ * 
+ * @param {number} taskId The index of task which is currently clicked and shown in edit dialog
  */
-// is called by function renderEditDialog() in board_edit.js file
-// set the main HTML structure
 async function renderAssigedToEditDialog(taskId){
     await loadContacts();
     contactsOfCurrentTask = currentTaskContent.contacts;
@@ -16,14 +16,20 @@ async function renderAssigedToEditDialog(taskId){
     renderCiclesOfTaskContacts(taskId);
 }
 
-// load contacts JSON in loaded_contacts array (global array in board_edit_assignedTo.js file)
+/**
+ * Load the hole contacts of program in the new global json array loaded_contacts
+ */
 async function loadContacts() {
     let source_contacts = await fetch('assets/json/contacts.json'); 
     source_contacts = await source_contacts.json(); 
     loaded_contacts = source_contacts;
 }
 
-// HTML main structure of assiged to section in edit dialog
+/**
+ * 
+ * @param {number} taskId The index of task which is currently clicked and shown in edit dialog
+ * @returns {string} HTML structure of assiged to section in edit dialog
+ */
 function assigedToEditHTML(taskId) {
     return `
     <!-- label -->
@@ -55,7 +61,11 @@ function assigedToEditHTML(taskId) {
     `;
 }
 
-// render the cicles with initials of selected task members
+/**
+ * render the cicles with initials of selected task members
+ * 
+ * @param {number} taskId The index of task which is currently clicked and shown in edit dialog
+ */
 function renderCiclesOfTaskContacts(taskId) {
     let container = document.getElementById(`selectedContactsSection`);
     container.innerHTML = '';
@@ -68,6 +78,15 @@ function renderCiclesOfTaskContacts(taskId) {
     }
 }
 
+/**
+ * 
+ * @param {string} firstCharacter The first letter of the first name
+ * @param {string} secondCharacter The first letter of the second name
+ * @param {string} colorClass Name of class with color for the member
+ * @param {number} task_number Index of task which is currently clicked and shown in edit dialog
+ * @param {number} i Index of current contact of iteration of contactsOfCurrentTask in renderCiclesOfTaskContacts()
+ * @returns {string} HTML of Contacts in the dropdown-list with 
+ */
 // HTML of cicles 
 function selectedTaskMemberHTML(firstCharacter, secondCharacter, colorClass, task_number, i) {
     return `
