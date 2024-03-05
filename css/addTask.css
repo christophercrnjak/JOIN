@@ -302,17 +302,17 @@ input[type='checkbox'] {
 
 @media(max-width: 1200px) {
   .AddTask_head{
-    margin-top: 15%; 
+    margin-top: 35%; 
   }
 
 
 .main_addTask {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   flex-direction: column;
   background-color: var(--bgwhite);
-  padding-left: 0;
+  padding-left: 250px;
 }
 
 .right {
@@ -327,18 +327,52 @@ input[type='checkbox'] {
   align-items: center;
   width: 100%;
   gap: 5px;
+  margin-left: 20%;
 }
 
 }
 
-@media(max-width: 1000px){
-  .main_addTask {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background-color: var(--bgwhite);
-    padding-left: 0px;
- 
-  }
-}
+      @media(max-width: 1000px){
+        .main_addTask {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          background-color: var(--bgwhite);
+          padding-left: 0px;
+      
+        }
+        
+      .addTaskForms{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: 5px;
+        margin-left: 10%;
+      }
+
+      }
+
+            @media(max-width: 600px){
+              .main_addTask {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                background-color: var(--bgwhite);
+                padding-left: 0px;
+            
+              }
+              
+            .addTaskForms{
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              width: 100%;
+              gap: 5px;
+              margin-left: 0%;
+            }
+            }
