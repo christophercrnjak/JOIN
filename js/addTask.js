@@ -297,9 +297,11 @@ function renderHtml() {
                   <a class="btn_addTask" id="btnLow" onclick="changePriority('low')">Low <img id="btnLowImg"
                           src="assets/img/Priority_symbols_Low.png"></a>
 </div> 
+<div class="category">
                       <div class="category_head">Category<span>*</span></div>
                       <div class="dropdown_category" id="categoryDropDownBtn" onclick="categoryDropDownBtn()">Select task category</div>
-                      <div id="dropdownCategory" class="dropdown_content_category"></div>     
+                      <div id="dropdownCategory" class="dropdown_content_category"></div>    
+</div> 
                   <div class="subtasks_head">Subtasks</div>
                   <div class="subtask_button_container">
                   <div class="subtaskIcons"><img onclick="pushToSubtasks()" src="/assets/img/subtasksPlus.svg"><img class="d-none" src="/assets/img/check_dark.svg"></div>
