@@ -289,20 +289,22 @@ function renderHtml() {
               <div class="date_head">Due date<span>*</span></div>
               <input type="date" id="AddTaskDate" required>
               <div class="prio_head">Prio</div>
-              <div class="btn_addTask_list" id="btnAddTaskPrio">
+ <div class="btn_addTask_list" id="btnAddTaskPrio">
                   <a class="btn_addTask" id="btnUrgrend" onclick="changePriority('urgrend')">Urgrend <img id="btnUrgrendImg"
                           src="assets/img/Priority_symbols_Urgent.png"></a>
                   <a class="btn_addTask" id="btnMedium" onclick="changePriority('medium')">Medium <img id="btnMediumImg"
                           src="assets/img/Priority_symbols_Medium.png"></a>
                   <a class="btn_addTask" id="btnLow" onclick="changePriority('low')">Low <img id="btnLowImg"
                           src="assets/img/Priority_symbols_Low.png"></a>
-              </div> 
+</div> 
                       <div class="category_head">Category<span>*</span></div>
                       <div class="dropdown_category" id="categoryDropDownBtn" onclick="categoryDropDownBtn()">Select task category</div>
                       <div id="dropdownCategory" class="dropdown_content_category"></div>     
                   <div class="subtasks_head">Subtasks</div>
+                  <div class="subtask_button_container">
                   <div class="subtaskIcons"><img onclick="pushToSubtasks()" src="/assets/img/subtasksPlus.svg"><img class="d-none" src="/assets/img/check_dark.svg"></div>
                   <input type="text" class="subtasksInput" id="subtasksInput" placeholder="Add new Subtask">
+                  </div>
                   <div id="subtasklist"></div>
           
           </section>
@@ -312,8 +314,8 @@ function renderHtml() {
       <div class="create_clear_task">
       <p><span>*</span>This Field is required</p>
       <div class="addTask_btns">
-          <button class="btn_transparent addTask_btn" onclick="removeAllInputes()">Clear <img src="/assets/img/close.png"></button>
-          <button class="btn_grey addTask_btn display_center gap"> Create Task <img src="/assets/img/check.png"></button>
+          <button class="btn_transparent addTask_btn btn_gab" onclick="removeAllInputes()">Clear <img src="/assets/img/close.png"></button>
+          <button class="btn_grey addTask_btn display_centerss btn_gab"> Create Task <img src="/assets/img/check.png"></button>
       </div>
     </div>
     

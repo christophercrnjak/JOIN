@@ -5,7 +5,9 @@ let prioStatusEdit = '';
 // Source of current editing task (copy)
 let currentTaskContent = [];
 
-// init onclick @ task Dialog buttom right edit-icon
+// init by onclick @ task Dialog buttom right edit-icon
+// load only the current task of array tasks in the array currentTaskContent
+// render the dialog for edit content
 async function initEditingTask(taskId) {
     await loadEditContent(taskId);
     renderEditDialog(taskId);

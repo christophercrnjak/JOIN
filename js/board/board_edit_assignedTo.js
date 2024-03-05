@@ -184,7 +184,7 @@ function renderCheckBoxEdit(taskId, contactId) {
         cicle.style.border = 'solid 3px white';
     } else {
         container_checkbox.innerHTML = `<img onclick="" src="assets/img/check_button_unchecked.svg">`;
-        container_checkbox.setAttribute('onclick', `selectContactforTask(${taskId}, ${contactId})`);
+        // container_checkbox.setAttribute('onclick', `selectContactforTask(${taskId}, ${contactId})`);
         container_dropdown_contact.setAttribute('onclick', `selectContactforTask(${taskId}, ${contactId})`)
     } 
 }
@@ -249,7 +249,8 @@ function findDeleteNameInArray(firstName, secondName) {
     return index;
 }
 
-// 
+// is called onclick of unckecked checkbox in contactlist
+// add contact to contactsOfCurrentTask array
 function selectContactforTask(taskId, contactId) {
     let contact = loaded_contacts[contactId].name;
     let firstName = contact.firstName;
@@ -266,6 +267,7 @@ function selectContactforTask(taskId, contactId) {
     // document.getElementById('selectedContactsSection').classList.toggle('flexDirection');
 }
 
+// find out which color-class is to choose, because the key color of contacts is hex and the key color of tasks is a class-name
 function findOutColorClass(contactId) {
     let contact = loaded_contacts[contactId].name;
     let firstName = contact.firstName;
@@ -291,15 +293,3 @@ function findOutColorClass(contactId) {
     }
 }
 
-// *** OK confirmation *** //
-
-function confirmInputsOfEditDialog() {
-    getInputValues();
-}
-
-function getInputValues() {
-    let title = document.getElementById('edit_input_title').value;
-    let description = document.getElementById('edit_input_description').value;
-    let dueDate = document.getElementById('edit_input_dueDate').value;
-    let priority = prioStatusEdit;
-}
