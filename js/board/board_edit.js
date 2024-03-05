@@ -239,28 +239,30 @@ function lowActivHTML() {
     `;
 }
 
-function confirmInputsOfEditDialog(taskId) {
-    new_content = getNewContentOfEditDialog();
-    currentTaskContent[taskId].title = new_content.new_title;
-    currentTaskContent[taskId].description = new_content.new_description;
-    currentTaskContent[taskId].dueDate = new_content.new_Due_Date;
-    currentTaskContent[taskId].priority = new_content.new_priority;
-    close_open_Dialog();
-    close_open_Dialog(taskId);
+/**
+ * 
+ * 
+ * @param {*} taskId - Index of task in tasks array
+ */
+async function confirmInputsOfEditDialog(taskId) {
+    await getInputValuesOfEditDialog();
+    await loadChangedContentInTasksArray(taskId);
+    await renderDialogTask(taskId);
+    await deleteCurrentTaskContent();
 }
 
-function getNewContentOfEditDialog() {
-    let new_title = document.getElementById('edit_input_title');
-    let new_description = document.getElementById('edit_input_description');
-    let new_Due_Date = document.getElementById('edit_input_dueDate');
-    let new_priority = prioStatusEdit;
+function getInputValuesOfEditDialog() {
+    currentTaskContent.title = document.getElementById('edit_input_title').value;
+    currentTaskContent.description = document.getElementById('edit_input_description').value;
+    currentTaskContent.dueDate = document.getElementById('edit_input_dueDate').value;
+    currentTaskContent.priority = prioStatusEdit;
+}
 
-    return {
-        new_title: new_title,
-        new_description: new_description,
-        new_Due_Date: new_Due_Date,
-        new_priority: new_priority
+function loadChangedContentInTasksArray(taskId) {
+    let new_content = currentTaskContent;
+    tasks[taskId] = new_content;
+}
 
-    };
-
+function deleteCurrentTaskContent() {
+    currentTaskContent[0] = '';
 }

@@ -9,7 +9,9 @@ function close_open_Dialog(taskId) {
     let container = document.getElementById('dialog_container');
     container.classList.toggle('d-none');
     if(!container.classList.contains('d-none')) {
-    renderDialogTask(taskId)};
+    renderDialogTask(taskId)} else {
+        renderColumnContent();
+    };
     if (tasks[taskId].subtasks.length > 0){
         renderBlueProgressbar(taskId);
     }
