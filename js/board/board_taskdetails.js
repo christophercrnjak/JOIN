@@ -21,7 +21,7 @@ function close_open_Dialog(taskId) {
  * Render the HTML structure of dialog with details of teh task and call functions 
  * which render several elemnets of the dialog.
  * 
- * @param {number} taskId Index of current called task in tasks[] global array
+ * @param {number} taskId - Index of current called task in tasks[] global array
  */
 function renderDialogTask(taskId){
     let container = document.getElementById('task_dialog_container');

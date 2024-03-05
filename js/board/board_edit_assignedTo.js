@@ -1,27 +1,46 @@
+/**
+ * copy of contacts.json file
+ * 
+ * @type {JSON} - 
+ */
 let loaded_contacts =[];
+
+/**
+ * If an element is dragging the value is true.
+ * 
+ * @type {boolean}
+ */
 let dropdownStatus = false;
-let contactsOfCurrentTask = [];
 
 
-// is called by function renderEditDialog() in board_edit.js file
-// set the main HTML structure
+/**
+ * Load the contacts in loaded_contacts array.
+ * Render the content of Taskcontacts in edit dialog
+ * 
+ * @param {Number} taskId - Index of current called task in tasks[] global array
+ */
 async function renderAssigedToEditDialog(taskId){
     await loadContacts();
-    contactsOfCurrentTask = currentTaskContent.contacts;
     let container = document.getElementById('assignedTo_section_edit');
     container.innerHTML = assigedToEditHTML(taskId);
     renderCiclesOfTaskContacts(taskId);
 }
 
-
-// load contacts JSON in loaded_contacts array (global array in board_edit_assignedTo.js file)
+/**
+ * Load contacts JSON in loaded_contacts array 
+ */
 async function loadContacts() {
     let source_contacts = await fetch('assets/json/contacts.json'); 
     source_contacts = await source_contacts.json(); 
     loaded_contacts = source_contacts;
 }
 
-// HTML main structure of assiged to section in edit dialog
+/**
+ * HTML main structure of assiged to section in edit dialog
+ * 
+ * @param {Number} taskId - Index of current called task in tasks[] global array
+ * @returns {String} - HTML structure of task contacts
+ */
 function assigedToEditHTML(taskId) {
     return `
     <!-- label -->
@@ -53,12 +72,16 @@ function assigedToEditHTML(taskId) {
     `;
 }
 
-// render the cicles with initials of selected task members
+/**
+ * Render the cicles with initials of selected task members.
+ * 
+ * @param {Number} taskId - Index of current called task in tasks[] global array
+ */
 function renderCiclesOfTaskContacts(taskId) {
     let container = document.getElementById(`selectedContactsSection`);
     container.innerHTML = '';
-    for (let i = 0; i < contactsOfCurrentTask.length; i++) {
-        let contact = contactsOfCurrentTask[i];
+    for (let i = 0; i < currentTaskContent.contacts.length; i++) {
+        let contact = currentTaskContent.contacts[i];
         let firstCharacter = contact.firstName.charAt(0);
         let secondCharacter = contact.secondName.charAt(0);
         let colorClass = contact.color;
@@ -66,15 +89,27 @@ function renderCiclesOfTaskContacts(taskId) {
     }
 }
 
-// HTML of cicles 
-function selectedTaskMemberHTML(firstCharacter, secondCharacter, colorClass, task_number, i) {
+/**
+ * HTML structure of cicles 
+ * 
+ * @param {String} firstCharacter - first letter of first name of contact 
+ * @param {String} secondCharacter - first letter of second name of contact 
+ * @param {String} colorClass - Name of class with the right background-color
+ * @param {Number} taskId - Index of current called task in tasks[] global array
+ * @param {Number} i - Index of current Contact in currentTaskContent.contacts
+ * @returns 
+ */
+function selectedTaskMemberHTML(firstCharacter, secondCharacter, colorClass, taskId, i) {
     return `
-        <div id="selected_task_member${task_number}${i}" class="selected_member_cicle ${colorClass}">${firstCharacter}${secondCharacter}</div>
+        <div id="selected_task_member${taskId}${i}" class="selected_member_cicle ${colorClass}">${firstCharacter}${secondCharacter}</div>
     `;
 }
 
-// called by onclick triangle in selection field
-// change the triangle image, Content of dropdown selection section and the content of underneath section
+/**
+ * Change the triangle image, Content of dropdown selection section and the content of underneath section
+ * 
+ * @param {Number} taskId - Index of current called task in tasks[] global array
+ */
 function rotateArrow(taskId) {
     let arrow_section = document.getElementById('dropdown_arrow')
 
@@ -98,7 +133,9 @@ function rotateArrow(taskId) {
     
 }
 
-// change Content of dropdown selection section
+/**
+ * Change the content of dropdown selection section
+ */
 function changeTextInInput() {
     let text = document.getElementById('dropdown_text');
     let input = document.getElementById('dropdown_input');
@@ -106,7 +143,11 @@ function changeTextInInput() {
     input.classList.toggle('d-none')
 }
 
-// on key up in search input render dropdown contact list depending on input value
+/**
+ * Render dropdown contact list depending on input valueOn by key up in search input 
+ * 
+ * @param {Number} taskId - Index of current called task in tasks[] global array
+ */
 function searchContacts(taskId) {
     let searchinput = document.getElementById('search_contacts_edit').value;
     searchinput = searchinput.toLowerCase();
@@ -114,7 +155,12 @@ function searchContacts(taskId) {
     // document.getElementById('selectedContactsSection').classList.toggle('flexDirection');
 }
 
-// show all contacts or searched contacts
+/**
+ * Shows all contacts or searched contacts
+ * 
+ * @param {Number} taskId - Index of current called task in tasks[] global array
+ * @param {String} searchValue 
+ */
 function showContactList(taskId, searchValue) {
     let container = document.getElementById('selectedContactsSection');
     container.innerHTML = '';
@@ -130,7 +176,13 @@ function showContactList(taskId, searchValue) {
     container.style.gap = '0px';
 }
 
-// HTML main structure of contact list
+/**
+ * HTML structure of contact list
+ * 
+ * @param {Number} taskId - Index of current called task in tasks[] global array
+ * @param {Number} contactId - Index of contact in loaded_contacts array JSON
+ * @returns 
+ */
 function editContactListHTML(taskId, contactId) {
     let contact = loaded_contacts[contactId].name;
     return `
@@ -148,8 +200,12 @@ function editContactListHTML(taskId, contactId) {
     `;
 }
 
-// is called by interation all contacts to decide whether the checkbox is checked or not by proof the selectedContactStatus.
-// the selectedContactStatus is true if the checkContactSelected function finds out that the name is in the contactsOfCurrentTask array as well as in the loaded contacts array
+/**
+ * Render the checkbox image in dependence of selectionstatus for the current task
+ * 
+ * @param {Number} taskId - Index of current called task in tasks[] global array
+ * @param {Number} contactId - Index of contact in loaded_contacts array JSON
+ */
 function renderCheckBoxEdit(taskId, contactId) {
     let container_checkbox = document.getElementById(`checkbox_edit${taskId}${contactId}`);
     let container_dropdown_contact = document.getElementById(`dropdown_contact${taskId}${contactId}`);
@@ -170,10 +226,10 @@ function renderCheckBoxEdit(taskId, contactId) {
 
 // find out whether the contact is selected
 // is called by renderCheckBoxEdit()
-// compares the names of the global array "contactsOfCurrentTask" with the hole contactlist of the program
+// compares the names of the global currentTaskContent.contacts with the hole contactlist of the program
 function checkContactSelected(firstName, secondName) {
-    for (let i = 0; i < contactsOfCurrentTask.length; i++) {
-        let contact = contactsOfCurrentTask[i];
+    for (let i = 0; i < currentTaskContent.contacts.length; i++) {
+        let contact = currentTaskContent.contacts[i];
         if (firstName == contact.firstName && secondName == contact.secondName) {
             return true
         }
@@ -210,7 +266,7 @@ function setcicleColor(taskId, contactId) {
 // delete Contact in contactsOfCurrentTask array
 function deleteContactFromTask(firstName, secondName, taskId) {
     let index_of_deleted_name = findDeleteNameInArray(firstName, secondName);
-    contactsOfCurrentTask.splice(index_of_deleted_name, 1);
+    currentTaskContent.contacts.splice(index_of_deleted_name, 1);
     showContactList(taskId);
     // document.getElementById('selectedContactsSection').classList.toggle('flexDirection');
 }
@@ -219,8 +275,8 @@ function deleteContactFromTask(firstName, secondName, taskId) {
 // is called by deleteContactFromTask()
 function findDeleteNameInArray(firstName, secondName) {
     let index;
-    for (let i = 0; i < contactsOfCurrentTask.length; i++) {
-        let contact = contactsOfCurrentTask[i];
+    for (let i = 0; i < currentTaskContent.contacts.length; i++) {
+        let contact = currentTaskContent.contacts[i];
         if (contact.firstName == firstName && contact.secondName == secondName) {
             index = i;
         }
@@ -235,7 +291,7 @@ function selectContactforTask(taskId, contactId) {
     let firstName = contact.firstName;
     let secondName = contact.secondName;
     let color = findOutColorClass(contactId);
-    contactsOfCurrentTask.push(
+    currentTaskContent.contacts.push(
         {
             "firstName": `${firstName}`,
             "secondName": `${secondName}`,
