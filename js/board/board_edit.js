@@ -2,14 +2,30 @@
 // used for chage priority in json in edit dialog by click OK
 let prioStatusEdit = '';
 
+// Source of current editing task (copy)
+let currentTaskContent = [];
+
+// init onclick @ task Dialog buttom right edit-icon
+async function initEditingTask(taskId) {
+    await loadEditContent(taskId);
+    renderEditDialog(taskId);
+}
+
+// take a copy of current editing task and load in array currentTaskContent to protect the original data of tasks.json
+async function loadEditContent(taskId) {
+    let content =  await fetch('assets/json/tasks.json');
+    content = await content.json();
+    currentTaskContent = content[taskId];
+}
+
 // delete dialog container content and call functions built edit-content
 function renderEditDialog(taskId) {
     let container = document.getElementById('task_dialog_container')
     container.innerHTML = editDialogHTML(taskId);
-    renderTitleEditDialog(taskId);
-    renderDescriptionEditDialog(taskId);
+    renderTitleEditDialog();
+    renderDescriptionEditDialog();
     renderDueDateEditDialog(taskId);
-    renderPrioEditDialog(taskId);
+    renderPrioEditDialog();
     renderAssigedToEditDialog(taskId);
     renderSubtasksEditDialog(taskId);
 }
@@ -41,9 +57,9 @@ function editDialogHTML(taskId) {
 // *** titel *** //
 
 // show title input to change content of title via inputfield
-function renderTitleEditDialog(taskId) {
+function renderTitleEditDialog() {
     let container = document.getElementById('title_section_edit');
-    let title = tasks[taskId].title;
+    let title = currentTaskContent.title;
     container.innerHTML = `
     <div class="header_text_edit_section">Titel</div>
     <input id="edit_input_title" type="text" value="${title}">
@@ -54,9 +70,9 @@ function renderTitleEditDialog(taskId) {
 // *** description *** //
 
 // show description input to change content of description via inputfield
-function renderDescriptionEditDialog(taskId) {
+function renderDescriptionEditDialog() {
     let container = document.getElementById('description_section_edit');
-    let description = tasks[taskId].description;
+    let description = currentTaskContent.description;
     container.innerHTML = `
     <div class="header_text_edit_section">Description</div>
     <textarea id="edit_input_description" rows="4" type="text">${description}</textarea>
@@ -82,9 +98,9 @@ function renderDueDateEditDialog(taskId) {
 // *** priority *** //
 
 // show priotity buttons to change content of priority status via click on button
-function renderPrioEditDialog(taskId) {
+function renderPrioEditDialog() {
     let container = document.getElementById('prio_section_edit');
-    let prio = tasks[taskId].priority;
+    let prio = currentTaskContent.priority;
     container.innerHTML = prioBtnHTML();
     if (prio == "Urgent") {
         renderPrioButtons('Urgent')
@@ -223,10 +239,10 @@ function lowActivHTML() {
 
 function confirmInputsOfEditDialog(taskId) {
     new_content = getNewContentOfEditDialog();
-    tasks[taskId].title = new_content.new_title;
-    tasks[taskId].description = new_content.new_description;
-    tasks[taskId].dueDate = new_content.new_Due_Date;
-    tasks[taskId].priority = new_content.new_priority;
+    currentTaskContent[taskId].title = new_content.new_title;
+    currentTaskContent[taskId].description = new_content.new_description;
+    currentTaskContent[taskId].dueDate = new_content.new_Due_Date;
+    currentTaskContent[taskId].priority = new_content.new_priority;
     close_open_Dialog();
     close_open_Dialog(taskId);
 }

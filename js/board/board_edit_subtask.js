@@ -22,11 +22,14 @@ function subtaskListEditHTML(taskId) {
 
 function added_subtasks_edit(taskId) {
     let container = document.getElementById('added_subtasks_edit');
+    
     container.innerHTML = '';
-    let subtasks = tasks[taskId].subtasks;
+    let subtasks = currentTaskContent.subtasks;
     for (let i = 0; i < subtasks.length; i++) {
         let subtask = subtasks[i].name;
+        
         container.innerHTML += subtasklistEditHTML(subtask, i, taskId);
+        
     }
 }
 
@@ -86,25 +89,23 @@ function editSubtask(subtask, subtaskId, taskId) {
 }
 
 function deleteSubtask(subtaskId, taskId){
-    tasks[taskId].subtasks.splice(subtaskId, 1);
+    currentTaskContent.subtasks.splice(subtaskId, 1);
     renderSubtasksEditDialog(taskId);
 }
 
 function take_over_new_content_of_Task(subtaskId, taskId) {
     let content = document.getElementById('edit_input_list_row_content').value;
-    tasks[taskId].subtasks[subtaskId].name = `${content}`;
-    console.log(tasks[taskId].subtasks);
+    currentTaskContent.subtasks[subtaskId].name = `${content}`;
     renderSubtasksEditDialog(taskId);
 }
 
 function take_over_new_Subtask(taskId) {
     let content = document.getElementById('add_new_subtask_input').value;
-    tasks[taskId].subtasks.push(
+    currentTaskContent.subtasks.push(
         {
         "name": `${content}`,
         "done": true
         },
     );
-    console.log(tasks[taskId].subtasks);
     renderSubtasksEditDialog(taskId);
 }

@@ -9,7 +9,6 @@ let currentDraggedElement;
 async function init() {
     let resp = await fetch('assets/json/tasks.json'); 
     tasks = await resp.json(); 
-    console.log(tasks); // only for control the JSON content during debugging
     renderColumnContent();
 }
 
@@ -211,7 +210,7 @@ function renderBlueProgressbar(i) {
     let container = document.getElementById(`blue_progressbar${i}`)
     let amountOfOpenTasks = calcSubtaskAmount(i);
     let totalSubtasks = tasks[i].subtasks.length;
-    if (amountOfOpenTasks == 0) {
+    if (amountOfOpenTasks == 0 && container.style) {
         container.style.width = '0px';
     } else if (amountOfOpenTasks == tasks[i].subtasks.length) {
         container.style.width = '128px';

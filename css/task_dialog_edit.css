@@ -336,17 +336,6 @@
 
     }
 
-        #added_subtasks_edit {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 8px;
-            max-height: 70px;
-            overflow: auto;
-            padding-top: 35px;
-        }
-
             .subtask_list_row:hover {
                 background-color: rgb(235, 235, 235);
                 border-radius: 10px;
