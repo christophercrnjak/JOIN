@@ -1,26 +1,44 @@
 // ****** DIALOG FUNCTIONS for Board*****
 
+/**
+ * Open dialog Container to show task details.
+ * 
+ * @param {number} taskId Index of current called task in tasks[] global array
+ */
 function close_open_Dialog(taskId) {
     let container = document.getElementById('dialog_container');
     container.classList.toggle('d-none');
     if(!container.classList.contains('d-none')) {
     renderDialogTask(taskId)};
-    renderBlueProgressbar(taskId);
+    if (tasks[taskId].subtasks.length > 0){
+        renderBlueProgressbar(taskId);
+    }
 }
 
-
+/**
+ * Render the HTML structure of dialog with details of teh task and call functions 
+ * which render several elemnets of the dialog.
+ * 
+ * @param {number} taskId Index of current called task in tasks[] global array
+ */
 function renderDialogTask(taskId){
     let container = document.getElementById('task_dialog_container');
     let task = tasks[taskId];
     container.innerHTML = taskDialogHTML(task, taskId);
-    chabgeDueDateFormat(taskId);
+    changeDueDateFormat(taskId);
     setColorOfCategoryInDialog(taskId);
     renderPriorityDialog(taskId);
     renderAssigedToDialog(taskId);
     renderSubtasksDialog(taskId);
 }
 
-
+/**
+ * Returns the HTML structure of dialog with task details of current choosen task
+ * 
+ * @param {object} task Object JSON with task elements
+ * @param {number} taskId Index of current called task in tasks[] global array
+ * @returns {string}
+ */
 function taskDialogHTML(task, taskId) {
     return`
         <div class="category_close">
@@ -79,7 +97,12 @@ function taskDialogHTML(task, taskId) {
     `;
 }
 
-function chabgeDueDateFormat(taskId) {
+/**
+ * 
+ * 
+ * @param {number} taskId Index of current called task in tasks[] global array
+ */
+function changeDueDateFormat(taskId) {
     let container = document.getElementById('dueDateTaskDetails');
     let date = changeDueDateFormatInLongYear(taskId);
     container.innerHTML = `${date}`;
