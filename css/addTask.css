@@ -330,9 +330,19 @@ input[type='checkbox'] {
     background-color: var(--bgwhite);
     padding-left: 0px;
     width: 100%;
-
   }
 
+.assign_head,
+.category_head,
+.description_head,
+.prio_head,
+.date_head,
+.title_head,
+.subtasks_head {
+  margin-top: 12px;
+  margin-bottom: 8px;
+  width: 90%;
+}
   .addTaskForm {
     display: flex;
     justify-content: center;
@@ -450,14 +460,14 @@ input[type='checkbox'] {
     gap: 8px;
     padding: 16px 8px;
     height: 56px;
-    width: 170px;
+    width: 33%;
     border-radius: 10px;
   }
   .btn_addTask_list {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: 90%;
     gap: 8px;
     cursor: pointer;
 }
