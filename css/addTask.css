@@ -356,7 +356,16 @@ input[type='checkbox'] {
     padding-left: 0;
   }
 
+  .AddTask_head {
+    margin-top: 20%;   
+    font-size: 61px;
+    font-weight: 700;
+    margin-bottom: 1%;
+    width: 90%;
+}
+
   #AddTaskContainer {
+    
     position: absolute;
     width: 100%;
     padding-bottom: 95px;
@@ -488,9 +497,10 @@ input[type='checkbox'] {
 
 @media(max-width: 600px) {
   .AddTask_head {
-    margin-top: 30%;
+    margin-top: 30%;   
     font-size: 61px;
     font-weight: 700;
     margin-bottom: 1%;
+    width: 90%;
 }
 }
