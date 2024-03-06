@@ -13,6 +13,9 @@ let tasks = [];
 let currentDraggedElement;
 
 
+let dialog_status = 'inactive';
+
+
 /**
  * load content of tasks.json in global array tasks. 
  * Initialized rendering content of Kanban Board
@@ -163,7 +166,7 @@ function taskHTML(task, i) {
     let title = task.title;
     let description = task.description;
     return `
-        <article id="task${i}" draggable="true" ondragstart="startDragging(${i})" onclick="close_open_Dialog(${i})" class="task">
+        <article id="task${i}" draggable="true" ondragstart="startDragging(${i})" onclick="openTaskDetailsDialog(${i})" class="task">
             <div id="task_category${i}" class="task_category">${category}</div>
             <div class="task_title">${title}</div>
             <div class="task_description">${description}</div>

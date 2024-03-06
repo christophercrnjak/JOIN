@@ -1,12 +1,12 @@
 /**
- * copy of contacts.json file
+ * Copy of contacts.json file
  * 
  * @type {JSON} - 
  */
 let loaded_contacts =[];
 
 /**
- * If an element is dragging the value is true.
+ * Shows whether the dropdown list is open.
  * 
  * @type {boolean}
  */
@@ -60,7 +60,7 @@ function assigedToEditHTML(taskId) {
         </div>
 
         <!-- triangle which shows whether the list is expanded -->
-        <a class="dopdown_img_inactive" id="dropdown_arrow" onclick="rotateArrow(${taskId})">
+        <a class="dopdown_img_inactive" id="dropdown_arrow" onclick="openDropDownList(${taskId})">
             <img src="assets/img/arrowDropDown.svg">
         </a>
     </div>
@@ -73,7 +73,7 @@ function assigedToEditHTML(taskId) {
 }
 
 /**
- * Render the cicles with initials of selected task members.
+ * Render the cicles with initials of selected task members in selected Contacts Section.
  * 
  * @param {Number} taskId - Index of current called task in tasks[] global array
  */
@@ -105,32 +105,28 @@ function selectedTaskMemberHTML(firstCharacter, secondCharacter, colorClass, tas
     `;
 }
 
-/**
- * Change the triangle image, Content of dropdown selection section and the content of underneath section
- * 
- * @param {Number} taskId - Index of current called task in tasks[] global array
- */
-function rotateArrow(taskId) {
-    let arrow_section = document.getElementById('dropdown_arrow')
-
-    // false define that the dropdown list is actually not rendered
-    if (dropdownStatus == false){
-        arrow_section.style.rotate = '200grad';
+function openDropDownList(taskId) {
+    rotateArrow();
+    changeTextInInput();
+    if(dropdownStatus == false) {
         showContactList(taskId);
-        changeTextInInput();
         document.getElementById('selectedContactsSection').classList.add('flexDirection');
         dropdownStatus = true;
-    } 
-
-    // true define that the dropdown list is actually rendered
-    else {
-        arrow_section.style.rotate = '0grad';
+    } else {
         renderCiclesOfTaskContacts(taskId);
-        changeTextInInput()
         document.getElementById('selectedContactsSection').classList.remove('flexDirection');
         dropdownStatus = false;
     }
-    
+}
+
+function rotateArrow() {
+    let arrow_section = document.getElementById('dropdown_arrow')
+    if (dropdownStatus == false){
+        arrow_section.style.rotate = '200grad';
+    } 
+    else {
+        arrow_section.style.rotate = '0grad';
+    }
 }
 
 /**
@@ -165,15 +161,17 @@ function showContactList(taskId, searchValue) {
     let container = document.getElementById('selectedContactsSection');
     container.innerHTML = '';
     for (let i = 0; i < loaded_contacts.length; i++) {
-        if (!searchValue || loaded_contacts[i].name.firstName.toLowerCase().includes(searchValue) || loaded_contacts[i].name.secondName.toLowerCase().includes(searchValue)) {
-        container.innerHTML += editContactListHTML(taskId, i);
-        // circle & checkbox are separate rendered
-        renderMemberImageDropdown(taskId, i);
-        renderCheckBoxEdit(taskId, i);
-        }
+        if (!searchValue || 
+            loaded_contacts[i].name.firstName.toLowerCase().includes(searchValue) || 
+            loaded_contacts[i].name.secondName.toLowerCase().includes(searchValue)) {
+                container.innerHTML += editContactListHTML(taskId, i);
+                // circle & checkbox are separate rendered
+                renderMemberImageDropdown(taskId, i);
+                renderSelectionStatusLayout(taskId, i);
+            }
     }
     // container.classList.toggle('flexDirection');
-    container.style.gap = '0px';
+    // container.style.gap = '0px';
 }
 
 /**
@@ -186,52 +184,98 @@ function showContactList(taskId, searchValue) {
 function editContactListHTML(taskId, contactId) {
     let contact = loaded_contacts[contactId].name;
     return `
-        <div onclick="deleteContactFromTask('${contact.firstName}', '${contact.secondName}', ${taskId})" id="dropdown_contact${taskId}${contactId}" class="dropdown_contact_row">
+        <div onclick="changeSelectionStatus(${taskId}, ${contactId})" id="dropdown_contact${taskId}${contactId}" class="dropdown_contact_row">
+            
+            <!-- circle & name -->
             <div class="dropdown_contact_image_name">
                 <div id="character_image${taskId}${contactId}"></div>
                 <div class="dropdownNames">${contact.firstName} ${contact.secondName}</div>
             </div> 
+
+            <!-- checkbox -->
             <div class="checkbox_edit">
-                <a id="checkbox_edit${taskId}${contactId}" onclick="deleteContactFromTask('${contact.firstName}', '${contact.secondName}', ${taskId})">
+                <a id="checkbox_edit${taskId}${contactId}">
                     
                 </a>
             </div>
         </div>
     `;
 }
+// deleteContactFromTask('${contact.firstName}', '${contact.secondName}', ${taskId})
+// onclick="deleteContactFromTask('${contact.firstName}', '${contact.secondName}', ${taskId})"
 
-/**
- * Render the checkbox image in dependence of selectionstatus for the current task
- * 
- * @param {Number} taskId - Index of current called task in tasks[] global array
- * @param {Number} contactId - Index of contact in loaded_contacts array JSON
- */
-function renderCheckBoxEdit(taskId, contactId) {
-    let container_checkbox = document.getElementById(`checkbox_edit${taskId}${contactId}`);
-    let container_dropdown_contact = document.getElementById(`dropdown_contact${taskId}${contactId}`);
+function renderSelectionStatusLayout(taskId, contactId) {
     let contact = loaded_contacts[contactId].name;
     let selectedContactStatus = checkContactSelected(`${contact.firstName}`, `${contact.secondName}`)
-    let cicle = document.getElementById(`selected_task_member${taskId}${contactId}`);
-
     if (selectedContactStatus == true) {
-        container_checkbox.innerHTML = `<img src="assets/img/check_button_checked_white.svg">`;
-        container_dropdown_contact.classList.toggle('contactOfTask');
-        cicle.style.border = 'solid 3px white';
+        setListContactOnSelect(taskId, contactId)
     } else {
-        container_checkbox.innerHTML = `<img onclick="" src="assets/img/check_button_unchecked.svg">`;
-        // container_checkbox.setAttribute('onclick', `selectContactforTask(${taskId}, ${contactId})`);
-        container_dropdown_contact.setAttribute('onclick', `selectContactforTask(${taskId}, ${contactId})`)
+        setListContactNotSelect(taskId, contactId)
     } 
 }
 
-// find out whether the contact is selected
-// is called by renderCheckBoxEdit()
-// compares the names of the global currentTaskContent.contacts with the hole contactlist of the program
+function setListContactOnSelect(taskId, contactId) {
+    let container_checkbox = document.getElementById(`checkbox_edit${taskId}${contactId}`);
+    let cicle = document.getElementById(`selected_task_member${taskId}${contactId}`);
+    let container_dropdown_contact = document.getElementById(`dropdown_contact${taskId}${contactId}`);
+    container_checkbox.innerHTML = `<img src="assets/img/check_button_checked_white.svg">`;
+    container_dropdown_contact.classList.toggle('contactOfTask');
+    cicle.style.border = 'solid 3px white';
+}
+
+function setListContactNotSelect(taskId, contactId) {
+    let container_checkbox = document.getElementById(`checkbox_edit${taskId}${contactId}`);
+    let cicle = document.getElementById(`selected_task_member${taskId}${contactId}`);
+    container_checkbox.innerHTML = `<img onclick="" src="assets/img/check_button_unchecked.svg">`;
+    cicle.style.border = 'none';
+}
+
+// /**
+//  * Render the checkbox image in dependence of selectionstatus for the current task
+//  * 
+//  * @param {Number} taskId - Index of current called task in tasks[] global array
+//  * @param {Number} contactId - Index of contact in loaded_contacts array JSON
+//  */
+// function renderCheckBoxEdit(taskId, contactId) {
+//     let container_checkbox = document.getElementById(`checkbox_edit${taskId}${contactId}`);
+//     let container_dropdown_contact = document.getElementById(`dropdown_contact${taskId}${contactId}`);
+//     let contact = loaded_contacts[contactId].name;
+//     let selectedContactStatus = checkContactSelected(`${contact.firstName}`, `${contact.secondName}`)
+//     let cicle = document.getElementById(`selected_task_member${taskId}${contactId}`);
+
+//     if (selectedContactStatus == true) {
+//         container_checkbox.innerHTML = `<img src="assets/img/check_button_checked_white.svg">`;
+//         container_dropdown_contact.classList.toggle('contactOfTask');
+//         cicle.style.border = 'solid 3px white';
+//     } else {
+//         container_checkbox.innerHTML = `<img onclick="" src="assets/img/check_button_unchecked.svg">`;
+//         // container_checkbox.setAttribute('onclick', `selectContactforTask(${taskId}, ${contactId})`);
+//         container_dropdown_contact.setAttribute('onclick', `selectContactforTask(${taskId}, ${contactId})`)
+//     } 
+// }
+
+/**
+ * Finds out whether the contact is selected.
+ * Compares the names of the global currentTaskContent.contacts with the hole contactlist of the program
+ * 
+ * @param {String} firstName 
+ * @param {String} secondName 
+ * @returns {Boolean} - Mark
+ */
 function checkContactSelected(firstName, secondName) {
     for (let i = 0; i < currentTaskContent.contacts.length; i++) {
         let contact = currentTaskContent.contacts[i];
         if (firstName == contact.firstName && secondName == contact.secondName) {
             return true
+        }
+    }
+}
+
+function checkContactIndex(firstName, secondName) {
+    for (let i = 0; i < currentTaskContent.contacts.length; i++) {
+        let contact = currentTaskContent.contacts[i];
+        if (firstName == contact.firstName && secondName == contact.secondName) {
+            return i
         }
     }
 }
@@ -262,34 +306,27 @@ function setcicleColor(taskId, contactId) {
     cicle.style.backgroundColor = `${color}`;
 }
 
-// is called by onclick in editContactListHTML() 
-// delete Contact in contactsOfCurrentTask array
-function deleteContactFromTask(firstName, secondName, taskId) {
-    let index_of_deleted_name = findDeleteNameInArray(firstName, secondName);
-    currentTaskContent.contacts.splice(index_of_deleted_name, 1);
-    showContactList(taskId);
-    // document.getElementById('selectedContactsSection').classList.toggle('flexDirection');
-}
 
-// find out the index of the contact in the array contactsOfCurrentTask to delete the right position by comparing the names of the global array "contactsOfCurrentTask" with the hole contactlist of the program
-// is called by deleteContactFromTask()
-function findDeleteNameInArray(firstName, secondName) {
-    let index;
-    for (let i = 0; i < currentTaskContent.contacts.length; i++) {
-        let contact = currentTaskContent.contacts[i];
-        if (contact.firstName == firstName && contact.secondName == secondName) {
-            index = i;
-        }
-    }
-    return index;
-}
-
-// is called onclick of unckecked checkbox in contactlist
-// add contact to contactsOfCurrentTask array
-function selectContactforTask(taskId, contactId) {
+function changeSelectionStatus(taskId, contactId) {
     let contact = loaded_contacts[contactId].name;
     let firstName = contact.firstName;
     let secondName = contact.secondName;
+    let selectedContactStatus = checkContactSelected(`${firstName}`, `${secondName}`)
+    
+    if (selectedContactStatus == true) {
+        deleteContactFromTask(firstName, secondName, taskId)
+    } else {
+        selectContactforTask(taskId, contactId, firstName, secondName)
+    } 
+}
+
+function deleteContactFromTask(firstName, secondName, taskId) {
+    let index_of_deleted_name = checkContactIndex(firstName, secondName);
+    currentTaskContent.contacts.splice(index_of_deleted_name, 1);
+    showContactList(taskId);
+}
+
+function selectContactforTask(taskId, contactId, firstName, secondName,) {
     let color = findOutColorClass(contactId);
     currentTaskContent.contacts.push(
         {
@@ -299,7 +336,6 @@ function selectContactforTask(taskId, contactId) {
         },
     );
     showContactList(taskId);
-    // document.getElementById('selectedContactsSection').classList.toggle('flexDirection');
 }
 
 // find out which color-class is to choose, because the key color of contacts is hex and the key color of tasks is a class-name

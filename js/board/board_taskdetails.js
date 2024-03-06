@@ -5,15 +5,23 @@
  * 
  * @param {number} taskId Index of current called task in tasks[] global array
  */
-function close_open_Dialog(taskId) {
+function openTaskDetailsDialog(taskId) {
+    dialog_status = 'taskdetails';
     let container = document.getElementById('dialog_container');
-    container.classList.toggle('d-none');
-    if(!container.classList.contains('d-none')) {
-    renderDialogTask(taskId)} else {
+    container.classList.remove('d-none');
+    renderDialogTask(taskId);  
+}
+
+
+function closeDialog(taskId) {
+    if(dialog_status == 'taskdetails') {
+        let container = document.getElementById('dialog_container');
+        container.classList.add('d-none');
         renderColumnContent();
-    };
-    if (tasks[taskId].subtasks.length > 0){
-        renderBlueProgressbar(taskId);
+        dialog_status = 'inactive';
+    } else if (dialog_status == 'edit') {
+        renderDialogTask(taskId);  
+        dialog_status = 'taskdetails';
     }
 }
 
@@ -32,6 +40,9 @@ function renderDialogTask(taskId){
     renderPriorityDialog(taskId);
     renderAssigedToDialog(taskId);
     renderSubtasksDialog(taskId);
+    if (tasks[taskId].subtasks.length > 0){
+        renderBlueProgressbar(taskId);
+    }
 }
 
 /**
@@ -45,7 +56,7 @@ function taskDialogHTML(task, taskId) {
     return`
         <div class="category_close">
                 <div onclick="doNotClose(event)" id="task_category_dialog" class="task_category">${task.category}</div>
-                <a onclick="close_open_Dialog(${taskId})" class="close">
+                <a onclick="closeDialog(${taskId})" class="close">
                     <div class="line horizontal"></div>
                     <div class="line vertical"></div>
                 </a>
@@ -86,7 +97,7 @@ function taskDialogHTML(task, taskId) {
 
                     <div class="line_task"></div>
 
-                    <a id="edit_img_dialog" onclick="initEditingTask(${taskId})">
+                    <a id="edit_img_dialog" onclick="openTaskEdit(${taskId})">
                         <div id="delete_img_dialog">
                         <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M2 17H3.4L12.025 8.375L10.625 6.975L2 15.6V17ZM16.3 6.925L12.05 2.725L13.45 1.325C13.8333 0.941667 14.3042 0.75 14.8625 0.75C15.4208 0.75 15.8917 0.941667 16.275 1.325L17.675 2.725C18.0583 3.10833 18.2583 3.57083 18.275 4.1125C18.2917 4.65417 18.1083 5.11667 17.725 5.5L16.3 6.925ZM14.85 8.4L4.25 19H0V14.75L10.6 4.15L14.85 8.4Z" fill="#2A3647"/>

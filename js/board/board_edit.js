@@ -2,22 +2,26 @@
 // used for chage priority in json in edit dialog by click OK
 let prioStatusEdit = '';
 
-// Source of current editing task (copy)
+// Source of current editing task 
 let currentTaskContent = [];
 
-// init by onclick @ task Dialog buttom right edit-icon
-// load only the current task of array tasks in the array currentTaskContent
-// render the dialog for edit content
-async function initEditingTask(taskId) {
+/**
+ * init by onclick @ task Dialog buttom right edit-icon
+ * load only the current task of array tasks in the array currentTaskContent
+ * render the dialog for edit content
+ * 
+ * @param {Number} taskId 
+ */
+async function openTaskEdit(taskId) {
+    dialog_status = 'edit';
     await loadEditContent(taskId);
     renderEditDialog(taskId);
 }
 
 // take a copy of current editing task and load in array currentTaskContent to protect the original data of tasks.json
-async function loadEditContent(taskId) {
-    let content =  await fetch('assets/json/tasks.json');
-    content = await content.json();
-    currentTaskContent = content[taskId];
+function loadEditContent(taskId) {
+    currentTaskContent.push(tasks[taskId]);
+    currentTaskContent = currentTaskContent[0];
 }
 
 // delete dialog container content and call functions built edit-content
@@ -36,7 +40,7 @@ function renderEditDialog(taskId) {
 function editDialogHTML(taskId) {
     return `
     <div id="close_section_edit" class="distance">
-        <a onclick="close_open_Dialog()" class="close">
+        <a onclick="closeDialog(${taskId})" class="close">
             <div class="line horizontal"></div>
             <div class="line vertical"></div>
         </a>
@@ -248,6 +252,7 @@ async function confirmInputsOfEditDialog(taskId) {
     await getInputValuesOfEditDialog();
     await loadChangedContentInTasksArray(taskId);
     await renderDialogTask(taskId);
+    dialog_status = 'taskdetails';
     await deleteCurrentTaskContent();
 }
 
@@ -259,8 +264,7 @@ function getInputValuesOfEditDialog() {
 }
 
 function loadChangedContentInTasksArray(taskId) {
-    let new_content = currentTaskContent;
-    tasks[taskId] = new_content;
+    tasks[taskId] = currentTaskContent;
 }
 
 function deleteCurrentTaskContent() {
