@@ -18,10 +18,6 @@ body {
   align-items: center;
 }
 
-.move-logo {
-  transform: translate(0, 0);
-}
-
 .logo {
   position: absolute;
   inset: 0;
