@@ -22,8 +22,7 @@ let dialog_status = 'inactive';
  * Initialize rendering content of Kanban Board.
  */
 async function init() {
-    let resp = await fetch('assets/json/tasks.json'); 
-    tasks = await resp.json(); 
+    await getTasksFromServer();
     renderColumnContent();
 }
 

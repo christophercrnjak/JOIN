@@ -67,9 +67,31 @@ function renderTitleEditDialog() {
     let title = currentTaskContent.title;
     container.innerHTML = `
     <div class="header_text_edit_section">Titel</div>
-    <input id="edit_input_title" type="text" value="${title}">
+    <form id="title_input_edit" onsubmit="checkforblank()" return false>
+        <input 
+            required 
+            oninvalid="this.setCustomValidity('Please set a title.')"
+            id="edit_input_title" 
+            type="text" 
+            placeholder="Enter a title"
+            value="${title}">  
+    </form>
+    <p id="errorTextTitleInput" class="d-none"></p>
     `;
 }
+
+function checkforblank() {
+    let errormessage = "";
+    if (document.getElementById('edit_input_title').value == "") {
+        errormessage += "This field is required";
+        document.getElementById('edit_input_title').style.borderColor = 'red';
+        document.getElementById('errorTextTitleInput').classList.remove(d-none);
+        document.getElementById('errorTextTitleInput').innerHTML = `${errormessage}`;
+    } else {
+        document.getElementById('errorTextTitleInput').classList.add(d-none);
+    }
+}
+
 
 
 // *** description *** //
@@ -80,7 +102,7 @@ function renderDescriptionEditDialog() {
     let description = currentTaskContent.description;
     container.innerHTML = `
     <div class="header_text_edit_section">Description</div>
-    <textarea id="edit_input_description" rows="4" type="text">${description}</textarea>
+    <textarea placeholder="Enter a description" id="edit_input_description" rows="4" type="text">${description}</textarea>
     `;
 }
 
@@ -93,7 +115,7 @@ function renderDueDateEditDialog(taskId) {
     let newDate = changeDueDateFormatInLongYear(taskId)
     container.innerHTML = `
     <div class="header_text_edit_section">Due Date</div>
-    <input id="edit_input_dueDate" type="text" value="${newDate}">
+    <input placeholder="dd/mm/yyyy" id="edit_input_dueDate" type="text" value="${newDate}">
     `;
 }
 
@@ -250,6 +272,8 @@ function lowActivHTML() {
 async function confirmInputsOfEditDialog(taskId) {
     await getInputValuesOfEditDialog();
     await loadChangedContentInTasksArray(taskId);
+    await setTasksToServer();
+    await getTasksFromServer();
     await renderDialogTask(taskId);
     dialog_status = 'taskdetails';
     await deleteCurrentTaskContent();

@@ -30,3 +30,24 @@ async function getItem(key) {
  * @type {JSON}
  */
 let tasks = [];
+
+/**
+ * Load the tasks JSON Array from Server in tasks[]
+ */
+async function getTasksFromServer() {
+  let tasksServer = JSON.parse(await getItem("tasks"));
+  tasks = tasksServer;
+}
+
+/**
+ * Push new Content to Server
+ */
+async function setTasksToServer() {
+  setItem('tasks', tasks);
+}
+
+
+
+
+
+
