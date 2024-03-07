@@ -104,7 +104,7 @@ function take_over_new_Subtask(taskId) {
     currentTaskContent.subtasks.push(
         {
         "name": `${content}`,
-        "done": true
+        "done": false
         },
     );
     renderSubtasksEditDialog(taskId);
