@@ -1,9 +1,10 @@
-// ****** DIALOG FUNCTIONS for Board*****
+// ****** Dialog taskdetails functions for the board *****
 
 /**
- * Open dialog Container to show task details.
+ * Set new dialog-status.
+ * Open dialog container to show task details.
  * 
- * @param {number} taskId Index of current called task in tasks[] global array
+ * @param {Number} taskId - Index of current called task in tasks[] global array
  */
 function openTaskDetailsDialog(taskId) {
     dialog_status = 'taskdetails';
@@ -12,7 +13,11 @@ function openTaskDetailsDialog(taskId) {
     renderDialogTask(taskId);  
 }
 
-
+/**
+ * Closes the Dialog and decide whether there is required to show taskdetails oder the Kanban Board
+ * 
+ * @param {Number} taskId - Index of current called task in tasks[] global array
+ */
 function closeDialog(taskId) {
     if(dialog_status == 'taskdetails') {
         let container = document.getElementById('dialog_container');
@@ -26,31 +31,36 @@ function closeDialog(taskId) {
 }
 
 /**
- * Render the HTML structure of dialog with details of teh task and call functions 
- * which render several elemnets of the dialog.
+ * Calls the functions creates the HTML structure of dialog with details of the task.
+ * When the dialog to change content is called, the data is loaded from currentTaskContent.
  * 
- * @param {number} taskId - Index of current called task in tasks[] global array
+ * @param {Number} taskId - Index of current called task in tasks[] global array
  */
 function renderDialogTask(taskId){
     let container = document.getElementById('task_dialog_container');
-    let task = tasks[taskId];
-    container.innerHTML = taskDialogHTML(task, taskId);
-    changeDueDateFormat(taskId);
-    setColorOfCategoryInDialog(taskId);
-    renderPriorityDialog(taskId);
-    renderAssigedToDialog(taskId);
-    renderSubtasksDialog(taskId);
-    if (tasks[taskId].subtasks.length > 0){
-        renderBlueProgressbar(taskId);
+    let task;
+    if(currentTaskContent.length > 0) {
+        task = currentTaskContent
+    } else {
+        task = tasks[taskId];
+        container.innerHTML = taskDialogHTML(task, taskId);
+        changeDueDateFormat(taskId);
+        setColorOfCategoryInDialog(taskId);
+        renderPriorityDialog(taskId);
+        renderAssigedToDialog(taskId);
+        renderSubtasksDialog(taskId);
+        if (tasks[taskId].subtasks.length > 0){
+            renderBlueProgressbar(taskId);
+        }
     }
 }
 
 /**
  * Returns the HTML structure of dialog with task details of current choosen task
  * 
- * @param {object} task Object JSON with task elements
- * @param {number} taskId Index of current called task in tasks[] global array
- * @returns {string}
+ * @param {JSON} task Object JSON with task elements.
+ * @param {Number} taskId Index of current called task in tasks[] global array.
+ * @returns {String} - HTML structure of Dialog with task details.
  */
 function taskDialogHTML(task, taskId) {
     return`
@@ -111,9 +121,9 @@ function taskDialogHTML(task, taskId) {
 }
 
 /**
+ * Saves the new format of DueDate.
  * 
- * 
- * @param {number} taskId Index of current called task in tasks[] global array
+ * @param {Number} taskId - Index of current called task in tasks[] global array.
  */
 function changeDueDateFormat(taskId) {
     let container = document.getElementById('dueDateTaskDetails');
@@ -121,7 +131,11 @@ function changeDueDateFormat(taskId) {
     container.innerHTML = `${date}`;
 }
 
-
+/**
+ * Set the background-color of category-element.
+ * 
+ * @param {Number} i - Index of current called task in tasks[] global array.
+ */
 function setColorOfCategoryInDialog(i) {
     let category = tasks[i].category;
     container = document.getElementById('task_category_dialog');
@@ -135,7 +149,11 @@ function setColorOfCategoryInDialog(i) {
     }
 }
 
-
+/**
+ * Create the details of contacts assigned to the task.
+ * 
+ * @param {Number} taskId - Index of current called task in tasks[] global array.
+ */
 function renderAssigedToDialog(taskId) {
     let container = document.getElementById('member_container_dialog');
     container.innerHTML = '';
@@ -151,9 +169,13 @@ function renderAssigedToDialog(taskId) {
     }
 }
 
-
-function renderPriorityDialog(i) {
-    let priority = tasks[i].priority;
+/**
+ * Set the priority image.
+ * 
+ * @param {*} taskId - Index of current called task in tasks[] global array.
+ */
+function renderPriorityDialog(taskId) {
+    let priority = tasks[taskId].priority;
     let container = document.getElementById('prio_image');
     switch (priority) {
         case "Low":
@@ -168,18 +190,21 @@ function renderPriorityDialog(i) {
     }
 }
 
-
-function renderSubtasksDialog(i){
+/**
+ * 
+ * @param {*} taskId - Index of current called task in tasks[] global array.
+ */
+function renderSubtasksDialog(taskId){
     let container = document.getElementById('subtask_dialog_container');
     let header = document.getElementById('subtask_dialog_header')
-    if (tasks[i].subtasks.length > 0) {
+    if (tasks[taskId].subtasks.length > 0) {
         header.innerHTML = 'Subtasks';
     }
     container.innerHTML = '';
-    for (let j = 0; j < tasks[i].subtasks.length; j++) {
-        let subtask = tasks[i].subtasks[j];
-        container.innerHTML += subtaskDialogHTML(i, j, subtask.name);
-        renderSubtaskImage(i, j);
+    for (let j = 0; j < tasks[taskId].subtasks.length; j++) {
+        let subtask = tasks[taskId].subtasks[j];
+        container.innerHTML += subtaskDialogHTML(taskId, j, subtask.name);
+        renderSubtaskImage(taskId, j);
     }
 }
 

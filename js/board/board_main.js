@@ -1,9 +1,6 @@
-/**
- * Array with fetched JSON-Object "tasks.json" as content
- * 
- * @type {JSON}
- */
-let tasks = [];
+// ****** Main structure and functions for Kanban Board *****
+
+
 
 /**
  * Global Variable with the current dragged task as Index of tasks[]
