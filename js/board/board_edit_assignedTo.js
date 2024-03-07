@@ -258,8 +258,8 @@ function setListContactNotSelect(taskId, contactId) {
  * Finds out whether the contact is selected.
  * Compares the names of the global currentTaskContent.contacts with the hole contactlist of the program
  * 
- * @param {String} firstName 
- * @param {String} secondName 
+  * @param {String} firstName - first name of the Contact which is selected
+ * @param {String} secondName - second name of the Contact which is selected
  * @returns {Boolean} - Mark
  */
 function checkContactSelected(firstName, secondName) {
@@ -271,6 +271,13 @@ function checkContactSelected(firstName, secondName) {
     }
 }
 
+/**
+ * 
+ * 
+ * @param {String} firstName - first name of the Contact which is selected
+ * @param {String} secondName - second name of the Contact which is selected
+ * @returns {Number} Index of Contact in currentTaskContent.contacts
+ */
 function checkContactIndex(firstName, secondName) {
     for (let i = 0; i < currentTaskContent.contacts.length; i++) {
         let contact = currentTaskContent.contacts[i];
@@ -280,8 +287,12 @@ function checkContactIndex(firstName, secondName) {
     }
 }
 
-// set the HTML of contacts
-// is called by showContactList()
+/**
+ * Set the HTML of contacts in the dropdown-list.
+ * 
+ * @param {Number} taskId - Index of current called task in tasks[] global array
+ * @param {Number} contactId - Index of Contact in loaded_contacts array
+ */
 function renderMemberImageDropdown(taskId, contactId) {
     let container = document.getElementById(`character_image${taskId}${contactId}`);
     let firstCharacter = loaded_contacts[contactId].name.firstName.charAt(0);
@@ -290,23 +301,41 @@ function renderMemberImageDropdown(taskId, contactId) {
     setcicleColor(taskId, contactId);
 }
 
-// HTML structure of circle of contact image
-// is called by renderMemberImageDropdown()
+/**
+ * HTML structure of contact cicle-image.
+ * 
+ * @param {Number} taskId - Index of current called task in tasks[] global array
+ * @param {Number} contactId - Index of Contact in loaded_contacts array
+ * @param {String} firstName - first name of the Contact which is selected
+ * @param {String} secondName - second name of the Contact which is selected
+ * @returns {String} - HTML structure
+ */
 function dropdownContactHTML(firstCharacter, secondCharacter, taskId, contactId) {
     return `
         <div id="selected_task_member${taskId}${contactId}" class="selected_member_cicle">${firstCharacter}${secondCharacter}</div>
     `;
 }
 
-// set the color of contact image
-// is called by renderMemberImageDropdown()
+/**
+ * Set the color of contact cicle-image.
+ * 
+ * @param {Number} taskId - Index of current called task in tasks[] global array
+ * @param {Number} contactId - Index of Contact in loaded_contacts array
+ */
 function setcicleColor(taskId, contactId) {
     let cicle = document.getElementById(`selected_task_member${taskId}${contactId}`);
     let color = loaded_contacts[contactId].name.color;
     cicle.style.backgroundColor = `${color}`;
 }
 
-
+/**
+ * On click of Contact change the function the selection status in dependence of current status.
+ * If the contact was selected, the function deleteContactFromTask delete the contact from currentTaskContent.contacts.
+ * If the contact was not selected, the function selectContactforTask() add the Contact to currentTaskContent.contacts.
+ * 
+ * @param {Number} taskId - Index of current called task in tasks[] global array
+ * @param {Number} contactId - Index of Contact in loaded_contacts array
+ */
 function changeSelectionStatus(taskId, contactId) {
     let contact = loaded_contacts[contactId].name;
     let firstName = contact.firstName;
@@ -320,12 +349,27 @@ function changeSelectionStatus(taskId, contactId) {
     } 
 }
 
+/**
+ * Delete the Contact which is not more selected for the task.
+ * 
+ * @param {String} firstName - first name of the Contact which is selected
+ * @param {String} secondName - second name of the Contact which is selected
+ * @param {Number} taskId - Index of current called task in tasks[] global array
+ */
 function deleteContactFromTask(firstName, secondName, taskId) {
     let index_of_deleted_name = checkContactIndex(firstName, secondName);
     currentTaskContent.contacts.splice(index_of_deleted_name, 1);
     showContactList(taskId);
 }
 
+/**
+ * Add the Contact which is selected for the task to currentTaskContent.contacts.
+ * 
+ * @param {Number} taskId - Index of current called task in tasks[] global array
+ * @param {Number} contactId - Index of Contact in loaded_contacts array
+ * @param {String} firstName - first name of the Contact which is selected
+ * @param {String} secondName - second name of the Contact which is selected
+ */
 function selectContactforTask(taskId, contactId, firstName, secondName,) {
     let color = findOutColorClass(contactId);
     currentTaskContent.contacts.push(
@@ -338,7 +382,12 @@ function selectContactforTask(taskId, contactId, firstName, secondName,) {
     showContactList(taskId);
 }
 
-// find out which color-class is to choose, because the key color of contacts is hex and the key color of tasks is a class-name
+/**
+ * Finds out which color-class is to choose, because the key: color of contacts[] is hex and the key: color of tasks[].contacts is a class-name.
+ * 
+ * @param {Number} contactId - Index of Contact in loaded_contacts array
+ * @returns {String} Name of Class with the right color Attribute
+ */
 function findOutColorClass(contactId) {
     let contact = loaded_contacts[contactId].name;
     let firstName = contact.firstName;

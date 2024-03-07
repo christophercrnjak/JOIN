@@ -6,19 +6,23 @@
 let tasks = [];
 
 /**
- * Global Variable with the current dragged task as Index of tasks
+ * Global Variable with the current dragged task as Index of tasks[]
  * 
  * @type {number}
  */
 let currentDraggedElement;
 
-
+/**
+ * Saves the status which shows, whether the dialog is showing taskdetails or editing fields.
+ * 
+ * @type {String} - 3 conditions: 'inactive' (dialog not open); 'taskdetails' (shows taskdetails); 'edit' (dialog to change content).
+ */
 let dialog_status = 'inactive';
 
 
 /**
- * load content of tasks.json in global array tasks. 
- * Initialized rendering content of Kanban Board
+ * Load content of tasks.json in global array tasks[]. 
+ * Initialize rendering content of Kanban Board.
  */
 async function init() {
     let resp = await fetch('assets/json/tasks.json'); 
@@ -27,45 +31,11 @@ async function init() {
 }
 
 
-// ***** Drag and Drop *****
-
-
-/**
- * The function is started by dragging the task element
- * and saves the index in the global variable currentDraggedElement.
- * 
- * @param {number} taskId - Index of current dragging task in tasks[] global array
- */
-function startDragging(taskId) {
-    currentDraggedElement = taskId;
-}
-
-/**
- * Prevents the browser's default behavior of dragging back elements
- * 
- * @param {Event} event - The drag-and-drop-event.
- * @returns {void}
- */
-function allowDrop(event) {
-    event.preventDefault();
-}
-
-/**
- * save the current status of task (To do, In progress, Await feedback or Done) in current dragging task element 
- * 
- * @param {string} status - string like 'toDo' as a statusdescription in which column of the kanban Board the task is
- */
-function moveTo(status) {
-    tasks[currentDraggedElement].status = status;
-    renderColumnContent();
-}
-
-
 // ***** Search *****
 
 
 /**
- * Gets Value of search-input-field in lowerCase letters and trasfer to function renderColumnContent()
+ * Gets Value of search-input-field (in the upper area of the page) in lowerCase letters and trasfer it to renderColumnContent()
  */
 function searchTask() {
     let search_content = document.getElementById('task_to_be_found').value;
@@ -73,8 +43,12 @@ function searchTask() {
     renderColumnContent(search_content);
 }
 
+
+// ***** Building Webpage *****
+
+
 /**
- * Call the functions which are responsiv for sort the task elements in the right column of Kanban Board
+ * Calls the functions which are responsiv for sort the task-elements in the right column of Kanban Board
  * 
  * @param {String} search_content - letters by which the Kanban board should be sorted
  */
@@ -91,10 +65,10 @@ async function renderColumnContent(search_content){
 /**
  * Delete content of columns for reset content
  * 
- * @param {HTMLDivElement} toDo_container 
- * @param {HTMLDivElement} inProgress_container 
- * @param {HTMLDivElement} awaitFeedback_container 
- * @param {HTMLDivElement} done_container 
+ * @param {HTMLDivElement} toDo_container - Column showing tasks to be completed
+ * @param {HTMLDivElement} inProgress_container - Column showing tasks that are in progress
+ * @param {HTMLDivElement} awaitFeedback_container - Column showing tasks that require feedback from colleagues
+ * @param {HTMLDivElement} done_container - Column showing tasks that have been completed
  */
 function deleteColumnContentToRenderNew(toDo_container, inProgress_container, awaitFeedback_container, done_container) {
     toDo_container.innerHTML = '';
@@ -104,30 +78,28 @@ function deleteColumnContentToRenderNew(toDo_container, inProgress_container, aw
 }
 
 /**
- * Sort content of tasks array in associated Columns in dependence of status or searched letters
+ * Sorts all tasks by processing status.
+ * Tasks are only displayed if there is no search or the content matches the search result.
  * 
- * @param {HTMLDivElement} toDo - column of Kanban Board with the header "To do"
- * @param {HTMLDivElement} inProgress - column of Kanban Board with the header "In progress"
- * @param {HTMLDivElement} awaitFeedback - column of Kanban Board with the header "Await Feedback"
- * @param {HTMLDivElement} done - column of Kanban Board with the header "Done"
+ * @param {HTMLDivElement} toDo - Column showing tasks to be completed
+ * @param {HTMLDivElement} inProgress - Column showing tasks that are in progress
+ * @param {HTMLDivElement} awaitFeedback - Column showing tasks that require feedback from colleagues
+ * @param {HTMLDivElement} done - Column showing tasks that have been completed
  * @param {String} search_content - letters by which the Kanban board should be sorted
  */
 function filterTasks(toDo, inProgress, awaitFeedback, done, search_content) {
     for (let i = 0; i < tasks.length; i++) {
         let task = tasks[i];
-        switch (task.status) { // query tasks[i].status has the value of
+        switch (task.status) { 
 
-        case 'toDo': // if value = 'toDo' true, 
-            // search filter and render if no searching, in dependance of searching title oder description
+        case 'toDo': 
             if(!search_content || 
                 task.title.toLowerCase().includes(search_content) || 
                 task.description.toLowerCase().includes(search_content) || 
                 task.category.toLowerCase().includes(search_content)) {
-                    // render html of task
                     toDo.innerHTML += taskHTML(task, i);
-                    // render task special content
                     renderTaskElements(i)
-            }
+                }
             break;
         case 'inProgress': 
             if(!search_content || 
@@ -136,19 +108,25 @@ function filterTasks(toDo, inProgress, awaitFeedback, done, search_content) {
                 task.category.toLowerCase().includes(search_content)) {
                     inProgress.innerHTML += taskHTML(task, i);
                     renderTaskElements(i)
-            }
+                }
             break;
         case 'awaitFeedback':
-            if(!search_content || task.title.toLowerCase().includes(search_content) || task.description.toLowerCase().includes(search_content) || task.category.toLowerCase().includes(search_content)) {
-            awaitFeedback.innerHTML += taskHTML(task, i);
-            renderTaskElements(i)
-            }
+            if(!search_content || 
+                task.title.toLowerCase().includes(search_content) || 
+                task.description.toLowerCase().includes(search_content) || 
+                task.category.toLowerCase().includes(search_content)) {
+                    awaitFeedback.innerHTML += taskHTML(task, i);
+                    renderTaskElements(i)
+                }
             break;
         case 'done':
-            if(!search_content || task.title.toLowerCase().includes(search_content) || task.description.toLowerCase().includes(search_content) || task.category.toLowerCase().includes(search_content)) {
-            done.innerHTML += taskHTML(task, i);
-            renderTaskElements(i)
-            }
+            if(!search_content || 
+                task.title.toLowerCase().includes(search_content) || 
+                task.description.toLowerCase().includes(search_content) || 
+                task.category.toLowerCase().includes(search_content)) {
+                    done.innerHTML += taskHTML(task, i);
+                    renderTaskElements(i)
+                }
             break;
         }
     }
@@ -158,7 +136,7 @@ function filterTasks(toDo, inProgress, awaitFeedback, done, search_content) {
  * Define the HTML structure of tasks in the Kanban Board
  * 
  * @param {JSON} task - JSON Object of tasks array
- * @param {number} i - Index of task in tasks array
+ * @param {Number} i - Index of task in tasks array
  * @returns {String} HTML structure of tasks in the columns of Kanban Board
  */
 function taskHTML(task, i) {
@@ -180,20 +158,12 @@ function taskHTML(task, i) {
     `
 }
 
-/**
- * Render the special to be rendered content of tasks in the columns of Kanban Board
- * 
- * @param {*} i - Index of task in tasks array
- */
-function renderTaskElements(i) {
-    setColorOfCategory(i); 
-    showprogressbar(i); 
-    renderInitials(i); 
-    renderPriority(i); 
-}
+
+// ***** No Task *****
+
 
 /**
- * Render "no task" divs for columns without content/ not assigned status.
+ * Render "no task" elements for columns without content.
  * 
  * @param {HTMLDivElement} toDo_container 
  * @param {HTMLDivElement} inProgress_container 
@@ -225,10 +195,30 @@ function noTaskHTML(header_text) {
     return `<div class="no_task"> no ${header_text} task</div>`
 }
 
+
+// ***** Task elements *****
+
+
 /**
- * Set the background-color of category-element in dependence of stored category in teh task.
+ * Calls all functions that require a dependent element design of task.
  * 
- * @param {*} i - Index of task in tasks array
+ * @param {Number} i - Index of task in tasks array.
+ */
+function renderTaskElements(i) {
+    setColorOfCategory(i); 
+    showprogressbar(i); 
+    renderInitials(i); 
+    renderPriority(i); 
+}
+
+
+// ***** Category *****
+
+
+/**
+ * Set the background-color of category-element.
+ * 
+ * @param {Number} i - Index of task in tasks array
  */
 function setColorOfCategory(i) {
     let category = tasks[i].category;
@@ -243,10 +233,14 @@ function setColorOfCategory(i) {
     }
 }
 
+
+// ***** Priority *****
+
+
 /**
- * Render the icon of the priority field of task in the Kanban Board in dependence of saved priority in the task
+ * Set the priority icon.
  * 
- * @param {*} taskId - Index of task in tasks array
+ * @param {Number} taskId - Index of task in tasks array
  */
 function renderPriority(taskId) {
     let priority = tasks[taskId].priority;
@@ -269,10 +263,10 @@ function renderPriority(taskId) {
 
 
 /**
- * Calls teh functions which render the progressbar elements 
+ * Calls the functions which render the progressbar elements 
  * or let the progressbar-field disappear if there are no subtasks.
  * 
- * @param {*} taskId - Index of task in tasks array
+ * @param {Number} taskId - Index of task in tasks array
  */
 function showprogressbar(taskId) {
     let container = document.getElementById(`task_progressbar${taskId}`)
@@ -289,7 +283,7 @@ function showprogressbar(taskId) {
 /**
  * HTML structure of progressbar of completed tasks.
  * 
- * @param {*} taskId - Index of task in tasks array
+ * @param {Number} taskId - Index of task in tasks array
  * @returns {String} - HTML structure of progressbar
  */
 function subtaskHTML(taskId) {
@@ -306,7 +300,7 @@ function subtaskHTML(taskId) {
 /**
  * Updating the progress bar based on completed tasks.
  * 
- * @param {*} taskId - Index of task in tasks array
+ * @param {Number} taskId - Index of task in tasks array
  */
 function renderBlueProgressbar(taskId) {
     let container = document.getElementById(`blue_progressbar${taskId}`)
@@ -325,7 +319,7 @@ function renderBlueProgressbar(taskId) {
 }
 
 /**
- * Calculate the level of the progressbar as picel amount
+ * Calculate the level of the progressbar as pixel amount
  * 
  * @param {number} totalSubtasks - the amount of all subtasks in the task
  * @returns {number} - calculated pixel of progressbar level
@@ -338,7 +332,7 @@ function calcProgressbar(totalSubtasks){
 /**
  * Counts the completed subtasks and returns the amount
  * 
- * @param {*} taskId - Index of task in tasks array
+ * @param {Number} taskId - Index of task in tasks array
  * @returns {number}
  */
 function calcSubtaskAmount(taskId) {
@@ -356,7 +350,7 @@ function calcSubtaskAmount(taskId) {
 /**
  * Render the labeling of progressbar.
  * 
- * @param {*} taskId - Index of task in tasks array
+ * @param {Number} taskId - Index of task in tasks array
  */
 function renderSubtaskAmounts(taskId) {
     let sub_todo = document.getElementById(`subtasks_todo${taskId}`);
@@ -369,10 +363,11 @@ function renderSubtaskAmounts(taskId) {
 
 // ***** Member of task *****
 
+
 /**
  * Render the Initials (letters) of the first and second name of contact which is selected for the task.
  * 
- * @param {*} taskId - Index of task in tasks array
+ * @param {Number} taskId - Index of task in tasks array
  */
 function renderInitials(taskId) {
     let task = tasks[taskId];
@@ -383,7 +378,8 @@ function renderInitials(taskId) {
         let firstCharacter = contact.firstName.charAt(0);
         let secondCharacter = contact.secondName.charAt(0);
         let colorClass = contact.color;
-        container.innerHTML += taskMemberHTML(firstCharacter, secondCharacter, colorClass, taskId, i);   
+        container.innerHTML += taskMemberHTML(firstCharacter, secondCharacter, colorClass, taskId, i); 
+        // create the position of cicles:  
         if(i > 0) {
             let additionalTaskMember = document.getElementById(`task_member${taskId}${i}`);
             additionalTaskMember.style.position = 'relative';
@@ -395,11 +391,11 @@ function renderInitials(taskId) {
 /**
  * HTML structure of contact image (in form of circle with initials in the middle).
  * 
- * @param {String} firstCharacter - first letter of first name of contact which is selected for the task
- * @param {String} secondCharacter - first letter of second name of contact which is selected for the task
- * @param {String} colorClass - name of class with color attribute
- * @param {number} taskId - Index of task in tasks array
- * @param {number} i - Index of Contact in the key "contacts" of task
+ * @param {String} firstCharacter - First letter of first name of contact which is selected for the task
+ * @param {String} secondCharacter - First letter of second name of contact which is selected for the task
+ * @param {String} colorClass - Name of class with color attribute
+ * @param {Number} taskId - Index of task in tasks array
+ * @param {Number} i - Index of Contact in the key "contacts" of task
  * @returns {String} - HTML structure of circle with initials in the middle
  */
 function taskMemberHTML(firstCharacter, secondCharacter, colorClass, taskId, i) {
@@ -411,8 +407,8 @@ function taskMemberHTML(firstCharacter, secondCharacter, colorClass, taskId, i) 
 /**
  * Calculates the position of circle
  * 
- * @param {number} i - Index of Contact in the key "contacts" of task
- * @returns {number} pixel amount for shift to the right of first cicle
+ * @param {Number} i - Index of Contact in the key "contacts" of task
+ * @returns {Number} pixel amount for shift to the right of first cicle
  */
 function calcPositionMember(i) {
     let position = i * -9;
@@ -426,7 +422,7 @@ function calcPositionMember(i) {
 /**
  * Changes the Due Date format from dd/mm/yy to dd/mm/yyyy
  * 
- * @param {*} taskId - Index of task in tasks array 
+ * @param {Number} taskId - Index of task in tasks array 
  * @returns {String} - String with the format dd/mm/yyyy
  */
 function changeDueDateFormatInLongYear(taskId) {
@@ -439,3 +435,35 @@ function changeDueDateFormatInLongYear(taskId) {
 }
 
 
+// ***** Drag and Drop *****
+
+
+/**
+ * The function is started by dragging the task element
+ * and saves the index in the global variable currentDraggedElement.
+ * 
+ * @param {Number} taskId - Index of current dragging task in tasks[] global array.
+ */
+function startDragging(taskId) {
+    currentDraggedElement = taskId;
+}
+
+/**
+ * Prevents the browser's default behavior of dragging back elements.
+ * 
+ * @param {Event} event - The drag-and-drop-event.
+ * @returns {void}
+ */
+function allowDrop(event) {
+    event.preventDefault();
+}
+
+/**
+ * Saves the current status of task (To do, In progress, Await feedback or Done) in current dragging task element 
+ * 
+ * @param {String} status - string like 'toDo' as a statusdescription in which column of the kanban Board the task is
+ */
+function moveTo(status) {
+    tasks[currentDraggedElement].status = status;
+    renderColumnContent();
+}
