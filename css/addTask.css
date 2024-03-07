@@ -78,7 +78,7 @@ body {
   background-color: white;
   background-position: right 10px center;
   background-repeat: no-repeat;
-  padding: 12px 20px 12px 40px;
+  padding: 8px 12px;
 }
 
 textarea#description {
@@ -99,18 +99,24 @@ textarea#description {
   cursor: pointer;
 }
 
+input[type="text"] {
+  padding: 8px 12px;
+}
+
 .btn_addTask {
 
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #ffffff;
-  color: black;
-  gap: 8px;
-  padding: 16px 8px;
+  color: black; 
+  padding: 16px 18px;
   height: 56px;
   width: 120px;
   border-radius: 10px;
+}
+#btnUrgrend img{
+ margin-left:6px;
 }
 
 .btn_addTask:hover {
@@ -137,7 +143,7 @@ textarea#description {
 .dropbtn {
   background-color: #ffffff;
   color: black;
-  padding: 12px;
+  padding: 8px 12px;
   border: 2px solid var(--grey);
   border-radius: 5px;
   cursor: pointer;
@@ -168,6 +174,7 @@ textarea#description {
 .dropdown_content a:hover {
   background-color: var(--bgdarkblue);
   color: #ffff !important;
+  background-image: url('assets/img/check.svg');
 }
 
 /* show_task_task the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
@@ -183,7 +190,7 @@ textarea#description {
 
 .arrow {
   position: absolute;
-  top: 16px;
+  top: 8px;
   left: 90%;
   transform: translateX(-50%);
   padding: 3px;
@@ -266,7 +273,7 @@ input[type='checkbox'] {
   background-color: white;
   background-position: right 10px center;
   background-repeat: no-repeat;
-  padding: 12px 20px 12px 40px;
+  padding: 8px 12px;
 }
 
 
@@ -304,7 +311,7 @@ input[type='checkbox'] {
 .subtaskIcons {
   position: absolute;
   cursor: pointer;
-  top: 12px;
+  top: 9px;
   right: 20px;
 }
 
@@ -332,17 +339,18 @@ input[type='checkbox'] {
     width: 100%;
   }
 
-.assign_head,
-.category_head,
-.description_head,
-.prio_head,
-.date_head,
-.title_head,
-.subtasks_head {
-  margin-top: 12px;
-  margin-bottom: 8px;
-  width: 90%;
-}
+  .assign_head,
+  .category_head,
+  .description_head,
+  .prio_head,
+  .date_head,
+  .title_head,
+  .subtasks_head {
+    margin-top: 12px;
+    margin-bottom: 8px;
+    width: 90%;
+  }
+
   .addTaskForm {
     display: flex;
     justify-content: center;
@@ -357,15 +365,15 @@ input[type='checkbox'] {
   }
 
   .AddTask_head {
-    margin-top: 20%;   
+    margin-top: 20%;
     font-size: 61px;
     font-weight: 700;
     margin-bottom: 1%;
     width: 90%;
-}
+  }
 
   #AddTaskContainer {
-    
+
     position: absolute;
     width: 100%;
     padding-bottom: 95px;
@@ -374,7 +382,7 @@ input[type='checkbox'] {
   .dropbtn {
     background-color: #ffffff;
     color: black;
-    padding: 12px;
+    padding: 8px, 12px;
     border: 2px solid var(--grey);
     border-radius: 5px;
     cursor: pointer;
@@ -383,6 +391,12 @@ input[type='checkbox'] {
 
   .addTaskForm input {
     background-image: url();
+    width: 100%;
+  }
+
+  #AddTaskDate,
+  #titleAddtask,
+  #subtasksInput {
     width: 90%;
   }
 
@@ -395,7 +409,7 @@ input[type='checkbox'] {
     background-color: white;
     background-position: right 10px center;
     background-repeat: no-repeat;
-    padding: 12px 20px 12px 40px;
+    padding: 8px 12px;
   }
 
   .addTaskForms {
@@ -417,7 +431,7 @@ input[type='checkbox'] {
   .dropdown_content_category {
     display: none;
     position: absolute;
-    top: px;
+    top: 75px;
     flex-direction: column;
     background-color: #ffffff;
     width: 90%;
@@ -467,11 +481,12 @@ input[type='checkbox'] {
     background-color: #ffffff;
     color: black;
     gap: 8px;
-    padding: 16px 8px;
+    padding: 16px 18px;
     height: 56px;
     width: 33%;
     border-radius: 10px;
   }
+
   .btn_addTask_list {
     display: flex;
     justify-content: space-between;
@@ -479,10 +494,11 @@ input[type='checkbox'] {
     width: 90%;
     gap: 8px;
     cursor: pointer;
-}
+  }
+
   .create_clear_task {
-    padding-right: 8px;
-    padding-left: 8px;
+    justify-content: space-between;
+    width: 90%;
   }
 
   .category {
@@ -493,14 +509,18 @@ input[type='checkbox'] {
     align-items: center;
     flex-direction: column;
   }
+
+  .btn_transparent {
+    display: none;
+  }
 }
 
 @media(max-width: 600px) {
   .AddTask_head {
-    margin-top: 30%;   
+    margin-top: 30%;
     font-size: 61px;
     font-weight: 700;
     margin-bottom: 1%;
     width: 90%;
-}
+  }
 }

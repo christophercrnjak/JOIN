@@ -316,7 +316,7 @@ function renderHtml() {
       <div class="create_clear_task">
       <p><span>*</span>This Field is required</p>
       <div class="addTask_btns">
-          <button class="btn_transparent addTask_btn btn_gab" onclick="removeAllInputes()">Clear <img src="/assets/img/close.png"></button>
+          <button class="btn_transparent addTask_btn btn_gab" onclick="removeAllInputes()">Clear <img src="assets/img/close_black.svg"></button>
           <button class="btn_grey addTask_btn display_centerss btn_gab"> Create Task <img src="/assets/img/check.png"></button>
       </div>
     </div>
