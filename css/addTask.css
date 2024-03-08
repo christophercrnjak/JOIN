@@ -174,9 +174,31 @@ input[type="text"] {
 .dropdown_content a:hover {
   background-color: var(--bgdarkblue);
   color: #ffff !important;
-  background-image: url('assets/img/check.svg');
+}
+.dropdown_img{
+  height: 16px;
+  width: 16px;
+  background-image: url('/assets/img/Check_btn.svg'); 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
+.dropdown_content a:hover .dropdown_img{
+  background-image: url('/assets/img/check_button_checked_white.svg'); 
+  background-position:center;
+  background-repeat: no-repeat;
+  background-size: contain;
+ 
+}
+
+.dropdown_img{
+  background-image: url('/assets/img/check_button_checked_white.svg'); 
+  background-position:center;
+  background-repeat: no-repeat;
+  background-size: contain;
+ 
+}
 /* show_task_task the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show_task {
   display: block;
@@ -187,6 +209,7 @@ input[type="text"] {
   /* Hier Ihre gewünschte Hintergrundfarbe einfügen */
   color: #ffff !important;
 }
+
 
 .arrow {
   position: absolute;

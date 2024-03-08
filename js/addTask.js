@@ -6,7 +6,7 @@ let prio = [];
 let pushCategory = [];
 let subtasklists = [];
 
-function addTaskInit() {
+ async function addTaskInit() {
   renderContainer();
   renderDropList();
   renderCategoryDropDown();
@@ -46,7 +46,7 @@ function dropdownHtml(dropdownList, i) {
     dropdownList["name"]["secondName"]
   }
     </div>
-    <img src="assets/img/Check_btn.svg">
+    <div class="dropdown_img"></div>
   </a>
   `;
 }
@@ -63,7 +63,9 @@ function selectFromDropdown(color, firstName, secondName, i) {
     selectedId
   );
   document.getElementById(i).classList.add("selected");
+  document.getElementById(i).classList.add("dropdown_img");
 }
+
 
 function dropdownHtmlMemberCircle(color, firstName, secondName) {
   return `
@@ -260,7 +262,7 @@ function renderHtml() {
   return /*html*/ `
   <!-- Head content add task -->
 
-  <form class="main_addTask" onsubmit="pushToJson()">
+  <form class="main_addTask" onsubmit="pushToBoard()">
       <header class="AddTask_head"> Add Task</header>
   
   <!-- Main section add task -->
@@ -325,30 +327,29 @@ function renderHtml() {
   
   `;
 }
-function pushToJson() {
+ async function pushToBoard() {
   // Push the Add Task inputs in to a JSON
   let title = document.getElementById("titleAddtask");
   let description = document.getElementById("description");
   let date = document.getElementById("AddTaskDate");
 
   let task = {
-    title: title.value,
-    description: description.value,
-    contacts: selectedFromDropdown,
-    category: pushCategory,
-    dueDate: date.value,
-    priority: prio,
-    subtasks: subtasklists,
-    status: "inProgress",
-    createdDate: new Date().getTime(),
+    'title': title.value,
+    'description': description.value,
+    'contacts': selectedFromDropdown,
+    'category': pushCategory,
+    'dueDate': date.value,
+    'priority': prio,
+    'subtasks': subtasklists,
+    'status': 'inProgress',
+    'createdDate': new Date().getTime(),
   };
 
-  let jsonPush = JSON.stringify(task);
-  localStorage.setItem("task", jsonPush);
+  await setItem('tasks', task);
 
-  pushCategory.value = "";
-  selectedFromDropdown.value = "";
-  prio.value = "";
+  // pushCategory.value = '';
+  // selectedFromDropdown.value = '';
+  // prio.value = '';
 }
 
 function removeAllInputes() {
