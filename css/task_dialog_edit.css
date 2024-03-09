@@ -24,12 +24,34 @@
 
 /***** Title Section *****/
 
-#title_section_edit input {
-    background-image: url();
+#title_section_edit {
+    background-image: none;
     border-radius: 10px;
-    padding-left: 21px;
     cursor: pointer;
 }
+
+#errormessage_title {
+    font-size: 12px;
+    font-weight: 400;
+    color: #FF8190;
+    margin-top: 4px;
+}
+
+#title_edit {
+    margin-top: 8px;
+    border-radius: 10px;
+    background-image: none;
+    padding: 12px 20px 12px 21px;
+}
+
+#title_edit:invalid {
+  border: 2px solid #FF8190;
+}
+
+.non_valide {
+    border: 2px solid #FF8190 !important;
+}
+
 
 
 /***** Description Section *****/

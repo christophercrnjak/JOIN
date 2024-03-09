@@ -247,7 +247,7 @@ function renderSubtaskImage(taskId, subtaskId) {
 function deleteTask(taskId) {
     tasks.splice(taskId, 1);
     renderColumnContent();
-    close_open_Dialog(taskId);
+    closeDialog(taskId);
 }
 
 
