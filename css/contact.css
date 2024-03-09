@@ -762,7 +762,7 @@ svg {
 }
 
 
-@media(max-width:1000px) {
+@media screen and (max-width: 1000px) {
     .add_dialog {
         flex-direction: column;
     }
@@ -776,6 +776,7 @@ svg {
         border-top-right-radius: 30px;
         border-top-left-radius: 30px;
         border-bottom-left-radius: 0;
+        margin-left: 0;
     }
 
     .left h2 {
@@ -803,6 +804,7 @@ svg {
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        margin-right: 0px;
     }
 
     .background_image {
@@ -816,6 +818,7 @@ svg {
         margin-top: 32px;
         margin-left: 16px;
         margin-right: 16px;
+        width: 364px;
     }
 
     .background.close {
@@ -831,8 +834,8 @@ svg {
         background-color: unset;
         margin: 0;
         position: relative;
-        left: 310px;
-        bottom: 370px;
+        left: 330px;
+        bottom: 380px;
     }
 
     .add_contact path {
@@ -853,6 +856,7 @@ svg {
         width: 202px;
         height: 51px;
         align-items: center;
+        margin-left: 30px;
     }
 
     .display_center_b .create_button:hover {
@@ -928,15 +932,56 @@ svg {
         width: 100%;
         display: flex;
         justify-content: center;
-        overflow-y: hidden;
     }
-    .contact_list{
+
+    .contact_list {
         margin: 0;
         width: 100%;
         align-items: center;
     }
 
+    .first_letter {
+        width: 90%;
+    }
+
     .add {
+        background: rgba(42, 54, 71, 1);
+        color: white;
+        padding: 12px;
+        border: none;
+        gap: 10px;
+        display: flex;
+        border: 1px solid rgba(42, 54, 71, 1);
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        position: fixed;
+        bottom: 100px;
+        right: 20px;
+        align-items: center;
+        justify-content: center;
+        width: 56px;
+        height: 56px;
+        border-radius: 46px;
+        margin-right: 16px;
+    }
+
+    .add span {
         display: none;
+    }
+    .add:hover{
+        border: unset;
+    }
+
+    .persons_details {
+        width: 90%;
+        justify-content: center;
+    }
+
+    .persons_details.active {
+        background-color: unset;
+        color: unset;
+    }
+
+    .persons_details:hover {
+        background: none;
     }
 }
