@@ -271,7 +271,6 @@ async function confirmInputsOfEditDialog(taskId) {
     loadChangedContentInTasksArray(taskId);
     await setTasksToServer();
     await getTasksFromServer();
-    console.log(currentTaskContent);
     dialog_status = 'taskdetails';
     deleteCurrentTaskContent();
     if(currentTaskContent[0] == '') {
