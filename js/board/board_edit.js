@@ -10,16 +10,16 @@ let currentTaskContent = '';
  * load only the current task of array tasks in the array currentTaskContent
  * render the dialog for edit content
  * 
- * @param {Number} taskId 
+ * @param {Number} taskId - Index of task in tasks array 
  */
-async function openTaskEdit(taskId) {
+function openTaskEdit(taskId) {
     dialog_status = 'edit';
-    await loadEditContent(taskId);
+    loadEditContent(taskId);
     renderEditDialog(taskId);
 }
 
 // take a copy of current editing task and load in array currentTaskContent to protect the original data of tasks.json
-function loadEditContent(taskId) {
+async function loadEditContent(taskId) {
     currentTaskContent = tasks[taskId];
 }
 
@@ -99,7 +99,7 @@ function renderDueDateEditDialog(taskId) {
     let newDate = changeDueDateFormatInLongYear(taskId)
     container.innerHTML = `
     <div class="header_text_edit_section">Due Date</div>
-    <input placeholder="dd/mm/yyyy" id="edit_input_dueDate" type="text" value="${newDate}">
+    <input pattern="[0-9\/]*" placeholder="dd/mm/yyyy" id="edit_input_dueDate" type="text" value="${newDate}">
     `;
 }
 
@@ -259,6 +259,7 @@ function checkFormValidation(taskId) {
     } else {
         confirmInputsOfEditDialog(taskId)
     }
+
 }
 
 /**
@@ -273,7 +274,7 @@ async function confirmInputsOfEditDialog(taskId) {
     await getTasksFromServer();
     dialog_status = 'taskdetails';
     deleteCurrentTaskContent();
-    if(currentTaskContent[0] == '') {
+    if(currentTaskContent == '') {
     renderDialogTask(taskId);}
 }
 
@@ -291,5 +292,5 @@ function loadChangedContentInTasksArray(taskId) {
 }
 
 function deleteCurrentTaskContent() {
-    currentTaskContent[0] = '';
+    currentTaskContent = '';
 }

@@ -39,7 +39,7 @@ function closeDialog(taskId) {
 function renderDialogTask(taskId){
     let container = document.getElementById('task_dialog_container');
     let task;
-    if(currentTaskContent.length > 0) {
+    if(!currentTaskContent == '') {
         task = currentTaskContent
     } else {
         task = tasks[taskId];
