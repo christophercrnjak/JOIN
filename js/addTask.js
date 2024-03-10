@@ -273,14 +273,14 @@ function renderHtml() {
   
           <section class="addTaskForm">
               <div class="title_head">Title<span>*</span></div>
-              <input id="titleAddtask" type="text" placeholder="Enter a title" required>
+              <input id="titleAddtask" class="border inputtextfield" type="text" placeholder="Enter a title" required>
               <div class="description_head">Description</div>
-              <textarea id="description" placeholder="Enter a Description"></textarea>
+              <textarea id="description" class="border inputtextfield" placeholder="Enter a Description"></textarea>
               <div class="assign_head">Assigned to </div>
-              <div class="dropdown">
+              <div class="dropdown border">
                   <div id="arrow" class="arrow" onclick="toggledropbtn(); return false"><img src="" alt="" srcset=""></div>
-                  <div onclick="toggledropbtn(); return false" class="dropbtn" id="dropbtn">Select contacts assign</div>
-                  <input type="text" id="dropdownInput" onkeyup="filterFunction()" class="d-none">
+                  <div onclick="toggledropbtn(); return false" class="dropbtn border inputtextfield" id="dropbtn">Select contacts assign</div>
+                  <input type="text" id="dropdownInput" onkeyup="filterFunction()" class="d-none border">
                   <div id="dropdown" class="dropdown_content">
                   </div>
               </div>
@@ -289,7 +289,7 @@ function renderHtml() {
   <!-- Secound section  -->
           <section class="addTaskForm right">
               <div class="date_head">Due date<span>*</span></div>
-              <input type="date" id="AddTaskDate" required>
+              <input type="date" class="border" id="AddTaskDate" placeholder="DD/MM/YYYY" required>
               <div class="prio_head">Prio</div>
  <div class="btn_addTask_list" id="btnAddTaskPrio">
                   <a class="btn_addTask" id="btnUrgrend" onclick="changePriority('urgrend')">Urgrend <img id="btnUrgrendImg"
@@ -301,13 +301,13 @@ function renderHtml() {
 </div> 
 <div class="category">
                       <div class="category_head">Category<span>*</span></div>
-                      <div class="dropdown_category" id="categoryDropDownBtn" onclick="categoryDropDownBtn()">Select task category</div>
-                      <div id="dropdownCategory" class="dropdown_content_category"></div>    
+                      <div class="dropdown_category border inputtextfield" id="categoryDropDownBtn" onclick="categoryDropDownBtn()">Select task category</div>
+                      <div id="dropdownCategory" class="dropdown_content_category border"></div>    
 </div> 
                   <div class="subtasks_head">Subtasks</div>
                   <div class="subtask_button_container">
-                  <div class="subtaskIcons"><img onclick="pushToSubtasks()" src="/assets/img/subtasksPlus.svg"><img class="d-none" src="/assets/img/check_dark.svg"></div>
-                  <input type="text" class="subtasksInput" id="subtasksInput" placeholder="Add new Subtask">
+                  <div class="subtaskIcons "><img onclick="pushToSubtasks()" src="/assets/img/subtasksPlus.svg"><img class="d-none" src="/assets/img/check_dark.svg"></div>
+                  <input type="text" class="subtasksInput border inputtextfield" id="subtasksInput" placeholder="Add new Subtask">
                   </div>
                   <div id="subtasklist"></div>
           

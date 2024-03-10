@@ -5,6 +5,10 @@ body {
   display: flex;
 }
 
+.border{
+  border-radius: 10px !important;
+  border: 1px solid #ccc !important;
+}
 .main_addTask {
   display: flex;
   justify-content: center;
@@ -16,7 +20,7 @@ body {
 }
 
 .right {
-  border-left: 1px solid #c7c7c7;
+  border-left: 2px solid #ccc;
   padding-left: 50px;
 }
 
@@ -70,7 +74,7 @@ body {
 }
 
 #description {
-  border: 2px solid #ccc;
+  border: 2px solid #dbdbdb !important;
   border-radius: 4px;
   font-size: 16px;
   height: 136px;
@@ -80,14 +84,12 @@ body {
   background-repeat: no-repeat;
   padding: 8px 12px;
 }
-
+#description::placeholder{
+  color: #e4e2e2 !important;
+}
 textarea#description {
   height: 96px;
   width: 360px;
-}
-
-#description textarea::placeholder {
-  color: var(--grey);
 }
 
 .btn_addTask_list {
@@ -102,6 +104,16 @@ textarea#description {
 input[type="text"] {
   padding: 8px 12px;
 }
+
+input[type="text"]::placeholder{
+  color: #e4e2e2 !important;
+}
+
+input[type="date"]:invalid{
+  color: #e4e2e2 !important;
+}
+
+
 
 .btn_addTask {
 
@@ -142,9 +154,9 @@ input[type="text"] {
 /* Dropdown Button */
 .dropbtn {
   background-color: #ffffff;
-  color: black;
+  color: #000;
   padding: 8px 12px;
-  border: 2px solid var(--grey);
+  border: 1px solid var(--grey);
   border-radius: 5px;
   cursor: pointer;
   width: 100%;
@@ -178,14 +190,14 @@ input[type="text"] {
 .dropdown_img{
   height: 16px;
   width: 16px;
-  background-image: url('/assets/img/Check_btn.svg'); 
+  background-image: url('/assets/img/check_button_unchecked.png') !important; 
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
 }
 
 .dropdown_content a:hover .dropdown_img{
-  background-image: url('/assets/img/check_button_checked_white.svg'); 
+  background-image: url('/assets/img/check_button_checked_white.svg') !important; 
   background-position:center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -293,6 +305,7 @@ input[type='checkbox'] {
   width: 100%;
   border-radius: 4px;
   font-size: 16px;
+  color:#000;
   background-color: white;
   background-position: right 10px center;
   background-repeat: no-repeat;
@@ -305,7 +318,7 @@ input[type='checkbox'] {
   position: absolute;
   flex-direction: column;
   background-color: #ffffff;
-  width: 90%;
+  width: 100%;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
@@ -322,7 +335,7 @@ input[type='checkbox'] {
 .dropdown_content_category a:hover {
   background-color: var(--bgdarkblue);
   color: #ffff !important;
-  width: 90%;
+  width: 100%;
 }
 
 .subtask_button_container {
