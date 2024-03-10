@@ -459,7 +459,9 @@ function allowDrop(event) {
  * 
  * @param {String} status - string like 'toDo' as a statusdescription in which column of the kanban Board the task is
  */
-function moveTo(status) {
+async function moveTo(status) {
     tasks[currentDraggedElement].status = status;
+    await setTasksToServer();
+    await getTasksFromServer();
     renderColumnContent();
 }
