@@ -374,14 +374,30 @@ function renderInitials(taskId) {
         let firstCharacter = contact.firstName.charAt(0);
         let secondCharacter = contact.secondName.charAt(0);
         let colorClass = contact.color;
-        container.innerHTML += taskMemberHTML(firstCharacter, secondCharacter, colorClass, taskId, i); 
-        // create the position of cicles:  
-        if(i > 0) {
-            let additionalTaskMember = document.getElementById(`task_member${taskId}${i}`);
-            additionalTaskMember.style.position = 'relative';
-            additionalTaskMember.style.left     = calcPositionMember(i);
+        if (i < 5) {
+            container.innerHTML += taskMemberHTML(firstCharacter, secondCharacter, colorClass, taskId, i); 
+            // create the position of cicles:  
+            if(i > 0) {
+                let additionalTaskMember = document.getElementById(`task_member${taskId}${i}`);
+                additionalTaskMember.style.position = 'relative';
+                additionalTaskMember.style.left     = calcPositionMember(i);
+            }
+        } else {
+            if(i > 5){
+                let moreNumber = i - 4;
+                container.innerHTML += moreMemberHTML(taskId, i, moreNumber); 
+                let additionalTaskMember = document.getElementById(`task_member${taskId}${i}`);
+                additionalTaskMember.style.position = 'relative';
+                additionalTaskMember.style.left     = calcPositionMember(i);
+            }
         }
     }
+}
+
+function moreMemberHTML(taskId, i, moreNumber) {
+    return `
+    <div id="task_member${taskId}${i}" class="member_cycle more_member_color">+${moreNumber}</div>
+`;
 }
 
 /**

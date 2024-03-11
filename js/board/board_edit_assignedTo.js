@@ -400,7 +400,7 @@ function findOutColorClass(contactId) {
         return "darkslateblue"
     } else if (firstName == "David" && secondName == "Eisenberg") {
         return "violet"
-    } else if (firstName == "Benedict" && secondName == "Ziegler") {
+    } else if (firstName == "Benedikt" && secondName == "Ziegler") {
         return "mediumslateblue"
     } else if (firstName == "Anja" && secondName == "Schulz") {
         return "blueviolet"
