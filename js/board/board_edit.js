@@ -25,7 +25,7 @@ async function loadEditContent(taskId) {
 
 // delete dialog container content and call functions built edit-content
 function renderEditDialog(taskId) {
-    let container = document.getElementById('task_dialog_container')
+    let container = document.getElementById('task_dialog_container');
     container.innerHTML = editDialogHTML(taskId);
     renderTitleEditDialog();
     renderDescriptionEditDialog();
@@ -62,8 +62,6 @@ function editDialogHTML(taskId) {
     `;
 }
 
-{/* <div id="title_section_edit" class="distance"></div> */}
-
 
 // *** titel *** //
 
@@ -72,7 +70,7 @@ function renderTitleEditDialog() {
     let container = document.getElementById('title_section_edit');
     let title = currentTaskContent.title;
     container.innerHTML = `
-        <label Class="header_text_edit_section" for="title_edit" >Titel</label>
+        <label class="header_text_edit_section" for="title_edit" >Titel</label>
         <input value="${title}" id="title_edit" name="title_edit" type="text" placeholder="Enter a Title">
         <div id="errormessage_title"><div>
     `;
