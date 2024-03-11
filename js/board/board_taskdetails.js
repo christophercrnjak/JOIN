@@ -235,10 +235,10 @@ function renderSubtaskImage(taskId, subtaskId) {
     let status = tasks[taskId].subtasks[subtaskId].done;
     switch (status) {
         case true:
-          container.innerHTML = `<a class="checkbox" onclick="changeSubtaskStatus(${taskId}, ${subtaskId})"><img src="assets/img/check_button_checked.png" alt=""></a>`;
+          container.innerHTML = `<a class="checkbox1" onclick="changeSubtaskStatus(${taskId}, ${subtaskId})"><img src="assets/img/check_button_checked.png"></a>`;
           break;
         case false:
-            container.innerHTML = `<a onclick="changeSubtaskStatus(${taskId}, ${subtaskId})"><img src="assets/img/check_button_unchecked.png" alt=""></a>`;
+            container.innerHTML = `<a class="checkbox1" onclick="changeSubtaskStatus(${taskId}, ${subtaskId})"><img src="assets/img/check_button_unchecked.png"></a>`;
           break;
     }
 }

@@ -1,3 +1,4 @@
+let subtask_status = false;
 
 function renderSubtasksEditDialog(taskId) {
     let container = document.getElementById('subtask_section_edit');
@@ -6,13 +7,15 @@ function renderSubtasksEditDialog(taskId) {
 }
 
 function subtaskListEditHTML(taskId) {
-    return `
+    return /*html*/`
         <div class="header_text_edit_section">Subtasks</div>
         <div class="input_section_edit_subtask">
-            <input id="add_new_subtask_input" type="text" placeholder="Add new subtask">
-            <a class="add_btn_subtask_edit" onclick="take_over_new_Subtask(${taskId})">
-                <img src="assets/img/addSubtask_btn.svg">
-            </a>
+            <input onclick="changeAddIconSubtaskInputEdit(${taskId})" id="add_new_subtask_input" type="text" placeholder="Add new subtask">
+            <div id="buttons_subtask_edit">
+            <a class="add_btn_subtask_edit">
+            <img src="assets/img/addSubtask_btn.svg">
+        </a>
+            </div>
         </div>
         <div class="unordered-list_subtasks">
             <ul id="added_subtasks_edit"></ul>
@@ -99,13 +102,56 @@ function take_over_new_content_of_Task(subtaskId, taskId) {
     renderSubtasksEditDialog(taskId);
 }
 
+function changeAddIconSubtaskInputEdit(taskId) {
+    let container = document.getElementById('buttons_subtask_edit');
+    subtask_status = !subtask_status;
+    if (subtask_status == true) {
+        container.innerHTML = ckeck_or_close_HTML(taskId);
+    } else {
+        container.innerHTML = add_subtask_plusHTML(taskId);
+    }
+}
+
+function ckeck_or_close_HTML(taskId) {
+    return /*html*/ `
+        <a class="close_subtask_adding" onclick="deleteInputSubtaskEdit(${taskId})">
+            <img src="assets/img/close_black.svg">
+        </a>
+        <hr class="line_subtask_input">
+        <a class="check_subtask_adding" onclick="take_over_new_Subtask(${taskId})">
+        <img src="assets/img/check_dark.svg">
+        </a>
+    `;
+}
+
+function add_subtask_plusHTML() {
+    return /*html*/ `
+    <a class="add_btn_subtask_edit">
+        <img src="assets/img/addSubtask_btn.svg">
+    </a>
+    `;
+}
+
 function take_over_new_Subtask(taskId) {
     let content = document.getElementById('add_new_subtask_input').value;
+    if(content == '') {
+        subtask_status = !subtask_status;
+        renderSubtasksEditDialog(taskId);
+    } else {
     currentTaskContent.subtasks.push(
         {
         "name": `${content}`,
         "done": false
         },
     );
+    subtask_status = !subtask_status;
+    renderSubtasksEditDialog(taskId);
+    }
+}
+
+function deleteInputSubtaskEdit(taskId) {
+    let Input = document.getElementById('add_new_subtask_input').value;
+    Input = '';
+    subtask_status = !subtask_status;
     renderSubtasksEditDialog(taskId);
 }

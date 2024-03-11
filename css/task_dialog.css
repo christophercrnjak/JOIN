@@ -144,16 +144,35 @@
                     display: flex;
                     align-items: center;
                     margin-top: 8px;
+                    padding: 4px 16px 4px 16px;
                 }
 
                 .Subtasks span{
                     padding-left: 16px;
                 }
 
-                .ckeckbox img {
+                .Subtasks:hover a {
+                    background-color: #D1D1D1;
+                    border-radius: 10px;
+                }
+
+                .Subtasks:hover {
+                    background-color: rgb(238, 238, 238);
+                    border-radius: 10px;
+                }
+
+                .checkbox1 img {
                     width: 25px;
                     height: 25px;
                 }
+
+                .checkbox1 {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                
         
         .delete_and_edit_section {
             width: 100%;

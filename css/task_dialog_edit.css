@@ -28,6 +28,7 @@
     background-image: none;
     border-radius: 10px;
     cursor: pointer;
+    
 }
 
 #errormessage_title {
@@ -42,6 +43,11 @@
     border-radius: 10px;
     background-image: none;
     padding: 12px 20px 12px 21px;
+    border: 1px solid #ccc;
+}
+
+#title_edit::placeholder {
+    color: #D1D1D1;
 }
 
 #title_edit:invalid {
@@ -60,11 +66,15 @@
     background-image: url();
     border-radius: 10px;
     width: 100%;
-    border: 2px solid #ccc;
+    border: 1px solid #ccc;
     font-size: 16px;
     font-weight: 400;
     padding: 20px 12px 40px 21px;
     cursor: pointer;
+}
+
+#description_section_edit textarea::placeholder {
+    color: #D1D1D1;
 }
 
 #description_section_edit textarea:hover {
@@ -80,6 +90,11 @@
     border-radius: 10px;
     padding-left: 21px;
     cursor: pointer;
+    border: 1px solid #ccc;
+}
+
+#edit_input_dueDate::placeholder {
+    color: #D1D1D1;
 }
 
 
@@ -198,7 +213,7 @@
             color: black;
             padding-left: 21px;
             border-radius: 10px;
-            border: 2px solid #ccc;
+            border: 1px solid #ccc;
             font-size: 16px;
             font-weight: 400;
             padding: 12px 20px 12px 21px;
@@ -215,7 +230,7 @@
         }
 
             #search_contacts_edit {
-                border: 2px solid #ccc;
+                border: 1px solid #ccc;
                 background-image: none;
                 width: 100%;
                 border-radius: 10px;
@@ -328,16 +343,48 @@
     position: relative;
 }
 
+    #buttons_subtask_edit {
+        position: absolute;
+        top: 12px;
+        right: 16px;
+        bottom: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+       .close_subtask_adding {
+        height: 24px;
+        width: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       } 
+
+       .line_subtask_input {
+        background-color: #D1D1D1;
+        height: 24px;
+        width: 1px;
+        margin-left: 8px;
+        margin-right: 8px;
+       }
+
+       .check_subtask_adding {
+        height: 24px;
+        width: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       }
+
 .add_btn_subtask_edit {
-    position: absolute;
-    top: 12px;
-    right: 16px;
-    bottom: 12px;
-    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
      #subtask_section_edit input {
-        border: 2px solid #ccc;
+        border: 1px solid #ccc;
         background-image: none;
         width: 100%;
         border-radius: 10px;
@@ -351,6 +398,10 @@
     #subtask_section_edit input:focus {
         border: solid 1px var(--blue);
         outline: var(--blue);
+    }  
+
+    #subtask_section_edit input::placeholder {
+        color: #D1D1D1;
     }  
 
     .unordered-list_subtasks {
