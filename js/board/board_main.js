@@ -243,13 +243,13 @@ function renderPriority(taskId) {
     let container = document.getElementById(`prio_icon${taskId}`);
     switch (priority) {
         case "Low":
-          container.innerHTML = `<img src="assets/img/Priority_symbols_Low.png" alt="">`;
+          container.innerHTML = `<img src="assets/img/Prio_low_color_origin.svg" alt="">`;
           break;
         case "Medium":
-            container.innerHTML = `<img src="assets/img/Priority_symbols_Medium.png" alt="">`;
+            container.innerHTML = `<img src="assets/img/Prio_medium_color_origin.svg" alt="">`;
           break;
         case "Urgent":
-          container.innerHTML = `<img src="assets/img/Priority_symbols_Urgent.png" alt="">`;
+          container.innerHTML = `<img src="assets/img/Prio_urgent_color_origin.svg" alt="">`;
         break;
     }
 }

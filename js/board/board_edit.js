@@ -188,7 +188,7 @@ function urgentInactivHTML() {
     return `
         <a class="urgent_btn_inactive btn_addTask" onclick="renderPrioButtons('Urgent')">
             Urgend 
-            <img id="btnUrgrend_img" src="assets/img/Priority_symbols_Urgent.png" alt="" srcset="">
+            <img id="btnUrgrend_img" src="assets/img/Prio_urgent_color_origin.svg" alt="" srcset="">
         </a>
     `;
 }
@@ -210,7 +210,7 @@ function mediumInactivHTML() {
     return `
         <a class="medium_btn_inactive btn_addTask" onclick="renderPrioButtons('Medium')">
             Medium 
-            <img id="btnMedium_img" src="assets/img/Priority_symbols_Medium.png" alt="" srcset="">
+            <img id="btnMedium_img" src="assets/img/Prio_medium_color_origin.svg" alt="" srcset="">
         </a>
     `;
 }
@@ -232,7 +232,7 @@ function lowInactivHTML() {
     return `
         <a class="low_btn_inactive btn_addTask" onclick="renderPrioButtons('Low')">
             Low 
-            <img id="btnLow_img" src="assets/img/Priority_symbols_Low.png" alt="" srcset="">
+            <img id="btnLow_img" src="assets/img/Prio_low_color_origin.svg" alt="" srcset="">
         </a>
     `;
 }
