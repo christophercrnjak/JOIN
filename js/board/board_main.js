@@ -23,7 +23,7 @@ let dialog_status = 'inactive';
  */
 async function init() {
     await getTasksFromServer();
-    renderColumnContent();
+    await renderColumnContent();
 }
 
 
@@ -463,5 +463,5 @@ async function moveTo(status) {
     tasks[currentDraggedElement].status = status;
     await setTasksToServer();
     await getTasksFromServer();
-    renderColumnContent();
+    init();
 }
