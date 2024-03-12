@@ -4,9 +4,6 @@ async function init() {
     let resp = await fetch('assets/json/contacts.json');
     person = await resp.json();
     console.log(person);
-    for (let i = 0; i < person.length; i++) {
-        person[i].phone = "+49 1111 111 11 1";
-    }
 
     loadContacts();
 }
@@ -229,21 +226,41 @@ function saveChanges() {
     let emailInput = document.getElementById('email').value;
     let phoneInput = document.getElementById('phone').value;
 
-
     if (nameInput && emailInput) {
         let [firstName, secondName] = nameInput.split(' ');
-
 
         selectedPerson.name.firstName = firstName;
         selectedPerson.name.secondName = secondName;
         selectedPerson.mail = emailInput;
         selectedPerson.phone = phoneInput;
 
+        person.sort(function(a, b) {
+            let nameA = (a.name.firstName + ' ' + a.name.secondName).toUpperCase();
+            let nameB = (b.name.firstName + ' ' + b.name.secondName).toUpperCase();
+            if (nameA < nameB) {
+                return -1;
+            }
+            if (nameA > nameB) {
+                return 1;
+            }
+            return 0;
+        });
+
+        let updatedIndex = person.findIndex(p => p.name.firstName === firstName && p.name.secondName === secondName);
 
         loadContacts();
 
-
         closePerson();
+
+        if (updatedIndex !== -1) {
+            selectPerson(updatedIndex);
+        }
     }
 }
+function showFlexContainer() {
+    document.querySelector('.container').style.display = 'flex';
+}
 
+function hideFlexContainer() {
+    document.querySelector('.container').style.display = 'none';
+}

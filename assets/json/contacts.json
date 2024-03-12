@@ -3,9 +3,11 @@
     "name": {
       "firstName": "Anton",
       "secondName": "Mayer",
+      
       "color": "#FF7A00"
     },
-    "mail": "anton@gmail.com",
+    "mail": "antom@gmail.com",
+    "phone": "+49 1111 111 11 1",
     "password": "",
     "lockedIn": false
   },
@@ -13,9 +15,11 @@
     "name": {
       "firstName": "Anja",
       "secondName": "Schulz",
+      
       "color": "#9327FF"
     },
-    "mail": "schulz@hotmail.de",
+    "mail": "schulz@hotmail.com",
+    "phone": "+49 1111 111 11 1",
     "password": "",
     "lockedIn": true
   },
@@ -26,6 +30,7 @@
       "color": "#6E52FF"
     },
     "mail": "benedikt@gmail.com",
+    "phone": "+49 1111 111 11 1",
     "password": "",
     "lockedIn": false
   },
@@ -36,6 +41,7 @@
       "color": "#FC71FF"
     },
     "mail": "davidberg@gmail.com",
+    "phone": "+49 1111 111 11 1",
     "password": "",
     "lockedIn": false
   },
@@ -46,6 +52,7 @@
       "color": "#FFBB2B"
     },
     "mail": "eva@gmail.com",
+    "phone": "+49 1111 111 11 1",
     "password": "",
     "lockedIn": false
   },
@@ -56,6 +63,7 @@
       "color": "#1FD7C1"
     },
     "mail": "emmanuelma@gmail.com",
+    "phone": "+49 1111 111 11 1",
     "password": "",
     "lockedIn": false
   },
@@ -66,6 +74,7 @@
       "color": "#462F8A"
     },
     "mail": "bauer@gmail.com",
+    "phone": "+49 1111 111 11 1",
     "password": "",
     "lockedIn": false
   }
