@@ -27,7 +27,7 @@ async function loadEditContent(taskId) {
 function renderEditDialog(taskId) {
     let container = document.getElementById('task_dialog_container');
     container.innerHTML = editDialogHTML(taskId);
-    renderTitleEditDialog();
+    renderTitleEditDialog(taskId);
     renderDescriptionEditDialog();
     renderDueDateEditDialog(taskId);
     renderPrioEditDialog();
@@ -38,23 +38,20 @@ function renderEditDialog(taskId) {
 // HTML of main structure of edit dialog
 function editDialogHTML(taskId) {
     return /*html*/`
-    <div id="close_section_edit" class="distance">
-        <a onclick="closeDialog(${taskId})" class="close">
-            <div class="line horizontal"></div>
-            <div class="line vertical"></div>
-        </a>
-    </div>
-    
-        <div id="title_section_edit" class="distance">   
-            
-        </div> 
+        <div id="close_section_edit" class="distance">
+            <a onclick="closeDialog(${taskId})" class="close">
+                <div class="line horizontal"></div>
+                <div class="line vertical"></div>
+            </a>
+        </div>
+        <div id="title_section_edit" class="distance"></div> 
         <div id="description_section_edit" class="distance"></div>
         <div id="dueDate_section_edit" class="distance"></div>
         <div id="prio_section_edit" class="distance"></div>
         <div id="assignedTo_section_edit" class="distance flexDirection"></div>
         <div id="subtask_section_edit" class="distance flexDirection"></div>
         <div id="ok_section_edit" class="distance">
-            <a onclick="checkFormValidation(${taskId})" class="confirm_btn_edit">
+            <a onclick="confirmInputsOfEditDialog(${taskId})" class="confirm_btn_edit">
             Ok <img src="assets/img/check.svg">
             </a>
         </div>
@@ -65,16 +62,43 @@ function editDialogHTML(taskId) {
 
 // *** titel *** //
 
+// document.addEventListener('DOMContentLoaded', function() {
+//     renderTitleEditDialog(); // Beim Laden der Seite das Eingabefeld initialisieren
+
+//     let titleInput = document.getElementById('title_edit');
+
+//     // Event-Listener für das Eingabefeld hinzufügen
+//     titleInput.addEventListener('input', function() {
+//         checkFormValidation(${taskId});
+//     });
+// });
+
 // show title input to change content of title via inputfield
-function renderTitleEditDialog() {
+function renderTitleEditDialog(taskId) {
     let container = document.getElementById('title_section_edit');
     let title = currentTaskContent.title;
     container.innerHTML = `
         <label class="header_text_edit_section" for="title_edit" >Titel</label>
-        <input value="${title}" id="title_edit" name="title_edit" type="text" placeholder="Enter a Title">
-        <div id="errormessage_title"><div>
+        <input onkeyup="checkFormValidation(${taskId})" onfocusout="checkFormValidation(${taskId})" onfocus="checkFormValidation(${taskId})" value="${title}" id="title_edit" name="title_edit" type="text" placeholder="Enter a Title">
+        <div id="errormessage_title"></div>
     `;
 }
+
+function checkFormValidation(taskId) {
+    let titleInput = document.getElementById('title_edit');
+    let errormessage_title = document.getElementById('errormessage_title');
+    if (titleInput.value === '' || titleInput.value == null) {
+        titleInput.classList.add('non_valide'); // red border
+        errormessage_title.innerHTML = 'This field is required'; // div is under the Input
+        document.getElementById('errormessage_title').style.display = 'block'; // let div with text appear
+        document.getElementById('close_section_edit').scrollIntoView({ behavior: 'smooth', block: 'start' }); // scroll to input
+        document.getElementById('title_edit').focus();
+  } else {
+    titleInput.classList.remove('non_valide');
+    errormessage_title.style.display = 'none';
+  }
+}
+
 
 // *** description *** //
 
@@ -97,11 +121,21 @@ function renderDueDateEditDialog(taskId) {
     let newDate = changeDueDateFormatInLongYear(taskId)
     container.innerHTML = `
     <div class="header_text_edit_section">Due Date</div>
-    <input pattern="[0-9\/]*" placeholder="dd/mm/yyyy" id="edit_input_dueDate" type="text" value="${newDate}">
+    <input placeholder="dd/mm/yyyy" id="edit_input_dueDate" type="text" value="${newDate}">
     `;
 }
 
+function validateInput(input) {
+    // Erlaubte Zeichen: Zahlen von 0 bis 9 und '/'
+    var regex = /^[0-9\/]*$/;
 
+    if (!regex.test(input.value)) {
+      document.getElementById('errormessage_title').style.display = 'flex';
+      input.value = input.value.replace(/[^0-9\/]/g, '');
+    } else {
+      
+    }
+  }
 
 
 // *** priority *** //
@@ -244,20 +278,6 @@ function lowActivHTML() {
             <img id="btnLow_img" src="assets/img/Prio_low_white.svg" alt="" srcset="">
         </a>
     `;
-}
-
-
-function checkFormValidation(taskId) {
-    let titleInput = document.getElementById('title_edit');
-    let errormessage_title = document.getElementById('errormessage_title');
-    if (titleInput.value === '' || titleInput.value == null) {
-        titleInput.classList.add('non_valide')
-        errormessage_title.innerHTML = 'This field is required'
-        document.getElementById('close_section_edit').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    } else {
-        confirmInputsOfEditDialog(taskId)
-    }
-
 }
 
 /**
