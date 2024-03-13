@@ -134,31 +134,30 @@ function validateDate() {
 
     // splitt the format tt/mm/jjjj in parts[0] = tt; parts[1] = mm; parts[2] = jjjj
     let parts = inputDate.value.split('/');
-    let day = parseInt(parts[0], 10);
+    let day = parts[0];
     let month = parts[1];
     let year = parseInt(parts[2], 10);
     
     // Day
-    if (day > 31 || day < 1 || isNaN(day)) {
-        if(!inputDate.classList.contains('non_valide')){
+    if (parseInt(day, 10) > 31 || parseInt(day, 10) < 1 || parseInt(day, 10) == 0 || day.length < 2 || isNaN(day)) {
         inputDate.classList.add('non_valide');
         errormessage_due_date.style.display = 'block';
     } else {
         inputDate.classList.remove('non_valide');
         errormessage_due_date.style.display = 'none';
-      }
     }
+    
     
     // Month
     if (parseInt(month, 10) > 12 || parseInt(month, 10) < 1 || parseInt(month, 10) == 0 || month.toString().length < 2 || isNaN(month)) {
         inputDate.classList.add('non_valide');
         errormessage_due_date.style.display = 'block'; 
-
-        } else {
-            inputDate.classList.remove('non_valide');
-            errormessage_due_date.style.display = 'none';
+    } else {
+        if(!inputDate.classList.contains('non_valide')){
+        inputDate.classList.remove('non_valide');
+        errormessage_due_date.style.display = 'none';
         }
-    
+    }
 
     // Year
     if (year < 2000 || isNaN(year)) {
@@ -167,7 +166,8 @@ function validateDate() {
     } else {
         if(!inputDate.classList.contains('non_valide')){
         inputDate.classList.remove('non_valide');
-        errormessage_due_date.style.display = 'none';}
+        errormessage_due_date.style.display = 'none';
+        }
     }
 }
 
