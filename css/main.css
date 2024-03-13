@@ -15,6 +15,11 @@
   src: url(/Fonts/opensans/OpenSans-Regular.ttf);
 }
 
+@font-face {
+  font-family: OpenSans-Bold;
+  src: url(/Fonts/opensans/OpenSans-Bold.ttf);
+}
+
 :root {
   --bgdarkblue: #2a3647;
   --bgwhite: #f6f7f8e7;

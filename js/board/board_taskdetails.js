@@ -10,6 +10,10 @@ function openTaskDetailsDialog(taskId) {
     dialog_status = 'taskdetails';
     let container = document.getElementById('dialog_container');
     container.classList.remove('d-none');
+
+    let taskDialogContainer = document.getElementById('task_dialog_container');
+    taskDialogContainer.style.position = 'none'; // Element in die Mitte verschieben
+    
     renderDialogTask(taskId);  
 }
 

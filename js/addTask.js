@@ -278,7 +278,7 @@ function renderHtml() {
               <textarea id="description" class="border inputtextfield" placeholder="Enter a Description"></textarea>
               <div class="assign_head">Assigned to </div>
               <div class="dropdown border">
-                  <div id="arrow" class="arrow" onclick="toggledropbtn(); return false"><img src="" alt="" srcset=""></div>
+                  <div id="arrow" class="arrow" onclick="toggledropbtn(); return false"><img src="/assets/img/arrowDropDown.svg" alt="" srcset=""></div>
                   <div onclick="toggledropbtn(); return false" class="dropbtn border inputtextfield" id="dropbtn">Select contacts assign</div>
                   <input type="text" id="dropdownInput" onkeyup="filterFunction()" class="d-none border">
                   <div id="dropdown" class="dropdown_content">

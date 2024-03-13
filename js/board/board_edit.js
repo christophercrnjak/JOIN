@@ -121,21 +121,65 @@ function renderDueDateEditDialog(taskId) {
     let newDate = changeDueDateFormatInLongYear(taskId)
     container.innerHTML = `
     <div class="header_text_edit_section">Due Date</div>
-    <input placeholder="dd/mm/yyyy" id="edit_input_dueDate" type="text" value="${newDate}">
+    <form onsubmit="return validateDate()">
+        <input class="" onkeyup="validateDate()"  placeholder="dd/mm/yyyy" id="edit_input_dueDate" type="text" value="${newDate}" pattern="\d{2}/\d{2}/\d{4}" required>
+    </form>
+    <div class="" id="errormessage_due_date"></div>
     `;
 }
 
-function validateInput(input) {
-    // Erlaubte Zeichen: Zahlen von 0 bis 9 und '/'
-    var regex = /^[0-9\/]*$/;
+function validateDate() {
+    let inputDate = document.getElementById("edit_input_dueDate");
+    let errormessage_due_date = document.getElementById("errormessage_due_date");
 
-    if (!regex.test(input.value)) {
-      document.getElementById('errormessage_title').style.display = 'flex';
-      input.value = input.value.replace(/[^0-9\/]/g, '');
+    let parts = inputDate.value.split('/');
+    let day = parseInt(parts[0], 10);
+    let month = parseInt(parts[1], 10);
+    let year = parseInt(parts[2], 10);
+    
+    let currentDate = new Date();
+    let currentDay = currentDate.getDate();
+    let currentMonth = currentDate.getMonth() + 1; // Monate werden von 0 bis 11 gezählt
+    let currentYear = currentDate.getFullYear();
+    
+    if (day > 31 || day < 1 || isNaN(day)) {
+        if(!inputDate.classList.contains('non_valide')){
+        inputDate.classList.add('non_valide');
+        errormessage_due_date.style.display = 'block'; // 
+        errormessage_due_date.innerHTML = 'This field is required';
     } else {
-      
+        inputDate.classList.remove('non_valide');
+        errormessage_due_date.style.display = 'none';
+      }
+        return false;
     }
-  }
+    
+    if (month > 12 || month < 1 || isNaN(month)) {
+        if(!inputDate.classList.contains('non_valide')){
+            inputDate.classList.add('non_valide');
+            errormessage_due_date.style.display = 'block'; 
+            errormessage_due_date.innerHTML = 'This field is required';
+        } else {
+            inputDate.classList.remove('non_valide');
+            errormessage_due_date.style.display = 'none';
+        }
+        return false;
+    }
+    
+    if (year < currentYear || (year === currentYear && month < currentMonth) || (year === currentYear && month === currentMonth && day < currentDay)) {
+        if(!inputDate.classList.contains('non_valide')){
+            inputDate.classList.add('non_valide');
+            errormessage_due_date.style.display = 'block'; 
+            errormessage_due_date.innerHTML = 'This field is required';
+        } else {
+            inputDate.classList.remove('non_valide');
+            errormessage_due_date.style.display = 'none';
+        }
+        return false;
+    }
+    
+    return true;
+}
 
 
 // *** priority *** //

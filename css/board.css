@@ -71,7 +71,7 @@ a {
             }
 
                 .search > input {
-                    border: 2px solid #ccc !important;
+                    border: 1px solid #ccc !important;
                     border-radius: 10px;
                     background-color: white;
                     width: 100%;
@@ -285,6 +285,7 @@ a {
                     min-height: 500px;
                     max-width: 252px;
                     margin-top: 8px;
+                    margin-bottom: 30px;
                 }
                     .no_task {
                         width: 100%;
