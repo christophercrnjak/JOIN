@@ -79,12 +79,12 @@ function renderTitleEditDialog(taskId) {
     let title = currentTaskContent.title;
     container.innerHTML = `
         <label class="header_text_edit_section" for="title_edit" >Titel</label>
-        <input onkeyup="checkFormValidation(${taskId})" onfocusout="checkFormValidation(${taskId})" onfocus="checkFormValidation(${taskId})" value="${title}" id="title_edit" name="title_edit" type="text" placeholder="Enter a Title">
+        <input onkeyup="checkFormValidation_title()" onfocusout="checkFormValidation_title()" value="${title}" id="title_edit" name="title_edit" type="text" placeholder="Enter a Title">
         <div id="errormessage_title"></div>
     `;
 }
 
-function checkFormValidation(taskId) {
+function checkFormValidation_title() {
     let titleInput = document.getElementById('title_edit');
     let errormessage_title = document.getElementById('errormessage_title');
     if (titleInput.value === '' || titleInput.value == null) {
@@ -121,10 +121,10 @@ function renderDueDateEditDialog(taskId) {
     let newDate = changeDueDateFormatInLongYear(taskId)
     container.innerHTML = `
     <div class="header_text_edit_section">Due Date</div>
-    <form onsubmit="return validateDate()">
-        <input class="" onkeyup="validateDate()"  placeholder="dd/mm/yyyy" id="edit_input_dueDate" type="text" value="${newDate}" pattern="\d{2}/\d{2}/\d{4}" required>
+    <form>
+        <input class="" pattern="\d{2}/\d{2}/\d{4}" onfocusout="validateDate()" onkeyup="validateDate()" placeholder="dd/mm/yyyy" id="edit_input_dueDate" type="text" value="${newDate}"  required>
     </form>
-    <div class="" id="errormessage_due_date"></div>
+    <div class="" id="errormessage_due_date">This field is required</div>
     `;
 }
 
@@ -132,54 +132,45 @@ function validateDate() {
     let inputDate = document.getElementById("edit_input_dueDate");
     let errormessage_due_date = document.getElementById("errormessage_due_date");
 
+    // splitt the format tt/mm/jjjj in parts[0] = tt; parts[1] = mm; parts[2] = jjjj
     let parts = inputDate.value.split('/');
     let day = parseInt(parts[0], 10);
-    let month = parseInt(parts[1], 10);
+    let month = parts[1];
     let year = parseInt(parts[2], 10);
     
-    let currentDate = new Date();
-    let currentDay = currentDate.getDate();
-    let currentMonth = currentDate.getMonth() + 1; // Monate werden von 0 bis 11 gezählt
-    let currentYear = currentDate.getFullYear();
-    
+    // Day
     if (day > 31 || day < 1 || isNaN(day)) {
         if(!inputDate.classList.contains('non_valide')){
         inputDate.classList.add('non_valide');
-        errormessage_due_date.style.display = 'block'; // 
-        errormessage_due_date.innerHTML = 'This field is required';
+        errormessage_due_date.style.display = 'block';
     } else {
         inputDate.classList.remove('non_valide');
         errormessage_due_date.style.display = 'none';
       }
-        return false;
     }
     
-    if (month > 12 || month < 1 || isNaN(month)) {
-        if(!inputDate.classList.contains('non_valide')){
-            inputDate.classList.add('non_valide');
-            errormessage_due_date.style.display = 'block'; 
-            errormessage_due_date.innerHTML = 'This field is required';
+    // Month
+    if (parseInt(month, 10) > 12 || parseInt(month, 10) < 1 || parseInt(month, 10) == 0 || month.toString().length < 2 || isNaN(month)) {
+        inputDate.classList.add('non_valide');
+        errormessage_due_date.style.display = 'block'; 
+
         } else {
             inputDate.classList.remove('non_valide');
             errormessage_due_date.style.display = 'none';
         }
-        return false;
-    }
     
-    if (year < currentYear || (year === currentYear && month < currentMonth) || (year === currentYear && month === currentMonth && day < currentDay)) {
+
+    // Year
+    if (year < 2000 || isNaN(year)) {
+        inputDate.classList.add('non_valide');
+        errormessage_due_date.style.display = 'block'; 
+    } else {
         if(!inputDate.classList.contains('non_valide')){
-            inputDate.classList.add('non_valide');
-            errormessage_due_date.style.display = 'block'; 
-            errormessage_due_date.innerHTML = 'This field is required';
-        } else {
-            inputDate.classList.remove('non_valide');
-            errormessage_due_date.style.display = 'none';
-        }
-        return false;
+        inputDate.classList.remove('non_valide');
+        errormessage_due_date.style.display = 'none';}
     }
-    
-    return true;
 }
+
 
 
 // *** priority *** //
@@ -345,9 +336,19 @@ async function confirmInputsOfEditDialog(taskId) {
 function getInputValuesOfEditDialog() {
     currentTaskContent.title = document.getElementById('title_edit').value;
     currentTaskContent.description = document.getElementById('edit_input_description').value;
-    currentTaskContent.dueDate = document.getElementById('edit_input_dueDate').value;
+    currentTaskContent.dueDate = changeDueDateFormatInShortYear();
     currentTaskContent.priority = prioStatusEdit;
 }
+
+function changeDueDateFormatInShortYear() {
+    let date = document.getElementById('edit_input_dueDate').value;
+    date = date.split('/');
+    let year = parseInt(date[2]); 
+    year = year - 2000;
+    let newDate = date[0] + '/' + date[1] + '/' + year;
+    return newDate
+}
+
 
 function loadChangedContentInTasksArray(taskId) {
     tasks[taskId] = currentTaskContent;

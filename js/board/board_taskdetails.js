@@ -1,34 +1,37 @@
 // ****** Dialog taskdetails functions for the board *****
 
 /**
- * Set new dialog-status.
- * Open dialog container to show task details.
+ * Sets the dialog status and let render the Dialog with task details.
+ * Displays the dialog container with a grayish backgroundAnimates and the dialog window from the right when the content is loaded.
  * 
  * @param {Number} taskId - Index of current called task in tasks[] global array
  */
-function openTaskDetailsDialog(taskId) {
-    dialog_status = 'taskdetails';
+async function openTaskDetailsDialog(taskId) {
     let container = document.getElementById('dialog_container');
-    container.classList.remove('d-none');
-
     let taskDialogContainer = document.getElementById('task_dialog_container');
-    taskDialogContainer.style.position = 'none'; // Element in die Mitte verschieben
-    
-    renderDialogTask(taskId);  
+    dialog_status = 'taskdetails';
+    await renderDialogTask(taskId);  
+    container.classList.remove('d-none');
+    taskDialogContainer.style.position = 'none'; 
 }
 
 /**
- * Closes the Dialog and decide whether there is required to show taskdetails oder the Kanban Board
+ * Closes the dialog window depending on the dialog status.
+ * When the task details are displayed, the dialog window is closed and the Kanban board is displayed.
+ * When the task content change dialog box is active, the task details are displayed.
  * 
  * @param {Number} taskId - Index of current called task in tasks[] global array
  */
 function closeDialog(taskId) {
+    // dialog window with task details is open:
     if(dialog_status == 'taskdetails') {
         let container = document.getElementById('dialog_container');
         container.classList.add('d-none');
         renderColumnContent();
         dialog_status = 'inactive';
-    } else if (dialog_status == 'edit') {
+    } 
+    // dialog window to change task content is open:
+    else if (dialog_status == 'edit') {
         renderDialogTask(taskId);  
         dialog_status = 'taskdetails';
     }
@@ -53,7 +56,7 @@ async function renderDialogTask(taskId){
         changeDueDateFormat(taskId);
         setColorOfCategoryInDialog(taskId);
         renderPriorityDialog(taskId);
-        await renderAssigedToDialog(taskId);
+        renderAssigedToDialog(taskId);
         renderSubtasksDialog(taskId);
         if (tasks[taskId].subtasks.length > 0){
             renderBlueProgressbar(taskId);
