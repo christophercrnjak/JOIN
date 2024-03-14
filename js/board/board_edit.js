@@ -62,17 +62,6 @@ function editDialogHTML(taskId) {
 
 // *** titel *** //
 
-// document.addEventListener('DOMContentLoaded', function() {
-//     renderTitleEditDialog(); // Beim Laden der Seite das Eingabefeld initialisieren
-
-//     let titleInput = document.getElementById('title_edit');
-
-//     // Event-Listener für das Eingabefeld hinzufügen
-//     titleInput.addEventListener('input', function() {
-//         checkFormValidation(${taskId});
-//     });
-// });
-
 // show title input to change content of title via inputfield
 function renderTitleEditDialog(taskId) {
     let container = document.getElementById('title_section_edit');
@@ -83,6 +72,7 @@ function renderTitleEditDialog(taskId) {
         <div id="errormessage_title"></div>
     `;
 }
+
 
 function checkFormValidation_title() {
     let titleInput = document.getElementById('title_edit');
@@ -105,10 +95,13 @@ function checkFormValidation_title() {
 // show description input to change content of description via inputfield
 function renderDescriptionEditDialog() {
     let container = document.getElementById('description_section_edit');
-    let description = currentTaskContent.description;
-    container.innerHTML = `
+    container.innerHTML = DescriptionEditDialogHTML();
+}
+
+function DescriptionEditDialogHTML() {
+    return /*html */ `
     <div class="header_text_edit_section">Description</div>
-    <textarea placeholder="Enter a description" id="edit_input_description" rows="4" type="text">${description}</textarea>
+    <textarea placeholder="Enter a description" id="edit_input_description" rows="4" type="text">${currentTaskContent.description}</textarea>
     `;
 }
 
@@ -119,26 +112,30 @@ function renderDescriptionEditDialog() {
 function renderDueDateEditDialog(taskId) {
     let container = document.getElementById('dueDate_section_edit');
     let newDate = changeDueDateFormatInLongYear(taskId)
-    container.innerHTML = `
-    <div class="header_text_edit_section">Due Date</div>
-    <form>
-        <input class="" pattern="\d{2}/\d{2}/\d{4}" onfocusout="validateDate()" onkeyup="validateDate()" placeholder="dd/mm/yyyy" id="edit_input_dueDate" type="text" value="${newDate}"  required>
-    </form>
-    <div class="" id="errormessage_due_date">This field is required</div>
+    container.innerHTML = DueDateEditDialogHTML(newDate);
+}
+
+function DueDateEditDialogHTML(newDate) {
+    return /*html*/`
+        <div class="header_text_edit_section">Due Date</div>
+        <form>
+            <input class="" pattern="\d{2}/\d{2}/\d{4}" onfocusout="DueDatevalidation()" onkeyup="DueDatevalidation()" placeholder="dd/mm/yyyy" id="edit_input_dueDate" type="text" value="${newDate}"  required>
+        </form>
+        <div class="" id="errormessage_due_date">This field is required</div>
     `;
 }
 
-function validateDate() {
+function DueDatevalidation() {
+    validationOfDay();
+    validationOfMonth();
+    validationOfYear();
+}
+
+function validationOfDay() {
     let inputDate = document.getElementById("edit_input_dueDate");
     let errormessage_due_date = document.getElementById("errormessage_due_date");
-
-    // splitt the format tt/mm/jjjj in parts[0] = tt; parts[1] = mm; parts[2] = jjjj
     let parts = inputDate.value.split('/');
     let day = parts[0];
-    let month = parts[1];
-    let year = parseInt(parts[2], 10);
-    
-    // Day
     if (parseInt(day, 10) > 31 || parseInt(day, 10) < 1 || parseInt(day, 10) == 0 || day.length < 2 || isNaN(day)) {
         inputDate.classList.add('non_valide');
         errormessage_due_date.style.display = 'block';
@@ -146,9 +143,13 @@ function validateDate() {
         inputDate.classList.remove('non_valide');
         errormessage_due_date.style.display = 'none';
     }
-    
-    
-    // Month
+}
+
+function validationOfMonth() {
+    let inputDate = document.getElementById("edit_input_dueDate");
+    let errormessage_due_date = document.getElementById("errormessage_due_date");
+    let parts = inputDate.value.split('/');
+    let month = parts[1];
     if (parseInt(month, 10) > 12 || parseInt(month, 10) < 1 || parseInt(month, 10) == 0 || month.toString().length < 2 || isNaN(month)) {
         inputDate.classList.add('non_valide');
         errormessage_due_date.style.display = 'block'; 
@@ -158,8 +159,13 @@ function validateDate() {
         errormessage_due_date.style.display = 'none';
         }
     }
+}
 
-    // Year
+function validationOfYear() {
+    let inputDate = document.getElementById("edit_input_dueDate");
+    let errormessage_due_date = document.getElementById("errormessage_due_date");
+    let parts = inputDate.value.split('/');
+    let year = parseInt(parts[2], 10);
     if (year < 2000 || isNaN(year)) {
         inputDate.classList.add('non_valide');
         errormessage_due_date.style.display = 'block'; 
@@ -170,7 +176,6 @@ function validateDate() {
         }
     }
 }
-
 
 
 // *** priority *** //
@@ -191,7 +196,7 @@ function renderPrioEditDialog() {
 
 // HTML of main structure of priority section in edit dialog
 function prioBtnHTML() {
-    return `
+    return /*html */`
     <div class="header_text_edit_section_Opensans">Priority</div>
     <div class="prio_choice-section">
         <div class="btn_addTask_list">

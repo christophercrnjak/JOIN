@@ -169,13 +169,18 @@ function renderAssigedToDialog(taskId) {
     let task = tasks[taskId];
     for (let i = 0; i < task.contacts.length; i++) {
         let contact = task.contacts[i];
-        container.innerHTML += `
-            <tr>
-                <td class="member_cycle ${contact.color} pos1">${contact.firstName.charAt(0)}${contact.secondName.charAt(0)}</td>
-                <td class="member_name_assiged_to">${contact.firstName} ${contact.secondName}</td>
-            </tr>
-        `;
+        container.innerHTML += AssigedToDialogHTML(contact, taskId, i);
+        document.getElementById(`taskdetailscontact${taskId}${i}`).style.backgroundColor = `${contact.color}`;
     }
+}
+
+function AssigedToDialogHTML(contact, taskId, i) {
+    return `
+        <tr>
+            <td id="taskdetailscontact${taskId}${i}" class="member_cycle pos1">${contact.firstName.charAt(0)}${contact.secondName.charAt(0)}</td>
+            <td class="member_name_assiged_to">${contact.firstName} ${contact.secondName}</td>
+        </tr>
+    `;
 }
 
 /**

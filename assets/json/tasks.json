@@ -7,17 +7,17 @@
             {
                 "firstName": "Anton",
                 "secondName": "Mayer",
-                "color": "orange"
+                "color": "var(--orange)"
             },
             {
                 "firstName": "Emmanuel",
                 "secondName": "Mauer",
-                "color": "turquoise"
+                "color": "var(--turquoise)"
             },
             {
                 "firstName": "Marcel",
                 "secondName": "Bauer",
-                "color": "darkslateblue"
+                "color": "var(--darkslateblue)"
             }
         ],
         "dueDate": "11/07/24",
@@ -42,17 +42,17 @@
             {
                 "firstName": "David",
                 "secondName": "Eisenberg",
-                "color": "violet"
+                "color": "var(--violet)"
             },
             {
                 "firstName": "Benedict",
                 "secondName": "Ziegler",
-                "color": "mediumslateblue"
+                "color": "var(--mediumslateblue)"
             },
             {
                 "firstName": "Anja",
                 "secondName": "Schulz",
-                "color": "blueviolet"
+                "color": "var(--blueviolet)"
             }
         ],
         "dueDate": "10/05/26",
@@ -68,17 +68,17 @@
             {
                 "firstName": "Eva",
                 "secondName": "Fischer",
-                "color": "yellow"
+                "color": "var(--yellow)"
             },
             {
                 "firstName": "Anja",
                 "secondName": "Schulz",
-                "color": "blueviolet"
+                "color": "var(--blueviolet)"
             },
             {
                 "firstName": "Tatjana",
                 "secondName": "Wolf",
-                "color": "red"
+                "color": "var(--red)"
             }
         ],
         "dueDate": "30/12/24",
@@ -94,12 +94,12 @@
             {
                 "firstName": "Sofia",
                 "secondName": "Müller",
-                "color": "deepskyblue"
+                "color": "var(--deepskyblue)"
             },
             {
                 "firstName": "Benedict",
                 "secondName": "Ziegler",
-                "color": "mediumslateblue"
+                "color": "var(--mediumslateblue)"
             }
         ],
         "dueDate": "01/07/25",
