@@ -46,8 +46,18 @@ function closeDialog(taskId) {
 async function renderDialogTask(taskId){
     let container = document.getElementById('task_dialog_container');
     let task;
+    // container.innerHTML = '';
     if(!currentTaskContent == '') {
         task = currentTaskContent;
+        container.innerHTML = taskDialogHTML(task, taskId);
+        changeDueDateFormat(taskId);
+        setColorOfCategoryInDialog(taskId);
+        renderPriorityDialog(taskId);
+        renderAssigedToDialog(taskId);
+        renderSubtasksDialog(taskId);
+        if (tasks[taskId].subtasks.length > 0){
+            renderBlueProgressbar(taskId);
+        }
     } else {
         await setTasksToServer();
         await getTasksFromServer();
