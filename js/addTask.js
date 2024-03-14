@@ -199,9 +199,17 @@ function setPriorityStyles(bgColor, textColor, imgSrc, priority) {
 
   prio.push(priority);
 }
-function categoryDropDownBtn() {
-  document.getElementById("dropdownCategory").classList.toggle("show");
+function categoryDropDownBtn(event) {
+  let dropdownCategory = document.getElementById("dropdownCategory");
+  dropdownCategory.classList.toggle("show");
 }
+
+document.addEventListener('click', function(event) {
+  let dropdownCategory = document.getElementById("dropdownCategory");
+  if (!event.target.matches('.dropdown_category') && !dropdownCategory.contains(event.target)) {
+    dropdownCategory.classList.remove('show');
+  }
+});
 
 function renderCategoryDropDown() {
   let dropdownCategory = document.getElementById("dropdownCategory");
@@ -292,24 +300,21 @@ function renderHtml() {
               <input type="date" class="border" id="AddTaskDate" placeholder="DD/MM/YYYY" required>
               <div class="prio_head">Prio</div>
  <div class="btn_addTask_list" id="btnAddTaskPrio">
-                  <a class="btn_addTask" id="btnUrgrend" onclick="changePriority('urgrend')">Urgrend <img id="btnUrgrendImg"
-                          src="assets/img/Priority_symbols_Urgent.png"></a>
-                  <a class="btn_addTask" id="btnMedium" onclick="changePriority('medium')">Medium <img id="btnMediumImg"
-                          src="assets/img/Priority_symbols_Medium.png"></a>
-                  <a class="btn_addTask" id="btnLow" onclick="changePriority('low')">Low <img id="btnLowImg"
-                          src="assets/img/Priority_symbols_Low.png"></a>
+    <a class="btn_addTask" id="btnUrgrend" onclick="changePriority('urgrend')">Urgrend <img id="btnUrgrendImg" src="assets/img/Priority_symbols_Urgent.png"></a>
+    <a class="btn_addTask" id="btnMedium" onclick="changePriority('medium')">Medium <img id="btnMediumImg" src="assets/img/Priority_symbols_Medium.png"></a>
+    <a class="btn_addTask" id="btnLow" onclick="changePriority('low')">Low <img id="btnLowImg" src="assets/img/Priority_symbols_Low.png"></a>
 </div> 
 <div class="category">
-                      <div class="category_head">Category<span>*</span></div>
-                      <div class="dropdown_category border inputtextfield" id="categoryDropDownBtn" onclick="categoryDropDownBtn()">Select task category</div>
-                      <div id="dropdownCategory" class="dropdown_content_category border"></div>    
+    <div class="category_head">Category<span>*</span></div>
+    <div class="dropdown_category border inputtextfield" id="categoryDropDownBtn" onclick="categoryDropDownBtn()">Select task category</div>
+    <div id="dropdownCategory" class="dropdown_content_category border"></div>    
 </div> 
-                  <div class="subtasks_head">Subtasks</div>
-                  <div class="subtask_button_container">
-                  <div class="subtaskIcons "><img onclick="pushToSubtasks()" src="/assets/img/subtasksPlus.svg"><img class="d-none" src="/assets/img/check_dark.svg"></div>
-                  <input type="text" class="subtasksInput border inputtextfield" id="subtasksInput" placeholder="Add new Subtask">
-                  </div>
-                  <div id="subtasklist"></div>
+    <div class="subtasks_head">Subtasks</div>
+    <div class="subtask_button_container">
+    <div class="subtaskIcons "><img onclick="pushToSubtasks()" src="/assets/img/subtasksPlus.svg"><img class="d-none" src="/assets/img/check_dark.svg"></div>
+    <input type="text" class="subtasksInput border inputtextfield" id="subtasksInput" placeholder="Add new Subtask">
+    </div>
+    <div id="subtasklist"></div>
           
           </section>
   

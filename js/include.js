@@ -19,10 +19,7 @@ async function includeHTML() {
   }
   setActiveLink();
 }
-
-  function footerToggle() {
-    document.getElementById("footer_notice").classList.toggle("show");
-  }
+  
   function setActiveLink() {
    
     var url = window.location.href;
@@ -34,3 +31,4 @@ async function includeHTML() {
         }
     });
 }
+
