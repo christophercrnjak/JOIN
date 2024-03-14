@@ -25,14 +25,11 @@ function subtaskListEditHTML(taskId) {
 
 function added_subtasks_edit(taskId) {
     let container = document.getElementById('added_subtasks_edit');
-    
     container.innerHTML = '';
     let subtasks = currentTaskContent.subtasks;
     for (let i = 0; i < subtasks.length; i++) {
         let subtask = subtasks[i].name;
-        
         container.innerHTML += subtasklistEditHTML(subtask, i, taskId);
-        
     }
 }
 
@@ -62,9 +59,12 @@ function subtasklistEditHTML(subtask, subtaskId, taskId) {
 
 function editSubtask(subtask, subtaskId, taskId) {
     let container = document.getElementById(`subtask_list_row_main${taskId}${subtaskId}`);
+    container.innerHTML = editSubtaskHTML(subtask, taskId);
+}
 
-    container.innerHTML = `
-        <div class="edit_mode_list_row_subtask">
+function editSubtaskHTML(subtask, taskId) {
+    return `
+    <div class="edit_mode_list_row_subtask">
             <div class="edit_input_list_row_main">
                 <input id="edit_input_list_row_content" class="edit_input_list_row" type="text" value="${subtask}">
                 <div class="edit_delete_and_confirm_list_row">
@@ -87,7 +87,6 @@ function editSubtask(subtask, subtaskId, taskId) {
                 </div>
             </div>    
         </div>
-        
     `;
 }
 

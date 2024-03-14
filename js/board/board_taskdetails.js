@@ -1,30 +1,37 @@
 // ****** Dialog taskdetails functions for the board *****
 
 /**
- * Set new dialog-status.
- * Open dialog container to show task details.
+ * Sets the dialog status and let render the Dialog with task details.
+ * Displays the dialog container with a grayish backgroundAnimates and the dialog window from the right when the content is loaded.
  * 
  * @param {Number} taskId - Index of current called task in tasks[] global array
  */
-function openTaskDetailsDialog(taskId) {
-    dialog_status = 'taskdetails';
+async function openTaskDetailsDialog(taskId) {
     let container = document.getElementById('dialog_container');
+    let taskDialogContainer = document.getElementById('task_dialog_container');
+    dialog_status = 'taskdetails';
+    await renderDialogTask(taskId);  
     container.classList.remove('d-none');
-    renderDialogTask(taskId);  
+    taskDialogContainer.style.position = 'none'; 
 }
 
 /**
- * Closes the Dialog and decide whether there is required to show taskdetails oder the Kanban Board
+ * Closes the dialog window depending on the dialog status.
+ * When the task details are displayed, the dialog window is closed and the Kanban board is displayed.
+ * When the task content change dialog box is active, the task details are displayed.
  * 
  * @param {Number} taskId - Index of current called task in tasks[] global array
  */
 function closeDialog(taskId) {
+    // dialog window with task details is open:
     if(dialog_status == 'taskdetails') {
         let container = document.getElementById('dialog_container');
         container.classList.add('d-none');
         renderColumnContent();
         dialog_status = 'inactive';
-    } else if (dialog_status == 'edit') {
+    } 
+    // dialog window to change task content is open:
+    else if (dialog_status == 'edit') {
         renderDialogTask(taskId);  
         dialog_status = 'taskdetails';
     }
@@ -39,8 +46,18 @@ function closeDialog(taskId) {
 async function renderDialogTask(taskId){
     let container = document.getElementById('task_dialog_container');
     let task;
+    // container.innerHTML = '';
     if(!currentTaskContent == '') {
         task = currentTaskContent;
+        container.innerHTML = taskDialogHTML(task, taskId);
+        changeDueDateFormat(taskId);
+        setColorOfCategoryInDialog(taskId);
+        renderPriorityDialog(taskId);
+        renderAssigedToDialog(taskId);
+        renderSubtasksDialog(taskId);
+        if (tasks[taskId].subtasks.length > 0){
+            renderBlueProgressbar(taskId);
+        }
     } else {
         await setTasksToServer();
         await getTasksFromServer();
@@ -49,7 +66,7 @@ async function renderDialogTask(taskId){
         changeDueDateFormat(taskId);
         setColorOfCategoryInDialog(taskId);
         renderPriorityDialog(taskId);
-        await renderAssigedToDialog(taskId);
+        renderAssigedToDialog(taskId);
         renderSubtasksDialog(taskId);
         if (tasks[taskId].subtasks.length > 0){
             renderBlueProgressbar(taskId);
@@ -162,13 +179,18 @@ function renderAssigedToDialog(taskId) {
     let task = tasks[taskId];
     for (let i = 0; i < task.contacts.length; i++) {
         let contact = task.contacts[i];
-        container.innerHTML += `
-            <tr>
-                <td class="member_cycle ${contact.color} pos1">${contact.firstName.charAt(0)}${contact.secondName.charAt(0)}</td>
-                <td class="member_name_assiged_to">${contact.firstName} ${contact.secondName}</td>
-            </tr>
-        `;
+        container.innerHTML += AssigedToDialogHTML(contact, taskId, i);
+        document.getElementById(`taskdetailscontact${taskId}${i}`).style.backgroundColor = `${contact.color}`;
     }
+}
+
+function AssigedToDialogHTML(contact, taskId, i) {
+    return `
+        <tr>
+            <td id="taskdetailscontact${taskId}${i}" class="member_cycle pos1">${contact.firstName.charAt(0)}${contact.secondName.charAt(0)}</td>
+            <td class="member_name_assiged_to">${contact.firstName} ${contact.secondName}</td>
+        </tr>
+    `;
 }
 
 /**

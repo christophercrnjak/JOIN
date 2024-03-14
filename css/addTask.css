@@ -225,15 +225,14 @@ input[type="date"]:invalid{
 
 .arrow {
   position: absolute;
-  top: 8px;
-  left: 90%;
+  top: 7px;
+  right: 3px;
   transform: translateX(-50%);
-  padding: 3px;
   cursor: pointer;
   color: #000 !important;
   height: 24px;
   width: 24px;
-  background-image: url('/assets/img/arrowDropDown.svg');
+  /* background-image: url('/assets/img/arrowDropDown.svg'); */
 }
 
 .member_cicle {
@@ -255,7 +254,7 @@ input[type="date"]:invalid{
 
 .rotated {
   transform: rotate(180deg);
-  left: 87%;
+  right: 15px;
 }
 
 .create_clear_task {
@@ -347,8 +346,8 @@ input[type='checkbox'] {
 .subtaskIcons {
   position: absolute;
   cursor: pointer;
-  top: 9px;
-  right: 20px;
+  top: 7px;
+  right: 13px;
 }
 
 .subtasklist_element {

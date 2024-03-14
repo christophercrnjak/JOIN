@@ -97,11 +97,19 @@
     color: #D1D1D1;
 }
 
+#errormessage_due_date {
+    font-size: 12px;
+    font-weight: 400;
+    color: #FF8190;
+    margin-top: 4px;
+    display: none;
+}
+
 
 /***** Priority Section *****/
 
 .header_text_edit_section_Opensans {
-    font-family: OpenSans;
+    font-family: OpenSans-Bold;
     font-size: 19px;
     font-weight: 700;
     color: rgba(66, 82, 110, 1);
@@ -211,12 +219,11 @@
 
         .dropdown_text {
             color: black;
-            padding-left: 21px;
             border-radius: 10px;
             border: 1px solid #ccc;
             font-size: 16px;
             font-weight: 400;
-            padding: 12px 20px 12px 21px;
+            padding: 14.5px 0px 14.5px 16px;
             width: 100%;
         }
 
@@ -381,6 +388,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 24px;
+    height: 24px;
+}
+
+.add_btn_subtask_edit:hover {
+    background-color: rgb(235, 235, 235);
+    border-radius: 20px;
 }
 
      #subtask_section_edit input {
@@ -388,7 +402,7 @@
         background-image: none;
         width: 100%;
         border-radius: 10px;
-        padding: 12px 50px 12px 21px;
+        padding: 6.5px 50px 6.5px 21px;
         color: black;
         font-size: 16px;
         font-weight: 400;
@@ -483,7 +497,7 @@
                     justify-content: space-between;
                     align-items: center;
                     gap: 12px;
-                    border-bottom: 2px solid var(--blue) !important;
+                    border-bottom: 1px solid var(--blue) !important;
                  
                 }
 

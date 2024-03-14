@@ -42,7 +42,7 @@ async function loadContacts() {
  * @returns {String} - HTML structure of task contacts
  */
 function assigedToEditHTML(taskId) {
-    return `
+    return /*html */`
     <!-- label -->
     <div class="header_text_edit_section">Assiged to</div>
 
@@ -84,8 +84,9 @@ function renderCiclesOfTaskContacts(taskId) {
         let contact = currentTaskContent.contacts[i];
         let firstCharacter = contact.firstName.charAt(0);
         let secondCharacter = contact.secondName.charAt(0);
-        let colorClass = contact.color;
-        container.innerHTML += selectedTaskMemberHTML(firstCharacter, secondCharacter, colorClass, taskId, i); 
+        let color = contact.color;
+        container.innerHTML += selectedTaskMemberHTML(firstCharacter, secondCharacter, taskId, i); 
+        document.getElementById(`selected_task_member${taskId}${i}`).style.backgroundColor = `${color}`;
     }
 }
 
@@ -94,14 +95,13 @@ function renderCiclesOfTaskContacts(taskId) {
  * 
  * @param {String} firstCharacter - first letter of first name of contact 
  * @param {String} secondCharacter - first letter of second name of contact 
- * @param {String} colorClass - Name of class with the right background-color
  * @param {Number} taskId - Index of current called task in tasks[] global array
  * @param {Number} i - Index of current Contact in currentTaskContent.contacts
  * @returns 
  */
-function selectedTaskMemberHTML(firstCharacter, secondCharacter, colorClass, taskId, i) {
+function selectedTaskMemberHTML(firstCharacter, secondCharacter, taskId, i) {
     return `
-        <div id="selected_task_member${taskId}${i}" class="selected_member_cicle ${colorClass}">${firstCharacter}${secondCharacter}</div>
+        <div id="selected_task_member${taskId}${i}" class="selected_member_cicle">${firstCharacter}${secondCharacter}</div>
     `;
 }
 
@@ -170,8 +170,6 @@ function showContactList(taskId, searchValue) {
                 renderSelectionStatusLayout(taskId, i);
             }
     }
-    // container.classList.toggle('flexDirection');
-    // container.style.gap = '0px';
 }
 
 /**
@@ -230,35 +228,11 @@ function setListContactNotSelect(taskId, contactId) {
     cicle.style.border = 'none';
 }
 
-// /**
-//  * Render the checkbox image in dependence of selectionstatus for the current task
-//  * 
-//  * @param {Number} taskId - Index of current called task in tasks[] global array
-//  * @param {Number} contactId - Index of contact in loaded_contacts array JSON
-//  */
-// function renderCheckBoxEdit(taskId, contactId) {
-//     let container_checkbox = document.getElementById(`checkbox_edit${taskId}${contactId}`);
-//     let container_dropdown_contact = document.getElementById(`dropdown_contact${taskId}${contactId}`);
-//     let contact = loaded_contacts[contactId].name;
-//     let selectedContactStatus = checkContactSelected(`${contact.firstName}`, `${contact.secondName}`)
-//     let cicle = document.getElementById(`selected_task_member${taskId}${contactId}`);
-
-//     if (selectedContactStatus == true) {
-//         container_checkbox.innerHTML = `<img src="assets/img/check_button_checked_white.svg">`;
-//         container_dropdown_contact.classList.toggle('contactOfTask');
-//         cicle.style.border = 'solid 3px white';
-//     } else {
-//         container_checkbox.innerHTML = `<img onclick="" src="assets/img/check_button_unchecked.svg">`;
-//         // container_checkbox.setAttribute('onclick', `selectContactforTask(${taskId}, ${contactId})`);
-//         container_dropdown_contact.setAttribute('onclick', `selectContactforTask(${taskId}, ${contactId})`)
-//     } 
-// }
-
 /**
  * Finds out whether the contact is selected.
  * Compares the names of the global currentTaskContent.contacts with the hole contactlist of the program
  * 
-  * @param {String} firstName - first name of the Contact which is selected
+ * @param {String} firstName - first name of the Contact which is selected
  * @param {String} secondName - second name of the Contact which is selected
  * @returns {Boolean} - Mark
  */
@@ -340,12 +314,12 @@ function changeSelectionStatus(taskId, contactId) {
     let contact = loaded_contacts[contactId].name;
     let firstName = contact.firstName;
     let secondName = contact.secondName;
+    let color = contact.color;
     let selectedContactStatus = checkContactSelected(`${firstName}`, `${secondName}`)
-    
     if (selectedContactStatus == true) {
         deleteContactFromTask(firstName, secondName, taskId)
     } else {
-        selectContactforTask(taskId, contactId, firstName, secondName)
+        selectContactforTask(taskId, firstName, secondName, color)
     } 
 }
 
@@ -370,8 +344,7 @@ function deleteContactFromTask(firstName, secondName, taskId) {
  * @param {String} firstName - first name of the Contact which is selected
  * @param {String} secondName - second name of the Contact which is selected
  */
-function selectContactforTask(taskId, contactId, firstName, secondName,) {
-    let color = findOutColorClass(contactId);
+function selectContactforTask(taskId, firstName, secondName, color) {
     currentTaskContent.contacts.push(
         {
             "firstName": `${firstName}`,
@@ -388,28 +361,28 @@ function selectContactforTask(taskId, contactId, firstName, secondName,) {
  * @param {Number} contactId - Index of Contact in loaded_contacts array
  * @returns {String} Name of Class with the right color Attribute
  */
-function findOutColorClass(contactId) {
-    let contact = loaded_contacts[contactId].name;
-    let firstName = contact.firstName;
-    let secondName = contact.secondName;
-    if (firstName == "Anton" && secondName == "Mayer") {
-        return "orange"
-    } else if (firstName == "Emmanuel" && secondName == "Mauer") {
-        return "turquoise"
-    } else if (firstName == "Marcel" && secondName == "Bauer") {
-        return "darkslateblue"
-    } else if (firstName == "David" && secondName == "Eisenberg") {
-        return "violet"
-    } else if (firstName == "Benedikt" && secondName == "Ziegler") {
-        return "mediumslateblue"
-    } else if (firstName == "Anja" && secondName == "Schulz") {
-        return "blueviolet"
-    } else if (firstName == "Eva" && secondName == "Fischer") {
-        return "yellow"
-    } else if (firstName == "Tatjana" && secondName == "Wolf") {
-        return "red"
-    } else if (firstName == "Sofia" && secondName == "Müller") {
-        return "deepskyblue"
-    }
-}
+// function findOutColorClass(contactId) {
+//     let contact = loaded_contacts[contactId].name;
+//     let firstName = contact.firstName;
+//     let secondName = contact.secondName;
+//     if (firstName == "Anton" && secondName == "Mayer") {
+//         return "orange"
+//     } else if (firstName == "Emmanuel" && secondName == "Mauer") {
+//         return "turquoise"
+//     } else if (firstName == "Marcel" && secondName == "Bauer") {
+//         return "darkslateblue"
+//     } else if (firstName == "David" && secondName == "Eisenberg") {
+//         return "violet"
+//     } else if (firstName == "Benedikt" && secondName == "Ziegler") {
+//         return "mediumslateblue"
+//     } else if (firstName == "Anja" && secondName == "Schulz") {
+//         return "blueviolet"
+//     } else if (firstName == "Eva" && secondName == "Fischer") {
+//         return "yellow"
+//     } else if (firstName == "Tatjana" && secondName == "Wolf") {
+//         return "red"
+//     } else if (firstName == "Sofia" && secondName == "Müller") {
+//         return "deepskyblue"
+//     }
+// }
 
