@@ -820,8 +820,8 @@ svg {
 
     .background_image {
         margin: 0;
-        position: relative;
-        top: 20px;
+        position: absolute;
+        top: 590px;
     }
 
 
@@ -847,7 +847,7 @@ svg {
     margin: 0;
     position: relative;
     left: 330px;
-    bottom: 340px;
+    bottom: 370px;
 }
 
 .add_contact path {
@@ -861,7 +861,9 @@ svg {
 .display_center_b {
     margin-top: 32px;
     margin-left: 90px;
-    margin-bottom: 130px;
+}
+.input_position{
+    margin-bottom: 140px;
 }
 
 .display_center_b .create_button {

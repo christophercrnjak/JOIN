@@ -8,6 +8,7 @@ async function init() {
     loadContacts();
 }
 
+
 function loadContacts() {
     let content = document.getElementById('person');
     let contactList = '';
@@ -105,15 +106,20 @@ function closeDialog() {
 
 }
 
+
 function openWindow() {
-    var editDeleteWindow = document.getElementById("editDeleteWindow");
-    editDeleteWindow.classList.add("active");
+    const screenWidth = window.innerWidth;
+    if (screenWidth <= 1000) {
+        var editDeleteWindow = document.getElementById("editDeleteWindow");
+        if (editDeleteWindow) {
+            editDeleteWindow.classList.add("active");
+}
+    }
 }
 
 
 function handleClick() {
     const screenWidth = window.innerWidth;
-
     if (screenWidth <= 1000) {
         document.querySelector('.display_flex').style.display = 'flex';
         document.querySelector('.contacts').style.display = 'none';
@@ -124,6 +130,24 @@ function handleClick() {
 }
 window.onload = handleClick;
 window.onresize = handleClick;
+
+function updateDisplay() {
+    const screenWidth = window.innerWidth;
+    const displayFlex = document.querySelector('.display_flex');
+    const contacts = document.querySelector('.contacts');
+
+    if (screenWidth <= 1000) {
+        displayFlex.style.display = 'none';
+        contacts.style.display = 'flex';
+    } else {
+        displayFlex.style.display = 'flex'; 
+        contacts.style.display = 'unset'; 
+    }
+}
+window.onload = function() {
+    updateDisplay();
+};
+window.onresize = updateDisplay;
 
 
 function changeBackground(element) {
@@ -141,8 +165,10 @@ function deletePerson(index) {
     selectedPersonElement.innerHTML = '';
     closeDialog();
     loadContacts();
-
+    backMobile();
 }
+
+
 function closePerson() {
     let editPersons = document.getElementById('editPersons');
     editPersons.classList.add('close');
@@ -162,7 +188,9 @@ function editPerson(index) {
     editPersons.classList.add('open');
 }
 
-function createContact() {
+function createContact(event) {
+    event.preventDefault();
+
     let nameInput = document.getElementById('input_name').value;
     let emailInput = document.getElementById('input_email').value;
     let phoneInput = document.getElementById('input_phone').value;
@@ -206,7 +234,6 @@ function createContact() {
 
         let newIndex = person.findIndex(p => p.name.firstName === firstName && p.name.secondName === secondName);
 
-
         if (newIndex !== -1) {
             selectPerson(newIndex);
             setTimeout(function () {
@@ -218,6 +245,7 @@ function createContact() {
         }
     }
 }
+
 
 function saveChanges() {
     let selectedPersonIndex = parseInt(document.getElementById('selectedPersonIndex').value);
@@ -257,6 +285,7 @@ function saveChanges() {
         }
     }
 }
+
 function showFlexContainer() {
     document.querySelector('.container').style.display = 'flex';
 }
