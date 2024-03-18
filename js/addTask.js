@@ -46,14 +46,14 @@ function dropdownHtml(dropdownList, i) {
     dropdownList["name"]["secondName"]
   }
     </div>
-    <div class="dropdown_img"></div>
+    <div id="selected_img" class="dropdown_img"></div>
   </a>
   `;
 }
 
 function selectFromDropdown(color, firstName, secondName, i) {
   // Select for the Drop Down
-  let dropdownList = document.getElementById("dropdownList");
+  let dropdownList = document.getElementById('dropdownList');
   let selectedId = i;
   selectedFromDropdown.push({ color, firstName, secondName });
   dropdownList.innerHTML += dropdownHtmlMemberCircle(
@@ -62,8 +62,9 @@ function selectFromDropdown(color, firstName, secondName, i) {
     secondName,
     selectedId
   );
-  document.getElementById(i).classList.add("selected");
-  document.getElementById(i).classList.add("dropdown_img");
+  document.getElementById(i).classList.add('selected');
+  document.getElementById('selected_img').classList.add('selected_img');
+
 }
 
 
@@ -89,7 +90,6 @@ function removeFromSelectedItems(firstName) {
         let textContent = elements[j].textContent;
         if (textContent.includes(firstName.charAt(0))) {
           dropdownList.removeChild(elements[j]);
-          break; // Breche die Schleife ab, sobald das Element entfernt wurde
         }
       }
 
@@ -116,16 +116,21 @@ function filterFunction() {
 }
 
 function toggledropbtn() {
-  let dropdownContent = document.getElementById("dropdown");
+  let dropdownContent = document.getElementById('dropdown');
 
   if (!dropdownContent.classList.contains("d-none")) {
-    dropdownContent.classList.toggle("show_task");
+    dropdownContent.classList.toggle('show_task');
     document.getElementById("dropdownInput").classList.toggle("d-none");
     document.getElementById("dropbtn").classList.toggle("d-none");
     document.getElementById("arrow").classList.toggle("rotated");
   }
 }
-
+document.addEventListener('click', function(event) {
+  let dropdownContent = document.getElementById('dropdown');
+  if (!event.target.closest('.dropdown') && !dropdownContent.contains(event.target)) {
+    dropdownContent.classList.remove('show_task');
+  }
+});
 // Prio Btn
 
 function changePriority(priority) {
@@ -230,23 +235,66 @@ function pushCategoryInTo(element) {
   }
 }
 
-function pushToSubtasks() {
-  let subtasksInput = document.getElementById("subtasksInput").value;
-  subtasklists.push(subtasksInput);
+function ChangeToSubtasks() {
+  let subtaskcheck = document.getElementById('subtaskIconsCheck');
+  let subtaskIcons = document.getElementById('subtaskIcons');
+  let subtaskIconsDelete = document.getElementById('subtaskIconsDelete');
+  let subtaskI = document.getElementById('subtaskI');
+
+  subtaskIcons.classList.add('d-none');
+  subtaskI.classList.remove('d-none');
+  subtaskcheck.classList.remove('d-none');
+  subtaskIconsDelete.classList.remove('d-none');
+}
+function pushToSubtasks() { 
+  let subtasksInputElement = document.getElementById('subtasksInput');
+  let subtasksInputValue = subtasksInputElement.value;
+  if(subtasksInputValue === ''){
+    subtasksInputElement.value = '';  
+    checkAndHideElements();
+    return; 
+  } 
+  subtasklists.push(subtasksInputValue);
+  subtasksInputElement.value = '';  
   rendersubtasklist();
+  checkAndHideElements();
 }
 
+
+function deleteSubTasks() {
+  let subtasksInput = document.getElementById('subtasksInput');
+  subtasksInput.value = '';
+  checkAndHideElements();
+}
+
+function checkAndHideElements() {
+  let subtasksInput = document.getElementById('subtasksInput');
+  if (subtasksInput.value.length === 0) {
+    let subtaskIcons = document.getElementById('subtaskIcons');
+    let subtaskIconsDelete = document.getElementById('subtaskIconsDelete');
+    let subtaskcheck = document.getElementById('subtaskIconsCheck');
+    let subtaskI = document.getElementById('subtaskI');
+    subtaskI.classList.add('d-none');
+    subtaskIcons.classList.remove('d-none');
+    subtaskcheck.classList.add('d-none');
+    subtaskIconsDelete.classList.add('d-none');
+  }
+}
 function rendersubtasklist() {
   let rendersubtasklist = document.getElementById("subtasklist");
   rendersubtasklist.innerHTML = "";
   for (let i = 0; i < subtasklists.length; i++) {
     let subtaskHTML = subtasklists[i];
     rendersubtasklist.innerHTML += subtasklistHTML(subtaskHTML, i);
-    console.log(subtaskHTML);
   }
   subtasklistHTML();
 }
 function removeSubtask(i) {
+  let subtaskcheck = document.getElementById('subtaskcheck');
+  if(subtasklists === 0){
+    subtaskcheck.classList.add('d-none');
+    rendersubtasklist();
+  }
   subtasklists.splice(i, 1);
   rendersubtasklist();
 }
@@ -285,10 +333,10 @@ function renderHtml() {
               <div class="description_head">Description</div>
               <textarea id="description" class="border inputtextfield" placeholder="Enter a Description"></textarea>
               <div class="assign_head">Assigned to </div>
-              <div class="dropdown border">
+              <div class="dropdown">
                   <div id="arrow" class="arrow" onclick="toggledropbtn(); return false"><img src="/assets/img/arrowDropDown.svg" alt="" srcset=""></div>
-                  <div onclick="toggledropbtn(); return false" class="dropbtn border inputtextfield" id="dropbtn">Select contacts assign</div>
-                  <input type="text" id="dropdownInput" onkeyup="filterFunction()" class="d-none border">
+                  <div onclick="toggledropbtn(); return false" class="dropbtn" id="dropbtn">Select contacts assign</div>
+                  <input type="text" id="dropdownInput" onkeyup="filterFunction()" class="dropdownInput d-none">
                   <div id="dropdown" class="dropdown_content">
                   </div>
               </div>
@@ -309,16 +357,24 @@ function renderHtml() {
     <div class="dropdown_category border inputtextfield" id="categoryDropDownBtn" onclick="categoryDropDownBtn()">Select task category</div>
     <div id="dropdownCategory" class="dropdown_content_category border"></div>    
 </div> 
+
     <div class="subtasks_head">Subtasks</div>
-    <div class="subtask_button_container">
-    <div class="subtaskIcons "><img onclick="pushToSubtasks()" src="/assets/img/subtasksPlus.svg"><img class="d-none" src="/assets/img/check_dark.svg"></div>
-    <input type="text" class="subtasksInput border inputtextfield" id="subtasksInput" placeholder="Add new Subtask">
-    </div>
-    <div id="subtasklist"></div>
-          
-          </section>
-  
+      <div class="subtask_button_container">
+        <div class= "subtaskIcons" id="subtaskIcons" onclick="ChangeToSubtasks()"></div>
+        <div class= "subtaskIcons d-none" id="subtaskIconsDelete" onclick="deleteSubTasks()"></div>
+        <div class= "d-none" id="subtaskI">|</div>
+        <div class= "subtaskIcons d-none" id="subtaskIconsCheck" onclick="pushToSubtasks()"></div> 
       </div>
+    <input type="text" class="subtasksInput inputtextfield" id="subtasksInput" placeholder="Add new Subtask">
+    
+    <div id="subtasklist"></div>
+
+</div>
+   
+          
+</section>
+  
+
              
       <div class="create_clear_task">
       <p><span>*</span>This Field is required</p>
@@ -352,9 +408,9 @@ function renderHtml() {
 
   await setItem('tasks', task);
 
-  // pushCategory.value = '';
-  // selectedFromDropdown.value = '';
-  // prio.value = '';
+  pushCategory.value = '';
+  selectedFromDropdown.value = '';
+  prio.value = '';
 }
 
 function removeAllInputes() {

@@ -10,7 +10,7 @@
     height:  96px;
     /* überarbeiten bei Monitor größe*/
     position: fixed;
-    z-index: 999;
+    z-index: 10;
 
 }
 .headnav_text {
@@ -42,7 +42,7 @@
     width: 232px;
     position: absolute;
     position: fixed;
-    z-index: 999;
+    z-index: 10;
 }
 
 .logo_sidebar {
