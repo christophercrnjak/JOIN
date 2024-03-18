@@ -32,7 +32,7 @@ body {
     transform: translate(0, 0);
   }
   to {
-    transform: translate((-50px, -50px));
+    transform: translate((-500px, -500px));
   }
 }
 
