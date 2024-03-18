@@ -1,0 +1,157 @@
+#input_title_addTask_dialog {
+    margin-top: 8px;
+    border-radius: 10px;
+    background-image: none;
+    padding: 12px 20px 12px 21px;
+    border: 1px solid #ccc;
+    background-image: none;
+    border-radius: 10px;
+}
+
+#input_title_addTask_dialog::placeholder {
+    color: #D1D1D1;
+}
+
+#input_title_addTask_dialog:invalid {
+  border: 2px solid #FF8190;
+}
+
+#input_description_addTask_dialog {
+    background-image: url();
+    border-radius: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 20px 12px 40px 21px;
+    cursor: pointer;
+}
+
+#input_description_addTask_dialog::placeholder {
+    color: #D1D1D1;
+}
+
+#input_description_addTask_dialog:hover {
+    border-color: var(--blue);
+    outline: var(--blue);
+}
+
+#dropdown_input_addTask {
+    width: 100%;
+}
+
+#search_contacts_edit_addTask {
+    border: 1px solid #ccc;
+    background-image: none;
+    width: 100%;
+    border-radius: 10px;
+    padding: 12px 56px 12px 21px;
+    color: black;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+#search_contacts_edit_addTask:focus {
+    border: solid 1px var(--blue);
+    outline: var(--blue);
+} 
+
+#search_contacts_edit_addTask input::placeholder {
+    color: #D1D1D1 !important;
+} 
+
+#dropdown_input_addTask input::placeholder {
+    color: #D1D1D1 !important;
+} 
+
+#edit_input_dueDate_addTask {
+    background-image: url(/assets/img/event.svg);
+    border-radius: 10px;
+    padding-left: 21px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+}
+
+#errormessage_due_date_addTask {
+    font-size: 12px;
+    font-weight: 400;
+    color: #FF8190;
+    margin-top: 4px;
+    display: none;
+}
+
+.addTaskForm span {
+    color: red;
+}
+
+.category {
+    position: relative;
+    width: 100%;
+  
+  }
+  
+  .dropdown_category {
+    width: 100%;
+    border-radius:10px;
+    font-size: 16px;
+    color:#000;
+    background-color: white;
+    background-position: right 10px center;
+    background-repeat: no-repeat;
+    padding: 8px 12px;
+  }
+  
+  
+  .dropdown_content_category {
+    display: none;
+    position: absolute;
+    flex-direction: column;
+    background-color: #ffffff;
+    width: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  
+  .dropdown_content_category a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .dropdown_content_category a:hover {
+    background-color: var(--bgdarkblue);
+    color: #ffff !important;
+    width: 100%;
+  }
+
+  .red_star {
+    color: red;
+  }
+  
+  #category_addTask_dialog {
+    position: relative;
+  }
+
+  .category_name_addTask {
+    font-size: 20px;
+    font-weight: 400;
+    padding: 12px 0px 12px 16px;
+  }
+
+  .category_name_addTask:hover {
+    background-color: rgb(238, 238, 238);
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 400;
+    padding: 12px 0px 12px 16px;
+    cursor: pointer;
+  }
+
+  .boxShadow_and_borderRadius {
+    box-shadow: 0px 0px 14px 3px #0000000A;
+    border-radius: 10px;
+  }

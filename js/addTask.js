@@ -131,7 +131,9 @@ document.addEventListener('click', function(event) {
     dropdownContent.classList.remove('show_task');
   }
 });
-// Prio Btn
+
+
+// *** Priority *** //
 
 function changePriority(priority) {
   resetStyles();
@@ -204,6 +206,10 @@ function setPriorityStyles(bgColor, textColor, imgSrc, priority) {
 
   prio.push(priority);
 }
+
+
+// *** Category *** //
+
 function categoryDropDownBtn(event) {
   let dropdownCategory = document.getElementById("dropdownCategory");
   dropdownCategory.classList.toggle("show");
