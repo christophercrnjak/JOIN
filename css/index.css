@@ -16,23 +16,35 @@ body {
   justify-content: center;
   align-items: center;
   row-gap: 48px;
+  opacity: 0;
+  animation: wrapperVisibility 700ms ease-in-out both;
 }
 
 .logo {
   border: 1px solid red;
   position: absolute;
-  /* top: 289px;
-  left: 450px; */
-  animation-name: moveLogo;
-  animation-duration: 3s;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: moveLogo 700ms ease-in-out both;
 }
 
 @keyframes moveLogo {
   from {
-    transform: translate(0, 0);
   }
   to {
-    transform: translate((-500px, -500px));
+    transform: translate(0%, 0%);
+    top: 32px;
+    left: 32px;
+  }
+}
+
+@keyframes wrapperVisibility {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
