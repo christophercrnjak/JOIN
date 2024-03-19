@@ -29,24 +29,45 @@ function renderaddTaskDialog() {
     renderDueDateEditDialog_addTask();
     renderPrioEditDialog_addTask();
     renderCategoryAddTaskDialog();
+    renderSubtasksEditDialog_addTask();
+    renderCommitSection_addTask();
+    document.getElementById('task_dialog_container').style.width = 'fit-content';
 }
 
 function addTaskDialogHTML(taskId) {
-    return`
-    <div id="close_section_edit" class="distance">
-        <a onclick="closeDialog(${taskId})" class="close">
-            <div class="line horizontal"></div>
-            <div class="line vertical"></div>
-        </a>
+    return /*html*/`
+    <div class="addTask_dialog_container">
+        <!-- header -->
+        <div class="addTask_dialog_box_head">
+            <div class="header_text_addTask_dialog">Add Task</div>
+            <div id="close_section_edit" class="distance">
+                <a onclick="closeDialog(${taskId})" class="close">
+                    <div class="line horizontal"></div>
+                    <div class="line vertical"></div>
+                </a>
+            </div>
+        </div>
+        <!-- middle -->
+        <div class="addTask_dialog_box_middle">
+            <!-- left -->
+            <div class="addTask_dialog_box_content_left">
+                <div id="addTask_dialog_title" class="distance"></div> 
+                <div id="addTask_dialog_description" class="distance"></div>
+                <div id="addTask_dialog_assignedTo" class="distance"></div>
+            </div>
+            <!-- line -->
+            <hr id="line_addTask_dialog">
+            <!-- right -->
+            <div class="addTask_dialog_box_content_right">
+                <div id="addTask_dialog_duedate" class="distance"></div>
+                <div id="addTask_dialog_priority" class="distance flexDirection"></div>
+                <div id="addTask_dialog_category" class="distance flexDirection"></div>
+                <div id="addTask_dialog_subtasks" class="distance flexDirection"></div>
+            </div>
+        </div>
+        <!-- footer -->
+        <div id="addTask_dialog_createTask" class="distance"></div>
     </div>
-    <div id="addTask_dialog_title" class="distance"></div> 
-    <div id="addTask_dialog_description" class="distance"></div>
-    <div id="addTask_dialog_assignedTo" class="distance"></div>
-    <div id="addTask_dialog_duedate" class="distance"></div>
-    <div id="addTask_dialog_priority" class="distance flexDirection"></div>
-    <div id="addTask_dialog_category" class="distance flexDirection"></div>
-    <div id="addTask_dialog_subtasks" class="distance flexDirection"></div>
-    <div id="addTask_dialog_createTask" class="distance"></div>
     `;
 }
 
@@ -57,7 +78,7 @@ function addTaskDialogHTML(taskId) {
 function renderTitleAddTaskDialog(taskId) {
     let container = document.getElementById('addTask_dialog_title');
     container.innerHTML = `
-        <label class="header_text_edit_section" for="title_edit" >Titel</label>
+        <label class="header_text_edit_section" for="title_edit" >Titel<span class="red_star">*</span></label>
         <input onkeyup="checkFormValidation_title()" onfocusout="checkFormValidation_title()" id="input_title_addTask_dialog" name="title_edit" type="text" placeholder="Enter a Title">
         <div id="errormessage_title"></div>
     `;
@@ -106,7 +127,7 @@ function renderDueDateEditDialog_addTask() {
 
 function DueDateEditDialogHTML_addTask() {
     return /*html*/`
-        <div class="header_text_edit_section">Due Date</div>
+        <div class="header_text_edit_section">Due Date<span class="red_star">*</span></div>
         <form>
             <input class="" pattern="\d{2}/\d{2}/\d{4}" onfocusout="DueDatevalidation()" onkeyup="DueDatevalidation_addTask()" placeholder="dd/mm/yyyy" id="edit_input_dueDate_addTask" type="text"  required>
         </form>
@@ -325,7 +346,7 @@ let dropdownStatus_category = false;
 function renderCategoryAddTaskDialog() {
     let container = document.getElementById('addTask_dialog_category');
     container.innerHTML = `
-        <label class="header_text_edit_section">Category<span class="red_star"></span></label>
+        <label class="header_text_edit_section">Category<span class="red_star">*</span></label>
         <div id="category_addTask_section_dropdown">
             <div id="category_addTask_dialog" class="dropdown_text"><span id="category_field_text">Select task category</span> 
                 <a class="dopdown_img_inactive" id="dropdown_arrow_category_addTask" onclick="openDropDownList_category_addTask()">
@@ -396,3 +417,23 @@ function selectCategory(category) {
 
 // *** Subtasks *** //
 
+function renderCommitSection_addTask() {
+    let container = document.getElementById('addTask_dialog_createTask');
+    container.innerHTML = commitSectionHTML();
+}
+
+function commitSectionHTML() {
+    return /*html */`
+        <div class="create_clear_task">
+            <p><span>*</span>This Field is required</p>
+            <div class="addTask_btns">
+              <button class="btn_transparent addTask_btn btn_gab">Clear <span>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7.00005 8.40005L2.10005 13.3C1.91672 13.4834 1.68338 13.575 1.40005 13.575C1.11672 13.575 0.883382 13.4834 0.700049 13.3C0.516715 13.1167 0.425049 12.8834 0.425049 12.6C0.425049 12.3167 0.516715 12.0834 0.700049 11.9L5.60005 7.00005L0.700049 2.10005C0.516715 1.91672 0.425049 1.68338 0.425049 1.40005C0.425049 1.11672 0.516715 0.883382 0.700049 0.700049C0.883382 0.516715 1.11672 0.425049 1.40005 0.425049C1.68338 0.425049 1.91672 0.516715 2.10005 0.700049L7.00005 5.60005L11.9 0.700049C12.0834 0.516715 12.3167 0.425049 12.6 0.425049C12.8834 0.425049 13.1167 0.516715 13.3 0.700049C13.4834 0.883382 13.575 1.11672 13.575 1.40005C13.575 1.68338 13.4834 1.91672 13.3 2.10005L8.40005 7.00005L13.3 11.9C13.4834 12.0834 13.575 12.3167 13.575 12.6C13.575 12.8834 13.4834 13.1167 13.3 13.3C13.1167 13.4834 12.8834 13.575 12.6 13.575C12.3167 13.575 12.0834 13.4834 11.9 13.3L7.00005 8.40005Z" fill="#2A3647"/>
+              </svg>
+              </span></button>
+              <button class="btn_grey addTask_btn display_centerss btn_gab"> Create Task <img src="/assets/img/check.png"></button>
+            </div>
+        </div>
+    `;
+}
