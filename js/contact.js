@@ -243,6 +243,7 @@ function createContact(event) {
                 document.querySelector('.success').classList.remove('active');
             }, 1800);
         }
+        handleClick();
     }
 }
 
@@ -286,10 +287,3 @@ function saveChanges() {
     }
 }
 
-function showFlexContainer() {
-    document.querySelector('.container').style.display = 'flex';
-}
-
-function hideFlexContainer() {
-    document.querySelector('.container').style.display = 'none';
-}
