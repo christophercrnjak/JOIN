@@ -21,9 +21,8 @@ async function openAdddTaskDialog(){
 
 function renderaddTaskDialog() {
     let container = document.getElementById('task_dialog_container');
-    let taskId = tasks.length 
-    container.innerHTML = addTaskDialogHTML(taskId);
-    renderTitleAddTaskDialog(taskId);
+    container.innerHTML = addTaskDialogHTML();
+    renderTitleAddTaskDialog();
     renderDescriptionAddTaskDialog();
     renderAssigedToEditDialog_addTask();
     renderDueDateEditDialog_addTask();
@@ -32,6 +31,7 @@ function renderaddTaskDialog() {
     renderSubtasksEditDialog_addTask();
     renderCommitSection_addTask();
     document.getElementById('task_dialog_container').style.width = 'fit-content';
+    document.getElementById('task_dialog_container').style.paddingTop = '64px';
 }
 
 function addTaskDialogHTML(taskId) {
@@ -75,24 +75,24 @@ function addTaskDialogHTML(taskId) {
 // *** titel *** //
 
 // show title input to change content of title via inputfield
-function renderTitleAddTaskDialog(taskId) {
+function renderTitleAddTaskDialog() {
     let container = document.getElementById('addTask_dialog_title');
     container.innerHTML = `
         <label class="header_text_edit_section" for="title_edit" >Titel<span class="red_star">*</span></label>
-        <input onkeyup="checkFormValidation_title()" onfocusout="checkFormValidation_title()" id="input_title_addTask_dialog" name="title_edit" type="text" placeholder="Enter a Title">
+        <input onkeyup="checkFormValidation_title_addTask()" onfocus="checkFormValidation_title_addTask()" onfocusout="checkFormValidation_title_addTask()" id="input_title_addTask_dialog" name="title_edit" type="text" placeholder="Enter a Title">
         <div id="errormessage_title"></div>
     `;
 }
 
-function checkFormValidation_title() {
+function checkFormValidation_title_addTask() {
     let titleInput = document.getElementById('input_title_addTask_dialog');
     let errormessage_title = document.getElementById('errormessage_title');
     if (titleInput.value === '' || titleInput.value == null) {
         titleInput.classList.add('non_valide'); // red border
         errormessage_title.innerHTML = 'This field is required'; // div is under the Input
-        document.getElementById('errormessage_title').style.display = 'block'; // let div with text appear
+        errormessage_title.style.display = 'block'; // let div with text appear
         document.getElementById('close_section_edit').scrollIntoView({ behavior: 'smooth', block: 'start' }); // scroll to input
-        document.getElementById('input_title_addTask_dialog').focus();
+        titleInput.focus();
   } else {
     titleInput.classList.remove('non_valide');
     errormessage_title.style.display = 'none';
@@ -105,15 +105,20 @@ function checkFormValidation_title() {
 // show description input to change content of description via inputfield
 function renderDescriptionAddTaskDialog() {
     let container = document.getElementById('addTask_dialog_description');
-    container.innerHTML = DescriptionEditDialogHTML();
+    container.innerHTML = DescriptionEditDialogHTML_addTask();
 }
 
-function DescriptionEditDialogHTML() {
+function DescriptionEditDialogHTML_addTask() {
     return /*html */ `
     <div class="header_text_edit_section">Description</div>
     <textarea placeholder="Enter a description" id="input_description_addTask_dialog" rows="4" type="text"></textarea>
     `;
 }
+
+
+
+// *** Assigned to (-> board_addTask_assignedTo.js) *** //
+
 
 
 // *** due date *** //
@@ -367,8 +372,21 @@ function renderCategories() {
         <div onclick="selectCategory('${category}')" class="category_name_addTask">${category}</div>
     `;
     }
-    
 }
+
+function selectCategory(category) {
+    let text = document.getElementById('category_field_text');
+    if (category == `${categorys[0]}`) {
+        text.innerHTML = `${categorys[0]}`;
+        selectedCategory = `${categorys[0]}`;
+        openDropDownList_category_addTask()
+    } else if (category == `${categorys[1]}`) {
+        text.innerHTML = `${categorys[1]}`;
+        selectedCategory = `${categorys[1]}`;
+        openDropDownList_category_addTask()
+    }
+}
+
 
 /**
  * Shows the dropdownlist with contacts and change arrow depending on dropdownstatus.
@@ -404,18 +422,12 @@ function rotateArrow_category_addTask() {
     }
 }
 
-function selectCategory(category) {
-    let text = document.getElementById('category_field_text');
-    if (category == `${categorys[0]}`) {
-        text.innerHTML = `${categorys[0]}`;
-        selectedCategory = `${categorys[0]}`;
-    } else if (category == `${categorys[1]}`) {
-        text.innerHTML = `${categorys[1]}`;
-        selectedCategory = `${categorys[1]}`;
-    }
-}
 
-// *** Subtasks *** //
+// *** Subtasks (-> board_addTask_subtask.js) *** //
+
+
+// *** Footer add task dialog *** //
+
 
 function renderCommitSection_addTask() {
     let container = document.getElementById('addTask_dialog_createTask');
@@ -425,15 +437,32 @@ function renderCommitSection_addTask() {
 function commitSectionHTML() {
     return /*html */`
         <div class="create_clear_task">
-            <p><span>*</span>This Field is required</p>
+            <p><span class="red_star">*</span>This Field is required</p>
             <div class="addTask_btns">
-              <button class="btn_transparent addTask_btn btn_gab">Clear <span>
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M7.00005 8.40005L2.10005 13.3C1.91672 13.4834 1.68338 13.575 1.40005 13.575C1.11672 13.575 0.883382 13.4834 0.700049 13.3C0.516715 13.1167 0.425049 12.8834 0.425049 12.6C0.425049 12.3167 0.516715 12.0834 0.700049 11.9L5.60005 7.00005L0.700049 2.10005C0.516715 1.91672 0.425049 1.68338 0.425049 1.40005C0.425049 1.11672 0.516715 0.883382 0.700049 0.700049C0.883382 0.516715 1.11672 0.425049 1.40005 0.425049C1.68338 0.425049 1.91672 0.516715 2.10005 0.700049L7.00005 5.60005L11.9 0.700049C12.0834 0.516715 12.3167 0.425049 12.6 0.425049C12.8834 0.425049 13.1167 0.516715 13.3 0.700049C13.4834 0.883382 13.575 1.11672 13.575 1.40005C13.575 1.68338 13.4834 1.91672 13.3 2.10005L8.40005 7.00005L13.3 11.9C13.4834 12.0834 13.575 12.3167 13.575 12.6C13.575 12.8834 13.4834 13.1167 13.3 13.3C13.1167 13.4834 12.8834 13.575 12.6 13.575C12.3167 13.575 12.0834 13.4834 11.9 13.3L7.00005 8.40005Z" fill="#2A3647"/>
-              </svg>
-              </span></button>
+              <button onclick="clearInputsAddTaskDialog()" class="btn_transparent addTask_btn btn_gab">Clear <span>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.00005 8.40005L2.10005 13.3C1.91672 13.4834 1.68338 13.575 1.40005 13.575C1.11672 13.575 0.883382 13.4834 0.700049 13.3C0.516715 13.1167 0.425049 12.8834 0.425049 12.6C0.425049 12.3167 0.516715 12.0834 0.700049 11.9L5.60005 7.00005L0.700049 2.10005C0.516715 1.91672 0.425049 1.68338 0.425049 1.40005C0.425049 1.11672 0.516715 0.883382 0.700049 0.700049C0.883382 0.516715 1.11672 0.425049 1.40005 0.425049C1.68338 0.425049 1.91672 0.516715 2.10005 0.700049L7.00005 5.60005L11.9 0.700049C12.0834 0.516715 12.3167 0.425049 12.6 0.425049C12.8834 0.425049 13.1167 0.516715 13.3 0.700049C13.4834 0.883382 13.575 1.11672 13.575 1.40005C13.575 1.68338 13.4834 1.91672 13.3 2.10005L8.40005 7.00005L13.3 11.9C13.4834 12.0834 13.575 12.3167 13.575 12.6C13.575 12.8834 13.4834 13.1167 13.3 13.3C13.1167 13.4834 12.8834 13.575 12.6 13.575C12.3167 13.575 12.0834 13.4834 11.9 13.3L7.00005 8.40005Z" fill="#2A3647"/>
+                </svg>
+                </span>
+              </button>
               <button class="btn_grey addTask_btn display_centerss btn_gab"> Create Task <img src="/assets/img/check.png"></button>
             </div>
         </div>
     `;
+}
+
+// *** Clear-Button *** //
+
+function clearInputsAddTaskDialog() {
+    let titleInput = document.getElementById('input_title_addTask_dialog');
+    titleInput.value = '';
+    let descriptionInput = document.getElementById('input_description_addTask_dialog');
+    descriptionInput.value = '';
+    contacts_addTask = [];
+    let duedateInput = document.getElementById('edit_input_dueDate_addTask');
+    duedateInput.value = '';
+    prio_addTask = 'Medium';
+    selectedCategory = '';
+    newSubtasks = [];
+    renderaddTaskDialog()
 }

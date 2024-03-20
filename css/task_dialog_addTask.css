@@ -234,12 +234,20 @@
     }
 
     #addTask_dialog_assignedTo {
-        max-height: 194px;
+        height: 194px;
         overflow: hidden;
+        border-radius: 10px;
+        padding: 1px;
     }
 
     .btn_transparent:hover span svg path{
         fill: var(--blue); 
         cursor: pointer; 
           
+    }
+
+    .circleImg {
+        height: 42px;
+        width: 42px;
+        padding: 2px;
     }

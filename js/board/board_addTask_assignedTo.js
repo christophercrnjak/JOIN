@@ -1,85 +1,111 @@
 // *** Assigned to *** //
 
-// loaded_contacts is in file board_edit_assignedTo.js
+let contacts_addTask = []
+// structure of contacts_addTask:
+// [
+    // 0: {
+        // color: "'0000000",
+        // firstName: "Max",
+        // secondName: "Mustermann",
+        // select_status: false,
+    // }
+// ]
+
+
 // dropdownStatus is in file board_edit_assignedTo.js
 
 /**
- * Load the contacts in loaded_contacts array.
- * Render the content of Taskcontacts in edit dialog
+ * Load the contacts in contacts_addTask array.
+ * Render the content of Assigned to contactlist.
  * 
  * @param {Number} taskId - Index of current called task in tasks[] global array
  */
-async function renderAssigedToEditDialog_addTask(taskId){
-    await loadContacts();
+async function renderAssigedToEditDialog_addTask(){
+    await loadContacts_addTask();
     let container = document.getElementById('addTask_dialog_assignedTo');
-    container.innerHTML = assigedToEditHTML_addTask(taskId);
-    renderCiclesOfTaskContacts_addTask(taskId);
+    container.innerHTML = assigedToEditHTML_addTask();
+    renderCiclesOfTaskContacts_addTask();
 }
 
 /**
- * Load contacts JSON in loaded_contacts array 
+ * Load contacts JSON in contacts_addTask array.
+ * Reduce the array to only important Objects.
+ * Add new Object "select_status" to the Keys.
  */
 async function loadContacts_addTask() {
-    let source_contacts = await fetch('assets/json/contacts.json'); 
-    source_contacts = await source_contacts.json(); 
-    loaded_contacts = source_contacts;
+    let contacts = await fetch('assets/json/contacts.json'); 
+    contacts = await contacts.json(); 
+    contacts_addTask = contacts;
+    reduceContactKeysToImportant()
+    addNewKeySelectStatus();
 }
 
 /**
- * HTML main structure of assiged to section in edit dialog
+ * Reduce the array to only important Objects.
+ */
+function reduceContactKeysToImportant() {
+    for (let i = 0; i < contacts_addTask.length; i++) {
+        contacts_addTask[i] = contacts_addTask[i]["name"];
+    }
+}
+
+/**
+ * Add new Object "select_status" to the Keys.
+ */
+function addNewKeySelectStatus() {
+    for (let i = 0; i < contacts_addTask.length; i++) {
+        contacts_addTask[i]["select_status"] = false;
+    }
+}
+
+/**
+ * HTML main structure of assiged to section in edit dialog.
  * 
  * @param {Number} taskId - Index of current called task in tasks[] global array
  * @returns {String} - HTML structure of task contacts
  */
-function assigedToEditHTML_addTask(taskId) {
+function assigedToEditHTML_addTask() {
     return /*html */`
-    <!-- label -->
+    <!-- header -->
     <div class="header_text_edit_section">Assiged to</div>
-
-    <!-- dropdown selection field -->
-    <div class="dropdown">
-
-        <!-- prompt to select contacts -->
-        <div id="dropdown_text_addTask" class="dropdown_text"> 
-            Select contacts to assign
+    <div id="box_and_dropdown_section">
+        <!-- box -->
+        <div class="dropdown">
+            <!-- box dropdown inactive-->
+            <div id="dropdown_text_addTask" class="dropdown_text"> 
+                Select contacts to assign
+            </div>
+            <!-- box dropdown active-->
+            <div id="dropdown_input_addTask" class="d-none"> 
+                <input placeholder="search contacts" onkeyup="searchContacts_addTask()" id="search_contacts_edit_addTask" type="text">
+            </div>
+            <!-- arrow-->
+            <a class="dopdown_img_inactive" id="dropdown_arrow_addTask" onclick="openDropDownList_addTask()">
+                <img src="assets/img/arrowDropDown.svg">
+            </a>
         </div>
-
-        <!-- search input -->
-        <div id="dropdown_input_addTask" class="d-none"> 
-            <input placeholder="search contacts" onkeyup="searchContacts_addTask(${taskId})" id="search_contacts_edit_addTask" type="text">
-        </div>
-
-        <!-- triangle which shows whether the list is expanded -->
-        <a class="dopdown_img_inactive" id="dropdown_arrow_addTask" onclick="openDropDownList_addTask(${taskId})">
-            <img src="assets/img/arrowDropDown.svg">
-        </a>
-    </div>
-
-    <!-- list of contacts for selection to current task -->
-    <div id="selectedContactsSection_addTask" class="selectedContacts">
-
+        <!-- dropdownlist -->
+        <div id="selectedContactsSection_addTask" class="selectedContacts"></div>
     </div>
     `;
 }
 
 /**
- * Render the cicles with initials of selected task members in selected Contacts Section.
- * 
- * @param {Number} taskId - Index of current called task in tasks[] global array
+ * Render the cicles with initials of selected Contacts in selected Contacts Section.
  */
-function renderCiclesOfTaskContacts_addTask(taskId) {
+function renderCiclesOfTaskContacts_addTask() {
     let container = document.getElementById(`selectedContactsSection_addTask`);
     container.innerHTML = '';
-    if (newTask.contacts.length > 0) {
-        for (let i = 0; i < newTask.contacts.length; i++) {
-            let contact = currentTaskContent.contacts[i];
-            let firstCharacter = contact.firstName.charAt(0);
-            let secondCharacter = contact.secondName.charAt(0);
-            let color = contact.color;
-            container.innerHTML += selectedTaskMemberHTML_addTask(firstCharacter, secondCharacter, taskId, i); 
-            document.getElementById(`selected_task_member_addTask${taskId}${i}`).style.backgroundColor = `${color}`;
+        for (let i = 0; i < contacts_addTask.length; i++) {
+            if (contacts_addTask[i].select_status == true) {
+                let contact = contacts_addTask[i];
+                let firstCharacter = contact.firstName.charAt(0);
+                let secondCharacter = contact.secondName.charAt(0);
+                let color = contact.color;
+                container.innerHTML += selectedTaskMemberHTML_addTask(firstCharacter, secondCharacter, i); 
+                document.getElementById(`selected_task_member_addTask${i}`).style.backgroundColor = `${color}`;
+            }
         }
-    }
 }
 
 /**
@@ -87,13 +113,14 @@ function renderCiclesOfTaskContacts_addTask(taskId) {
  * 
  * @param {String} firstCharacter - first letter of first name of contact 
  * @param {String} secondCharacter - first letter of second name of contact 
- * @param {Number} taskId - Index of current called task in tasks[] global array
  * @param {Number} i - Index of current Contact in currentTaskContent.contacts
  * @returns 
  */
-function selectedTaskMemberHTML_addTask(firstCharacter, secondCharacter, taskId, i) {
+function selectedTaskMemberHTML_addTask(firstCharacter, secondCharacter, i) {
     return `
-        <div id="selected_task_member_addTask${taskId}${i}" class="selected_member_cicle">${firstCharacter}${secondCharacter}</div>
+       <div class="circleImg">
+    <div id="selected_task_member_addTask${i}" class="selected_member_cicle">${firstCharacter}${secondCharacter}</div>
+    </div>
     `;
 }
 
@@ -102,16 +129,20 @@ function selectedTaskMemberHTML_addTask(firstCharacter, secondCharacter, taskId,
  * Change text in input for searching contacts in the list.
  */
 function openDropDownList_addTask() {
+    let box_and_dropdown_section = document.getElementById('box_and_dropdown_section')
     rotateArrow_addTask();
     changeTextInInput_addTask();
     if(dropdownStatus == false) {
         document.getElementById('selectedContactsSection_addTask').classList.add('flexDirection');
-        showContactList_addTask(); 
+        searchContacts_addTask(); 
         dropdownStatus = true;
+        box_and_dropdown_section.style.boxShadow = '0px 0px 14px 3px #0000000A';
+        box_and_dropdown_section.style.borderRadius = '10px';
     } else {
         renderCiclesOfTaskContacts_addTask();
         document.getElementById('selectedContactsSection_addTask').classList.remove('flexDirection');
         dropdownStatus = false;
+        box_and_dropdown_section.style.boxShadow = 'none';
     }
 }
 
@@ -159,13 +190,13 @@ function searchContacts_addTask() {
 function showContactList_addTask(searchValue) {
     let container = document.getElementById('selectedContactsSection_addTask');
     container.innerHTML = '';
-    for (let i = 0; i < loaded_contacts.length; i++) {
+    for (let i = 0; i < contacts_addTask.length; i++) {
         if (!searchValue || 
-            loaded_contacts[i].name.firstName.toLowerCase().includes(searchValue) || 
-            loaded_contacts[i].name.secondName.toLowerCase().includes(searchValue)) {
+            contacts_addTask[i].firstName.toLowerCase().includes(searchValue) || 
+            contacts_addTask[i].secondName.toLowerCase().includes(searchValue)) {
                 container.innerHTML += editContactListHTML_addTask(i);
                 // circle & checkbox are separate rendered
-                renderMemberImageDropdown_addTask(i);
+                renderCiclesOfContactsDropdown_addTask(i);
                 renderSelectionStatusLayout_addTask(i);
             }
     }
@@ -179,99 +210,35 @@ function showContactList_addTask(searchValue) {
  * @returns 
  */
 function editContactListHTML_addTask(contactId) {
-    let contact = loaded_contacts[contactId].name;
-    return `
-        <div onclick="changeSelectionStatus(${contactId})" id="dropdown_contact_addTask${contactId}" class="dropdown_contact_row">
+    let contact = contacts_addTask[contactId];
+    return /*html */`
+        <div onclick="changeSelectionStatusContacts_addTask(${contactId})" id="dropdown_contact_addTask${contactId}" class="dropdown_contact_row">
             
             <!-- circle & name -->
             <div class="dropdown_contact_image_name">
-                <div id="character_image_addTask${contactId}"></div>
+                <div id="character_circleImg_addTask${contactId}" class="circleImg"></div>
                 <div class="dropdownNames">${contact.firstName} ${contact.secondName}</div>
             </div> 
 
             <!-- checkbox -->
             <div class="checkbox_edit">
-                <a id="checkbox_edit_addTask${contactId}">
+                <a onclick="changeSelectionStatusContacts_addTask(${contactId})" id="checkbox_edit_addTask${contactId}">
                     
                 </a>
             </div>
         </div>
     `;
 }
-// deleteContactFromTask('${contact.firstName}', '${contact.secondName}', ${taskId})
-// onclick="deleteContactFromTask('${contact.firstName}', '${contact.secondName}', ${taskId})"
-
-function renderSelectionStatusLayout_addTask(contactId) {
-    let contact = loaded_contacts[contactId].name;
-    let selectedContactStatus = checkContactSelected_addTask(`${contact.firstName}`, `${contact.secondName}`)
-    if (selectedContactStatus == true) {
-        setListContactOnSelect_addTask(contactId)
-    } else {
-        setListContactNotSelect_addTask(contactId)
-    } 
-}
-
-function setListContactOnSelect_addTask(contactId) {
-    let container_checkbox = document.getElementById(`checkbox_edit_addTask${contactId}`);
-    let cicle = document.getElementById(`selected_task_member_addTask${contactId}`);
-    let container_dropdown_contact = document.getElementById(`dropdown_contact_addTask${contactId}`);
-    container_checkbox.innerHTML = `<img src="assets/img/check_button_checked_white.svg">`;
-    container_dropdown_contact.classList.toggle('contactOfTask');
-    cicle.style.border = 'solid 3px white';
-}
-
-function setListContactNotSelect_addTask(contactId) {
-    let container_checkbox = document.getElementById(`checkbox_edit_addTask${contactId}`);
-    let cicle = document.getElementById(`selected_task_member_addTask${contactId}`);
-    container_checkbox.innerHTML = `<img onclick="" src="assets/img/check_button_unchecked.svg">`;
-    cicle.style.border = 'none';
-}
-
-/**
- * Finds out whether the contact is selected.
- * Compares the names of the global currentTaskContent.contacts with the hole contactlist of the program
- * 
- * @param {String} firstName - first name of the Contact which is selected
- * @param {String} secondName - second name of the Contact which is selected
- * @returns {Boolean} - Mark
- */
-function checkContactSelected_addTask(firstName, secondName) {
-    if (newTask.contacts.length > 0) {
-        for (let i = 0; i < newTask.contacts.length; i++) {
-            let contact = currentTaskContent.contacts[i];
-            if (firstName == contact.firstName && secondName == contact.secondName) {
-                return true
-            }
-        }
-    }
-}
-
-/**
- * 
- * 
- * @param {String} firstName - first name of the Contact which is selected
- * @param {String} secondName - second name of the Contact which is selected
- * @returns {Number} Index of Contact in currentTaskContent.contacts
- */
-function checkContactIndex_addTask(firstName, secondName) {
-    for (let i = 0; i < currentTaskContent.contacts.length; i++) {
-        let contact = currentTaskContent.contacts[i];
-        if (firstName == contact.firstName && secondName == contact.secondName) {
-            return i
-        }
-    }
-}
 
 /**
  * Set the HTML of contacts in the dropdown-list.
  * 
- * @param {Number} taskId - Index of current called task in tasks[] global array
- * @param {Number} contactId - Index of Contact in loaded_contacts array
+ * @param {Number} contactId - Index of current called contact in contacts_addTask
  */
-function renderMemberImageDropdown_addTask(contactId) {
-    let container = document.getElementById(`character_image_addTask${contactId}`);
-    let firstCharacter = loaded_contacts[contactId].name.firstName.charAt(0);
-    let secondCharacter = loaded_contacts[contactId].name.secondName.charAt(0);
+function renderCiclesOfContactsDropdown_addTask(contactId) {
+    let container = document.getElementById(`character_circleImg_addTask${contactId}`);
+    let firstCharacter = contacts_addTask[contactId].firstName.charAt(0);
+    let secondCharacter = contacts_addTask[contactId].secondName.charAt(0);
     container.innerHTML = dropdownContactHTML_addTask(firstCharacter, secondCharacter, contactId);   
     setcicleColor_addTask(contactId);
 }
@@ -299,9 +266,49 @@ function dropdownContactHTML_addTask(firstCharacter, secondCharacter, contactId)
  */
 function setcicleColor_addTask(contactId) {
     let cicle = document.getElementById(`selected_task_member_addTask${contactId}`);
-    let color = loaded_contacts[contactId].name.color;
+    let color = contacts_addTask[contactId].color;
     cicle.style.backgroundColor = `${color}`;
 }
+
+function renderSelectionStatusLayout_addTask(contactId) {
+    let contact = contacts_addTask[contactId];
+    if (contact.select_status == true) {
+        setListContactOnSelect_addTask(contactId)
+    } else {
+        setListContactNotSelect_addTask(contactId)
+    } 
+}
+
+function setListContactOnSelect_addTask(contactId) {
+    let checkboxImg = document.getElementById(`checkbox_edit_addTask${contactId}`);
+    let cicle = document.getElementById(`selected_task_member_addTask${contactId}`);
+    let container_dropdown_contact = document.getElementById(`dropdown_contact_addTask${contactId}`);
+    checkboxImg.innerHTML = checkboxCkeckedHTML(contactId);
+    container_dropdown_contact.classList.add('contactOfTask');
+    cicle.style.border = 'solid 3px white';
+}
+
+function checkboxCkeckedHTML(contactId) {
+    return /*html */`
+        <img onclick="changeSelectionStatusContacts_addTask(${contactId})" src="assets/img/check_button_checked_white.svg">
+    `;
+}
+
+function setListContactNotSelect_addTask(contactId) {
+    let checkboxImg = document.getElementById(`checkbox_edit_addTask${contactId}`);
+    let cicle = document.getElementById(`selected_task_member_addTask${contactId}`);
+    let container_dropdown_contact = document.getElementById(`dropdown_contact_addTask${contactId}`);
+    checkboxImg.innerHTML = checkboxUnckeckedHTML(contactId);
+    container_dropdown_contact.classList.remove('contactOfTask');
+    cicle.style.border = 'none';
+}
+
+function checkboxUnckeckedHTML(contactId) {
+    return /*html */`
+        <img onclick="changeSelectionStatusContacts_addTask(${contactId})" src="assets/img/check_button_unchecked.svg">
+    `;
+}
+
 
 /**
  * On click of Contact change the function the selection status in dependence of current status.
@@ -311,47 +318,12 @@ function setcicleColor_addTask(contactId) {
  * @param {Number} taskId - Index of current called task in tasks[] global array
  * @param {Number} contactId - Index of Contact in loaded_contacts array
  */
-function changeSelectionStatus_addTask(contactId) {
-    let contact = loaded_contacts[contactId].name;
-    let firstName = contact.firstName;
-    let secondName = contact.secondName;
-    let color = contact.color;
-    let selectedContactStatus = checkContactSelected_addTask(`${firstName}`, `${secondName}`)
-    if (selectedContactStatus == true) {
-        deleteContactFromTask_addTask(firstName, secondName, taskId)
+function changeSelectionStatusContacts_addTask(contactId) {
+    let contact = contacts_addTask[contactId];
+    if (contact.select_status == true) {
+        contact.select_status = false;
     } else {
-        selectContactforTask_addTask(firstName, secondName, color)
+        contact.select_status = true;
     } 
-}
-
-/**
- * Delete the Contact which is not more selected for the task.
- * 
- * @param {String} firstName - first name of the Contact which is selected
- * @param {String} secondName - second name of the Contact which is selected
- * @param {Number} taskId - Index of current called task in tasks[] global array
- */
-function deleteContactFromTask_addTask(firstName, secondName) {
-    let index_of_deleted_name = checkContactIndex_addTask(firstName, secondName);
-    currentTaskContent.contacts.splice(index_of_deleted_name, 1);
-    showContactList_addTask();
-}
-
-/**
- * Add the Contact which is selected for the task to currentTaskContent.contacts.
- * 
- * @param {Number} taskId - Index of current called task in tasks[] global array
- * @param {Number} contactId - Index of Contact in loaded_contacts array
- * @param {String} firstName - first name of the Contact which is selected
- * @param {String} secondName - second name of the Contact which is selected
- */
-function selectContactforTask_addTask(firstName, secondName, color) {
-    currentTaskContent.contacts.push(
-        {
-            "firstName": `${firstName}`,
-            "secondName": `${secondName}`,
-            "color": `${color}`
-        },
-    );
-    showContactList_addTask();
+    renderSelectionStatusLayout_addTask(contactId)
 }
