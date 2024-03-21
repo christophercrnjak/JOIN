@@ -49,7 +49,6 @@ h2 {
 
 main {
   width: 90%;
-  gap: 80px;
 }
 
 .task {
@@ -146,13 +145,15 @@ hr {
 .third_row {
   gap: 28px;
   height: 33%;
+  width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
 .third_row a {
   width: 33%;
+  min-width: 86px;
   /* width: 192px; */
   height: 175px;
 }

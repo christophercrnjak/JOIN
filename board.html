@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="./css/sidebar.css">
     <link rel="stylesheet" href="./css/task_dialog_edit.css">
     <link rel="stylesheet" href="./Fonts/Inter-VariableFont_slnt,wght.ttf">
+    <link rel="stylesheet" href="./css/task_dialog_addTask.css">
     <script src="./js/include.js"></script>
     <script src="./js/storage.js"></script>    
     <script src="js/sidebar.js"></script>
@@ -20,8 +21,9 @@
     <script src="./js/board/board_edit.js"></script>
     <script src="./js/board/board_edit_assignedTo.js"></script>
     <script src="./js/board/board_edit_subtask.js"></script>
-    
-
+    <script src="./js/board/board_addTask.js"></script>
+    <script src="./js/board/board_addTask_assignedTo.js"></script>
+    <script src="./js/board/board_addTask_subtask.js"></script>
 </head>
 
 <body onload="includeHTML(); init()">
@@ -42,7 +44,7 @@
         <header class="board_header">
             <div class="header_text_main">
                 <div class="header_text">Board</div>
-                <a href="addTask.html" class="add_task_btn_mobile">
+                <a onclick="openAdddTaskDialog()" class="add_task_btn_mobile">
                     <div class="line_add_btn_horizont"></div>
                     <div class="line_add_btn_vertical"></div>
                 </a>
@@ -53,7 +55,7 @@
                     <hr>
                     <div class="search_image" onclick="searchTask()"><img src="assets/img/search-2.svg" alt=""></div>
                 </div>
-                <a href="addTask.html" class="add_task_btn">
+                <a onclick="openAdddTaskDialog()" class="add_task_btn">
                     <div class="text_add_btn">Add task</div>
                     <div class="plus_add_btn">
                         <div>

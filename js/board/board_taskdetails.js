@@ -34,6 +34,9 @@ function closeDialog(taskId) {
     else if (dialog_status == 'edit') {
         renderDialogTask(taskId);  
         dialog_status = 'taskdetails';
+    } else if (dialog_status == 'addTask') {
+        renderDialogTask(taskId);  
+        dialog_status = 'taskdetails';
     }
 }
 

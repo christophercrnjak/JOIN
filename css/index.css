@@ -7,36 +7,54 @@ body {
 }
 
 .container {
-  border: 1px solid red;
+  border: red 1px solid;
   position: relative;
-  height: 700px;
-  width: 1000px;
+  height: 100vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   row-gap: 48px;
+  opacity: 0;
+  animation: contentVisibility 700ms ease-in-out 700ms both;
 }
 
 .logo {
-  border: 1px solid red;
   position: absolute;
-  /* top: 289px;
-  left: 450px; */
-  animation-name: moveLogo;
-  animation-duration: 3s;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: moveLogo 700ms ease-in-out 700ms both;
 }
 
 @keyframes moveLogo {
   from {
-    transform: translate(0, 0);
+    width: 274px;
+    height: 334px;
   }
   to {
-    transform: translate((-500px, -500px));
+    transform: translate(0%, 0%);
+    top: 80px;
+    left: 72px;
+    width: 100px;
+    height: 122px;
+  }
+}
+
+@keyframes contentVisibility {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
 .sign_up {
+  position: absolute;
+  right: 72px;
+  top: 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -55,6 +73,7 @@ body {
 }
 
 .login_section {
+  width: 652px;
   box-shadow: 0px 0px 14px 3px #0000000a;
   background-color: white;
   border-radius: 30px;
@@ -64,7 +83,6 @@ body {
   align-items: center;
   padding: 48px 48px 48px 48px;
   row-gap: 32px;
-  width: 45%;
 }
 
 .headline {
