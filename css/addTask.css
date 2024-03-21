@@ -353,7 +353,8 @@ input[type='checkbox'] {
 }
 
 .dropdown_content_category a:hover {
-  background-color: var(--bgdarkblue);
+  background-color: var(--grey
+  );
   color: #ffff !important;
   width: 100%;
 }
