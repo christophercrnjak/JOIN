@@ -221,7 +221,7 @@
             color: black;
             border-radius: 10px;
             border: 1px solid #ccc;
-            font-size: 16px;
+            font-size: 20px;
             font-weight: 400;
             padding: 14.5px 0px 14.5px 16px;
             width: 100%;
@@ -419,7 +419,7 @@
 }  
 
     .unordered-list_subtasks {
-        margin-top: 14.5px;
+        margin-top: 8px;
 
     }
 
@@ -584,3 +584,7 @@
   }
 
 
+  .circle_size {
+    height: 42px;
+    width: 42px;
+  }
