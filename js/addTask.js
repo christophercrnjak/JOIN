@@ -51,22 +51,32 @@ function dropdownHtml(dropdownList, i) {
   `;
 }
 
+
+
+/**
+ * this function put the selected member from the drop down list assigned to 
+ * in a array and div container
+ * @param {* fill the cicle with the color form JSON} color 
+ * @param {* fill the cicle with the frist name form JSON} firstName 
+ * @param {* fill the cicle with the last name form JSON} secondName 
+ * @param {* passes an ID to ensure a clear assignment of individual member circles} i 
+ */
 function selectFromDropdown(color, firstName, secondName, i) {
-  // Select for the Drop Down
-  let dropdownList = document.getElementById('dropdownList');
-  let selectedId = i;
-  selectedFromDropdown.push({ color, firstName, secondName });
-  dropdownList.innerHTML += dropdownHtmlMemberCircle(
-    color,
-    firstName,
-    secondName,
-    selectedId
-  );
-  document.getElementById(i).classList.add('selected');
-  document.getElementById('selected_img').classList.add('selected_img');
-
+  let isSelected = selectedFromDropdown.some(item => item.color === color && item.firstName === firstName && item.secondName === secondName);
+  if (!isSelected) {
+    let dropdownList = document.getElementById('dropdownList');
+    let selectedId = i;
+    selectedFromDropdown.push({ color, firstName, secondName });
+    dropdownList.innerHTML += dropdownHtmlMemberCircle(
+      color,
+      firstName,
+      secondName,
+      selectedId
+    );
+    document.getElementById(i).classList.add('selected');
+    document.getElementById('selected_img').classList.add('selected_img');
+  } 
 }
-
 
 function dropdownHtmlMemberCircle(color, firstName, secondName) {
   return `
@@ -76,9 +86,11 @@ function dropdownHtmlMemberCircle(color, firstName, secondName) {
     </div>
   `;
 }
-
+/**
+ *  remove the Icon and index form the array selectedFromDropdown  
+ * @param {* seach in for the param in the drop down list} firstName 
+ */
 function removeFromSelectedItems(firstName) {
-  // Durchsuche das Array nach dem Element mit dem gegebenen Vornamen und entferne es
   for (let i = 0; i < selectedFromDropdown.length; i++) {
     if (selectedFromDropdown[i].firstName === firstName) {
       selectedFromDropdown.splice(i, 1);
@@ -91,13 +103,16 @@ function removeFromSelectedItems(firstName) {
         if (textContent.includes(firstName.charAt(0))) {
           dropdownList.removeChild(elements[j]);
         }
+        break;
       }
 
-      break; // Breche die Schleife ab, sobald das Element entfernt wurde
+      break;
     }
   }
 }
-
+/**
+ * The function is for the filtering of the dropdown menu 
+ */
 function filterFunction() {
   // Filter on the drop Down menu
   let input, filter, div, options, i, txtValue;

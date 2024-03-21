@@ -217,7 +217,11 @@ input[type="date"]:invalid{
 
 /* show_task_task the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show_task {
-  display: block;
+    display: flex;
+    height: 440px;
+    justify-content: center;
+    flex-direction: column;
+    overflow-x: auto;
 }
 
 .selected {
