@@ -34,11 +34,16 @@ function closeDialog(taskId) {
     else if (dialog_status == 'edit') {
         renderDialogTask(taskId);  
         dialog_status = 'taskdetails';
-    } else if (dialog_status == 'addTask') {
-        renderDialogTask(taskId);  
-        dialog_status = 'taskdetails';
+    } 
+    // dialog window to add new task is open:
+    else if (dialog_status == 'addTask') {
+        let container = document.getElementById('dialog_container');
+        clearInputsAddTaskDialog();
+        container.classList.add('d-none');
+        renderColumnContent();
+        dialog_status = 'inactive';
     }
-}
+}  
 
 /**
  * Calls the functions creates the HTML structure of dialog with details of the task.
@@ -85,7 +90,7 @@ async function renderDialogTask(taskId){
  * @returns {String} - HTML structure of Dialog with task details.
  */
 function taskDialogHTML(task, taskId) {
-    return`
+    return /*html */`
         <div class="category_close">
                 <div onclick="doNotClose(event)" id="task_category_dialog" class="task_category">${task.category}</div>
                 <a onclick="closeDialog(${taskId})" class="close">
@@ -93,15 +98,20 @@ function taskDialogHTML(task, taskId) {
                     <div class="line vertical"></div>
                 </a>
             </div>
+            <!-- title -->
             <div onclick="doNotClose(event)" class="task_title_dialog">${task.title}</div>
+            <!-- description -->
             <div onclick="doNotClose(event)" class="task_description_dialog">${task.description}</div>
+            <!-- Due date -->
             <div onclick="doNotClose(event)" class="due_Date_dialog">
                 Due date: <span id="dueDateTaskDetails" class="duedate">${task.dueDate}</span>
             </div>
+            <!-- priority -->
             <div onclick="doNotClose(event)" class="priority_dialog">
                 Priority: <span >${task.priority}</span><div id="prio_image"></div>
             </div>
-            <div onclick="doNotClose(event)" class="assigned_to">
+            <!-- assigned to -->
+            <div onclick="doNotClose(event)" class="assigned_to" id="assigned_to_section_taskdetails">
                 <div>Assiged To:</div>
                 <div class="table_assigedto">
                     <table>
@@ -109,13 +119,13 @@ function taskDialogHTML(task, taskId) {
                     </table>
                 </div>
             </div>
-
-            <div onclick="doNotClose(event)" class="subtasks_main">
+            <!-- subtasks -->
+            <div onclick="doNotClose(event)" class="subtasks_main" id="subtasks_section_taskdetails">
                 <div id="subtask_dialog_header"></div>
                 <div id="subtask_dialog_container" class="subtask_container">
                 </div>
             </div>
-
+            <!-- delete / edit -->
             <div onclick="doNotClose(event)" class="delete_and_edit_section">
                 <div class="delete_and_edit">
 
@@ -178,13 +188,22 @@ function setColorOfCategoryInDialog(i) {
  */
 function renderAssigedToDialog(taskId) {
     let container = document.getElementById('member_container_dialog');
+    let main_container = document.getElementById('assigned_to_section_taskdetails');
     container.innerHTML = '';
     let task = tasks[taskId];
-    for (let i = 0; i < task.contacts.length; i++) {
-        let contact = task.contacts[i];
-        container.innerHTML += AssigedToDialogHTML(contact, taskId, i);
-        document.getElementById(`taskdetailscontact${taskId}${i}`).style.backgroundColor = `${contact.color}`;
+    if (task.contacts.length == 0) {
+        main_container.classList.add('d-none')
+    } else {
+        if (main_container.classList.contains('d-none')){
+            main_container.classList.remove('d-none')
+        }
+        for (let i = 0; i < task.contacts.length; i++) {
+            let contact = task.contacts[i];
+            container.innerHTML += AssigedToDialogHTML(contact, taskId, i);
+            document.getElementById(`taskdetailscontact${taskId}${i}`).style.backgroundColor = `${contact.color}`;
+        }
     }
+    
 }
 
 function AssigedToDialogHTML(contact, taskId, i) {
@@ -223,15 +242,23 @@ function renderPriorityDialog(taskId) {
  */
 function renderSubtasksDialog(taskId){
     let container = document.getElementById('subtask_dialog_container');
+    let main_container = document.getElementById('subtasks_section_taskdetails');
     let header = document.getElementById('subtask_dialog_header')
-    if (tasks[taskId].subtasks.length > 0) {
-        header.innerHTML = 'Subtasks';
-    }
-    container.innerHTML = '';
-    for (let j = 0; j < tasks[taskId].subtasks.length; j++) {
-        let subtask = tasks[taskId].subtasks[j];
-        container.innerHTML += subtaskDialogHTML(taskId, j, subtask.name);
-        renderSubtaskImage(taskId, j);
+    if (tasks[taskId].subtasks.length == 0) {
+        main_container.classList.add('d-none')
+    } else {
+        if (main_container.classList.contains('d-none')){
+            main_container.classList.remove('d-none')
+        }
+        if (tasks[taskId].subtasks.length > 0) {
+            header.innerHTML = 'Subtasks';
+        }
+        container.innerHTML = '';
+        for (let j = 0; j < tasks[taskId].subtasks.length; j++) {
+            let subtask = tasks[taskId].subtasks[j];
+            container.innerHTML += subtaskDialogHTML(taskId, j, subtask.name);
+            renderSubtaskImage(taskId, j);
+        }
     }
 }
 
@@ -271,8 +298,10 @@ function renderSubtaskImage(taskId, subtaskId) {
 }
 
 
-function deleteTask(taskId) {
-    tasks.splice(taskId, 1);
+async function deleteTask(taskId) {
+    await tasks.splice(taskId, 1);
+    await setTasksToServer();
+    await getTasksFromServer();
     renderColumnContent();
     closeDialog(taskId);
 }

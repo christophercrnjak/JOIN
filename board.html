@@ -24,6 +24,8 @@
     <script src="./js/board/board_addTask.js"></script>
     <script src="./js/board/board_addTask_assignedTo.js"></script>
     <script src="./js/board/board_addTask_subtask.js"></script>
+    <script src="./js/board/board_addTask_createNewTask.js"></script>
+    <script src="./js/board/board_addTask_priority.js"></script>
 </head>
 
 <body onload="includeHTML(); init()">
@@ -44,7 +46,7 @@
         <header class="board_header">
             <div class="header_text_main">
                 <div class="header_text">Board</div>
-                <a onclick="openAdddTaskDialog()" class="add_task_btn_mobile">
+                <a onclick="openAddTaskDialog()" class="add_task_btn_mobile">
                     <div class="line_add_btn_horizont"></div>
                     <div class="line_add_btn_vertical"></div>
                 </a>
@@ -55,7 +57,7 @@
                     <hr>
                     <div class="search_image" onclick="searchTask()"><img src="assets/img/search-2.svg" alt=""></div>
                 </div>
-                <a onclick="openAdddTaskDialog()" class="add_task_btn">
+                <a onclick="openAddTaskDialog()" class="add_task_btn">
                     <div class="text_add_btn">Add task</div>
                     <div class="plus_add_btn">
                         <div>

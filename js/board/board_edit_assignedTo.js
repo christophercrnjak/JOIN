@@ -101,7 +101,10 @@ function renderCiclesOfTaskContacts(taskId) {
  */
 function selectedTaskMemberHTML(firstCharacter, secondCharacter, taskId, i) {
     return `
-        <div id="selected_task_member${taskId}${i}" class="selected_member_cicle">${firstCharacter}${secondCharacter}</div>
+        <div class="circle_size">
+            <div id="selected_task_member${taskId}${i}" class="selected_member_cicle">${firstCharacter}${secondCharacter}</div>
+        </div> 
+    
     `;
 }
 

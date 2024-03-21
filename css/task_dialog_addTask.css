@@ -251,3 +251,56 @@
         width: 42px;
         padding: 2px;
     }
+
+    #addTask_dialog_subtasks {
+        height: 154px;
+        overflow: hidden;
+    }
+
+    #added_subtasks_addTask {
+        width: 100%;
+        padding-top: 8px;
+        max-height: 80px;
+        overflow: auto;
+        gap: 8px;
+        border-radius: 10px; 
+    }
+
+    @media (max-width: 1085px) {
+        #line_addTask_dialog {
+            display: none;
+        }
+
+        .addTask_dialog_box_middle {
+            flex-direction: column;
+        }
+
+        #addTask_dialog_assignedTo {
+            height: unset;
+        }
+
+        #addTask_dialog_subtasks {
+            height: unset;
+        }
+
+        .create_clear_task {
+            flex-direction: column;
+        }
+
+        .create_clear_task p {
+            margin-bottom: 20px;
+        }
+
+        #addTask_dialog_createTask {
+            margin-bottom: 0px;
+        }
+
+        .addTask_dialog_box_head {
+            flex-direction: column-reverse;
+        }
+
+        #task_dialog_container {
+            padding-top: 48px !important;
+        }
+    }
+   

@@ -67,12 +67,12 @@ function addNewKeySelectStatus() {
 function assigedToEditHTML_addTask() {
     return /*html */`
     <!-- header -->
-    <div class="header_text_edit_section">Assiged to</div>
+    <div class="header_text_edit_section">Assigned to</div>
     <div id="box_and_dropdown_section">
         <!-- box -->
-        <div class="dropdown">
+        <div class="dropdown" >
             <!-- box dropdown inactive-->
-            <div id="dropdown_text_addTask" class="dropdown_text"> 
+            <div id="dropdown_text_addTask" class="dropdown_text" onclick="openDropDownList_addTask()"> 
                 Select contacts to assign
             </div>
             <!-- box dropdown active-->
@@ -80,7 +80,7 @@ function assigedToEditHTML_addTask() {
                 <input placeholder="search contacts" onkeyup="searchContacts_addTask()" id="search_contacts_edit_addTask" type="text">
             </div>
             <!-- arrow-->
-            <a class="dopdown_img_inactive" id="dropdown_arrow_addTask" onclick="openDropDownList_addTask()">
+            <a class="dopdown_img_inactive" id="dropdown_arrow_addTask" onclick="openDropDownList_addTask()" onfocusout="openDropDownList_addTask()">
                 <img src="assets/img/arrowDropDown.svg">
             </a>
         </div>

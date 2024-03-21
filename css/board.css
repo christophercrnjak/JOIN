@@ -373,6 +373,7 @@ a {
                             justify-content: space-between;
                             width: 100%;
                             position: relative;
+                            min-height: 32px;
                         }
 
                             .task_prio {

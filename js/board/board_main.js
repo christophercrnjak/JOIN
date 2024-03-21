@@ -369,23 +369,25 @@ function renderInitials(taskId) {
     let task = tasks[taskId];
     let container = document.getElementById(`task_member_section${taskId}`);
     container.innerHTML = '';
-    for (let i = 0; i < task.contacts.length; i++) {
-        let contact = task.contacts[i];
-        let firstCharacter = contact.firstName.charAt(0);
-        let secondCharacter = contact.secondName.charAt(0);
-        let color = contact.color;
-        if (i < 5) {
-            container.innerHTML += taskMemberHTML(firstCharacter, secondCharacter, taskId, i); 
-            document.getElementById(`task_member${taskId}${i}`).style.backgroundColor = `${color}`;
-            // create the position of cicles:  
-            if(i > 0) {
-                setAttributesMoreMemberHTML(taskId, i);
-            }
-        } else {
-            if(i > 5){
-                let moreNumber = i - 4;
-                container.innerHTML += moreMemberHTML(taskId, i, moreNumber); 
-                setAttributesMoreMemberHTML(taskId, i);
+    if (!task.contacts.length == 0) {
+        for (let i = 0; i < task.contacts.length; i++) {
+            let contact = task.contacts[i];
+            let firstCharacter = contact.firstName.charAt(0);
+            let secondCharacter = contact.secondName.charAt(0);
+            let color = contact.color;
+            if (i < 5) {
+                container.innerHTML += taskMemberHTML(firstCharacter, secondCharacter, taskId, i); 
+                document.getElementById(`task_member${taskId}${i}`).style.backgroundColor = `${color}`;
+                // create the position of cicles:  
+                if(i > 0) {
+                    setAttributesMoreMemberHTML(taskId, i);
+                }
+            } else {
+                if(i > 5){
+                    let moreNumber = i - 4;
+                    container.innerHTML += moreMemberHTML(taskId, i, moreNumber); 
+                    setAttributesMoreMemberHTML(taskId, i);
+                }
             }
         }
     }
@@ -489,7 +491,11 @@ function allowDrop(event) {
  */
 async function moveTo(status) {
     tasks[currentDraggedElement].status = status;
+    await setAndGetToServer()
+    init();
+}
+
+async function setAndGetToServer() {
     await setTasksToServer();
     await getTasksFromServer();
-    init();
 }
