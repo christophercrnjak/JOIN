@@ -4,9 +4,8 @@ body {
     font-family: 'Inter', sans-serif;
     background-color: #F6F7F8;
 }
-
-.footer_notice {
-    visibility: hidden;
+#navbarHeadIcon {
+    display: none;
 }
 
 .font {
@@ -50,6 +49,7 @@ body {
 .text {
     margin-left: 328px;
     margin-right: 98px;
+    margin-bottom: 70px;
 }
 
 .text h2 {
@@ -166,6 +166,7 @@ body {
     .text_line{
         margin-left: 16px;
         margin-right: 16px;
+        margin-bottom: 100px;
     }
     .text_line p{
         margin: 0;
