@@ -56,10 +56,10 @@ function dropdownHtml(dropdownList, i) {
 /**
  * this function put the selected member from the drop down list assigned to 
  * in a array and div container
- * @param {* fill the cicle with the color form JSON} color 
- * @param {* fill the cicle with the frist name form JSON} firstName 
- * @param {* fill the cicle with the last name form JSON} secondName 
- * @param {* passes an ID to ensure a clear assignment of individual member circles} i 
+ * @param {*} color 
+ * @param {*} firstName 
+ * @param {*} secondName 
+ * @param {*} i 
  */
 function selectFromDropdown(color, firstName, secondName, i) {
   let isSelected = selectedFromDropdown.some(item => item.color === color && item.firstName === firstName && item.secondName === secondName);
@@ -88,7 +88,7 @@ function dropdownHtmlMemberCircle(color, firstName, secondName) {
 }
 /**
  *  remove the Icon and index form the array selectedFromDropdown  
- * @param {* seach in for the param in the drop down list} firstName 
+ * @param {*} firstName 
  */
 function removeFromSelectedItems(firstName) {
   for (let i = 0; i < selectedFromDropdown.length; i++) {
