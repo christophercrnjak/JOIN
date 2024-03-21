@@ -154,12 +154,12 @@ function changePriority(priority) {
   resetStyles();
   removePreviousPriority();
 
-  if (priority === "urgrend") {
+  if (priority === "urgend") {
     setPriorityStyles(
       "#FF3D00",
       "#ffff",
       "/assets/img/prio_ungrent.svg",
-      "urgrend"
+      "urgend"
     );
   } else if (priority === "medium") {
     setPriorityStyles(
@@ -174,16 +174,16 @@ function changePriority(priority) {
 }
 
 function resetStyles() {
-  let btnUrgrend = document.getElementById("btnUrgrend");
+  let btnUrgend = document.getElementById("btnUrgend");
   let btnMedium = document.getElementById("btnMedium");
   let btnLow = document.getElementById("btnLow");
 
-  let imgUrgrend = document.getElementById("btnUrgrendImg");
+  let imgUrgend = document.getElementById("btnUrgendImg");
   let imgMedium = document.getElementById("btnMediumImg");
   let imgLow = document.getElementById("btnLowImg");
 
-  let buttons = [btnUrgrend, btnMedium, btnLow];
-  let images = [imgUrgrend, imgMedium, imgLow];
+  let buttons = [btnUrgend, btnMedium, btnLow];
+  let images = [imgUrgend, imgMedium, imgLow];
 
   buttons.forEach(function (button) {
     button.style.backgroundColor = "#ffff";
@@ -191,7 +191,7 @@ function resetStyles() {
   });
 
   images.forEach(function (image) {
-    if (image.id === "btnUrgrendImg") {
+    if (image.id === "btnUrgendImg") {
       image.src = "assets/img/Priority_symbols_Urgent.png";
     } else if (image.id === "btnMediumImg") {
       image.src = "assets/img/Priority_symbols_Medium.png";
@@ -372,7 +372,7 @@ function renderHtml() {
         <!-- Priority  -->
         <div class="prio_head">Prio</div>
         <div class="btn_addTask_list" id="btnAddTaskPrio">
-          <a class="btn_addTask" id="btnUrgrend" onclick="changePriority('urgrend')">Urgend <img id="btnUrgrendImg" src="assets/img/Priority_symbols_Urgent.png"></a>
+          <a class="btn_addTask" id="btnUrgend" onclick="changePriority('urgend')">Urgend <img id="btnUrgendImg" src="assets/img/Priority_symbols_Urgent.png"></a>
           <a class="btn_addTask" id="btnMedium" onclick="changePriority('medium')">Medium <img id="btnMediumImg" src="assets/img/Priority_symbols_Medium.png"></a>
           <a class="btn_addTask" id="btnLow" onclick="changePriority('low')">Low <img id="btnLowImg" src="assets/img/Priority_symbols_Low.png"></a>
         </div> 
