@@ -189,7 +189,7 @@ function editContactListHTML(taskId, contactId) {
             
             <!-- circle & name -->
             <div class="dropdown_contact_image_name">
-                <div id="character_image${taskId}${contactId}"></div>
+                <div class="circle_size" id="character_image${taskId}${contactId}"></div>
                 <div class="dropdownNames">${contact.firstName} ${contact.secondName}</div>
             </div> 
 

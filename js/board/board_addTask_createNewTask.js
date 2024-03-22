@@ -1,5 +1,8 @@
 // *** Create new Task Button *** //
 
+/**
+ * Main json structure of new task.
+ */
 let newTask = {
     "title": "",
     "description": "",
@@ -11,6 +14,10 @@ let newTask = {
     "status": "toDo"
 };
 
+/**
+ * Validates the required inputs, jump to the invalide section/input and mark the border red if the input isn't valide.
+ * The function is triggered by pressing the "Create Task" button in add task dialog.
+ */
 function validationOfAllInputs() {
     let titleInput = document.getElementById('input_title_addTask_dialog');
     let duedateInput = document.getElementById('edit_input_dueDate_addTask');
@@ -33,29 +40,73 @@ function validationOfAllInputs() {
     }
 }
 
+/**
+ * Initiates the creation of a new task.
+ */
 async function initCreateNewTask() {
-    await saveNewTask();
-    await tasks.push(newTask);
-    await setAndGetToServer();
+    saveNewTask();
+    await tasks.push(newTask); // @storage.js:32
+    await setAndGetToServer(); // @board_main.js:498
+    TaskAddedToBoard();
     resetSettings();
-    closeAddTaskDialog();
+    closeDialog(); // @board_taskdetails.js:25
 }
 
+/**
+ * Calls the functions that store the inputs of the "addTask dialog" in the newTask JSON-array.
+ */
+function saveNewTask() {
+    title_newTask();
+    description_newTask();
+    category_newTask();
+    contacts_newTask();
+    dueDate_newTask();
+    priority_newTask();
+    subtasks_newTask();
+    status_newTask();
+}
+
+/**
+ * Makes the element saying "Task added to board" appear and disappear after 1 s and 20 ms.
+ */
+function TaskAddedToBoard() {
+    let container = document.getElementById('taskAddedToBoard');
+    container.classList.remove('d-none');
+    setTimeout(function() {
+        container.classList.add('d-none');
+    }, 1020); 
+}
+
+/**
+ * Resets all elements of the dialog that were changed by the inputs.
+ * 
+ */
 function resetSettings() {
-    document.getElementById('category_addTask_dialog').classList.remove('non_valide');
-    document.getElementById('edit_input_dueDate_addTask').classList.remove('non_valide');
-    clearInputsAddTaskDialog();
+    clearInputsAddTaskDialog(); // @board_addTask.js:311
     resetNewTask();
-    document.getElementById('task_dialog_container').style.width = '525px';
-    document.getElementById('task_dialog_container').style.paddingTop = '48px';
+    // document.getElementById('task_dialog_container').style.width = '525px';
+    // document.getElementById('task_dialog_container').style.paddingTop = '48px';
 }
 
-async function closeAddTaskDialog() {
-    await closeDialog();
-    let taskslength = tasks.length;
-    openTaskDetailsDialog(taskslength);
+/**
+ * Resets the newTask JSON-array and clear the content of the keys.
+ */
+function resetNewTask() {
+    newTask = {
+        "title": "",
+        "description": "",
+        "category": "",
+        "contacts": [],
+        "dueDate": "",
+        "priority": "",
+        "subtasks": [],
+        "status": "toDo"
+    };
 }
 
+/**
+ * 
+ */
 function title_newTask() {
     let titleInput = document.getElementById('input_title_addTask_dialog');
     newTask.title = titleInput.value;
@@ -87,7 +138,7 @@ function contacts_newTask() {
 
 function  dueDate_newTask() {
     let duedateInput = document.getElementById('edit_input_dueDate_addTask').value;
-    duedateInput = duedateInput.split('/');
+    duedateInput = duedateInput.split('-');
     let year = parseInt(duedateInput[2]); 
     year = year - 2000;
     let newDate = duedateInput[0] + '/' + duedateInput[1] + '/' + year;
@@ -99,8 +150,8 @@ function priority_newTask() {
 }
 
 function subtasks_newTask() {
-    if (new_subtask_addTask_dialog > 0 && !new_subtask_addTask_dialog == '') {
-    newTask.subtasks.push(new_subtask_addTask_dialog);
+    if (new_subtask_addTask_dialog.length > 0) {
+    newTask.subtasks = new_subtask_addTask_dialog;
     }
 }
 
@@ -108,28 +159,8 @@ function status_newTask() {
     newTask.status = "toDo";
 }
 
-async function saveNewTask() {
-    title_newTask();
-    description_newTask();
-    category_newTask();
-    contacts_newTask();
-    dueDate_newTask();
-    priority_newTask();
-    subtasks_newTask();
-    status_newTask();
-}
 
-function resetNewTask() {
-    newTask = {
-        "title": "",
-        "description": "",
-        "category": "",
-        "contacts": [],
-        "dueDate": "",
-        "priority": "",
-        "subtasks": [],
-        "status": "toDo"
-    };
-}
+
+
 
 

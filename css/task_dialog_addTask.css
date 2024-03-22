@@ -66,7 +66,6 @@
 } 
 
 #edit_input_dueDate_addTask {
-    background-image: url(/assets/img/event.svg);
     border-radius: 10px;
     padding-left: 21px;
     cursor: pointer;
@@ -153,7 +152,7 @@
 
   .boxShadow_and_borderRadius {
     box-shadow: 0px 0px 14px 3px #0000000A;
-    border-radius: 10px;
+    border-start-start-radius: 10px;
   }
 
   #addTask_dialog_subtasks input {
@@ -265,6 +264,50 @@
         gap: 8px;
         border-radius: 10px; 
     }
+
+
+.TaskAddedToBoard {
+    background-color: var(--bgdarkblue);
+    color: white;
+    font-size: 20px;
+    font-weight: 300;
+    display: flex;
+    width: 308px;
+    padding: 16px 24px 16px 24px;
+    border-radius: 16px;
+    align-items: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+    .TaskAddedToBoard_text {
+        display: flex;
+        margin-right: 35px;
+    }
+
+    .TaskAddedToBoard_img path{
+        fill: white;
+    }
+
+    .TaskAddedToBoard_img {
+        display: flex;
+    }
+
+    .category_section {
+        position: relative;
+    }
+
+    #dropdown_category_addTask {
+        position: absolute;
+        background-color: white;
+        z-index: 10;
+        width: 100%;
+        box-shadow: 0px 0px 14px 3px #0000000A;
+        border-end-end-radius: 10px;
+    }
+
 
     @media (max-width: 1085px) {
         #line_addTask_dialog {

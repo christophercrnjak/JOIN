@@ -4,13 +4,13 @@ async function openAddTaskDialog(){
     let container = document.getElementById('dialog_container');
     let taskDialogContainer = document.getElementById('task_dialog_container');
     dialog_status = 'addTask';
-    await renderaddTaskDialog();  
+    await renderAddTaskDialog();  
     container.classList.remove('d-none');
     // taskDialogContainer.style.position = 'none'; 
     await getTasksFromServer();
 }
 
-function renderaddTaskDialog() {
+function renderAddTaskDialog() {
     let container = document.getElementById('task_dialog_container');
     container.innerHTML = addTaskDialogHTML();
     renderTitleAddTaskDialog();
@@ -70,7 +70,7 @@ function renderTitleAddTaskDialog() {
     let container = document.getElementById('addTask_dialog_title');
     container.innerHTML = `
         <label class="header_text_edit_section" for="title_edit" >Titel<span class="red_star">*</span></label>
-        <input onkeyup="checkFormValidation_title_addTask()" onfocus="checkFormValidation_title_addTask()" onfocusout="checkFormValidation_title_addTask()" id="input_title_addTask_dialog" name="title_edit" type="text" placeholder="Enter a Title">
+        <input onfocusout="checkFormValidation_title_addTask()" id="input_title_addTask_dialog" name="title_edit" type="text" placeholder="Enter a Title">
         <div id="errormessage_title"></div>
     `;
 }
@@ -125,7 +125,7 @@ function DueDateEditDialogHTML_addTask() {
     return /*html*/`
         <div class="header_text_edit_section">Due Date<span class="red_star">*</span></div>
         <form>
-            <input class="" pattern="\d{2}/\d{2}/\d{4}" onfocusout="DueDatevalidation_addTask()" onkeyup="DueDatevalidation_addTask()" placeholder="dd/mm/yyyy" id="edit_input_dueDate_addTask" type="text"  required>
+            <input class="" onfocusout="DueDatevalidation_addTask()" placeholder="dd/mm/yyyy" id="edit_input_dueDate_addTask" type="date"  required>
         </form>
         <div class="" id="errormessage_due_date_addTask">This field is required</div>
     `;
@@ -140,11 +140,12 @@ function DueDatevalidation_addTask() {
 function validationOfDay_addTask() {
     let inputDate = document.getElementById("edit_input_dueDate_addTask");
     let errormessage_due_date = document.getElementById("errormessage_due_date_addTask");
-    let parts = inputDate.value.split('/');
-    let day = parts[0];
-    if (parseInt(day, 10) > 31 || parseInt(day, 10) < 1 || parseInt(day, 10) == 0 || day.length < 2 || isNaN(day) || inputDate.value.length < 9) {
+    let parts = inputDate.value.split('-');
+    let day = parts[2];
+    if (parseInt(day, 10) > 31 || parseInt(day, 10) < 1 || parseInt(day, 10) == 0 || day.length < 2 || isNaN(day)) {
         inputDate.classList.add('non_valide');
         errormessage_due_date.style.display = 'block';
+        console.log('wrong day input');
     } else {
         inputDate.classList.remove('non_valide');
         errormessage_due_date.style.display = 'none';
@@ -154,11 +155,12 @@ function validationOfDay_addTask() {
 function validationOfMonth_addTask() {
     let inputDate = document.getElementById("edit_input_dueDate_addTask");
     let errormessage_due_date = document.getElementById("errormessage_due_date_addTask");
-    let parts = inputDate.value.split('/');
+    let parts = inputDate.value.split('-');
     let month = parts[1];
-    if (parseInt(month, 10) > 12 || parseInt(month, 10) < 1 || parseInt(month, 10) == 0 || month.toString().length < 2 || isNaN(month) || inputDate.value.length < 9) {
+    if (parseInt(month, 10) > 12 || parseInt(month, 10) < 1 || parseInt(month, 10) == 0 || isNaN(month) || inputDate.value.length < 9) {
         inputDate.classList.add('non_valide');
         errormessage_due_date.style.display = 'block'; 
+        console.log('wrong month input');
     } else {
         if(!inputDate.classList.contains('non_valide')){
         inputDate.classList.remove('non_valide');
@@ -170,11 +172,12 @@ function validationOfMonth_addTask() {
 function validationOfYear_addTask() {
     let inputDate = document.getElementById("edit_input_dueDate_addTask");
     let errormessage_due_date = document.getElementById("errormessage_due_date_addTask");
-    let parts = inputDate.value.split('/');
-    let year = parseInt(parts[2], 10);
+    let parts = inputDate.value.split('-');
+    let year = parseInt(parts[0], 10);
     if (year < 2000 || isNaN(year) || inputDate.value.length < 9) {
         inputDate.classList.add('non_valide');
         errormessage_due_date.style.display = 'block'; 
+        console.log('wrong year input');
     } else {
         if(!inputDate.classList.contains('non_valide')){
         inputDate.classList.remove('non_valide');
@@ -202,13 +205,15 @@ function renderCategoryAddTaskDialog() {
     let container = document.getElementById('addTask_dialog_category');
     container.innerHTML = `
         <label class="header_text_edit_section">Category<span class="red_star">*</span></label>
-        <div id="category_addTask_section_dropdown">
-            <div id="category_addTask_dialog" class="dropdown_text"><span id="category_field_text">Select task category</span> 
-                <a class="dopdown_img_inactive" id="dropdown_arrow_category_addTask" onclick="openDropDownList_category_addTask()">
-                    <img src="assets/img/arrowDropDown.svg">
-                </a>
+        <div class="category_section">
+            <div id="category_addTask_section_dropdown">
+                <div onclick="openDropDownList_category_addTask()" id="category_addTask_dialog" class="dropdown_text"><span id="category_field_text">Select task category</span> 
+                    <a class="dopdown_img_inactive" id="dropdown_arrow_category_addTask">
+                        <img src="assets/img/arrowDropDown.svg">
+                    </a>
+                </div>
+                <div id="dropdown_category_addTask" class="d-none"></div>
             </div>
-            <div id="dropdown_category_addTask" class="d-none"></div>
         </div>
     `;
     renderCategories();
@@ -303,6 +308,10 @@ function commitSectionHTML() {
 
 // *** Clear-Button *** //
 
+/**
+ * Clears the inputs at the dialog and the content of arrays which only served as temporary storage.
+ * Reloads the "addTask" dialog.
+ */
 function clearInputsAddTaskDialog() {
     let titleInput = document.getElementById('input_title_addTask_dialog');
     titleInput.value = '';
@@ -314,7 +323,7 @@ function clearInputsAddTaskDialog() {
     prio_addTask = 'Medium';
     selectedCategory = '';
     new_subtask_addTask_dialog = [];
-    renderaddTaskDialog()
+    renderAddTaskDialog()
 }
 
 // *** Create new Task in board_addTask_createNewTask.js *** //

@@ -144,10 +144,12 @@ function deleteSubtask_addTask(subtaskId){
     renderSubtasksEditDialog_addTask();
 }
 
-function take_over_new_content_of_Task_addTask(subtaskId) {
+function take_over_new_content_of_Task_addTask() {
     let content = document.getElementById('edit_input_list_row_content_addTask').value;
+    if (!content == '') {
     new_subtask_addTask_dialog = `${content}`;
     renderSubtasksEditDialog_addTask();
+    }
 }
 
 function changeAddIconSubtaskInputEdit_addTask() {

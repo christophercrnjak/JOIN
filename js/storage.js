@@ -172,6 +172,7 @@ async function resetStorageOfServer_tasks() {
         "status": "done"
     }
 ])
+init();
 }
 
 async function resetStorageOfServer_contacts() {
