@@ -266,7 +266,7 @@
     }
 
 
-.TaskAddedToBoard {
+.toastMessageAddTask {
     background-color: var(--bgdarkblue);
     color: white;
     font-size: 20px;
@@ -282,16 +282,16 @@
     transform: translate(-50%, -50%);
 }
 
-    .TaskAddedToBoard_text {
+    .toastMessageAddTask_text {
         display: flex;
         margin-right: 35px;
     }
 
-    .TaskAddedToBoard_img path{
+    .toastMessageAddTask_img path{
         fill: white;
     }
 
-    .TaskAddedToBoard_img {
+    .toastMessageAddTask_img {
         display: flex;
     }
 
