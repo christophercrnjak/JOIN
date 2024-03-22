@@ -49,7 +49,7 @@ function searchTask() {
  * @param {String} search_content - letters by which the Kanban board should be sorted
  */
 async function renderColumnContent(search_content){
-    let toDo_container = document.getElementById('task_container_Todo');
+    let toDo_container = document.getElementById('task_container_ToDo');
     let inProgress_container = document.getElementById('task_container_InProgress');
     let awaitFeedback_container = document.getElementById('task_container_AwaitFeedback');
     let done_container = document.getElementById('task_container_Done');
@@ -139,8 +139,9 @@ function taskHTML(task, i) {
     let category = task.category;
     let title = task.title;
     let description = task.description;
+    let status = task.status;
     return `
-        <article id="task${i}" draggable="true" ondragstart="startDragging(${i})" onclick="openTaskDetailsDialog(${i})" class="task">
+        <article id="task${i}" draggable="true" ondragend="deleteBorderStyles()" ondragstart="startDragging(${i}, '${status}')" onclick="openTaskDetailsDialog(${i})" class="task">
             <div id="task_category${i}" class="task_category">${category}</div>
             <div class="task_title">${title}</div>
             <div class="task_description">${description}</div>
@@ -461,41 +462,3 @@ function changeDueDateFormatInLongYear(taskId) {
 }
 
 
-// ***** Drag and Drop *****
-
-
-/**
- * The function is started by dragging the task element
- * and saves the index in the global variable currentDraggedElement.
- * 
- * @param {Number} taskId - Index of current dragging task in tasks[] global array.
- */
-function startDragging(taskId) {
-    currentDraggedElement = taskId;
-}
-
-/**
- * Prevents the browser's default behavior of dragging back elements.
- * 
- * @param {Event} event - The drag-and-drop-event.
- * @returns {void}
- */
-function allowDrop(event) {
-    event.preventDefault();
-}
-
-/**
- * Saves the current status of task (To do, In progress, Await feedback or Done) in current dragging task element 
- * 
- * @param {String} status - string like 'toDo' as a statusdescription in which column of the kanban Board the task is
- */
-async function moveTo(status) {
-    tasks[currentDraggedElement].status = status;
-    await setAndGetToServer()
-    init();
-}
-
-async function setAndGetToServer() {
-    await setTasksToServer();
-    await getTasksFromServer();
-}
