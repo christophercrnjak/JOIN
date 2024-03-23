@@ -62,6 +62,15 @@ body {
   }
 }
 
+@keyframes changeLogoSource {
+  from {
+    src: "./assets/img/logo.svg";
+  }
+  to {
+    src: "./assets/img/logo_white_mobile.svg";
+  }
+}
+
 @keyframes contentVisibilityMobile {
   from {
     opacity: 0;
