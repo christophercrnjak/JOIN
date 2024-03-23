@@ -19,61 +19,63 @@
       <img class="logo" src="./assets/img/logo.svg" alt="" />
     </div>
     <div class="container">
-      <div class="sign_up">
-        <span>Not a Join user?</span>
-        <button class="btn_sign_up btn_grey">
-          <a href="./sign_up.html">Sign up</a>
-        </button>
+      <div class="main_wrapper">
+        <div class="sign_up">
+          <span>Not a Join user?</span>
+          <button class="btn_sign_up btn_grey">
+            <a href="./sign_up.html">Sign up</a>
+          </button>
+        </div>
+
+        <form class="login_section" onsubmit="return false">
+          <div class="headline">
+            <h1>Log in</h1>
+            <hr />
+          </div>
+
+          <div class="input_area">
+            <div class="input_fields">
+              <input
+                required
+                type="email"
+                placeholder="Email"
+                oninvalid="this.setCustomValidity('Please use a valid e-mail address.')"
+                oninput="this.setCustomValidity('')"
+                id="mail"
+              />
+              <input
+                required
+                type="password"
+                placeholder="Password"
+                oninvalid="this.setCustomValidity('Please enter your password.')"
+                oninput="this.setCustomValidity('')"
+                id="password"
+              />
+            </div>
+            <div class="remember_me">
+              <input type="checkbox" id="checkbox" />
+              <span>Remember me</span>
+            </div>
+          </div>
+
+          <div class="btns">
+            <button
+              class="btn_log_in btn_grey"
+              id="log_in"
+              onclick="handleLogIn()"
+            >
+              Log in
+            </button>
+            <button
+              class="btn_transparent btn_guest_log_in"
+              id="guest_log_in"
+              onclick="handleGuestLogIn()"
+            >
+              Guest Log in
+            </button>
+          </div>
+        </form>
       </div>
-
-      <form class="login_section" onsubmit="return false">
-        <div class="headline">
-          <h1>Log in</h1>
-          <hr />
-        </div>
-
-        <div class="input_area">
-          <div class="input_fields">
-            <input
-              required
-              type="email"
-              placeholder="Email"
-              oninvalid="this.setCustomValidity('Please use a valid e-mail address.')"
-              oninput="this.setCustomValidity('')"
-              id="mail"
-            />
-            <input
-              required
-              type="password"
-              placeholder="Password"
-              oninvalid="this.setCustomValidity('Please enter your password.')"
-              oninput="this.setCustomValidity('')"
-              id="password"
-            />
-          </div>
-          <div class="remember_me">
-            <input type="checkbox" id="checkbox" />
-            <span>Remember me</span>
-          </div>
-        </div>
-
-        <div class="btns">
-          <button
-            class="btn_log_in btn_grey"
-            id="log_in"
-            onclick="handleLogIn()"
-          >
-            Log in
-          </button>
-          <button
-            class="btn_transparent btn_guest_log_in"
-            id="guest_log_in"
-            onclick="handleGuestLogIn()"
-          >
-            Guest Log in
-          </button>
-        </div>
-      </form>
 
       <div class="legal_section">
         <div class="link_wrapper">
