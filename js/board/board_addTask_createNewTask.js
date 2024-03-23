@@ -14,6 +14,10 @@ let newTask = {
     "status": "toDo"
 };
 
+function addStatus(status) {
+    newTask.status = status;
+}
+
 /**
  * Validates the required inputs, jump to the invalide section/input and mark the border red if the input isn't valide.
  * The function is triggered by pressing the "Create Task" button in add task dialog.
@@ -163,7 +167,10 @@ function subtasks_newTask() {
 }
 
 function status_newTask() {
-    newTask.status = "toDo";
+    if(!newTask.status == "toDo") {
+        newTask.status = "toDo";
+    }
+    console.log(`Der Status ist auf ${newTask.status}`)
 }
 
 

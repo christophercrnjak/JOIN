@@ -312,9 +312,9 @@ a {
 
                     }
 
-                    /* .task:hover {
+                    .task:hover {
                         rotate: 5grad;
-                    } */
+                    }
                         .task_category {
                             padding: 4px 16px 4px;
                             color: white;
@@ -339,12 +339,22 @@ a {
                             font-size: 16px;
                             font-weight: 400;
                         }
-                        .task_progress{
+
+                        .task_progress {
+                            height: 16px;
+                        }
+
+                        .task_progress .progressbar_section{
                             margin-top: 24px;
                             width: 100%;
                             display: flex;
                             justify-content: space-between;
                             align-items: center;
+                            
+                        }
+
+                        .task_progress:hover .hover_text_progressbar{
+                            display: flex !important;
                         }
                             .progressbar {
                                 width: 128px;
@@ -352,7 +362,7 @@ a {
                                 background-color: #F4F4F4;
                                 height: 8px;
                                 margin-top: 1px;
-                                
+                                position: relative;
                             }
                                 .progressbar_blue {
                                     border-radius: 8px;
@@ -369,6 +379,22 @@ a {
                                     font-size: 12px;
                                     font-weight: 400;
                                 }
+
+                                .hover_text_progressbar {
+                                    background-color: var(--bgdarkblue);
+                                    color: white;
+                                    font-size: 16px;
+                                    text-align: center;
+                                    width: 100%;
+                                    padding: 8px;
+                                    border-radius: 10px;
+                                    position: relative;
+                                    top: -56px;
+                                    display: none;
+                                    justify-content: center;
+                                }
+
+
                         .task_members_prio {
                             margin-top: 24px;
                             display: flex;
@@ -397,30 +423,7 @@ a {
                                     color: white;
                                     font-size: 12px;
                                 }
-                                .orange {
-                                    background-color: var(--orange);
-                                }
-                                .turquoise {
-                                    background-color: var(--turquoise);
-                                }
-                                .darkslateblue {
-                                    background-color: var(--darkslateblue);
-                                }
-                                .violet {
-                                    background-color: var(--violet);
-                                }
-                                .mediumslateblue {
-                                    background-color: var(--mediumslateblue);
-                                }
-                                .blueviolet {
-                                    background-color: var(--blueviolet);
-                                }
-                                .yellow {
-                                    background-color: var(--yellow);
-                                }
-                                .red {
-                                    background-color: var(--red);
-                                }
+                                
                                 .deepskyblue {
                                     background-color: var(--deepskyblue);
                                 }
@@ -447,11 +450,15 @@ a {
         width: 100%;
     }
 
-    .task_progress {
+    .task_progress .progressbar_section{
         flex-direction: column-reverse;
         gap: 5px;
         align-items: start;
         margin-top: 10px;
+    }
+
+    .hover_text_progressbar {
+        top: -71px;
     }
     .board_header {
         margin-left: 30px;
@@ -459,6 +466,32 @@ a {
         margin-top: 96px;
     }
 }
+
+ @media(max-width: 1330px) {
+    .hover_text_progressbar {
+        top: -67px;
+        font-size: 14px;
+    }
+}
+
+
+@media(max-width: 1235px) {
+    .hover_text_progressbar {
+        top: -86px;
+    }
+}
+
+@media(max-width: 1018px) {
+    .hover_text_progressbar {
+        font-size: 13px;
+    }
+}
+/*
+@media(max-width: 1135px) {
+    .hover_text_progressbar {
+        font-size: 11px;
+    }
+} */
 
 @media(max-width: 1000px) {
     .board_header {
@@ -498,9 +531,7 @@ a {
         padding-top: 0;
         width: 100%;
     }
-    /* .sidebar {
-        display: none;
-    } */
+  
     .head_main_navbar {
         display: none;
     }
@@ -526,11 +557,6 @@ a {
         max-width: none; 
         
     }
-
-
-
-
-
 
     .board_content_main {
         justify-content: start;
@@ -560,40 +586,17 @@ a {
     .unordered-list_subtasks {
         height: fit-content;
     }
+
+    .hover_text_progressbar {
+        top: -69px;
+    }
 }
 
 @media(max-width: 580px) {
     .task {
         min-width: 252px;
     }
-
-    
-
-    /* .board_content {
-        margin-left: 0px; 
-        margin-right: 0px;
-    } */
 }
 
 
-/* @media(max-width: 840px) {
 
-    .board_content_main {
-        justify-content: start;
-    }
-    .board_content {
-        flex-direction: column;
-    }
-    .column_head_add_btn {
-        display: none;
-    }
-    .column_head_add_btn_mobile {
-        display: flex;
-    }
-    .task_container {
-        overflow-x: overlay;
-        min-height: 0px;
-        flex-direction: row;
-        max-width: none;
-    }
-} */

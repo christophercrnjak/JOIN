@@ -94,6 +94,7 @@ function filterTasks(toDo, inProgress, awaitFeedback, done, search_content) {
                 task.description.toLowerCase().includes(search_content) || 
                 task.category.toLowerCase().includes(search_content)) {
                     toDo.innerHTML += taskHTML(task, i);
+                    begrenzeZeichen(`task_description${i}`, 45);
                     renderTaskElements(i)
                 }
             break;
@@ -103,6 +104,7 @@ function filterTasks(toDo, inProgress, awaitFeedback, done, search_content) {
                 task.description.toLowerCase().includes(search_content) || 
                 task.category.toLowerCase().includes(search_content)) {
                     inProgress.innerHTML += taskHTML(task, i);
+                    begrenzeZeichen(`task_description${i}`, 45);
                     renderTaskElements(i)
                 }
             break;
@@ -112,6 +114,7 @@ function filterTasks(toDo, inProgress, awaitFeedback, done, search_content) {
                 task.description.toLowerCase().includes(search_content) || 
                 task.category.toLowerCase().includes(search_content)) {
                     awaitFeedback.innerHTML += taskHTML(task, i);
+                    begrenzeZeichen(`task_description${i}`, 45);
                     renderTaskElements(i)
                 }
             break;
@@ -121,12 +124,29 @@ function filterTasks(toDo, inProgress, awaitFeedback, done, search_content) {
                 task.description.toLowerCase().includes(search_content) || 
                 task.category.toLowerCase().includes(search_content)) {
                     done.innerHTML += taskHTML(task, i);
+                    begrenzeZeichen(`task_description${i}`, 45);
                     renderTaskElements(i)
                 }
             break;
         }
     }
 }
+
+/**
+ * Limits the number of characters in the description text
+ * 
+ * @param {*} id - Id of the document witch contains the description.
+ * @param {*} maxZeichen - 
+ */
+function begrenzeZeichen(id, maxZeichen) {
+    let container = document.getElementById(id);
+    let text = container.textContent;
+    if (text.length > maxZeichen) {
+        let gekürzterText = text.substring(0, maxZeichen) + '...';
+        container.textContent = gekürzterText;
+    }
+}
+
 
 /**
  * Define the HTML structure of tasks in the Kanban Board
@@ -144,7 +164,7 @@ function taskHTML(task, i) {
         <article id="task${i}" draggable="true" ondragend="deleteBorderStyles()" ondragstart="startDragging(${i}, '${status}')" onclick="openTaskDetailsDialog(${i})" class="task">
             <div id="task_category${i}" class="task_category">${category}</div>
             <div class="task_title">${title}</div>
-            <div class="task_description">${description}</div>
+            <div id="task_description${i}" class="task_description">${description}</div>
             <div id="task_progressbar${i}" class="task_progress"></div>
             <div class="task_members_prio">
                 <div id="task_member_section${i}" class="task_members"></div>
@@ -271,7 +291,8 @@ function showprogressbar(taskId) {
     if (task.subtasks.length > 0) {
         container.innerHTML = subtaskHTML(taskId);
         renderSubtaskAmounts(taskId);
-        renderBlueProgressbar(taskId)
+        renderBlueProgressbar(taskId);
+        renderHoverTextProgressbar(taskId);
     } else {
         container.classList.add('d-none')
     }
@@ -285,12 +306,15 @@ function showprogressbar(taskId) {
  */
 function subtaskHTML(taskId) {
     return `
-    <div  class="progressbar">
-        <div id="blue_progressbar${taskId}" class="progressbar_blue"></div>
+    <div class="progressbar_section">
+        <div  class="progressbar">
+            <div id="blue_progressbar${taskId}" class="progressbar_blue"></div>
+        </div>
+        <div class="progressbar_text"> 
+            <span id="subtasks_todo${taskId}"></span> / <span id="subtasks_total${taskId}"></span> Subtasks
+        </div>
     </div>
-    <div class="progressbar_text"> 
-        <span id="subtasks_todo${taskId}"></span> / <span id="subtasks_total${taskId}"></span> Subtasks
-    </div>
+    <div id="hover_text_progressbar_${taskId}" class="hover_text_progressbar">5 von 7 Subtasks erledigt</div>
     `;
 }
 
@@ -313,6 +337,13 @@ function renderBlueProgressbar(taskId) {
             container.style.width = `${progress}px`;
         }
     }
+}
+
+function renderHoverTextProgressbar(taskId) {
+    let container = document.getElementById(`hover_text_progressbar_${taskId}`);
+    let closed_subtasks = calcSubtaskAmount(taskId);
+    let subtasks_total = tasks[taskId].subtasks.length;
+    container.innerHTML = `${closed_subtasks} von ${subtasks_total} Subtasks erledigt`;
 }
 
 /**

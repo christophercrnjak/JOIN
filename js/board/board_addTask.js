@@ -1,13 +1,15 @@
 
 
-async function openAddTaskDialog(){
+async function openAddTaskDialog(status){
     let container = document.getElementById('dialog_container');
-    let taskDialogContainer = document.getElementById('task_dialog_container');
     dialog_status = 'addTask';
     await renderAddTaskDialog();  
     container.classList.remove('d-none');
     // taskDialogContainer.style.position = 'none'; 
     await getTasksFromServer();
+    if(typeof status !== 'undefined') {
+        addStatus(status);
+    }
 }
 
 function renderAddTaskDialog() {
