@@ -7,7 +7,6 @@ body {
 }
 
 .container {
-  border: red 1px solid;
   position: relative;
   height: 100vh;
   width: 100vw;
@@ -17,7 +16,6 @@ body {
   align-items: center;
   row-gap: 48px;
   opacity: 0;
-  animation: contentVisibility 700ms ease-in-out 700ms both;
 }
 
 .logo {
@@ -25,7 +23,26 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  animation: moveLogo 700ms ease-in-out 700ms both;
+}
+
+@media (min-width: 1000px) {
+  .container {
+    animation: contentVisibility 700ms ease-in-out 700ms both;
+  }
+
+  .logo {
+    animation: moveLogo 700ms ease-in-out 700ms both;
+  }
+}
+
+@media (max-width: 1000px) {
+  .container {
+    animation: contentVisibility 50ms ease-in-out 50ms both;
+  }
+
+  .logo {
+    animation: moveLogo 50ms ease-in-out 50ms both;
+  }
 }
 
 @keyframes moveLogo {
