@@ -180,6 +180,7 @@ input[type="date"]:invalid{
   background-color: #ffffff;
   width: 100%;
   max-height: 200px;
+  
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
@@ -221,7 +222,7 @@ input[type="date"]:invalid{
 .show_task {
     display: flex;
     height: 440px;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
     overflow-x: auto;
 }

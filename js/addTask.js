@@ -60,24 +60,24 @@ function dropdownHtml(dropdownList, i) {
  */
 function selectFromDropdown(color, firstName, secondName, i) {
   let isSelected = selectedFromDropdown.some(item => item.color === color && item.firstName === firstName && item.secondName === secondName);
-  if (!isSelected) {
+  if (isSelected) {
+    removeFromSelectedItems(firstName,i);
+    selectedFromDropdown.slice({ color, firstName, secondName });
+    document.getElementById(i).classList.remove('selected');
+    document.getElementById('selected_img').classList.remove('selected_img');
+    dropdownHtmlMemberCircle();
+  } else {
     let dropdownList = document.getElementById('dropdownList');
-    let selectedId = i;
     selectedFromDropdown.push({ color, firstName, secondName });
-    dropdownList.innerHTML += dropdownHtmlMemberCircle(
-      color,
-      firstName,
-      secondName,
-      selectedId
-    );
+    dropdownList.innerHTML += dropdownHtmlMemberCircle( color,firstName,secondName,i );
     document.getElementById(i).classList.add('selected');
     document.getElementById('selected_img').classList.add('selected_img');
-  } 
+  }
 }
 
-function dropdownHtmlMemberCircle(color, firstName, secondName) {
+function dropdownHtmlMemberCircle(color, firstName, secondName, i) {
   return `
-    <div onclick="removeFromSelectedItems('${firstName}')" class="member_cicle" style="background-color:${color};">
+    <div onclick="removeFromSelectedItems('${firstName}','${i}')" class="member_cicle" style="background-color:${color};">
       ${firstName.charAt(0)}
       ${secondName.charAt(0)}
     </div>
@@ -87,12 +87,10 @@ function dropdownHtmlMemberCircle(color, firstName, secondName) {
  *  remove the Icon and index form the array selectedFromDropdown  
  * @param {*} firstName 
  */
-function removeFromSelectedItems(firstName) {
+function removeFromSelectedItems(firstName, i ) {
   for (let i = 0; i < selectedFromDropdown.length; i++) {
     if (selectedFromDropdown[i].firstName === firstName) {
       selectedFromDropdown.splice(i, 1);
-
-      // Entferne das entsprechende DOM-Element aus der Dropdown-Liste
       let dropdownList = document.getElementById("dropdownList");
       let elements = dropdownList.getElementsByClassName("member_cicle");
       for (let j = 0; j < elements.length; j++) {
@@ -100,12 +98,11 @@ function removeFromSelectedItems(firstName) {
         if (textContent.includes(firstName.charAt(0))) {
           dropdownList.removeChild(elements[j]);
         }
-        break;
       }
-
-      break;
     }
   }
+  document.getElementById(i).classList.remove('selected');
+  selectFromDropdown();
 }
 /**
  * The function is for the filtering of the dropdown menu 
