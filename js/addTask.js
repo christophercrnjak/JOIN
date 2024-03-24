@@ -7,7 +7,6 @@ let pushCategory = [];
 let subtasklists = [];
 
  async function addTaskInit() {
-  renderContainer();
   renderDropList();
   renderCategoryDropDown();
   includeHTML();
@@ -54,8 +53,8 @@ function dropdownHtml(dropdownList, i) {
 /**
  * this function put the selected member from the drop down list assigned to 
  * in a array and div container
- * @param {*} color 
- * @param {*} firstName 
+ * @param {*} color  - fill the color form JSON in the cricle.
+ * @param {*} firstName - fill the first name into the cricle form the JSON.
  * @param {*} secondName 
  * @param {*} i 
  */
@@ -328,13 +327,7 @@ function subtasklistHTML(subtaskHTML, i) {
   </div>`;
 }
 
-function renderContainer() {
-  let container = document.getElementById("AddTaskContainer");
-  container.innerHTML = renderHtml();
-}
-
  async function pushToBoard() {
-  // Push the Add Task inputs in to a JSON
   let title = document.getElementById("titleAddtask");
   let description = document.getElementById("description");
   let date = document.getElementById("AddTaskDate");
