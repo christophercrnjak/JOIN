@@ -17,9 +17,79 @@
 
 <!-- Sidebar inclube -->
 
-<body onload="addTaskInit()">
+<body onload="addTaskInit(),includeHTML();">
     <div w3-include-html="/assets/templates/sidebar.html"></div>
-    <div id="AddTaskContainer"></div>
+    
+  <form class="main_addTask" onsubmit="pushToBoard()">
+    <header class="AddTask_head"> Add Task</header>
+      
+    <!-- Main section add task -->
+    <div class="addTaskForms">
+      <!-- section add task -->
+      <!-- First section  -->
+      <section class="addTaskForm">
+          <div class="title_head">Title<span>*</span></div>
+          <input id="titleAddtask" class="border inputtextfield" type="text" placeholder="Enter a title" required>
+          <div class="description_head">Description</div>
+          <textarea id="description" class="border inputtextfield" placeholder="Enter a Description"></textarea>
+          <div class="assign_head">Assigned to </div>
+          <div class="dropdown">
+              <div id="arrow" class="arrow" onclick="toggledropbtn(); return false"><img src="/assets/img/arrowDropDown.svg" alt="" srcset=""></div>
+              <div onclick="toggledropbtn(); return false" class="dropbtn" id="dropbtn">Select contacts assign</div>
+              <input type="text" id="dropdownInput" onkeyup="filterFunction()" class="dropdownInput d-none">
+              <div id="dropdown" class="dropdown_content">
+              </div>
+          </div>
+          <div class="dropdown_list" id="dropdownList"></div>
+      </section>
+      
+      <!-- Secound section  -->
+      <section class="addTaskForm right">
+        
+        <!-- Due Date  -->
+        <div class="date_head">Due date<span>*</span></div>
+        <input type="date" class="border" id="AddTaskDate" placeholder="DD/MM/YYYY" required>
+        
+        <!-- Priority  -->
+        <div class="prio_head">Prio</div>
+        <div class="btn_addTask_list" id="btnAddTaskPrio">
+          <a class="btn_addTask" id="btnUrgend" onclick="changePriority('urgend')">Urgend <img id="btnUrgendImg" src="assets/img/Priority_symbols_Urgent.png"></a>
+          <a class="btn_addTask" id="btnMedium" onclick="changePriority('medium')">Medium <img id="btnMediumImg" src="assets/img/Priority_symbols_Medium.png"></a>
+          <a class="btn_addTask" id="btnLow" onclick="changePriority('low')">Low <img id="btnLowImg" src="assets/img/Priority_symbols_Low.png"></a>
+        </div> 
+        
+        <!-- Category  -->
+        <div class="category">
+            <div class="category_head">Category<span>*</span></div>
+            <div class="dropdown_category border inputtextfield" id="categoryDropDownBtn" onclick="categoryDropDownBtn()">Select task category</div>
+            <div id="dropdownCategory" class="dropdown_content_category border"></div>    
+        </div> 
+        
+        <!-- Subtasks  -->
+        <div class="subtasks_head">Subtasks</div>
+        <div class="subtask_button_container">
+          <div class= "subtaskIcons" id="subtaskIcons" onclick="ChangeToSubtasks()"></div>
+          <div class= "subtaskIcons d-none" id="subtaskIconsDelete" onclick="deleteSubTasks()"></div>
+          <div class= "d-none" id="subtaskI">|</div>
+          <div class= "subtaskIcons d-none" id="subtaskIconsCheck" onclick="pushToSubtasks()"></div> 
+        </div>
+        <input type="text" class="subtasksInput inputtextfield" id="subtasksInput" placeholder="Add new Subtask">
+        <div id="subtasklist"></div>
+      </section>
+
+    </div> 
+    
+    <!-- Commit Section  -->
+    <div class="create_clear_task">
+      <p><span>*</span>This Field is required</p>
+      <div class="addTask_btns">
+        <button class="btn_transparent addTask_btn btn_gab" onclick="removeAllInputes()">Clear <div class="btn_claer"></div></button>
+        <button class="btn_grey addTask_btn display_centerss btn_gab"> Create Task <img src="/assets/img/check.png"></button>
+      </div>
+    </div>
+    
+  </form>
+
 
 </body>
 </html>
