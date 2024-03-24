@@ -59,10 +59,10 @@ function subtasklistEditHTML(subtask, subtaskId, taskId) {
 
 function editSubtask(subtask, subtaskId, taskId) {
     let container = document.getElementById(`subtask_list_row_main${taskId}${subtaskId}`);
-    container.innerHTML = editSubtaskHTML(subtask, taskId);
+    container.innerHTML = editSubtaskHTML(subtask, taskId, subtaskId);
 }
 
-function editSubtaskHTML(subtask, taskId) {
+function editSubtaskHTML(subtask, taskId, subtaskId) {
     return `
     <div class="edit_mode_list_row_subtask">
             <div class="edit_input_list_row_main">

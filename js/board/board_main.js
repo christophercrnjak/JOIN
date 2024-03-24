@@ -56,6 +56,7 @@ async function renderColumnContent(search_content){
     deleteColumnContentToRenderNew(toDo_container, inProgress_container, awaitFeedback_container, done_container);
     await filterTasks(toDo_container, inProgress_container, awaitFeedback_container, done_container, search_content);
     noTask(toDo_container, inProgress_container, awaitFeedback_container, done_container);
+    checkNoSearchcontentFound();
 }
 
 /**
@@ -211,6 +212,30 @@ function noTask(toDo_container, inProgress_container, awaitFeedback_container, d
 function noTaskHTML(header_text) {
     return `<div class="no_task"> no ${header_text} task</div>`
 }
+
+function checkNoSearchcontentFound() {
+   // Eingabefeldwert abrufen
+   var searchTerm = document.getElementById('task_to_be_found').value.toLowerCase();
+
+   // Überprüfen, ob der Suchbegriff in einem der Tasks vorkommt
+   var found = tasks.some(function(task) {
+       // Umwandlung von Titel und Beschreibung in Kleinbuchstaben für die Fall-Insensitivität
+       var title = task.title.toLowerCase();
+       var description = task.description.toLowerCase();
+
+       // Überprüfen, ob der Suchbegriff im Titel oder in der Beschreibung vorkommt
+       return title.includes(searchTerm) || description.includes(searchTerm);
+   });
+
+   // Anzeige der Benachrichtigung, falls kein Task gefunden wurde
+   if (!found) {
+       document.getElementById('toast_message_no_task_found').style.display = 'flex';
+   } else {
+       // Falls ein Task gefunden wurde, verstecke die Benachrichtigung
+       document.getElementById('toast_message_no_task_found').style.display = 'none';
+   }
+}
+
 
 
 // ***** Task elements *****

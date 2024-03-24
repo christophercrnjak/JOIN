@@ -23,24 +23,24 @@ async function openTaskDetailsDialog(taskId) {
  * 
  * @param {Number} taskId - Index of current called task in tasks[] global array
  */
-function closeDialog(taskId) {
+async function closeDialog(taskId) {
     // dialog window with task details is open:
     if(dialog_status == 'taskdetails') {
         let container = document.getElementById('dialog_container');
         container.classList.add('d-none');
-        renderColumnContent(); // @ board_main.js:51
+        await renderColumnContent(); // @ board_main.js:51
         dialog_status = 'inactive';
     } 
     // dialog window to change task content is open:
     else if (dialog_status == 'edit') {
-        renderDialogTask(taskId); 
+        await renderDialogTask(taskId); 
         dialog_status = 'taskdetails';
     } 
     // dialog window to add new task is open:
     else if (dialog_status == 'addTask') {
         let container = document.getElementById('dialog_container');
         container.classList.add('d-none');
-        renderColumnContent(); // @ board_main.js:51
+        await renderColumnContent(); // @ board_main.js:51
         dialog_status = 'inactive';
     }
 }  
