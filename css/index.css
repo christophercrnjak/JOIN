@@ -6,6 +6,15 @@ body {
   background-color: var(--bgwhite);
 }
 
+.early_mobile_screen {
+  background-color: #2a3647;
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  /* z-index: 99; */
+}
+
 .container {
   position: relative;
   height: 100vh;
@@ -23,6 +32,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 100;
 }
 
 @keyframes moveLogoDesktop {
@@ -256,4 +266,7 @@ hr {
     position: absolute;
     bottom: 24px;
   }
+
+.early_mobile_screen {
+  animation: bgChangeColor 700ms ease-in-out 700ms both;
 }
