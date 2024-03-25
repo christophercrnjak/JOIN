@@ -323,24 +323,26 @@ function lowActivHTML() {
 
 // *** Confirmation *** //
 
+
 /**
- * 
+ * Starts the functions that save and display the changed entries.
  * 
  * @param {Number} taskId - Index of task in tasks array
  */
 async function confirmInputsOfEditDialog(taskId) {
     getInputValuesOfEditDialog(); 
-    loadChangedContentInTasksArray(taskId);
-    await setTasksToServer();
-    await getTasksFromServer();
+    await loadChangedContentInTasksArray(taskId);
+    await setAndGetToServer(); //@storage.js:55
     dialog_status = 'taskdetails';
-    deleteCurrentTaskContent();
-    if(currentTaskContent == '') {
-    renderDialogTask(taskId);}
+    await deleteCurrentTaskContent();
+    renderDialogTask(taskId); // @board_dialog_taskdetails.js:24
 }
 
 
-
+/**
+ * Load content of title, description, due date inputs and priority choice in currentTaskContent.
+ * Contacts of Assigned to section and subtasks section are always directly saved in currentTaskContent after changes.
+ */
 function getInputValuesOfEditDialog() {
     currentTaskContent.title = document.getElementById('title_edit').value;
     currentTaskContent.description = document.getElementById('edit_input_description').value;
@@ -348,6 +350,11 @@ function getInputValuesOfEditDialog() {
     currentTaskContent.priority = prioStatusEdit;
 }
 
+/**
+ * Chages the due date fomat from dd/mm/yyyy to dd/mm/yy
+ * 
+ * @returns {String} "dd/mm/yy"
+ */
 function changeDueDateFormatInShortYear() {
     let date = document.getElementById('edit_input_dueDate').value;
     date = date.split('/');
@@ -357,11 +364,18 @@ function changeDueDateFormatInShortYear() {
     return newDate
 }
 
-
+/**
+ * Loads the items of the new task to tasks
+ * 
+ * @param {*} taskId - - Index of task in tasks array
+ */
 function loadChangedContentInTasksArray(taskId) {
     tasks[taskId] = currentTaskContent;
 }
 
+/**
+ * Resets the currentTaskContent array.
+ */
 function deleteCurrentTaskContent() {
     currentTaskContent = '';
 }

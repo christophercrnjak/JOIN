@@ -23,34 +23,18 @@ async function openTaskDetailsDialog(taskId) {
  */
 async function renderDialogTask(taskId){
     let container = document.getElementById('task_dialog_container');
-    let task;
-    // container.innerHTML = '';
-    if(!currentTaskContent == '') {
-        task = currentTaskContent;
-        container.innerHTML = taskDialogHTML(task, taskId);
-        changeDueDateFormat(taskId);
-        setColorOfCategoryInDialog(taskId);
-        renderPriorityDialog(taskId);
-        renderAssigedToDialog(taskId);
-        renderSubtasksDialog(taskId);
-        if (tasks[taskId].subtasks.length > 0){
-            renderBlueProgressbar(taskId);
-        }
-    } else {
-        await setTasksToServer();
-        await getTasksFromServer();
-        task = tasks[taskId];
-        container.innerHTML = taskDialogHTML(task, taskId);
-        changeDueDateFormat(taskId);
-        setColorOfCategoryInDialog(taskId);
-        renderPriorityDialog(taskId);
-        renderAssigedToDialog(taskId);
-        renderSubtasksDialog(taskId);
-        if (tasks[taskId].subtasks.length > 0){
-            renderBlueProgressbar(taskId);
-        }
+    let task = tasks[taskId];
+    container.innerHTML = taskDialogHTML(task, taskId);
+    changeDueDateFormat(taskId);
+    setColorOfCategoryInDialog(taskId);
+    renderPriorityDialog(taskId);
+    renderAssigedToDialog(taskId);
+    renderSubtasksDialog(taskId);
+    if (tasks[taskId].subtasks.length > 0){
+        renderBlueProgressbar(taskId);
     }
 }
+
 
 /**
  * Returns the HTML structure of dialog with task details of current choosen task
@@ -60,7 +44,7 @@ async function renderDialogTask(taskId){
  * @returns {String} - HTML structure of Dialog with task details.
  */
 function taskDialogHTML(task, taskId) {
-    return /*html */`
+    return `
         <div class="category_close">
                 <div onclick="doNotClose(event)" id="task_category_dialog" class="task_category">${task.category}</div>
                 <a onclick="closeDialog(${taskId})" class="close">
@@ -176,6 +160,14 @@ function renderAssigedToDialog(taskId) {
     
 }
 
+/**
+ * HTML structure of table row with cicle and contact name.
+ * 
+ * @param {JSON} contact - content of contacts of the current task (task.contacts[i]).
+ * @param {Number} taskId - Index of current called task in tasks[] global array.
+ * @param {Number} i - Index of contact
+ * @returns {HTMLTableRowElement}
+ */
 function AssigedToDialogHTML(contact, taskId, i) {
     return `
         <tr>
@@ -188,7 +180,7 @@ function AssigedToDialogHTML(contact, taskId, i) {
 /**
  * Set the priority image.
  * 
- * @param {*} taskId - Index of current called task in tasks[] global array.
+ * @param {Number} taskId - Index of current called task in tasks[] global array.
  */
 function renderPriorityDialog(taskId) {
     let priority = tasks[taskId].priority;
@@ -207,8 +199,9 @@ function renderPriorityDialog(taskId) {
 }
 
 /**
+ * Shows the subtask containing in the task.
  * 
- * @param {*} taskId - Index of current called task in tasks[] global array.
+ * @param {Number} taskId - Index of current called task in tasks[] global array.
  */
 function renderSubtasksDialog(taskId){
     let container = document.getElementById('subtask_dialog_container');
@@ -232,16 +225,29 @@ function renderSubtasksDialog(taskId){
     }
 }
 
-function subtaskDialogHTML(i, j, name) {
+/**
+ * HTML structure of subtask
+ * 
+ * @param {Number} taskId - Index of current called task in tasks[] global array.
+ * @param {Number} subtaskId - Index of current subtask
+ * @param {String} subtaskContent - content of current subtask
+ * @returns 
+ */
+function subtaskDialogHTML(taskId, subtaskId, subtaskContent) {
     return `
         <div class="Subtasks">
-            <div id="subtask_status_img${i}${j}"></div>
-            <span>${name}</span>
+            <div id="subtask_status_img${taskId}${subtaskId}"></div>
+            <span>${subtaskContent}</span>
         </div>
     `;
 }
 
-
+/**
+ * Changes the subtask status in done or undone depending on the current status.
+ * 
+ * @param {Number} taskId - Index of current called task in tasks[] global array.
+ * @param {Number} subtaskId - Index of current subtask
+ */
 function changeSubtaskStatus(taskId, subtaskId) {
     let subtaskStatus = tasks[taskId].subtasks[subtaskId].done;
     if (subtaskStatus == true) {
@@ -253,7 +259,12 @@ function changeSubtaskStatus(taskId, subtaskId) {
     renderSubtaskAmounts(taskId);
 }
 
-
+/**
+ * Changes the checkbox image depending on status.
+ * 
+ * @param {Number} taskId - Index of current called task in tasks[] global array.
+ * @param {Number} subtaskId - Index of current subtask
+ */
 function renderSubtaskImage(taskId, subtaskId) {
     let container = document.getElementById(`subtask_status_img${taskId}${subtaskId}`)
     let status = tasks[taskId].subtasks[subtaskId].done;
@@ -267,7 +278,11 @@ function renderSubtaskImage(taskId, subtaskId) {
     }
 }
 
-
+/**
+ * Deletes task frome the board.
+ * 
+ * @param {Number} taskId - Index of current called task in tasks[] global array.
+ */
 async function deleteTask(taskId) {
     await tasks.splice(taskId, 1);
     await setAndGetToServer();
@@ -275,7 +290,11 @@ async function deleteTask(taskId) {
     init();
 }
 
-
+/**
+ * Stops closing elements.
+ * 
+ * @param {Event} event 
+ */
 function doNotClose(event) {
     event.stopPropagation();
 }

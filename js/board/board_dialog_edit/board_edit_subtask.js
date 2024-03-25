@@ -1,13 +1,28 @@
+/**
+ * Marks whether the subtask input feld is activated or not.
+ * False equals inactiv and true equals active.
+ */
 let subtask_status = false;
 
+/**
+ * Shows the subtask section.
+ * 
+ * @param {Number} taskId - Index of task in tasks global array
+ */
 function renderSubtasksEditDialog(taskId) {
     let container = document.getElementById('subtask_section_edit');
     container.innerHTML = subtaskListEditHTML(taskId);
     added_subtasks_edit(taskId);
 }
 
+/**
+ * HTML main structure of subtask section.
+ * 
+ * @param {Number} taskId - Index of task in tasks global array
+ * @returns {HTMLDivElement} header, input and dropdown section
+ */
 function subtaskListEditHTML(taskId) {
-    return /*html*/`
+    return `
         <div class="header_text_edit_section">Subtasks</div>
         <div class="input_section_edit_subtask">
             <input onclick="changeAddIconSubtaskInputEdit(${taskId})" id="add_new_subtask_input" type="text" placeholder="Add new subtask">
@@ -23,6 +38,11 @@ function subtaskListEditHTML(taskId) {
     `;
 }
 
+/**
+ * Shows the added subtasks.
+ * 
+ * @param {Number} taskId - Index of task in tasks global array
+ */
 function added_subtasks_edit(taskId) {
     let container = document.getElementById('added_subtasks_edit');
     container.innerHTML = '';
@@ -33,6 +53,14 @@ function added_subtasks_edit(taskId) {
     }
 }
 
+/**
+ * HTML structure of the subtask dropdown list
+ * 
+ * @param {JSON} subtask - currentTaskContent.subtasks content
+ * @param {Number} subtaskId Index of subtask in currentTaskContent.subtasks
+ * @param {Number} taskId - Index of task in tasks global array
+ * @returns 
+ */
 function subtasklistEditHTML(subtask, subtaskId, taskId) {
     return `
             <div id="subtask_list_row_main${taskId}${subtaskId}" class="subtask_list_row_main">
@@ -57,11 +85,26 @@ function subtasklistEditHTML(subtask, subtaskId, taskId) {
     `;
 }
 
+/**
+ * Shows the editing mode of subtask
+ * 
+ * @param {JSON} subtask - currentTaskContent.subtasks content
+ * @param {Number} subtaskId Index of subtask in currentTaskContent.subtasks
+ * @param {Number} taskId - Index of task in tasks global array
+ */
 function editSubtask(subtask, subtaskId, taskId) {
     let container = document.getElementById(`subtask_list_row_main${taskId}${subtaskId}`);
     container.innerHTML = editSubtaskHTML(subtask, taskId, subtaskId);
 }
 
+/**
+ * HTML structure of editing mode of subtask
+ * 
+ * @param {JSON} subtask - currentTaskContent.subtasks content
+ * @param {Number} subtaskId Index of subtask in currentTaskContent.subtasks
+ * @param {Number} taskId - Index of task in tasks global array 
+ * @returns {HTMLDivElement}
+ */
 function editSubtaskHTML(subtask, taskId, subtaskId) {
     return `
     <div class="edit_mode_list_row_subtask">
@@ -90,17 +133,37 @@ function editSubtaskHTML(subtask, taskId, subtaskId) {
     `;
 }
 
+/**
+ * Deletes subtask from task.
+ * 
+ * @param {Number} subtaskId Index of subtask in currentTaskContent.subtasks
+ * @param {Number} taskId - Index of task in tasks global array 
+ */
 function deleteSubtask(subtaskId, taskId){
     currentTaskContent.subtasks.splice(subtaskId, 1);
     renderSubtasksEditDialog(taskId);
 }
 
+/**
+ * Takes Over the new Subtask
+ * 
+ * @param {Number} subtaskId Index of subtask in currentTaskContent.subtasks
+ * @param {Number} taskId - Index of task in tasks global array 
+ */
 function take_over_new_content_of_Task(subtaskId, taskId) {
     let content = document.getElementById('edit_input_list_row_content').value;
     currentTaskContent.subtasks[subtaskId].name = `${content}`;
     renderSubtasksEditDialog(taskId);
 }
 
+/**
+ * Change the icons on the right side depending on status (subtask_status_addTask).
+ * Shows a "plus" in inctive mode and confirm oder delete icon in active mode.
+ * Is theh status true, the add mode is active and the input to add a new subtask is showen.
+ * Is the status false, onlx a text is showen.
+ * 
+ * @param {Number} taskId - Index of task in tasks global array 
+ */
 function changeAddIconSubtaskInputEdit(taskId) {
     let container = document.getElementById('buttons_subtask_edit');
     subtask_status = !subtask_status;
@@ -111,8 +174,14 @@ function changeAddIconSubtaskInputEdit(taskId) {
     }
 }
 
+/**
+ * HTML structure in active mode to add a new subtask with confirm or delete icons.
+ * 
+ * @param {Number} taskId - Index of task in tasks global array 
+ * @returns {HTMLAnchorElement}
+ */
 function ckeck_or_close_HTML(taskId) {
-    return /*html*/ `
+    return `
         <a class="close_subtask_adding" onclick="deleteInputSubtaskEdit(${taskId})">
             <img src="assets/img/close_black.svg">
         </a>
@@ -122,7 +191,11 @@ function ckeck_or_close_HTML(taskId) {
         </a>
     `;
 }
-
+/**
+ * HTML structure of the inactive mode with a "plus" icon
+ * 
+ * @returns {HTMLAnchorElement}
+ */
 function add_subtask_plusHTML() {
     return /*html*/ `
     <a class="add_btn_subtask_edit">
@@ -131,6 +204,11 @@ function add_subtask_plusHTML() {
     `;
 }
 
+/**
+ * Gets the new subtask to add to task
+ * 
+ * @param {Number} taskId - Index of task in tasks global array 
+ */
 function take_over_new_Subtask(taskId) {
     let content = document.getElementById('add_new_subtask_input').value;
     if(content == '') {
@@ -148,6 +226,11 @@ function take_over_new_Subtask(taskId) {
     }
 }
 
+/**
+ * Delets the content of input and return to text mode (inactive)
+ * 
+ * @param {Number} taskId - Index of task in tasks global array 
+ */
 function deleteInputSubtaskEdit(taskId) {
     let Input = document.getElementById('add_new_subtask_input').value;
     Input = '';

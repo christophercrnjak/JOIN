@@ -1,6 +1,17 @@
+/**
+ * Marks whether the text or the Inputfield to add a new subtask is activated. 
+ * False means text (inactive) and true means inputfield (active).
+ */
 let subtask_status_addTask = false;
+
+/**
+ * Contains the added subtasks as String values.
+ */
 let new_subtask_addTask_dialog = [];
 
+/**
+ * Shows the subtask section.
+ */
 function renderSubtasksEditDialog_addTask() {
     let container = document.getElementById('addTask_dialog_subtasks');
     container.innerHTML = subtasksHTML_addTask();
@@ -10,11 +21,10 @@ function renderSubtasksEditDialog_addTask() {
 /**
  * HTML main structure of subtask section.
  * 
- * @returns - HTML Element
+ * @returns {HTMLDivElement} header, input and dropdown section
  */
 function subtasksHTML_addTask() {
-    return /*html*/`
-        
+    return `
         <!-- label -->
         <div class="header_text_edit_section">Subtasks</div>
         <!-- Input -->
@@ -48,12 +58,12 @@ function renderSubtasksListAddTask() {
 /**
  * HTML structure of List Element (subtask)
  * 
- * @param {*} subtask - value/content of subtask
- * @param {*} subtaskId - Index of in new_subtask_addTask_dialog[]
- * @returns HTML Element
+ * @param {StringConstructor} subtask - value/content of subtask
+ * @param {Number} subtaskId - Index of in new_subtask_addTask_dialog[]
+ * @returns {HTMLDivElement} HTML structure of subtask in dropdown row
  */
 function subtaskListElementHTML_addTask(subtask, subtaskId) {
-    return /*html */`
+    return `
             <div id="subtask_list_row_main_addTask${subtaskId}" class="subtask_list_row_main">
                 <div class="subtask_list_row" ondblclick="editSubtask_addTask('${subtask}', ${subtaskId})">
                     
@@ -89,8 +99,8 @@ function subtaskListElementHTML_addTask(subtask, subtaskId) {
 /**
  * Start the editing mode.
  * 
- * @param {*} subtask - value/content of subtask
- * @param {*} subtaskId - Index of in new_subtask_addTask_dialog[]
+ * @param {String} subtask - value/content of subtask
+ * @param {Number} subtaskId - Index of in new_subtask_addTask_dialog[]
  */
 function editSubtask_addTask(subtask, subtaskId) {
     let container = document.getElementById(`subtask_list_row_main_addTask${subtaskId}`);
@@ -98,13 +108,13 @@ function editSubtask_addTask(subtask, subtaskId) {
 }
 
 /**
- * HTML main structure of editing the List Element (subtask)
+ * HTML structure of edit-mode from the List Element (subtask)
  * 
- * @param {*} subtask 
- * @returns 
+ * @param {String} subtask - value/content of subtask
+ * @param {Number} subtaskId - Index of in new_subtask_addTask_dialog[]
  */
 function editSubtaskHTML_addTask(subtask, subtaskId) {
-    return /*html */`
+    return `
     <div class="edit_mode_list_row_subtask">
             <div class="edit_input_list_row_main">
                 <!-- input subtask bullet point -->
@@ -139,11 +149,19 @@ function editSubtaskHTML_addTask(subtask, subtaskId) {
     `;
 }
 
+/**
+ * Deletes the subtask.
+ * 
+ * @param {Number} subtaskId - Index of in new_subtask_addTask_dialog[]
+ */
 function deleteSubtask_addTask(subtaskId){
     new_subtask_addTask_dialog.splice(subtaskId, 1);
     renderSubtasksEditDialog_addTask();
 }
 
+/**
+ * Takes over the content as string to new_subtask_addTask_dialog of the new subtask.
+ */
 function take_over_new_content_of_Task_addTask() {
     let content = document.getElementById('edit_input_list_row_content_addTask').value;
     if (!content == '') {
@@ -152,6 +170,12 @@ function take_over_new_content_of_Task_addTask() {
     }
 }
 
+/**
+ * Change the icons on the right side depending on status (subtask_status_addTask).
+ * Shows a "plus" in inctive mode and confirm oder delete icon in active mode.
+ * Is theh status true, the add mode is active and the input to add a new subtask is showen.
+ * Is the status false, onlx a text is showen.
+ */
 function changeAddIconSubtaskInputEdit_addTask() {
     let container = document.getElementById('buttons_subtask_edit_addTask');
     subtask_status_addTask = !subtask_status_addTask;
@@ -162,18 +186,28 @@ function changeAddIconSubtaskInputEdit_addTask() {
     }
 }
 
-function ckeck_or_close_HTML_addTask(taskId) {
-    return /*html*/ `
+/**
+ * HTML structure in active mode to add a new subtask with confirm or delete icons.
+ * 
+ * @returns {HTMLAnchorElement}
+ */
+function ckeck_or_close_HTML_addTask() {
+    return `
         <a class="close_subtask_adding" onclick="deleteInputSubtaskEdit_addTask()">
             <img src="assets/img/close_black.svg">
         </a>
         <hr class="line_subtask_input">
         <a class="check_subtask_adding" onclick="take_over_new_Subtask_addTask()">
-        <img src="assets/img/check_dark.svg">
+            <img src="assets/img/check_dark.svg">
         </a>
     `;
 }
 
+/**
+ * HTML structure of the inactive mode with a "plus" icon
+ * 
+ * @returns {HTMLAnchorElement}
+ */
 function add_subtask_plusHTML_addTask() {
     return /*html*/ `
     <a class="add_btn_subtask_edit">
@@ -182,6 +216,9 @@ function add_subtask_plusHTML_addTask() {
     `;
 }
 
+/**
+ * Gets the new subtask to add to task
+ */
 function take_over_new_Subtask_addTask() {
     let content = document.getElementById('add_new_subtask_input_addTask').value;
     if(content == '') {
@@ -199,6 +236,9 @@ function take_over_new_Subtask_addTask() {
     }
 }
 
+/**
+ * Delets the content of input and return to text mode (inactive)
+ */
 function deleteInputSubtaskEdit_addTask() {
     let Input = document.getElementById('add_new_subtask_input_addTask').value;
     Input = '';

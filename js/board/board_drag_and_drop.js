@@ -61,6 +61,9 @@ async function moveTo(status) {
     init();
 }
 
+/**
+ * Removes borderstyle after drag and drop.
+ */
 function deleteBorderStyles() {
     let columns = ['toDo', 'inProgress','awaitFeedback','done']; // array mit alles status
     for (let i = 0; i < columns.length; i++) {

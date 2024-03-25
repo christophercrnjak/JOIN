@@ -3,12 +3,12 @@
 let contacts_addTask = []
 // structure of contacts_addTask:
 // [
-    // 0: {
-        // color: "'0000000",
-        // firstName: "Max",
-        // secondName: "Mustermann",
-        // select_status: false,
-    // }
+//  0: {
+//      color: "'0000000",
+//      firstName: "Max",
+//      secondName: "Mustermann",
+//      select_status: false
+//     }
 // ]
 
 
@@ -146,6 +146,9 @@ function openDropDownList_addTask() {
     }
 }
 
+/**
+ * Closes the dropdownlist of assigned to section on click outside of section.
+ */
 function closeDropdownList_addTask() {
     let box_and_dropdown_section = document.getElementById('box_and_dropdown_section')
     if (dropdownStatus == true) {
@@ -219,7 +222,7 @@ function showContactList_addTask(searchValue) {
  * 
  * @param {Number} taskId - Index of current called task in tasks[] global array
  * @param {Number} contactId - Index of contact in loaded_contacts array JSON
- * @returns 
+ * @returns {HTMLDivElement} HTML structure of contact row with colored circlen, name and checkbox.
  */
 function editContactListHTML_addTask(contactId) {
     let contact = contacts_addTask[contactId];
@@ -282,6 +285,11 @@ function setcicleColor_addTask(contactId) {
     cicle.style.backgroundColor = `${color}`;
 }
 
+/**
+ * Change the design of contact row in dependence of selection status.
+ * 
+ * @param {Number} contactId 
+ */
 function renderSelectionStatusLayout_addTask(contactId) {
     let contact = contacts_addTask[contactId];
     if (contact.select_status == true) {
@@ -291,6 +299,11 @@ function renderSelectionStatusLayout_addTask(contactId) {
     } 
 }
 
+/**
+ * Colors the row to mark the Contact is "selected".
+ * 
+ * @param {Number} contactId - Index of Contact in loaded_contacts array
+ */
 function setListContactOnSelect_addTask(contactId) {
     let checkboxImg = document.getElementById(`checkbox_edit_addTask${contactId}`);
     let cicle = document.getElementById(`selected_task_member_addTask${contactId}`);
@@ -300,12 +313,23 @@ function setListContactOnSelect_addTask(contactId) {
     cicle.style.border = 'solid 3px white';
 }
 
+/**
+ * HTML structure of checkbox checked.
+ * 
+ * @param {Number} contactId - Index of Contact in loaded_contacts array
+ * @returns {HTMLDivElement} HTML structure of checked checkbox
+ */
 function checkboxCkeckedHTML(contactId) {
     return /*html */`
         <img onclick="changeSelectionStatusContacts_addTask(${contactId})" src="assets/img/check_button_checked_white.svg">
     `;
 }
 
+/**
+ * Discolored the row to mark the Contact isn't "selected".
+ * 
+ * @param {Number} contactId - Index of Contact in loaded_contacts array
+ */
 function setListContactNotSelect_addTask(contactId) {
     let checkboxImg = document.getElementById(`checkbox_edit_addTask${contactId}`);
     let cicle = document.getElementById(`selected_task_member_addTask${contactId}`);
@@ -315,12 +339,17 @@ function setListContactNotSelect_addTask(contactId) {
     cicle.style.border = 'none';
 }
 
+/**
+ * HTML structure of checkbox unchecked.
+ * 
+ * @param {Number} contactId - Index of Contact in loaded_contacts array.
+ * @returns {HTMLDivElement} HTML structure of unchecked checkbox.
+ */
 function checkboxUnckeckedHTML(contactId) {
     return /*html */`
         <img onclick="changeSelectionStatusContacts_addTask(${contactId})" src="assets/img/check_button_unchecked.svg">
     `;
 }
-
 
 /**
  * On click of Contact change the function the selection status in dependence of current status.

@@ -2,7 +2,9 @@
 
 let prio_addTask = 'Medium';
 
-// show priotity buttons to change content of priority status via click on button
+/**
+ * Shows priotity buttons to change content of priority status via click on button
+ */
 function renderPrioEditDialog_addTask() {
     let container = document.getElementById('addTask_dialog_priority');
     container.innerHTML = prioBtnHTML_addTask();
@@ -15,7 +17,11 @@ function renderPrioEditDialog_addTask() {
     }
 }
 
-// HTML of main structure of priority section in edit dialog
+/**
+ * HTML structure of priority section in edit dialog.
+ * 
+ * @returns {HTMLDivElement}
+ */
 function prioBtnHTML_addTask() {
     return /*html */`
     <div class="header_text_edit_section_Opensans">Priority</div>
@@ -29,8 +35,12 @@ function prioBtnHTML_addTask() {
     `;
 }
 
-// change priority buttons design depending on value of Variable "prio"
-// set global variable "prioStatusEdit" depending on prio
+/**
+ * Changes the priority buttons design depending on value of Variable "prio".
+ * Sets global variable "prioStatusEdit" depending on prio.
+ * 
+ * @param {String} prio - priority as text.
+ */
 function renderPrioButtons_addTask(prio) {
     if (prio == 'Low') {
         setPrioBtnLowActive_addTask()
@@ -42,8 +52,10 @@ function renderPrioButtons_addTask(prio) {
     prio_addTask = prio;
 }
 
-// change priority buttons in edit dialog
-// case low is active
+/**
+ * Changes priority buttons in edit dialog.
+ * Case low is active!
+ */
 function setPrioBtnLowActive_addTask() {
     let urgent_btn = document.getElementById('urgent_btn_addTask');
     let medium_btn = document.getElementById('medium_btn_addTask');
@@ -53,8 +65,10 @@ function setPrioBtnLowActive_addTask() {
     low_btn.innerHTML = lowActivHTML_addTask();
 }
 
-// change priority buttons in edit dialog
-// case medium is active
+/**
+ * Changes priority buttons in edit dialog.
+ * Case medium is active!
+ */
 function setPrioBtnMediumActive_addTask() {
     let urgent_btn = document.getElementById('urgent_btn_addTask');
     let medium_btn = document.getElementById('medium_btn_addTask');
@@ -64,8 +78,10 @@ function setPrioBtnMediumActive_addTask() {
     low_btn.innerHTML = lowInactivHTML_addTask();
 }
 
-// change priority buttons in edit dialog
-// case urgent is active
+/**
+ * Changes priority buttons in edit dialog.
+ * Case urgent is active!
+ */
 function setPrioBtnUrgentActive_addTask() {
     let urgent_btn = document.getElementById('urgent_btn_addTask');
     let medium_btn = document.getElementById('medium_btn_addTask');
@@ -75,8 +91,12 @@ function setPrioBtnUrgentActive_addTask() {
     low_btn.innerHTML = lowInactivHTML_addTask();
 }
 
-// HTML of urgent button in priority section for status "inactive"
-// change font design through specific class and image with color
+/**
+ * HTML of urgent button in priority section for status "inactive"
+ * change font design through specific class and image with color.
+ * 
+ * @returns {HTMLAnchorElement} priority button with colored urgent icon and white background
+ */
 function urgentInactivHTML_addTask() {
     return `
         <a class="urgent_btn_inactive btn_addTask" onclick="renderPrioButtons_addTask('Urgent')">
@@ -86,8 +106,12 @@ function urgentInactivHTML_addTask() {
     `;
 }
 
-// HTML of urgent button in priority section for status "active"
-// change font design through specific class and image with white 
+/**
+ * HTML of urgent button in priority section for status "active"
+ * change font design through specific class and image with white.
+ * 
+ * @returns {HTMLAnchorElement} priority button with white urgent icon/text and red background
+ */
 function urgentActivHTML_addTask() {
     return `
         <a class="urgent_btn_active btn_addTask">
@@ -97,8 +121,12 @@ function urgentActivHTML_addTask() {
     `;
 }
 
-// HTML of medium button in priority section for status "inactive"
-// change font design through specific class and image with color
+/**
+ * HTML of medium button in priority section for status "inactive"
+ * change font design through specific class and image with color
+ * 
+ * @returns {HTMLAnchorElement} priority button with colored medium icon and white background
+ */
 function mediumInactivHTML_addTask() {
     return `
         <a class="medium_btn_inactive btn_addTask" onclick="renderPrioButtons_addTask('Medium')">
@@ -108,8 +136,12 @@ function mediumInactivHTML_addTask() {
     `;
 }
 
-// HTML of medium button in priority section for status "active"
-// change font design through specific class and image with white 
+/**
+ * HTML of medium button in priority section for status "active"
+ * change font design through specific class and image with white 
+ * 
+ * @returns {HTMLAnchorElement} priority button with white medium icon/text and orange background
+ */
 function mediumActivHTML_addTask() {
     return `
         <a class="medium_btn_active btn_addTask">
@@ -119,8 +151,13 @@ function mediumActivHTML_addTask() {
     `;
 }
 
-// HTML of low button in priority section for status "inactive"
-// change font design through specific class and image with color
+
+/**
+ * HTML of low button in priority section for status "inactive"
+ * change font design through specific class and image with color.
+ * 
+ * @returns {HTMLAnchorElement} priority button with colored low icon and white background
+ */
 function lowInactivHTML_addTask() {
     return `
         <a class="low_btn_inactive btn_addTask" onclick="renderPrioButtons_addTask('Low')">
@@ -130,8 +167,12 @@ function lowInactivHTML_addTask() {
     `;
 }
 
-// HTML of low button in priority section for status "active"
-// change font design through specific class and image with white 
+/**
+ * HTML of low button in priority section for status "active"
+ * change font design through specific class and image with white 
+ * 
+ * @returns {HTMLAnchorElement} priority button with white medium icon/text and green background
+ */
 function lowActivHTML_addTask() {
     return `
         <a class="low_btn_active btn_addTask">

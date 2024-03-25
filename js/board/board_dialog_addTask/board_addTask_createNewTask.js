@@ -14,6 +14,12 @@ let newTask = {
     "status": "toDo"
 };
 
+/**
+ * Adds the status to newTask.status. 
+ * It is used by the addTask buttons of the column header.
+ * 
+ * @param {String} status - status of the new task to be created
+ */
 function addStatus(status) {
     newTask.status = status;
 }
@@ -58,6 +64,9 @@ async function initCreateNewTask() {
     await closeDialog(); // @board_dialog_taskdetails.js:25
 }
 
+/**
+ * Hides the toast message box
+ */
 function closeToast() {
     let container = document.getElementById('toastMessageAddTask'); //@board.html:43
     container.classList.add('d-none');
@@ -78,6 +87,12 @@ function saveNewTask() {
     status_newTask();
 }
 
+/**
+ * Starts a timeout.
+ * 
+ * @param {Number} ms 
+ * @returns {}
+ */
 function timeout (ms) {
     return new Promise(res => setTimeout(res,ms));
   }
@@ -121,22 +136,32 @@ function resetNewTask() {
 }
 
 /**
- * 
+ * Adds the value of input from title to newTask.title.
  */
 function title_newTask() {
     let titleInput = document.getElementById('input_title_addTask_dialog');
     newTask.title = titleInput.value;
 }
 
+/**
+ * Adds the value of input from description to newTask.description.
+ */
 function description_newTask() {
     let descriptionInput = document.getElementById('input_description_addTask_dialog');
     newTask.description = descriptionInput.value;
 }
 
+/**
+ * Adds the selected category from selectedCategory to newTask.category.
+ * SelectedCategory is a global variable which is used @board_addTask.js:193 to save the choosen Category.
+ */
 function category_newTask() {
     newTask.category = selectedCategory;
 }
 
+/**
+ * Adds the contacts which are selected for the task to newTask.contacts.
+ */
 function contacts_newTask() {
     for (let i = 0; i < contacts_addTask.length; i++) {
         let contact = contacts_addTask[i];
@@ -151,31 +176,44 @@ function contacts_newTask() {
         }
     }
 }
-
+/**
+ * Adds the due date from Input to newTask.dueDate with the right format dd/mm/yy.
+ */
 function  dueDate_newTask() {
     let duedateInput = document.getElementById('edit_input_dueDate_addTask').value;
     duedateInput = duedateInput.split('-');
-    let year = parseInt(duedateInput[2]); 
+    let year = parseInt(duedateInput[0]); 
     year = year - 2000;
-    let newDate = duedateInput[0] + '/' + duedateInput[1] + '/' + year;
+    let newDate = duedateInput[2] + '/' + duedateInput[1] + '/' + year;
     newTask.dueDate = newDate;
 }
 
+/**
+ * Adds the priority choice from prio_addTask to newTask.priority.
+ * prio_addTask is a global variable @board_addTask_priority.js:3
+ */
 function priority_newTask() {
     newTask.priority = prio_addTask;
 }
 
+/**
+ * Adds the subtasks from new_subtask_addTask_dialog to newTask.subtasks.
+ * new_subtask_addTask_dialog is a global variable @board_addTask_subtask.js:2
+ */
 function subtasks_newTask() {
     if (new_subtask_addTask_dialog.length > 0) {
     newTask.subtasks = new_subtask_addTask_dialog;
     }
 }
 
+/**
+ * Sorts the task into "to do" if the task was added using the "add task" button. 
+ * Otherwise the task will be added to the correct column via the openAddTaskDialog(status) function @board_addTask.js:3.
+ */
 function status_newTask() {
     if(!newTask.status == "toDo") {
         newTask.status = "toDo";
     }
-    console.log(`Der Status ist auf ${newTask.status}`)
 }
 
 

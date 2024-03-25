@@ -1,5 +1,5 @@
 /**
- * Copy of contacts.json file
+ * Copy of contacts global JSON array @storage.js:34
  * 
  * @type {JSON} - 
  */
@@ -14,14 +14,14 @@ let dropdownStatus = false;
 
 
 /**
- * Load the contacts in loaded_contacts array.
+ * Load the contacts of Server in loaded_contacts array.
  * Render the content of Taskcontacts in edit dialog
  * 
  * @param {Number} taskId - Index of current called task in tasks[] global array
  */
 async function renderAssigedToEditDialog(taskId){
-    await loadContacts();
     let container = document.getElementById('assignedTo_section_edit');
+    await loadContacts();
     container.innerHTML = assigedToEditHTML(taskId);
     renderCiclesOfTaskContacts(taskId);
 }
@@ -30,9 +30,8 @@ async function renderAssigedToEditDialog(taskId){
  * Load contacts JSON in loaded_contacts array 
  */
 async function loadContacts() {
-    let source_contacts = await fetch('assets/json/contacts.json'); 
-    source_contacts = await source_contacts.json(); 
-    loaded_contacts = source_contacts;
+    await getContactsFromServer();
+    loaded_contacts = contacts_global;
 }
 
 /**
@@ -50,7 +49,7 @@ function assigedToEditHTML(taskId) {
     <div id="dropdown_main" class="dropdown">
 
         <!-- prompt to select contacts -->
-        <div id="dropdown_text" class="dropdown_text"> 
+        <div id="dropdown_text" class="dropdown_text" onclick="openDropDownList(${taskId})"> 
             Select contacts to assign
         </div>
 
@@ -65,7 +64,7 @@ function assigedToEditHTML(taskId) {
         </a>
     </div>
 
-    <!-- list of contacts for selection to current task -->
+    <!-- dropdownlist of contacts for selection to current task -->
     <div id="selectedContactsSection" class="selectedContacts">
 
     </div>
@@ -107,13 +106,17 @@ function selectedTaskMemberHTML(firstCharacter, secondCharacter, taskId, i) {
     
     `;
 }
-
+/**
+ * Rotate the triangle, change Input/Text and show/hide the dropdownlist of contacts.
+ * 
+ * @param {Number} taskId 
+ */
 function openDropDownList(taskId) {
     rotateArrow();
     changeTextInInput();
     if(dropdownStatus == false) {
-        showContactList(taskId);
         document.getElementById('selectedContactsSection').classList.add('flexDirection');
+        showContactList(taskId);
         dropdownStatus = true;
     } else {
         renderCiclesOfTaskContacts(taskId);
@@ -122,6 +125,10 @@ function openDropDownList(taskId) {
     }
 }
 
+/**
+ * If the dropdownStatus is false (dropdownlist isn't open), the function rotate the triangle icon with the tip up.
+ * If the dropdownStatus is true (dropdownlist is open), the function rotate the triangle icon with the tip down.
+ */
 function rotateArrow() {
     let arrow_section = document.getElementById('dropdown_arrow')
     if (dropdownStatus == false){
@@ -133,7 +140,7 @@ function rotateArrow() {
 }
 
 /**
- * Change the content of dropdown selection section
+ * Change the content of dropdown selection section from Input to Text or reverse.
  */
 function changeTextInInput() {
     let text = document.getElementById('dropdown_text');
@@ -176,15 +183,15 @@ function showContactList(taskId, searchValue) {
 }
 
 /**
- * HTML structure of contact list
+ * HTML structure of contact list.
  * 
- * @param {Number} taskId - Index of current called task in tasks[] global array
- * @param {Number} contactId - Index of contact in loaded_contacts array JSON
- * @returns 
+ * @param {Number} taskId - Index of current called task in tasks[] global array.
+ * @param {Number} contactId - Index of contact in loaded_contacts array JSON.
+ * @returns {HTMLDivElement} HTML structure of contact row with colored circlen, name and checkbox.
  */
 function editContactListHTML(taskId, contactId) {
     let contact = loaded_contacts[contactId].name;
-    return `
+    return /*html */`
         <div onclick="changeSelectionStatus(${taskId}, ${contactId})" id="dropdown_contact${taskId}${contactId}" class="dropdown_contact_row">
             
             <!-- circle & name -->
@@ -202,9 +209,14 @@ function editContactListHTML(taskId, contactId) {
         </div>
     `;
 }
-// deleteContactFromTask('${contact.firstName}', '${contact.secondName}', ${taskId})
-// onclick="deleteContactFromTask('${contact.firstName}', '${contact.secondName}', ${taskId})"
 
+/**
+ * If the contact is containing in the contactlist of task, the Layout of Contact-row is colored.
+ * If the contact isn't contain in the contactlist of task, the Layout of Contact-row isn't colored.
+ * 
+ * @param {Number} taskId - Index of current called task in tasks[] global array
+ * @param {Number} contactId - Index of contact in loaded_contacts array JSON
+ */
 function renderSelectionStatusLayout(taskId, contactId) {
     let contact = loaded_contacts[contactId].name;
     let selectedContactStatus = checkContactSelected(`${contact.firstName}`, `${contact.secondName}`)
@@ -215,6 +227,12 @@ function renderSelectionStatusLayout(taskId, contactId) {
     } 
 }
 
+/**
+ * Colors the row to mark the Contact is "selected".
+ * 
+ * @param {Number} taskId - Index of current called task in tasks[] global array
+ * @param {Number} contactId - Index of contact in loaded_contacts array JSON
+ */
 function setListContactOnSelect(taskId, contactId) {
     let container_checkbox = document.getElementById(`checkbox_edit${taskId}${contactId}`);
     let cicle = document.getElementById(`selected_task_member${taskId}${contactId}`);
@@ -224,10 +242,16 @@ function setListContactOnSelect(taskId, contactId) {
     cicle.style.border = 'solid 3px white';
 }
 
+/**
+ * Discolored the row to mark the Contact isn't "selected".
+ * 
+ * @param {Number} taskId - Index of current called task in tasks[] global array
+ * @param {Number} contactId - Index of contact in loaded_contacts array JSON
+ */
 function setListContactNotSelect(taskId, contactId) {
     let container_checkbox = document.getElementById(`checkbox_edit${taskId}${contactId}`);
     let cicle = document.getElementById(`selected_task_member${taskId}${contactId}`);
-    container_checkbox.innerHTML = `<img onclick="" src="assets/img/check_button_unchecked.svg">`;
+    container_checkbox.innerHTML = `<img src="assets/img/check_button_unchecked.svg">`;
     cicle.style.border = 'none';
 }
 
@@ -358,34 +382,4 @@ function selectContactforTask(taskId, firstName, secondName, color) {
     showContactList(taskId);
 }
 
-/**
- * Finds out which color-class is to choose, because the key: color of contacts[] is hex and the key: color of tasks[].contacts is a class-name.
- * 
- * @param {Number} contactId - Index of Contact in loaded_contacts array
- * @returns {String} Name of Class with the right color Attribute
- */
-// function findOutColorClass(contactId) {
-//     let contact = loaded_contacts[contactId].name;
-//     let firstName = contact.firstName;
-//     let secondName = contact.secondName;
-//     if (firstName == "Anton" && secondName == "Mayer") {
-//         return "orange"
-//     } else if (firstName == "Emmanuel" && secondName == "Mauer") {
-//         return "turquoise"
-//     } else if (firstName == "Marcel" && secondName == "Bauer") {
-//         return "darkslateblue"
-//     } else if (firstName == "David" && secondName == "Eisenberg") {
-//         return "violet"
-//     } else if (firstName == "Benedikt" && secondName == "Ziegler") {
-//         return "mediumslateblue"
-//     } else if (firstName == "Anja" && secondName == "Schulz") {
-//         return "blueviolet"
-//     } else if (firstName == "Eva" && secondName == "Fischer") {
-//         return "yellow"
-//     } else if (firstName == "Tatjana" && secondName == "Wolf") {
-//         return "red"
-//     } else if (firstName == "Sofia" && secondName == "Müller") {
-//         return "deepskyblue"
-//     }
-// }
 

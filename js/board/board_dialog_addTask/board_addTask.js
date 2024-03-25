@@ -1,5 +1,10 @@
-
-
+/**
+ * Opens the Dialog to add a new task.
+ * If the variable is undefined, the status is the status of column where the task is currently 
+ * added with addStatus(status) @board_addTask_createNewTask.js:23
+ * 
+ * @param {String} status - Status of Task
+ */
 async function openAddTaskDialog(status){
     let container = document.getElementById('dialog_container');
     dialog_status = 'addTask';
@@ -12,6 +17,9 @@ async function openAddTaskDialog(status){
     }
 }
 
+/**
+ * Initialises the functions rendering the serveral sections of add task dialog.
+ */
 function renderAddTaskDialog() {
     let container = document.getElementById('task_dialog_container');
     container.innerHTML = addTaskDialogHTML();
@@ -27,7 +35,12 @@ function renderAddTaskDialog() {
     document.getElementById('task_dialog_container').style.paddingTop = '64px';
 }
 
-function addTaskDialogHTML(taskId) {
+/**
+ * HTML structure of add task dialog.
+ * 
+ * @returns {HTMLDivElement}
+ */
+function addTaskDialogHTML() {
     return /*html*/`
     <div class="addTask_dialog_container">
         <!-- header -->
@@ -67,7 +80,10 @@ function addTaskDialogHTML(taskId) {
 
 // *** titel *** //
 
-// show title input to change content of title via inputfield
+
+/**
+ * show title input to change content of title via inputfield
+ */
 function renderTitleAddTaskDialog() {
     let container = document.getElementById('addTask_dialog_title');
     container.innerHTML = `
@@ -77,6 +93,10 @@ function renderTitleAddTaskDialog() {
     `;
 }
 
+/**
+ * Validates the title input whether ther is something added.
+ * Colors the border red and shows a text in case of incorrect input.
+ */
 function checkFormValidation_title_addTask() {
     let titleInput = document.getElementById('input_title_addTask_dialog');
     let errormessage_title = document.getElementById('errormessage_title');
@@ -95,12 +115,20 @@ function checkFormValidation_title_addTask() {
 
 // *** description *** //
 
-// show description input to change content of description via inputfield
+
+/**
+ * Shows the description input to change content of description via inputfield.
+ */
 function renderDescriptionAddTaskDialog() {
     let container = document.getElementById('addTask_dialog_description');
     container.innerHTML = DescriptionEditDialogHTML_addTask();
 }
 
+/**
+ * HTML structure of description textarea
+ * 
+ * @returns {HTMLDivElement} - label and textarea as input
+ */
 function DescriptionEditDialogHTML_addTask() {
     return /*html */ `
     <div class="header_text_edit_section">Description</div>
@@ -116,13 +144,21 @@ function DescriptionEditDialogHTML_addTask() {
 
 // *** due date *** //
 
-// show Due Date input to change content of Due Date via inputfield
+
+/**
+ * show Due Date input to change content of Due Date via inputfield
+ */
 function renderDueDateEditDialog_addTask() {
     let container = document.getElementById('addTask_dialog_duedate');
     // let newDate = changeDueDateFormatInLongYear(taskId)
     container.innerHTML = DueDateEditDialogHTML_addTask();
 }
 
+/**
+ * HTML structure of due date input.
+ * 
+ * @returns {HTMLDivElement}
+ */
 function DueDateEditDialogHTML_addTask() {
     return /*html*/`
         <div class="header_text_edit_section">Due Date<span class="red_star">*</span></div>
@@ -133,12 +169,19 @@ function DueDateEditDialogHTML_addTask() {
     `;
 }
 
+/**
+ * Starts the validation functions für day, month and year of the due date input.
+ */
 function DueDatevalidation_addTask() {
     validationOfDay_addTask();
     validationOfMonth_addTask();
     validationOfYear_addTask();
 }
 
+/**
+ * Validates whether the day is between 1-31 and has 2 digits.
+ * In case of not valide the border turns red and a text message is showen.
+ */
 function validationOfDay_addTask() {
     let inputDate = document.getElementById("edit_input_dueDate_addTask");
     let errormessage_due_date = document.getElementById("errormessage_due_date_addTask");
@@ -154,6 +197,10 @@ function validationOfDay_addTask() {
     }
 }
 
+/**
+ * Validates whether the month is bewteen 1-12 and has 2 digits.
+ * In case of not valide the border turns red and a text message is showen.
+ */
 function validationOfMonth_addTask() {
     let inputDate = document.getElementById("edit_input_dueDate_addTask");
     let errormessage_due_date = document.getElementById("errormessage_due_date_addTask");
@@ -171,6 +218,10 @@ function validationOfMonth_addTask() {
     }
 }
 
+/**
+ * Validates whether the year is more than 2000 and the hole length is not more than 9 characters.
+ * In case of not valide the border turns red and a text message is showen.
+ */
 function validationOfYear_addTask() {
     let inputDate = document.getElementById("edit_input_dueDate_addTask");
     let errormessage_due_date = document.getElementById("errormessage_due_date_addTask");
@@ -195,17 +246,31 @@ function validationOfYear_addTask() {
 // *** Category *** //
 
 let categorys = ["Technical Task", "User Story"];
+
 let selectedCategory = '';
+
 /**
  * Shows whether the dropdown list is open.
- * 
  * @type {boolean}
  */
 let dropdownStatus_category = false;
 
+/**
+ * Initialise building category section
+ */
 function renderCategoryAddTaskDialog() {
     let container = document.getElementById('addTask_dialog_category');
-    container.innerHTML = `
+    container.innerHTML = categoryAddTaskDialogHTML();
+    renderCategories();
+}
+
+/**
+ * HTML structure of category section add task
+ * 
+ * @returns {HTMLDivElement}
+ */
+function categoryAddTaskDialogHTML() {
+    return /*html */`
         <label class="header_text_edit_section">Category<span class="red_star">*</span></label>
         <div class="category_section">
             <div id="category_addTask_section_dropdown">
@@ -218,19 +283,26 @@ function renderCategoryAddTaskDialog() {
             </div>
         </div>
     `;
-    renderCategories();
 }
 
+/**
+ * Shows all caterories in the dropdownlist.
+ */
 function renderCategories() {
     let container = document.getElementById('dropdown_category_addTask');
     for (let i = 0; i < categorys.length; i++) {
         let category = categorys[i];
         container.innerHTML += `
-        <div onclick="selectCategory('${category}')" class="category_name_addTask">${category}</div>
-    `;
+            <div onclick="selectCategory('${category}')" class="category_name_addTask">${category}</div>
+        `;
     }
 }
 
+/**
+ * Saves the choosen category into global selectedCategory array.
+ * 
+ * @param {String} category - category name
+ */
 function selectCategory(category) {
     let text = document.getElementById('category_field_text');
     if (category == `${categorys[0]}`) {
@@ -285,12 +357,19 @@ function rotateArrow_category_addTask() {
 
 // *** Footer add task dialog *** //
 
-
+/**
+ * Shows commit section
+ */
 function renderCommitSection_addTask() {
     let container = document.getElementById('addTask_dialog_createTask');
     container.innerHTML = commitSectionHTML();
 }
 
+/**
+ * HTML structure of clear and "create Task" buttons
+ * 
+ * @returns {HTMLDivElement}
+ */
 function commitSectionHTML() {
     return /*html */`
         <div class="create_clear_task">
@@ -308,25 +387,7 @@ function commitSectionHTML() {
     `;
 }
 
-// *** Clear-Button *** //
+// *** Clear function @ board_addTask_clear *** //
 
-/**
- * Clears the inputs at the dialog and the content of arrays which only served as temporary storage.
- * Reloads the "addTask" dialog.
- */
-function clearInputsAddTaskDialog() {
-    let titleInput = document.getElementById('input_title_addTask_dialog');
-    titleInput.value = '';
-    let descriptionInput = document.getElementById('input_description_addTask_dialog');
-    descriptionInput.value = '';
-    contacts_addTask = [];
-    let duedateInput = document.getElementById('edit_input_dueDate_addTask');
-    duedateInput.value = '';
-    prio_addTask = 'Medium';
-    selectedCategory = '';
-    new_subtask_addTask_dialog = [];
-    renderAddTaskDialog()
-}
-
-// *** Create new Task in board_addTask_createNewTask.js *** //
+// *** Create new Task @ board_addTask_createNewTask.js *** //
 

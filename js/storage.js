@@ -31,6 +31,7 @@ async function getItem(key) {
  */
 let tasks = [];
 
+let contacts_global = [];
 
 /**
  * Load the tasks JSON Array from Server in tasks[]
@@ -41,12 +42,27 @@ async function getTasksFromServer() {
     let newData = JSON.parse(ServerData.data.value);
     tasks = newData;
   }
+
+  async function getContactsFromServer() {
+    let ServerData;
+    ServerData = await getItem("contacts");
+    let newData = JSON.parse(ServerData.data.value);
+    contacts_global = newData;
+  }
   
   /**
    * Push new Content to Server
    */
 async function setTasksToServer() {
      setItem('tasks', tasks);   
+}
+
+/**
+ * 
+ */
+async function setAndGetToServer() {
+  await setTasksToServer();
+  await getTasksFromServer();
 }
 
 /**
