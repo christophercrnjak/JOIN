@@ -13,6 +13,7 @@ body {
   width: 100vw;
   height: 100vh;
   /* z-index: 99; */
+  display: none;
 }
 
 .container {
@@ -27,7 +28,7 @@ body {
   opacity: 0;
 }
 
-.logo {
+.logo_grey {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -35,59 +36,13 @@ body {
   z-index: 100;
 }
 
-@keyframes moveLogoDesktop {
-  from {
-    width: 274px;
-    height: 334px;
-  }
-  to {
-    transform: translate(0%, 0%);
-    top: 72px;
-    left: 64px;
-    width: 100px;
-    height: 122px;
-  }
-}
-
-@keyframes contentVisibilityDesktop {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes moveLogoMobile {
-  from {
-    width: 274px;
-    height: 334px;
-  }
-  to {
-    transform: translate(0%, 0%);
-    top: 40px;
-    left: 40px;
-    width: 100px;
-    height: 122px;
-  }
-}
-
-@keyframes changeLogoSource {
-  from {
-    src: "./assets/img/logo.svg";
-  }
-  to {
-    src: "./assets/img/logo_white_mobile.svg";
-  }
-}
-
-@keyframes contentVisibilityMobile {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+.logo_white {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 101;
+  display: none;
 }
 
 .sign_up {
@@ -218,28 +173,112 @@ hr {
   display: none;
 }
 
+@keyframes moveLogoDesktop {
+  from {
+    width: 274px;
+    height: 334px;
+  }
+  to {
+    transform: translate(0%, 0%);
+    top: 72px;
+    left: 64px;
+    width: 100px;
+    height: 122px;
+  }
+}
+
+@keyframes contentVisibilityDesktop {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes moveLogoMobileGrey {
+  0% {
+    width: 100px;
+    height: 122px;
+  }
+  100% {
+    transform: translate(0%, 0%);
+    top: 40px;
+    left: 40px;
+    width: 64px;
+    height: 78px;
+    z-index: 101;
+  }
+}
+
+@keyframes moveLogoMobileWhite {
+  0% {
+    width: 100px;
+    height: 122px;
+  }
+  100% {
+    transform: translate(0%, 0%);
+    top: 40px;
+    left: 40px;
+    width: 64px;
+    height: 78px;
+    z-index: 100;
+  }
+}
+
+@keyframes changeLogoSource {
+  from {
+    src: "./assets/img/logo.svg";
+  }
+  to {
+    src: "./assets/img/logo_white_mobile.svg";
+  }
+}
+
+@keyframes bgChangeColor {
+  from {
+    background-color: #2a3647;
+  }
+  to {
+    background-color: white;
+  }
+}
+
+@keyframes contentVisibilityMobile {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 @media (min-width: 1000px) {
   .container {
     animation: contentVisibilityDesktop 700ms ease-in-out 700ms both;
   }
 
-  .logo {
+  .logo_grey {
     animation: moveLogoDesktop 700ms ease-in-out 700ms both;
   }
 }
 
 @media (max-width: 1000px) {
-  .logo {
+  .logo_grey {
     width: 64px !important;
     height: 78px;
+    animation: moveLogoMobileGrey 700ms ease-in-out 700ms both;
+  }
+
+  .logo_white {
+    width: 64px !important;
+    height: 78px;
+    display: block;
+    animation: moveLogoMobileWhite 700ms ease-in-out 700ms both;
   }
 
   .container {
-    animation: contentVisibilityMobile 200ms ease-in-out 200ms both;
-  }
-
-  .logo {
-    animation: moveLogoMobile 200ms ease-in-out 200ms both;
+    animation: contentVisibilityMobile 700ms ease-in-out 700ms both;
   }
 
   .sign_up {
@@ -267,6 +306,8 @@ hr {
     bottom: 24px;
   }
 
-.early_mobile_screen {
-  animation: bgChangeColor 700ms ease-in-out 700ms both;
+  .early_mobile_screen {
+    animation: bgChangeColor 700ms ease-in-out 700ms both;
+    display: block;
+  }
 }
