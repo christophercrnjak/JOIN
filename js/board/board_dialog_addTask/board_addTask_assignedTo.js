@@ -146,6 +146,18 @@ function openDropDownList_addTask() {
     }
 }
 
+function closeDropdownList_addTask() {
+    let box_and_dropdown_section = document.getElementById('box_and_dropdown_section')
+    if (dropdownStatus == true) {
+        rotateArrow_addTask();
+        changeTextInInput_addTask();
+        renderCiclesOfTaskContacts_addTask();
+        document.getElementById('selectedContactsSection_addTask').classList.remove('flexDirection');
+        dropdownStatus = false;
+        box_and_dropdown_section.style.boxShadow = 'none';
+    }
+}
+
 /**
  * rotate arrow 200 grad and back
  */

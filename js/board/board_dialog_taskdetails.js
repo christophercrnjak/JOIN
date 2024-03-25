@@ -16,36 +16,6 @@ async function openTaskDetailsDialog(taskId) {
 }
 
 /**
- * Closes the dialog window depending on the dialog status.
- * If the task details are displayed, the dialog window is closed and the Kanban board is displayed.
- * If the dialog to edeting task details is active, the task details are displayed.
- * If the dialog to add a new task is active, the dialog window is closed and the Kanban board is displayed.
- * 
- * @param {Number} taskId - Index of current called task in tasks[] global array
- */
-async function closeDialog(taskId) {
-    // dialog window with task details is open:
-    if(dialog_status == 'taskdetails') {
-        let container = document.getElementById('dialog_container');
-        container.classList.add('d-none');
-        await renderColumnContent(); // @ board_main.js:51
-        dialog_status = 'inactive';
-    } 
-    // dialog window to change task content is open:
-    else if (dialog_status == 'edit') {
-        await renderDialogTask(taskId); 
-        dialog_status = 'taskdetails';
-    } 
-    // dialog window to add new task is open:
-    else if (dialog_status == 'addTask') {
-        let container = document.getElementById('dialog_container');
-        container.classList.add('d-none');
-        await renderColumnContent(); // @ board_main.js:51
-        dialog_status = 'inactive';
-    }
-}  
-
-/**
  * Calls the functions creates the HTML structure of dialog with details of the task.
  * When the dialog to change content is called, the data is loaded from currentTaskContent.
  * 

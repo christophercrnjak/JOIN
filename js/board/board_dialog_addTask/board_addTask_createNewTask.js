@@ -22,7 +22,7 @@ function addStatus(status) {
  * Validates the required inputs, jump to the invalide section/input and mark the border red if the input isn't valide.
  * The function is triggered by pressing the "Create Task" button in add task dialog.
  */
-function validationOfAllInputs() {
+async function validationOfAllInputs() {
     let titleInput = document.getElementById('input_title_addTask_dialog');
     let duedateInput = document.getElementById('edit_input_dueDate_addTask');
     if (titleInput.value == '') {
@@ -40,7 +40,7 @@ function validationOfAllInputs() {
         window.location.hash='addTask_dialog_category';
         document.getElementById('category_addTask_dialog').classList.add('non_valide');
     } else {
-        initCreateNewTask()
+        await initCreateNewTask()
     }
 }
 
@@ -51,13 +51,18 @@ async function initCreateNewTask() {
     saveNewTask();
     await tasks.push(newTask); // @storage.js:32
     await setAndGetToServer(); // @board_main.js:498
-    await toastMessageAddTask();
+    toastMessageAddTask();
     await timeout (1200);
-    let container = document.getElementById('toastMessageAddTask');
-    container.classList.add('d-none');
+    await closeToast();
     resetSettings();
-    closeDialog(); // @board_taskdetails.js:25
+    await closeDialog(); // @board_dialog_taskdetails.js:25
 }
+
+function closeToast() {
+    let container = document.getElementById('toastMessageAddTask'); //@board.html:43
+    container.classList.add('d-none');
+}
+
 
 /**
  * Calls the functions that store the inputs of the "addTask dialog" in the newTask JSON-array.

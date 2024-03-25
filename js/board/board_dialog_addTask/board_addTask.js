@@ -41,12 +41,12 @@ function addTaskDialogHTML(taskId) {
             </div>
         </div>
         <!-- middle -->
-        <div class="addTask_dialog_box_middle">
+        <div class="addTask_dialog_box_middle" onclick="closeDropdownList_addTask()">
             <!-- left -->
             <div class="addTask_dialog_box_content_left">
                 <div id="addTask_dialog_title" class="distance"></div> 
                 <div id="addTask_dialog_description" class="distance"></div>
-                <div id="addTask_dialog_assignedTo" class="distance"></div>
+                <div id="addTask_dialog_assignedTo" class="distance" onclick="doNotClose(event)"></div>
             </div>
             <!-- line -->
             <hr id="line_addTask_dialog">
