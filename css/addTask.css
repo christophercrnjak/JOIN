@@ -1,6 +1,6 @@
 body {
   background-color: var(--bgwhite);
-  height: 100vh;
+  height: 100%;
   width: 100%;
   display: flex;
 }
@@ -17,6 +17,7 @@ body {
   background-color: var(--bgwhite);
   padding-left: 300px;
   height: 93%;
+  margin-bottom: 100px;
 }
 
 .right {  
@@ -279,6 +280,7 @@ input[type="date"]:invalid{
   display: flex;
   justify-content: space-between;
   width: 100%;
+  margin-top: 100px;
 }
 
 .addTask_btns {
@@ -624,9 +626,7 @@ margin-bottom: -10px;
     flex-direction: column;
   }
 
-  .btn_transparent {
-    display: none;
-  }
+  
 }
 
 @media(max-width: 600px) {
