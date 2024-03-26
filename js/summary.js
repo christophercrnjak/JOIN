@@ -1,5 +1,5 @@
 let tasks = [];
-let contacts = [];
+let contacts_summary = [];
 let toDoAmount = 0;
 let inProgressAmount = 0;
 let awaitingFeedbackAmount = 0;
@@ -31,7 +31,7 @@ async function fetchTasks() {
 
 async function fetchContacts() {
   let resp = await fetch("assets/json/contacts.json");
-  contacts = await resp.json();
+  contacts_summary = await resp.json();
 }
 
 function render() {
@@ -131,8 +131,8 @@ function renderUrgentAmount() {
 }
 
 function getUserName() {
-  for (let i = 0; i < contacts.length; i++) {
-    const contact = contacts[i];
+  for (let i = 0; i < contacts_summary.length; i++) {
+    const contact = contacts_summary[i];
     if (contact.lockedIn) {
       let mergedUserName =
         contact.name.firstName + " " + contact.name.secondName;

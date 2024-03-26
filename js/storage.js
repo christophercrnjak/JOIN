@@ -1,6 +1,13 @@
 const STORAGE_TOKEN = "OV30V75C6XC2NMC469UVAT7NWW775KEIDF6SU6PL";
 const STORAGE_URL = `https://remote-storage.developerakademie.org/item`;
 
+/**
+ * Sets key with value on Server with own token.
+ * 
+ * @param {String} key 
+ * @param {String} value 
+ * @returns 
+ */
 async function setItem(key, value) {
   const payload = { key, value, token: STORAGE_TOKEN };
   return fetch(STORAGE_URL, {
@@ -23,14 +30,17 @@ async function getItem(key) {
 }
 
 /**
- * board_main.js fetch the tasks.json file value in tasks[].
- * The Board functions uses then tasks[] as a storage.
- * Later tasks[] has to post in server!
+ * Main task storage for the program.
  * 
  * @type {JSON}
  */
 let tasks = [];
 
+/**
+ * Main contact storage for the program.
+ * 
+ * @type {JSON}
+ */
 let contacts_global = [];
 
 /**
@@ -265,4 +275,5 @@ async function resetStorageOfServer_contacts() {
     }
   ]
   );
+  getContactsFromServer();
 }

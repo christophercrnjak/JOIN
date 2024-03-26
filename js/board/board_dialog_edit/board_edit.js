@@ -19,8 +19,8 @@ function openTaskEdit(taskId) {
 }
 
 // take a copy of current editing task and load in array currentTaskContent to protect the original data of tasks.json
-async function loadEditContent(taskId) {
-    currentTaskContent = tasks[taskId];
+function loadEditContent(taskId) {
+    currentTaskContent = JSON.parse(JSON.stringify(tasks[taskId]));
 }
 
 // delete dialog container content and call functions built edit-content

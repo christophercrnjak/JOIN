@@ -1,4 +1,6 @@
-let contacts = [];
+
+let contacts_addTask = [];
+
 let categorys = ["Technical Task", "User Stroy"];
 
 let selectedFromDropdown = [];
@@ -7,45 +9,42 @@ let pushCategory = [];
 let subtasklists = [];
 
  async function addTaskInit() {
+  await loadContactsServer()
   renderDropList();
   renderCategoryDropDown();
   includeHTML();
+}
+
+async function loadContactsServer() {
+  await getContactsFromServer();
+  contacts_addTask = JSON.parse(JSON.stringify(contacts_global));
 }
 
 // Selected contacts assign
 
 async function renderDropList() {
   // render the drop down menu form the
-  let response = await fetch("assets/json/contacts.json");
-  let responseAsJson = await response.json();
   let dropdown = document.getElementById("dropdown");
-
   dropdown.innerHTML = "";
-  for (let i = 0; i < responseAsJson.length; i++) {
-    let e = responseAsJson[i];
-    dropdown.innerHTML += dropdownHtml(e, [i]);
+  for (let i = 0; i < contacts_addTask.length; i++) {
+    let contact = contacts_addTask[i];
+    dropdown.innerHTML += dropdownHtml(contact, [i]);
   }
 }
 
 function dropdownHtml(dropdownList, i) {
-  return `
-  <a class="dropdown_assign" id="${i}" onclick="selectFromDropdown('${
-    dropdownList["name"]["color"]
-  }', '${dropdownList["name"]["firstName"]}', '${
-    dropdownList["name"]["secondName"]
-  }',${i})">
-    <div class="display_center gap">
-          <div class="member_cicle" style='background-color:${
-            dropdownList["name"]["color"]
-          };'>
-            ${dropdownList["name"]["firstName"].charAt(0)}
-            ${dropdownList["name"]["secondName"].charAt(0)}
-          </div>
-        ${dropdownList["name"]["firstName"]} ${
-    dropdownList["name"]["secondName"]
-  }
-    </div>
-    <div id="selected_img" class="dropdown_img"></div>
+  return /*html */`
+  <a class="dropdown_assign" id="${i}" onclick="selectFromDropdown('${dropdownList["name"]["color"]}', '${dropdownList["name"]["firstName"]}', '${dropdownList["name"]["secondName"]}',${i})">
+      <!-- contact -->
+      <div class="display_center gap">
+            <div class="member_cicle" style='background-color:${dropdownList["name"]["color"]};'>
+              ${dropdownList["name"]["firstName"].charAt(0)}
+              ${dropdownList["name"]["secondName"].charAt(0)}
+            </div>
+          ${dropdownList["name"]["firstName"]} ${dropdownList["name"]["secondName"]}
+      </div>
+      <!-- checkbox -->
+      <div id="selected_img" class="dropdown_img"></div>
   </a>
   `;
 }
@@ -83,6 +82,7 @@ function dropdownHtmlMemberCircle(color, firstName, secondName, i) {
     </div>
   `;
 }
+
 /**
  *  remove the Icon and index form the array selectedFromDropdown  
  * @param {*} firstName 
@@ -104,6 +104,7 @@ function removeFromSelectedItems(firstName, i ) {
   document.getElementById(i).classList.remove('selected');
   selectFromDropdown();
 }
+
 /**
  * The function is for the filtering of the dropdown menu 
  */
@@ -147,7 +148,6 @@ document.addEventListener('click', function(event) {
 function changePriority(priority) {
   resetStyles();
   removePreviousPriority();
-
   if (priority === "urgend") {
     setPriorityStyles(
       "#FF3D00",
