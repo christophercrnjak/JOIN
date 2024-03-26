@@ -4,8 +4,17 @@ let contacts_addTask = [];
 let categorys = ["Technical Task", "User Stroy"];
 
 let selectedFromDropdown = [];
+
 let prio = [];
+
+/**
+ * Contains seleced Category like "Technical Task" through function pushCategoryInTo(element)
+ * 
+ * @type {String}
+ */
 let pushCategory = [];
+
+
 let subtasklists = [];
 
  async function addTaskInit() {
