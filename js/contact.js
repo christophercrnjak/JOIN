@@ -1,7 +1,7 @@
-let person;
+let person = [];
 
 async function init() {
-    getContactsFromServer();
+   await getContactsFromServer();
     person = contacts_global;
     loadContacts();
 }
@@ -157,11 +157,15 @@ function changeBackground(element) {
         element.classList.add('active');
     }, 100);
 }
-function deletePerson(index) {
+async function deletePerson(index) {
     person.splice(index, 1);
     const selectedPersonElement = document.getElementById('selectedPerson');
     selectedPersonElement.innerHTML = '';
     closeDialog();
+    
+    await setContactsToServer();
+    await getContactsFromServer();
+
     loadContacts();
     backMobile();
 }
@@ -186,7 +190,7 @@ function editPerson(index) {
     editPersons.classList.add('open');
 }
 
-function createContact(event) {
+async function createContact(event) {
     event.preventDefault();
 
     let nameInput = document.getElementById('input_name').value;
@@ -226,6 +230,9 @@ function createContact(event) {
             return 0;
         });
 
+        await setContactsToServer();
+        await getContactsFromServer();
+
         loadContacts();
 
         closeDialog();
@@ -246,7 +253,7 @@ function createContact(event) {
 }
 
 
-function saveChanges() {
+async function saveChanges() {
     let selectedPersonIndex = parseInt(document.getElementById('selectedPersonIndex').value);
     let selectedPerson = person[selectedPersonIndex];
     let nameInput = document.getElementById('name').value;
@@ -274,6 +281,9 @@ function saveChanges() {
         });
 
         let updatedIndex = person.findIndex(p => p.name.firstName === firstName && p.name.secondName === secondName);
+
+        await setContactsToServer();
+        await getContactsFromServer();
 
         loadContacts();
 
