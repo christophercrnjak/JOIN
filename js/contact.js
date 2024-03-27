@@ -1,10 +1,8 @@
-let person = [];
+let person;
 
 async function init() {
-    let resp = await fetch('assets/json/contacts.json');
-    person = await resp.json();
-    console.log(person);
-
+    getContactsFromServer();
+    person = contacts_global;
     loadContacts();
 }
 

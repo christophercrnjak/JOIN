@@ -64,7 +64,11 @@ async function getTasksFromServer() {
    * Push new Content to Server
    */
 async function setTasksToServer() {
-     setItem('tasks', tasks);   
+     await setItem('tasks', tasks);   
+}
+
+async function setContactsToServer(){
+    await setItem('contacts', contacts_global);
 }
 
 /**
