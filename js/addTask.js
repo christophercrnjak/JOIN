@@ -1,22 +1,40 @@
-
+/**
+ * Copy of contacts_global (server based contact list)
+ * 
+ * @type {JSON} - Example of one Object: 
+ * 0: 
+ *   lockedIn: false
+ *   mail: "anton@gmail.com"
+ *   name: {firstName: 'Anton', secondName: 'Mayer', color: '#FF7A00'}
+ *   passwor: ""
+ */
 let contacts_addTask = [];
 
+/**
+ * Array with selectable categories
+ * 
+ * @type {Array}
+ */
 let categorys = ["Technical Task", "User Stroy"];
 
-
+/**
+ * Contains the information of the selected contacts such as color, first name and last name
+ * 
+ * @type {JSON} - Example: 0: {color: '#9327FF', firstName: 'Anja', secondName: 'Schulz'}
+ */
 let selectedFromDropdown = [];
 
 /**
  * Contains selected priority like "medium" through function setPriorityStyles(bgColor, textColor, imgSrc, priority)
  * 
- * @type {String}
+ * @type {String} Example: 'medium'
  */
-let prio = [];
+let prio = []; 
 
 /**
- * Contains seleced Category like "Technical Task" through function pushCategoryInTo(element)
+ * Contains seleced Category through the function pushCategoryInTo(element)
  * 
- * @type {String}
+ * @type {String} - Example: 'Technical Task'
  */
 let pushCategory = [];
 
@@ -49,18 +67,18 @@ async function renderDropList() {
   }
 }
 
-function dropdownHtml(dropdownList, i) {
+function dropdownHtml(contact, i) {
   return /*html */`
-  <a class="dropdown_assign" id="${i}" onclick="selectFromDropdown('${dropdownList["name"]["color"]}', '${dropdownList["name"]["firstName"]}', '${dropdownList["name"]["secondName"]}',${i})">
+  <a class="dropdown_assign" id="contact${i}" onclick="selectFromDropdown('${contact["name"]["color"]}', '${contact["name"]["firstName"]}', '${contact["name"]["secondName"]}',${i})">
       <!-- contact -->
       <div class="display_center gap ">
         <div class="member_cicle_main">
-          <div class="member_cicle" style='background-color:${dropdownList["name"]["color"]};'>
-            ${dropdownList["name"]["firstName"].charAt(0)}
-            ${dropdownList["name"]["secondName"].charAt(0)}
+          <div class="member_cicle" style='background-color:${contact["name"]["color"]};'>
+            ${contact["name"]["firstName"].charAt(0)}
+            ${contact["name"]["secondName"].charAt(0)}
           </div>
         </div>
-        <div class="member_name">${dropdownList["name"]["firstName"]} ${dropdownList["name"]["secondName"]}</div>
+        <div class="member_name">${contact["name"]["firstName"]} ${contact["name"]["secondName"]}</div>
       </div> 
       <!-- checkbox -->
       <div class="dropdown_img">
@@ -79,34 +97,43 @@ function dropdownHtml(dropdownList, i) {
  * @param {*} i 
  */
 function selectFromDropdown(color, firstName, secondName, i) {
-  let isSelected = selectedFromDropdown.some(item => item.color === color && item.firstName === firstName && item.secondName === secondName);
+  let isSelected = selectedFromDropdown.some(item => item.color === color && item.firstName === firstName && item.secondName === secondName); // Wenn in selectedFromDropdown ein Objekt mit den übergebenen Variablen übereinstimmt, dann entspricht isSelected gleich den Kontakt
+  let dropdownList = document.getElementById('dropdownList');
   if (isSelected) {
+     // case selected contact is selected (change to unselected)
     removeFromSelectedItems(firstName,i);
     selectedFromDropdown.slice({ color, firstName, secondName });
-    document.getElementById(i).classList.remove('selected');
+    document.getElementById(`contact${i}`).classList.remove('selected');
     dropdownHtmlMemberCircle();
     document.getElementById(`selected_img${i}`).setAttribute('src', 'assets/img/check_button_unchecked.svg');
   } else {
-    let dropdownList = document.getElementById('dropdownList');
+    // case unselected contact is selected (change to selected)
     selectedFromDropdown.push({ color, firstName, secondName });
     dropdownList.innerHTML += dropdownHtmlMemberCircle( color,firstName,secondName,i );
-    document.getElementById(i).classList.add('selected');
+    document.getElementById(`contact${i}`).classList.add('selected');
     document.getElementById(`selected_img${i}`).setAttribute('src', 'assets/img/check_button_checked_white.svg');
   }
 }
 
+
+
 function dropdownHtmlMemberCircle(color, firstName, secondName, i) {
   return `
-    <div onclick="removeFromSelectedItems('${firstName}','${i}')" class="member_cicle" style="background-color:${color};">
-      ${firstName.charAt(0)}
-      ${secondName.charAt(0)}
+    <div class="member_cicle_main">
+      <div onclick="removeFromSelectedItems('${firstName}','${i}')" class="member_cicle" style="background-color:${color};">
+        ${firstName.charAt(0)}
+        ${secondName.charAt(0)}
+      </div>
     </div>
   `;
 }
 
 /**
- *  remove the Icon and index form the array selectedFromDropdown  
- * @param {*} firstName 
+ * Iterates through the array selectedFromDropdown (storage of contacts selected for the task).
+ * Removes the Contact from selectedFromDropdown array which is passed into the function.
+ * 
+ * @param {String} firstName - first Name of choosen contact in the dropdownlist
+ * @param {Number} i - Index of choosen contact in contacts_addTask global array 
  */
 function removeFromSelectedItems(firstName, i ) {
   for (let i = 0; i < selectedFromDropdown.length; i++) {
@@ -150,11 +177,11 @@ function toggledropbtn() {
   let dropdownContent = document.getElementById('dropdown');
 
   if (!dropdownContent.classList.contains("d-none")) {
-    dropdownContent.classList.toggle('show_task');
-    document.getElementById("dropdownInput").classList.toggle("d-none");
-    document.getElementById("dropbtn").classList.toggle("d-none");
-    document.getElementById("arrow").classList.toggle("rotated");
-    document.getElementById('assigned_to_section').classList.toggle('background_and_radius_fitting');
+    dropdownContent.classList.toggle('show_task'); //dropdown-list appear
+    document.getElementById("dropdownInput").classList.toggle("d-none");// input appear
+    document.getElementById("dropbtn").classList.toggle("d-none"); // btn with text disappears
+    document.getElementById("arrow").classList.toggle("rotated"); // triangle rotate to top
+    document.getElementById('assigned_to_section').classList.toggle('background_and_radius_fitting'); // add white background
   }
 }
 document.addEventListener('click', function(event) {

@@ -237,6 +237,10 @@ input[type="date"]:invalid{
   border-radius: 10px;
 }
 
+.selected:hover {
+  background-color: var(--marineblue) !important;
+}
+
 
 .arrow {
   position: absolute;
