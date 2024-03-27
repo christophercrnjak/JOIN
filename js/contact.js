@@ -13,7 +13,7 @@ function loadContacts() {
     let displayedLetters = [];
 
     for (let i = 0; i < person.length; i++) {
-        const currentPerson = person[i];
+        let currentPerson = person[i];
         if (currentPerson.name && currentPerson.name.firstName && currentPerson.name.secondName) {
             let firstLetter = currentPerson.name.firstName.charAt(0).toUpperCase();
             let secondLetter = currentPerson.name.secondName.charAt(0).toUpperCase();
@@ -162,7 +162,7 @@ async function deletePerson(index) {
     const selectedPersonElement = document.getElementById('selectedPerson');
     selectedPersonElement.innerHTML = '';
     closeDialog();
-    
+
     await setContactsToServer();
     await getContactsFromServer();
 

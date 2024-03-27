@@ -9,7 +9,7 @@ body {
 .contacts {
     background-color: white;
     width: 456px;
-    height: 1210px;
+    height: 100vh;
     box-shadow: 4px 0px 6px 0px #00000014;
     margin-left: 232px;
     overflow-y: scroll;
