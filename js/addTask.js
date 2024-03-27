@@ -3,8 +3,14 @@ let contacts_addTask = [];
 
 let categorys = ["Technical Task", "User Stroy"];
 
+
 let selectedFromDropdown = [];
 
+/**
+ * Contains selected priority like "medium" through function setPriorityStyles(bgColor, textColor, imgSrc, priority)
+ * 
+ * @type {String}
+ */
 let prio = [];
 
 /**
@@ -29,7 +35,9 @@ async function loadContactsServer() {
   contacts_addTask = JSON.parse(JSON.stringify(contacts_global));
 }
 
-// Selected contacts assign
+
+// Assigned to 
+
 
 async function renderDropList() {
   // render the drop down menu form the
@@ -45,15 +53,19 @@ function dropdownHtml(dropdownList, i) {
   return /*html */`
   <a class="dropdown_assign" id="${i}" onclick="selectFromDropdown('${dropdownList["name"]["color"]}', '${dropdownList["name"]["firstName"]}', '${dropdownList["name"]["secondName"]}',${i})">
       <!-- contact -->
-      <div class="display_center gap">
-            <div class="member_cicle" style='background-color:${dropdownList["name"]["color"]};'>
-              ${dropdownList["name"]["firstName"].charAt(0)}
-              ${dropdownList["name"]["secondName"].charAt(0)}
-            </div>
-          ${dropdownList["name"]["firstName"]} ${dropdownList["name"]["secondName"]}
-      </div>
+      <div class="display_center gap ">
+        <div class="member_cicle_main">
+          <div class="member_cicle" style='background-color:${dropdownList["name"]["color"]};'>
+            ${dropdownList["name"]["firstName"].charAt(0)}
+            ${dropdownList["name"]["secondName"].charAt(0)}
+          </div>
+        </div>
+        <div class="member_name">${dropdownList["name"]["firstName"]} ${dropdownList["name"]["secondName"]}</div>
+      </div> 
       <!-- checkbox -->
-      <div id="selected_img" class="dropdown_img"></div>
+      <div class="dropdown_img">
+        <img id="selected_img${i}" src="assets/img/check_button_unchecked.svg">
+      </div>
   </a>
   `;
 }
@@ -72,14 +84,14 @@ function selectFromDropdown(color, firstName, secondName, i) {
     removeFromSelectedItems(firstName,i);
     selectedFromDropdown.slice({ color, firstName, secondName });
     document.getElementById(i).classList.remove('selected');
-    document.getElementById('selected_img').classList.remove('selected_img');
     dropdownHtmlMemberCircle();
+    document.getElementById(`selected_img${i}`).setAttribute('src', 'assets/img/check_button_unchecked.svg');
   } else {
     let dropdownList = document.getElementById('dropdownList');
     selectedFromDropdown.push({ color, firstName, secondName });
     dropdownList.innerHTML += dropdownHtmlMemberCircle( color,firstName,secondName,i );
     document.getElementById(i).classList.add('selected');
-    document.getElementById('selected_img').classList.add('selected_img');
+    document.getElementById(`selected_img${i}`).setAttribute('src', 'assets/img/check_button_checked_white.svg');
   }
 }
 
@@ -142,6 +154,7 @@ function toggledropbtn() {
     document.getElementById("dropdownInput").classList.toggle("d-none");
     document.getElementById("dropbtn").classList.toggle("d-none");
     document.getElementById("arrow").classList.toggle("rotated");
+    document.getElementById('assigned_to_section').classList.toggle('background_and_radius_fitting');
   }
 }
 document.addEventListener('click', function(event) {

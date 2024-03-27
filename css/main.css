@@ -163,7 +163,7 @@ input[type="search"] {
 }
 
 input:focus {
-  border-color: var(--blue);
+  border-color: var(--blue) !important;
   outline: var(--blue);
 }
 
