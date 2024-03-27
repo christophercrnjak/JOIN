@@ -1,6 +1,5 @@
 .container_display_flex {
     display: flex;
-    justify-content: space-between;
 }
 
 body {
@@ -433,7 +432,6 @@ input[type="tel"] {
     display: flex;
     margin-top: 32px;
     justify-content: center;
-    align-items: center;
     flex-direction: column;
     transform: translateX(400%);
     transition: transform 300ms ease-in-out;
@@ -463,6 +461,7 @@ input[type="tel"] {
     line-height: 56.4px;
     cursor: unset;
     gap: 6px;
+    padding: 0;
 }
 
 .selected_person .persons_details:hover {

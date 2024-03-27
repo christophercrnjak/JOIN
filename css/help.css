@@ -161,7 +161,7 @@ body {
     .text {
         margin-left: 16px;
         margin-right: 16px;
-        margin-bottom: 55px;
+        margin-bottom: 100px;
     }
     .text_line{
         margin-left: 16px;
@@ -170,8 +170,5 @@ body {
     }
     .text_line p{
         margin: 0;
-    }
-    .end {
-        display: none;
     }
 }
