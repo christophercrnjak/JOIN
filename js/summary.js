@@ -143,9 +143,7 @@ function getUserName() {
 
 function renderUserName() {
   let userNameElement = document.getElementById("user_name");
-  let comma = document.getElementById("comma");
   userNameElement.innerHTML = userName;
-  comma.innerHTML = ",";
 }
 
 function hover(element, newSrc) {

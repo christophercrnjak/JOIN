@@ -14,7 +14,7 @@ function loadContacts() {
 
     for (let i = 0; i < person.length; i++) {
         let currentPerson = person[i];
-        if (currentPerson.name && currentPerson.name.firstName && currentPerson.name.secondName) {
+        if (currentPerson.name && currentPerson.name.firstName) {
             let firstLetter = currentPerson.name.firstName.charAt(0).toUpperCase();
             let secondLetter = currentPerson.name.secondName.charAt(0).toUpperCase();
             if (!displayedLetters.includes(firstLetter)) {
