@@ -47,6 +47,10 @@ h2 {
   font-weight: 400;
 }
 
+.width_67 {
+  min-width: 67px;
+}
+
 main {
   width: 90%;
   gap: 32px;
@@ -83,6 +87,7 @@ main {
 .first_row a {
   width: 50%;
   height: 150px;
+  min-width: 150px;
 }
 
 .task_status:hover {
@@ -147,17 +152,15 @@ hr {
 .third_row {
   height: 33%;
   gap: 28px;
-  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .third_row a {
-  /* height: 175px; */
+  height: 175px;
   width: 33%;
   min-width: 86px;
-  /* width: 192px; */
 }
 
 .welcome_message {
@@ -168,6 +171,10 @@ hr {
   text-align: center;
   font-size: 47px !important;
   font-weight: 500 !important;
+}
+
+.welcome_message span {
+  min-width: 333px;
 }
 
 #user_name {
