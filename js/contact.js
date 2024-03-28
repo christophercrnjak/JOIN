@@ -204,6 +204,10 @@ async function createContact(event) {
     if (nameInput && emailInput && phoneInput) {
         let [firstName, secondName] = nameInput.split(' ');
 
+        if(typeof secondName == 'undefined') {
+            secondName = '';
+        }
+
         let fixedColor = "rgba(255, 199, 0, 1)";
 
         let newContact = {
@@ -293,5 +297,9 @@ async function saveChanges() {
             selectPerson(updatedIndex);
         }
     }
+}
+
+function validateNames(){
+
 }
 
