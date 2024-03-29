@@ -407,6 +407,9 @@ input[type="tel"] {
     margin-left: 8px;
     margin-top: 4px;
 }
+#flexContainer{
+    margin-left: 55px;
+}
 
 .display_center_b .create_button {
     width: 214px;
@@ -959,7 +962,7 @@ svg {
 
     .display_flex {
         display: none;
-
+        margin-left: 0;
     }
 
     .contacts {
@@ -1171,6 +1174,9 @@ svg {
         gap: 8px;
         align-items: center;
         margin-left: 10px;
+    }
+    #flexContainer{
+        margin-left: 0;
     }
 
 }

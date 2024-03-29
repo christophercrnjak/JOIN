@@ -214,6 +214,7 @@ async function resetStorageOfServer_contacts() {
         "color": "#FF7A00"
       },
       "mail": "anton@gmail.com",
+      "phone": "+49 1111 111 11 1",
       "password": "",
       "lockedIn": false
     },
@@ -224,6 +225,7 @@ async function resetStorageOfServer_contacts() {
         "color": "#9327FF"
       },
       "mail": "schulz@hotmail.de",
+      "phone": "+49 1111 111 11 1",
       "password": "",
       "lockedIn": true
     },
@@ -234,6 +236,7 @@ async function resetStorageOfServer_contacts() {
         "color": "#6E52FF"
       },
       "mail": "benedikt@gmail.com",
+      "phone": "+49 1111 111 11 1",
       "password": "",
       "lockedIn": false
     },
@@ -241,9 +244,11 @@ async function resetStorageOfServer_contacts() {
       "name": {
         "firstName": "David",
         "secondName": "Eisenberg",
+        
         "color": "#FC71FF"
       },
       "mail": "davidberg@gmail.com",
+      "phone": "+49 1111 111 11 1",
       "password": "",
       "lockedIn": false
     },
@@ -254,6 +259,7 @@ async function resetStorageOfServer_contacts() {
         "color": "#FFBB2B"
       },
       "mail": "eva@gmail.com",
+      "phone": "+49 1111 111 11 1",
       "password": "",
       "lockedIn": false
     },
@@ -264,6 +270,7 @@ async function resetStorageOfServer_contacts() {
         "color": "#1FD7C1"
       },
       "mail": "emmanuelma@gmail.com",
+      "phone": "+49 1111 111 11 1",
       "password": "",
       "lockedIn": false
     },
@@ -274,6 +281,7 @@ async function resetStorageOfServer_contacts() {
         "color": "#462F8A"
       },
       "mail": "bauer@gmail.com",
+      "phone": "+49 1111 111 11 1",
       "password": "",
       "lockedIn": false
     }
