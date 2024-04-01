@@ -29,7 +29,7 @@ let selectedFromDropdown = [];
  * 
  * @type {String} Example: 'medium'
  */
-let prio = []; 
+let prio = ['medium']; 
 
 /**
  * Contains seleced Category through the function pushCategoryInTo(element)
@@ -194,6 +194,13 @@ document.addEventListener('click', function(event) {
 
 // *** Priority *** //
 
+/**
+ * Resets styles of priority buttons to start style.
+ * Resets the storage of selected priority in prio array.
+ * Sets the colored version of given button.
+ * 
+ * @param {*} priority 
+ */
 function changePriority(priority) {
   resetStyles();
   removePreviousPriority();
@@ -201,21 +208,28 @@ function changePriority(priority) {
     setPriorityStyles(
       "#FF3D00",
       "#ffff",
-      "/assets/img/prio_ungrent.svg",
+      "assets/img/Prio_urgent_white.svg",
       "urgend"
     );
   } else if (priority === "medium") {
     setPriorityStyles(
       "#FFA800",
       "#ffff",
-      "assets/img/prio_medium.svg",
+      "assets/img/Prio_medium_white.svg",
       "medium"
     );
   } else if (priority === "low") {
-    setPriorityStyles("#7AE229", "#ffff", "assets/img/prio_low.svg", "low");
+    setPriorityStyles(
+      "#7AE229", 
+      "#ffff", 
+      "assets/img/Prio_low_white.svg", 
+      "low");
   }
 }
 
+/**
+ * Resets the style of each priority-button to white background, black font-color and a colored image of priority
+ */
 function resetStyles() {
   let btnUrgend = document.getElementById("btnUrgend");
   let btnMedium = document.getElementById("btnMedium");
@@ -231,25 +245,38 @@ function resetStyles() {
   buttons.forEach(function (button) {
     button.style.backgroundColor = "#ffff";
     button.style.color = "black";
+    button.style.fontWeight = "400";
   });
 
   images.forEach(function (image) {
     if (image.id === "btnUrgendImg") {
-      image.src = "assets/img/Priority_symbols_Urgent.png";
+      image.src = "assets/img/Prio_urgent_color_origin.svg";
     } else if (image.id === "btnMediumImg") {
-      image.src = "assets/img/Priority_symbols_Medium.png";
+      image.src = "assets/img/Prio_medium_white.svg";
     } else if (image.id === "btnLowImg") {
-      image.src = "assets/img/Priority_symbols_Low.png";
+      image.src = "assets/img/Prio_low_color_origin.svg";
     }
   });
 }
 
+/**
+ * Delets the last Element of array prio.
+ */
 function removePreviousPriority() {
   if (prio.length > 0) {
     prio.pop();
   }
 }
 
+/**
+ * Changes the background-color, the font-color and imgae source depending on the given values.
+ * Pushes the priority to prio array.
+ * 
+ * @param {String} bgColor - background-color like "#FFA800"
+ * @param {String} textColor - text-color like "#ffff"
+ * @param {String} imgSrc - relaited source to image like "assets/img/prio_medium.svg"
+ * @param {String} priority - priority-name like "medium"
+ */
 function setPriorityStyles(bgColor, textColor, imgSrc, priority) {
   let button = document.getElementById(
     "btn" + priority.charAt(0).toUpperCase() + priority.slice(1)
@@ -260,6 +287,7 @@ function setPriorityStyles(bgColor, textColor, imgSrc, priority) {
 
   button.style.backgroundColor = bgColor;
   button.style.color = textColor;
+  button.style.fontWeight = "700";
   image.src = imgSrc;
 
   prio.push(priority);

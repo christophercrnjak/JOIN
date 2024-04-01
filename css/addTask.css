@@ -117,10 +117,9 @@ input[type="date"]:invalid{
   color: #e4e2e2 !important;
 }
 
-
+/* Priority */
 
 .btn_addTask {
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -131,6 +130,7 @@ input[type="date"]:invalid{
   width: 120px;
   border-radius: 10px;
 }
+
 #btnUrgrend img{
  margin-left:6px;
 }
@@ -141,6 +141,12 @@ input[type="date"]:invalid{
 
 .btn_gab img {
   margin-left: 8px;
+}
+
+#btnMedium {
+  background-color: #FFA800;
+  color: #ffff;
+  font-weight: 700;
 }
 
 /* Stil für das Dropdown-Menü */
