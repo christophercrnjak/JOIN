@@ -178,12 +178,10 @@ function take_over_new_content_of_Task_addTask() {
  */
 function changeAddIconSubtaskInputEdit_addTask() {
     let container = document.getElementById('buttons_subtask_edit_addTask');
-    subtask_status_addTask = !subtask_status_addTask;
-    if (subtask_status_addTask == true) {
+    if (subtask_status_addTask == false) {
         container.innerHTML = ckeck_or_close_HTML_addTask();
-    } else {
-        container.innerHTML = add_subtask_plusHTML_addTask();
-    }
+        subtask_status_addTask = true
+    } 
 }
 
 /**

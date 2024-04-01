@@ -24,7 +24,7 @@
     font-size: 16px;
     font-weight: 400;
     padding: 20px 12px 40px 21px;
-    cursor: pointer;
+    cursor: auto;
 }
 
 #input_description_addTask_dialog::placeholder {
@@ -164,7 +164,7 @@
     color: black;
     font-size: 16px;
     font-weight: 400;
-    cursor: pointer;
+    cursor: auto;
     position: relative;
 }
 
