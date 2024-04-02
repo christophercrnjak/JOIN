@@ -14,6 +14,7 @@ body {
     margin-left: 232px;
     overflow-y: scroll;
     margin-top: 96px;
+    padding-bottom: 24px;
 }
 
 .add {
@@ -971,6 +972,8 @@ svg {
         display: flex;
         justify-content: center;
         overflow-y: unset;
+        height: 100%;
+        padding-bottom: 80px;
     }
 
     .contact_list {
