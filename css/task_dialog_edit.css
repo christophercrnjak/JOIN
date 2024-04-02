@@ -29,7 +29,8 @@
     
 }
 
-#errormessage_title {
+
+.errormessage_title {
     font-size: 12px;
     font-weight: 400;
     color: #FF8190;

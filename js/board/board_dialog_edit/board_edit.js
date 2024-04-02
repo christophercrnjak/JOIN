@@ -71,7 +71,7 @@ function renderTitleEditDialog(taskId) {
     container.innerHTML = `
         <label class="header_text_edit_section" for="title_edit" >Titel</label>
         <input onkeyup="checkFormValidation_title()" onfocusout="checkFormValidation_title()" value="${title}" id="title_edit" name="title_edit" type="text" placeholder="Enter a Title">
-        <div id="errormessage_title"></div>
+        <div class="errormessage_title" id="errormessage_title"></div>
     `;
 }
 

@@ -28,8 +28,11 @@
       <!-- section add task -->
       <!-- First section  -->
       <section class="addTaskForm">
+        <div class="title_section">
           <div class="title_head">Title<span>*</span></div>
-          <input id="titleAddtask" class="border inputtextfield" type="text" placeholder="Enter a title" required>
+          <input onfocusout="validation('titleAddtask', 'validation_text_title')" id="titleAddtask" class="border inputtextfield" type="text" placeholder="Enter a title" required>
+          <div class="errormessage d-none" id="validation_text_title">This field is required</div>
+        </div>
           <div class="description_head">Description</div>
           <textarea id="description" class="border inputtextfield" placeholder="Enter a Description"></textarea>
           <div class="assign_head">Assigned to </div>
@@ -47,9 +50,12 @@
       <section class="addTaskForm right">
         
         <!-- Due Date  -->
-        <div class="date_head">Due date<span>*</span></div>
-        <input type="date" class="border" id="AddTaskDate" placeholder="DD/MM/YYYY" required>
-        
+        <div class="due_date_section">
+          <div class="date_head">Due date<span>*</span></div>
+          <input onfocusout="validation('AddTaskDate', 'validation_text_due_date')" type="date" class="border" id="AddTaskDate" placeholder="DD/MM/YYYY" required>
+          <div class="errormessage d-none" id="validation_text_due_date">This field is required</div>
+        </div>
+
         <!-- Priority  -->
         <div class="prio_head">Prio</div>
         <div class="btn_addTask_list" id="btnAddTaskPrio">
@@ -62,6 +68,7 @@
         <div class="category">
             <div class="category_head">Category<span>*</span></div>
             <div class="dropdown_category border inputtextfield" id="categoryDropDownBtn" onclick="categoryDropDownBtn()">Select task category</div>
+            <div class="errormessage d-none" id="validation_text_category">This field is required</div>
             <div id="dropdownCategory" class="dropdown_content_category border"></div>    
         </div> 
         
@@ -84,7 +91,7 @@
       <p><span>*</span>This Field is required</p>
       <div class="addTask_btns">
         <button class="btn_transparent addTask_btn btn_gab" onclick="removeAllInputes()">Clear <div class="btn_claer"></div></button>
-        <button class="btn_grey addTask_btn display_centerss btn_gab"> Create Task <img src="/assets/img/check.png"></button>
+        <button class="btn_grey addTask_btn display_centerss btn_gab" onclick="validateInputs()"> Create Task <img src="/assets/img/check.png"></button>
       </div>
     </div>
     
