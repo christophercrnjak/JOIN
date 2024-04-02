@@ -78,11 +78,13 @@
         <div class="subtasks_head">Subtasks</div>
         <div class="subtask_button_container">
           <div class= "subtaskIcons" id="subtaskIcons" onclick="ChangeToSubtasks()"></div>
-          <div class= "subtaskIcons d-none" id="subtaskIconsDelete" onclick="deleteSubTasks()"></div>
-          <div class= "d-none" id="subtaskI">|</div>
-          <div class= "subtaskIcons d-none" id="subtaskIconsCheck" onclick="pushToSubtasks()"></div> 
+          <div id="delet_and_check_section" class="d-none">
+            <div class= "subtaskIcons" id="subtaskIconsDelete" onclick="deleteSubTasks()"></div>
+            <div id="subtaskI">|</div>
+            <div class= "subtaskIcons" id="subtaskIconsCheck" onclick="pushToSubtasks()"></div> 
+          </div>
         </div>
-        <input type="text" class="subtasksInput inputtextfield" id="subtasksInput" placeholder="Add new Subtask">
+        <input type="text" onkeyup="ChangeToSubtasks()" class="subtasksInput inputtextfield" id="subtasksInput" placeholder="Add new Subtask">
         <div id="subtasklist"></div>
       </section>
 

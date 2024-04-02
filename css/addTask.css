@@ -457,15 +457,64 @@ input[type='checkbox'] {
 
 /* Subtask */
 
+#delet_and_check_section {
+  display: flex;
+}
+
+.line {
+  background-color: #D1D1D1;
+  height: 100%;
+  width: 1px;
+  margin-left: 8px;
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.point {
+  padding-left: 20px;
+  color: #000 !important;
+  }
+
+.pencil_and_trash_new_subtask {
+  display: flex;
+  height: 24px;
+  margin-right: 16px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+.edit_pencil {
+  display: flex;
+  align-items: center;
+}
+.trash {
+  display: flex;
+  align-items: center;
+}
+.edit_pencil:hover {
+  cursor: pointer;
+}
+.edit_pencil:hover path{
+  fill: var(--blue);
+}
+.trash:hover path {
+  fill: var(--blue);
+}
+.trash:hover {
+  cursor: pointer;
+}
+#subtasklist {
+  margin-top: 8px;
+}
+
 .subtasklist_element {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 360px;
   font-size: 16px;
-  background-position: right 10px center;
-  background-repeat: no-repeat;
-  padding: 10px 5px 12px 10px;
+  padding: 6px 0 6px 10px;
+  font-weight: 400;
 }
 
 .subtasklist_element:hover {
@@ -507,6 +556,10 @@ margin-bottom: -10px;
   background-repeat: no-repeat;
   height: 25px;
   width: 25px;
+}
+
+.new_subtask_edit_main {
+  background-color: white;
 }
 
 .btn_claer {
