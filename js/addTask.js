@@ -299,6 +299,7 @@ function setPriorityStyles(bgColor, textColor, imgSrc, priority) {
 function categoryDropDownBtn(event) {
   let dropdownCategory = document.getElementById("dropdownCategory");
   dropdownCategory.classList.toggle("show");
+  document.getElementById('btn_and_dropdown_section').classList.toggle('border_button')
 }
 
 document.addEventListener('click', function(event) {
