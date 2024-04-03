@@ -17,7 +17,7 @@
         height: fit-content;
         border-radius: 30px;
         background-color: white;
-        padding: 48px 40px 48px 40px;
+        padding: 48px 40px 0px 40px;
         max-height: 95%;
         overflow: auto;
         right: -525px;
@@ -193,6 +193,8 @@
             width: 100%;
             display: flex;
             margin-top: 24px;
+            margin-bottom: 32px;
+            position: sticky;
         }
 
             .delete_and_edit {

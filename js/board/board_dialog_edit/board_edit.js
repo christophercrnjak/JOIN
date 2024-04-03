@@ -40,6 +40,7 @@ function renderEditDialog(taskId) {
 // HTML of main structure of edit dialog
 function editDialogHTML(taskId) {
     return /*html*/`
+    <div onclick="closeDropdownList(${taskId})">
         <div id="close_section_edit" class="distance">
             <a onclick="closeDialog(${taskId})" class="close">
                 <div class="line horizontal"></div>
@@ -50,14 +51,14 @@ function editDialogHTML(taskId) {
         <div id="description_section_edit" class="distance"></div>
         <div id="dueDate_section_edit" class="distance"></div>
         <div id="prio_section_edit" class="distance"></div>
-        <div id="assignedTo_section_edit" class="distance flexDirection"></div>
-        <div id="subtask_section_edit" class="distance flexDirection"></div>
-        <div id="ok_section_edit" class="distance">
-            <a onclick="confirmInputsOfEditDialog(${taskId})" class="confirm_btn_edit">
-            Ok <img src="assets/img/check.svg">
-            </a>
-        </div>
-    
+        <div id="assignedTo_section_edit" class="distance flexDirection" onclick="doNotClose(event)"></div>
+        <div id="subtask_section_edit" class="distance flexDirection"></div>    
+    </div>
+    <div id="ok_section_edit" class="distance">
+        <a onclick="confirmInputsOfEditDialog(${taskId})" class="confirm_btn_edit">
+        Ok <img src="assets/img/check.svg">
+        </a>
+    </div>
     `;
 }
 

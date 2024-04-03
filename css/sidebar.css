@@ -27,6 +27,11 @@
     padding-right: 20px;
 }
 
+#navbarHeadIcon:hover {
+    background-color: rgb(232, 232, 232);
+}
+
+
 .headnavbar_icon {
     display: flex;
     align-items: center;

@@ -248,13 +248,14 @@ function subtaskDialogHTML(taskId, subtaskId, subtaskContent) {
  * @param {Number} taskId - Index of current called task in tasks[] global array.
  * @param {Number} subtaskId - Index of current subtask
  */
-function changeSubtaskStatus(taskId, subtaskId) {
+async function changeSubtaskStatus(taskId, subtaskId) {
     let subtaskStatus = tasks[taskId].subtasks[subtaskId].done;
     if (subtaskStatus == true) {
         tasks[taskId].subtasks[subtaskId].done = false;
     } else {
         tasks[taskId].subtasks[subtaskId].done = true;
     }
+    await setAndGetToServer();
     renderSubtasksDialog(taskId);
     renderSubtaskAmounts(taskId);
 }

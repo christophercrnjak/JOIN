@@ -24,11 +24,6 @@
 
 /***** Title Section *****/
 
-#title_section_edit {
-    cursor: pointer;
-    
-}
-
 
 .errormessage_title {
     font-size: 12px;
@@ -71,7 +66,7 @@
     font-size: 16px;
     font-weight: 400;
     padding: 20px 12px 40px 21px;
-    cursor: pointer;
+    cursor: auto;
 }
 
 #description_section_edit textarea::placeholder {
@@ -216,15 +211,18 @@
         align-items: center;
         cursor: pointer;
         position: relative;
+        flex-direction: column;
+        border-end-end-radius: 10px;
+            border-bottom-left-radius: 10px;
     }
 
         .dropdown_text {
             color: black;
             border-radius: 10px;
             border: 1px solid #ccc;
-            font-size: 20px;
+            font-size: 16px;
             font-weight: 400;
-            padding: 14.5px 0px 14.5px 16px;
+            padding: 7.5px 0px 7.5px 16px;
             width: 100%;
             cursor: pointer;
         }
@@ -243,7 +241,7 @@
                 background-image: none;
                 width: 100%;
                 border-radius: 10px;
-                padding: 12px 56px 12px 21px;
+                padding: 7.5px 56px 7.5px 21px;
                 color: black;
                 font-size: 16px;
                 font-weight: 400;
@@ -259,19 +257,29 @@
             width: 24px;
             height: 24px;
             position: absolute;
-            top: 12px;
+            top: 7px;
             right: 16px;
             bottom: 12px;
+        }
+
+        .dopdown_img_inactive:hover {
+            background-color: rgb(235, 235, 235);
+            border-radius: 20px;
         }
 
         .selectedContacts {
             width: 100%;
             display: flex;
             padding-top: 8px;
-            max-height: 113px;
-            overflow: auto;
+            padding-right: 12px;
+            max-height: 336px;
+            overflow-x: auto;
             gap: 8px;
-            border-radius: 10px;
+            z-index: 1;
+            background-color: white;
+            border-end-end-radius: 10px;
+            border-bottom-left-radius: 10px;
+            
         }
 
             .dropdown_contact_row {
@@ -341,11 +349,16 @@
                     cursor: pointer;
                 }
 
+                .checkbox_edit:hover a path  {
+                    stroke: var(--bgdarkblue);
+                }
+
 
 /***** Subtask Section *****/
 
 #subtask_section_edit {
     margin-top: 30px;
+    margin-bottom: 113px;
 }
 
 .input_section_edit_subtask {
@@ -542,6 +555,11 @@
     display: flex;
     width: 100%;
     justify-content: end;
+    position: sticky;
+    bottom: 0;
+    z-index: 1000; /* Stellen Sie sicher, dass der OK-Bereich über anderen Inhalten liegt */
+    background-color: white; 
+    margin-bottom: 0;
 }
 
 .confirm_btn_edit {
@@ -554,6 +572,8 @@
     width: fit-content;
     border-radius: 10px;
     cursor: pointer;
+    margin-bottom: 32px;
+    margin-top: 24px;
 }
 
 .confirm_btn_edit:hover {

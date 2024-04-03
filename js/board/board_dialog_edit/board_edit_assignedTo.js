@@ -62,12 +62,11 @@ function assigedToEditHTML(taskId) {
         <a class="dopdown_img_inactive" id="dropdown_arrow" onclick="openDropDownList(${taskId})">
             <img src="assets/img/arrowDropDown.svg">
         </a>
+         <!-- dropdownlist of contacts for selection to current task -->
+        <div id="selectedContactsSection" class="selectedContacts"></div>
     </div>
 
-    <!-- dropdownlist of contacts for selection to current task -->
-    <div id="selectedContactsSection" class="selectedContacts">
-
-    </div>
+   
     `;
 }
 
@@ -112,17 +111,28 @@ function selectedTaskMemberHTML(firstCharacter, secondCharacter, taskId, i) {
  * @param {Number} taskId 
  */
 function openDropDownList(taskId) {
+    let dropdown_section = document.getElementById('selectedContactsSection');
+    let main_section = document.getElementById('dropdown_main');
     rotateArrow();
     changeTextInInput();
     if(dropdownStatus == false) {
-        document.getElementById('selectedContactsSection').classList.add('flexDirection');
+        dropdown_section.classList.add('flexDirection');
+        main_section.style.boxShadow = '0px 8px 16px 0px rgba(0, 0, 0, 0.2)';
         showContactList(taskId);
         dropdownStatus = true;
+
     } else {
         renderCiclesOfTaskContacts(taskId);
-        document.getElementById('selectedContactsSection').classList.remove('flexDirection');
+        dropdown_section.classList.remove('flexDirection');
         dropdownStatus = false;
+        main_section.style.boxShadow = 'none';
     }
+}
+
+function closeDropdownList(taskId) {
+    renderCiclesOfTaskContacts(taskId);
+    document.getElementById('selectedContactsSection').classList.remove('flexDirection');
+    dropdownStatus = false;
 }
 
 /**
@@ -237,7 +247,12 @@ function setListContactOnSelect(taskId, contactId) {
     let container_checkbox = document.getElementById(`checkbox_edit${taskId}${contactId}`);
     let cicle = document.getElementById(`selected_task_member${taskId}${contactId}`);
     let container_dropdown_contact = document.getElementById(`dropdown_contact${taskId}${contactId}`);
-    container_checkbox.innerHTML = `<img src="assets/img/check_button_checked_white.svg">`;
+    container_checkbox.innerHTML = `
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17 8V14C17 15.6569 15.6569 17 14 17H4C2.34315 17 1 15.6569 1 14V4C1 2.34315 2.34315 1 4 1H12" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        <path d="M5 9L9 13L17 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    `;
     container_dropdown_contact.classList.toggle('contactOfTask');
     cicle.style.border = 'solid 3px white';
 }
