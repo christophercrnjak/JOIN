@@ -18,6 +18,13 @@ let contacts_addTask = [];
 let categorys = ["Technical Task", "User Stroy"];
 
 /**
+ * Contains seleced Category through the function pushCategoryInTo(element)
+ * 
+ * @type {String} - Example: 'Technical Task'
+ */
+let pushCategory = [];
+
+/**
  * Contains the information of the selected contacts such as color, first name and last name
  * 
  * @type {JSON} - Example: 0: {color: '#9327FF', firstName: 'Anja', secondName: 'Schulz'}
@@ -31,12 +38,7 @@ let selectedFromDropdown = [];
  */
 let prio = ['medium']; 
 
-/**
- * Contains seleced Category through the function pushCategoryInTo(element)
- * 
- * @type {String} - Example: 'Technical Task'
- */
-let pushCategory = [];
+
 
 
 let subtasklists = [];
@@ -68,8 +70,14 @@ async function renderDropList() {
   }
 }
 
+/**
+ * 
+ * @param {JSON} contact 
+ * @param {Number} i 
+ * @returns 
+ */
 function dropdownHtml(contact, i) {
-  return /*html */`
+  return `
   <a class="dropdown_assign" id="contact${i}" onclick="selectFromDropdown('${contact["name"]["color"]}', '${contact["name"]["firstName"]}', '${contact["name"]["secondName"]}',${i})">
       <!-- contact -->
       <div class="display_center gap ">
@@ -185,6 +193,7 @@ function toggledropbtn() {
     document.getElementById('assigned_to_section').classList.toggle('background_and_radius_fitting'); // add white background
   }
 }
+
 document.addEventListener('click', function(event) {
   let dropdownContent = document.getElementById('dropdown');
   if (!event.target.closest('.dropdown') && !dropdownContent.contains(event.target)) {
@@ -526,6 +535,7 @@ function validateCategory() {
     return false;
   }
 }
+
 
 function createNewTask() {
   console.log('Task ist erstellt!');
