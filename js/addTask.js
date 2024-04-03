@@ -46,6 +46,7 @@ let subtasklists = [];
   renderDropList();
   renderCategoryDropDown();
   includeHTML();
+  changePriority('medium')
 }
 
 async function loadContactsServer() {
@@ -199,7 +200,7 @@ document.addEventListener('click', function(event) {
  * Resets the storage of selected priority in prio array.
  * Sets the colored version of given button.
  * 
- * @param {*} priority 
+ * @param {String} priority - name of priority like 'medium'
  */
 function changePriority(priority) {
   resetStyles();
@@ -252,7 +253,7 @@ function resetStyles() {
     if (image.id === "btnUrgendImg") {
       image.src = "assets/img/Prio_urgent_color_origin.svg";
     } else if (image.id === "btnMediumImg") {
-      image.src = "assets/img/Prio_medium_white.svg";
+      image.src = "assets/img/Prio_medium_color_origin.svg";
     } else if (image.id === "btnLowImg") {
       image.src = "assets/img/Prio_low_color_origin.svg";
     }
