@@ -358,7 +358,6 @@
 
 #subtask_section_edit {
     margin-top: 30px;
-    margin-bottom: 113px;
 }
 
 .input_section_edit_subtask {
@@ -553,13 +552,14 @@
 
 #ok_section_edit {
     display: flex;
-    width: 100%;
+    width: 108%;
     justify-content: end;
     position: sticky;
     bottom: 0;
-    z-index: 1000; /* Stellen Sie sicher, dass der OK-Bereich über anderen Inhalten liegt */
-    background-color: white; 
+    z-index: 1000;
+    background-color: white;
     margin-bottom: 0;
+    margin-left: -18px;
 }
 
 .confirm_btn_edit {
@@ -574,6 +574,7 @@
     cursor: pointer;
     margin-bottom: 32px;
     margin-top: 24px;
+    margin-right: 15px;
 }
 
 .confirm_btn_edit:hover {
