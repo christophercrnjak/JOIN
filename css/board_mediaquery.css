@@ -65,7 +65,13 @@
     }
     .add_task_btn_mobile {
         display: flex;
+        margin-top: 46px;
     }
+
+    .header_text {
+        margin-top: 48px !important;
+    }
+
     .add_task_btn {
         display: none;
     }
@@ -169,15 +175,22 @@
         width: 32px;
         height: 39.02px;
     }
+
+   
     
     #navbarHeadIcon {
         width: 40px;
         height: 40px;
     }
 
-    .column_head_add_btn_mobile svg{
+    .column_head_add_btn_mobile{
         width: 30px;
         height: 30px;
+    }
+
+    .column_head_add_btn_mobile svg{
+        width: 100%;
+        height: 100%;
     }
 
     .no_task {
