@@ -33,8 +33,10 @@ function handleLogIn() {
   }, 1000);
 }
 
-function handleGuestLogIn() {
+async function handleGuestLogIn() {
   window.location.href = "summary.html";
+  currentUser = 'Guest';
+  await saveCurrentUserOnServer();
 }
 
 async function loadUsers() {
