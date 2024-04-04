@@ -44,6 +44,13 @@ let tasks = [];
 let contacts_global = [];
 
 /**
+ * Contains the user which is loged in.
+ * 
+ * @type {JSON}
+ */
+let currentUser = [];
+
+/**
  * Load the tasks JSON Array from Server in tasks[]
  */
 async function getTasksFromServer() {

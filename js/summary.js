@@ -1,4 +1,3 @@
-let tasks = [];
 let contacts_summary = [];
 let toDoAmount = 0;
 let inProgressAmount = 0;
@@ -7,7 +6,7 @@ let doneAmount = 0;
 let allAmounts = 0;
 let urgentAmount = 0;
 let nextDueDate;
-let userName;
+
 
 async function init() {
   await fetchTasks();
@@ -15,14 +14,18 @@ async function init() {
   calcTaskAmount();
   calcSumOfAmounts();
   calcUrgentAmount();
-  getUserName();
   getNextDueDate();
   render();
 }
 
+function setUser() {
+  
+}
+
 async function fetchTasks() {
-  let resp = await fetch("assets/json/tasks.json");
-  tasks = await resp.json();
+  // let resp = await fetch("assets/json/tasks.json");
+  // tasks = await resp.json();
+
   tasks = tasks.map((task) => {
     let [DD, MM, YY] = task.dueDate.split("/");
     return { ...task, dueDate: new Date(`20${YY}-${MM}-${DD}`) };
@@ -130,20 +133,12 @@ function renderUrgentAmount() {
   urgentAmountElement.innerHTML = urgentAmount;
 }
 
-function getUserName() {
-  for (let i = 0; i < contacts_summary.length; i++) {
-    const contact = contacts_summary[i];
-    if (contact.lockedIn) {
-      let mergedUserName =
-        contact.name.firstName + " " + contact.name.secondName;
-      userName = mergedUserName;
-    }
-  }
-}
-
 function renderUserName() {
   let userNameElement = document.getElementById("user_name");
-  userNameElement.innerHTML = userName;
+  if (currentUser.length === 0) {
+    userNameElement.innerHTML = `Guest`;
+  } else {
+  userNameElement.innerHTML = `${currentUser.name.firstName} ${currentUser.name.secondName}`;}
 }
 
 function hover(element, newSrc) {

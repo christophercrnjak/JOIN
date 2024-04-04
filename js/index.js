@@ -13,7 +13,7 @@ let users = [];
 
 let mail = document.getElementById("mail");
 let password = document.getElementById("password");
-let currentUser = [];
+
 
 // document.addEventListener("DOMContentLoaded", init);
 
@@ -50,6 +50,7 @@ function checkExistingUser() {
   for (let i = 0; i < users.length; i++) {
     const user = users[i];
     if (user.mail == mail.value && user.password == password.value) {
+      currentUser = [];
       currentUser.push(`${user}`)
     }
   }
