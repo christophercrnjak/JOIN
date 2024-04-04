@@ -1,4 +1,16 @@
+/**
+ * @type {JSON} - like:
+ * 0: 
+ *    lockedIn: false
+ *    mail: "triam90@gmx.de"
+ *    name:
+ *       color: "#ff4646"
+ *       firstName: "Richard"
+ *       secondName: "Wezel"
+ *       password: "bumsfallera90"
+ */
 let users = [];
+
 let mail = document.getElementById("mail");
 let password = document.getElementById("password");
 let currentUser = [];
@@ -29,7 +41,10 @@ function handleGuestLogIn() {
 
 async function loadUsers() {
   try {
-    users = JSON.parse(await getItem("users"));
+    let ServerData;
+    ServerData = await getItem("users");
+    let newData = JSON.parse(ServerData.data.value);
+    users = newData;
   } catch (e) {
     console.warn("Could not load users!");
   }

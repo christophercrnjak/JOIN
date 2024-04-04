@@ -17,7 +17,10 @@ async function init() {
 
 async function loadUsers() {
   try {
-    users = JSON.parse(await getItem("users"));
+    let ServerData;
+    ServerData = await getItem("users");
+    let newData = JSON.parse(ServerData.data.value);
+    users = newData;
   } catch (e) {
     console.warn("Could not load users!");
   }
@@ -38,7 +41,7 @@ async function register() {
       password: password.value,
       lockedIn: false,
     });
-    await setItem("users", JSON.stringify(users));
+    await setItem("users", users);
     resetForm();
     registerSuccessfull.classList.remove("d-none");
     registerSuccessfull.innerHTML = "You Signed Up successfully";

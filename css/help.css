@@ -24,7 +24,7 @@ body {
     align-items: center;
 }
 
-.headline img {
+.headline svg {
     width: 27px;
     height: 27px;
     cursor: pointer;
@@ -32,7 +32,7 @@ body {
     margin-top: 129px;
 }
 
-.headline img:hover {
+.headline svg:hover {
     border: groove 1px rgba(238, 238, 238, 1);
     border-radius: 50%;
     background-color: rgba(238, 238, 238, 1);
