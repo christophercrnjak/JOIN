@@ -17,6 +17,7 @@ a {
     width: 100%;
     width: calc(100% - 232px);
 }
+        /* Header */
         .board_header {
             display: flex;
             margin-left: 64px;
@@ -27,153 +28,153 @@ a {
             
         }
 
-        .header_text_main {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            
-        }
-            .header_text {
-                color: black;
-                font-size: 61px;
-                font-weight: 700;
-            }
-
-            .add_task_btn_mobile {
-                width: 40px;
-                height: 40px;
-                background-color: var(--bgdarkblue);
-                border-radius: 10px;
-                display: none;
-                justify-content: center;
-                align-items: center;
-            }
-
-            .add_task_btn_mobile:hover {
-                background-color: var(--blue);
-            }
-
-            .search_add {
+            .header_text_main {
                 display: flex;
-                gap: 30px;
                 align-items: center;
-                width: 100%;
-                justify-content: end;
-            }
-
-            .search {
-                display: flex;
                 justify-content: space-between;
-                align-items: center;
-                position: relative;
-                width: 312px;
+                width: 100%;
+
             }
-
-                .search > input {
-                    border: 1px solid #ccc !important;
-                    border-radius: 10px;
-                    background-color: white;
-                    width: 100%;
-                    padding: 12px 76px 12px 21px !important;
+                .header_text {
                     color: black;
-                    font-size: 16px;
-                    font-weight: 400;
-                    cursor: auto;
+                    font-size: 61px;
+                    font-weight: 700;
                 }
 
-                .search > input:focus {
-                    border: solid 1px var(--blue) !important;
-                    outline: var(--blue) !important;
-                }
-
-                .search > input:hover {
-                    border: solid 1px #A8A8A8 !important;
-                }
-            
-                .search > hr {
-                display: flex;
-                height: 31px;
-                width: 1px;
-                border-style: none;
-                margin-left: 1px;
-                position: absolute;
-                right: 64px;
-                background-color: #D1D1D1;
-                }
-
-                .search > .search_image {
-                    position: absolute;
-                    top: 7px;
-                    right: 16px;
-                    bottom: 8px;
-                    cursor: pointer;
-                }
-
-                .search > .search_image:hover {
-                   background-color: rgb(238, 238, 238);
-                   border-radius: 20px;
-                }
-
-                
-                .add_task_btn {
+                .add_task_btn_mobile {
+                    width: 40px;
+                    height: 40px;
                     background-color: var(--bgdarkblue);
                     border-radius: 10px;
-                    height: 48px;
-                    width: 160px;
-                    border: 1px solid rgb(41, 54, 71);
-                    display: flex;
+                    display: none;
                     justify-content: center;
                     align-items: center;
-                    cursor: pointer;
                 }
 
-                .add_task_btn:hover {
-                    background-color: var(--blue);
-                    box-shadow: 0px 4px 4px 0px #00000040;
-                    border-color: var(--blue);
-                    
-                }
+                    .add_task_btn_mobile:hover {
+                        background-color: var(--blue);
+                    }
 
-                .text_add_btn {
-                    font-size: 21px;
-                    font-weight: 700;
-                    color: white;
-                }
-                .plus_add_btn {
-                   margin-left: 4px;
-                    width: 32px;
-                    height: 32px;
+                .search_add {
                     display: flex;
+                    gap: 30px;
+                    align-items: center;
+                    width: 100%;
+                    justify-content: end;
+                }
+
+                .search {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
                     position: relative;
-                    justify-content: center;
-                    align-items: center;
+                    width: 312px;
                 }
 
-                    .plus_add_btn > div {
-                        width: 18.67px;
-                        height: 18.67px;
+                    .search > input {
+                        border: 1px solid #ccc !important;
+                        border-radius: 10px;
+                        background-color: white;
+                        width: 100%;
+                        padding: 12px 76px 12px 21px !important;
+                        color: black;
+                        font-size: 16px;
+                        font-weight: 400;
+                        cursor: auto;
+                    }
+
+                        .search > input:focus {
+                            border: solid 1px var(--blue) !important;
+                            outline: var(--blue) !important;
+                        }
+
+                        .search > input:hover {
+                            border: solid 1px #A8A8A8 !important;
+                        }
+                
+                    .search > hr {
+                    display: flex;
+                    height: 31px;
+                    width: 1px;
+                    border-style: none;
+                    margin-left: 1px;
+                    position: absolute;
+                    right: 64px;
+                    background-color: #D1D1D1;
+                    }
+
+                    .search > .search_image {
+                        position: absolute;
+                        top: 7px;
+                        right: 16px;
+                        bottom: 8px;
+                        cursor: pointer;
+                    }
+
+                        .search > .search_image:hover {
+                           background-color: rgb(238, 238, 238);
+                           border-radius: 20px;
+                        }
+
+                    .add_task_btn {
+                        background-color: var(--bgdarkblue);
+                        border-radius: 10px;
+                        height: 48px;
+                        width: 160px;
+                        border: 1px solid rgb(41, 54, 71);
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        cursor: pointer;
+                    }
+
+                        .add_task_btn:hover {
+                            background-color: var(--blue);
+                            box-shadow: 0px 4px 4px 0px #00000040;
+                            border-color: var(--blue);
+
+                        }
+
+                    .text_add_btn {
+                        font-size: 21px;
+                        font-weight: 700;
+                        color: white;
+                    }
+
+                    .plus_add_btn {
+                       margin-left: 4px;
+                        width: 32px;
+                        height: 32px;
                         display: flex;
                         position: relative;
                         justify-content: center;
                         align-items: center;
                     }
 
-                        .line_add_btn_horizont {
-                            background-color: white;
+                        .plus_add_btn > div {
                             width: 18.67px;
-                            height: 2px;
-                            position: absolute;
+                            height: 18.67px;
+                            display: flex;
+                            position: relative;
+                            justify-content: center;
+                            align-items: center;
                         }
 
-                        .line_add_btn_vertical {
-                            background-color: white;
-                            width: 2px;
-                            height: 18.67px;
-                            position: absolute;
-                        }
+                            .line_add_btn_horizont {
+                                background-color: white;
+                                width: 18.67px;
+                                height: 2px;
+                                position: absolute;
+                            }
+
+                            .line_add_btn_vertical {
+                                background-color: white;
+                                width: 2px;
+                                height: 18.67px;
+                                position: absolute;
+                            }
     
-                
+        /* Main Container with Board */
         .board_content_main {
             display: flex;
         justify-content: center;
@@ -187,8 +188,6 @@ a {
             min-width: 396px;
         }
 
-        
-    
             .board_column {
                 width: 25%;
                 height: 100%;
@@ -196,6 +195,7 @@ a {
                 
             }
 
+            /* column header */
             .column_head_main {
                 display: flex;
                 justify-content: center;
@@ -276,7 +276,7 @@ a {
                         border-radius: 1px;
                     }
 
-
+                /* column content */
                 .task_container {
                     height: 100%;
                     display: flex;
@@ -307,15 +307,14 @@ a {
                         border-radius: 24px;
                         cursor: pointer;
                         width: 100%;
-                        /* max-width: 220px; */
                         box-shadow: 0px 0px 10px 3px #00000014;
-                    
-
                     }
 
                     .task:hover {
                         rotate: 5grad;
                     }
+
+                        /* category */
                         .task_category {
                             padding: 4px 16px 4px;
                             color: white;
@@ -328,12 +327,15 @@ a {
                             align-items: center;
                         }
                         
+                        /* title */
                         .task_title {
                             margin-top: 24px;
                             color: black;
                             font-size: 16px;
                             font-weight: 700;
                         }
+
+                        /* description */
                         .task_description {
                             margin-top: 8px;
                             color: #A8A8A8;
@@ -341,61 +343,9 @@ a {
                             font-weight: 400;
                         }
 
-                        .task_progress {
-                            height: 16px;
-                        }
-
-                        .task_progress .progressbar_section{
-                            margin-top: 24px;
-                            width: 100%;
-                            display: flex;
-                            justify-content: space-between;
-                            align-items: center;
-                            
-                        }
-
-                        .task_progress:hover .hover_text_progressbar{
-                            display: flex !important;
-                        }
-                            .progressbar {
-                                width: 128px;
-                                border-radius: 8px;
-                                background-color: #F4F4F4;
-                                height: 8px;
-                                margin-top: 1px;
-                                position: relative;
-                            }
-                                .progressbar_blue {
-                                    border-radius: 8px;
-                                    background-color: #4589FF;
-                                    height: 8px;
-                                }
-                                .progressbar_blue_hundred {
-                                    width: 100%;
-                                    border-radius: 8px;
-                                    background-color: #4589FF;
-                                    height: 8px;
-                                }
-                                .progressbar_text {
-                                    font-size: 12px;
-                                    font-weight: 400;
-                                }
-
-                                .hover_text_progressbar {
-                                    background-color: var(--bgdarkblue);
-                                    color: white;
-                                    font-size: 16px;
-                                    text-align: center;
-                                    width: 100%;
-                                    padding: 8px;
-                                    border-radius: 10px;
-                                    position: relative;
-                                    top: -56px;
-                                    display: none;
-                                    justify-content: center;
-                                }
-
-
+                        /* subtask / progressbar in board_subtask_progressbar.css */
+                        
+                        /* priority */
                         .task_members_prio {
                             margin-top: 24px;
                             display: flex;
@@ -410,10 +360,12 @@ a {
                                 position: absolute;
                                 right: 0px;
                             }
+
                             .task_members {
                                 display: flex;
                                position: relative;
                             }
+
                                 .member_cycle {
                                     width: 32px;
                                     height: 32px;
@@ -428,10 +380,12 @@ a {
                                 .deepskyblue {
                                     background-color: var(--deepskyblue);
                                 }
+
                                 .pos2 {
                                    position: relative;
                                    left: -9px; 
                                 }
+
         #toast_message_no_task_found {
             position: absolute;
             background-color: var(--bgdarkblue);
@@ -449,167 +403,4 @@ a {
     background-color: #A8A8A8;
 }                                                 
 
-/***** Responsiv Design *****/
-
-
-@media(max-width: 1420px) {
-    .board_column {
-        width: 25%;
-        height: 100%;
-        min-width: auto;
-    }
-
-    .board_content {
-        width: 100%;
-    }
-
-    .task_progress .progressbar_section{
-        flex-direction: column-reverse;
-        gap: 5px;
-        align-items: start;
-        margin-top: 10px;
-    }
-
-    .hover_text_progressbar {
-        top: -71px;
-    }
-    .board_header {
-        margin-left: 30px;
-        margin-right: 30px;
-        margin-top: 96px;
-    }
-}
-
- @media(max-width: 1330px) {
-    .hover_text_progressbar {
-        top: -67px;
-        font-size: 14px;
-    }
-}
-
-
-@media(max-width: 1235px) {
-    .hover_text_progressbar {
-        top: -86px;
-    }
-}
-
-@media(max-width: 1018px) {
-    .hover_text_progressbar {
-        font-size: 13px;
-    }
-}
-/*
-@media(max-width: 1135px) {
-    .hover_text_progressbar {
-        font-size: 11px;
-    }
-} */
-
-@media(max-width: 1000px) {
-    .board_header {
-        flex-direction: column;
-        align-items: start;
-        margin-left: 16px;
-        margin-right: 16px;
-        margin-top: 96px;
-    }
-    .add_task_btn_mobile {
-        display: flex;
-    }
-    .add_task_btn {
-        display: none;
-    }
-    .search {
-        width: 100%;
-    }
-    .search_add {
-        width: 100%;
-    }
-    #task_to_be_found {
-        border-radius: 10px;
-    }
-    .header_text_main {
-        margin-bottom: 40px;
-    }
-    .board_content {
-        margin-top: 0;
-        margin-left: 16px;
-        margin-right: 16px;
-    }
-    
-    .container {
-        row-gap: 24px;
-        margin-left: 0;
-        padding-top: 0;
-        width: 100%;
-    }
-  
-    .head_main_navbar {
-        display: none;
-    }
-    .headnav_text {
-        display: none;
-    }
-    .column_head {
-        padding-top: 0;
-        padding-bottom: 0;
-    }
-    .board_column {
-        width: 100%;
-    }
-    .task {
-        max-width: 252px;
-    }
-
-    .no_task {
-        width: 252px;
-    }
-
-    .column_head {
-        max-width: none; 
-        
-    }
-
-    .board_content_main {
-        justify-content: start;
-    }
-    .board_content {
-        flex-direction: column;
-    }
-    .column_head_add_btn {
-        display: none;
-    }
-    .column_head_add_btn_mobile {
-        display: flex;
-    }
-    .task_container {
-        overflow-x: overlay;
-        min-height: 0px;
-        flex-direction: row;
-        max-width: none;
-        padding: 12px;
-        margin-top: 0;
-    }
-
-    .added_subtasks_edit {
-        height: fit-content;
-    }
-
-    .unordered-list_subtasks {
-        height: fit-content;
-    }
-
-    .hover_text_progressbar {
-        top: -69px;
-    }
-}
-
-@media(max-width: 580px) {
-    .task {
-        min-width: 252px;
-    }
-}
-
-
-
+/* responsiv design in board_mediaquery.css */
