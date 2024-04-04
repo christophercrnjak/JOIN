@@ -26,10 +26,6 @@ async function init() {
 
 function handleLogIn() {
   checkExistingUser();
-  if (checkExistingUser) {
-    setCurretUser();
-  }
-
   setInterval(() => {
     window.location.href = "summary.html";
   }, 1000);
@@ -54,9 +50,9 @@ function checkExistingUser() {
   for (let i = 0; i < users.length; i++) {
     const user = users[i];
     if (user.mail == mail.value && user.password == password.value) {
-      user.lockedIn = true;
+      currentUser.push(`${user}`)
     }
   }
 }
 
-function setCurretUser() {}
+
