@@ -9,7 +9,6 @@
  *       secondName: "Wezel"
  *       password: "bumsfallera90"
  */
-let users = [];
 
 let mail = document.getElementById("mail");
 let password = document.getElementById("password");
@@ -17,6 +16,9 @@ let password = document.getElementById("password");
 
 // document.addEventListener("DOMContentLoaded", init);
 
+/**
+ * Loads user data from Server to Array "users[]"
+ */
 async function init() {
   await loadUsers();
   // setTimeout(function () {
@@ -40,20 +42,20 @@ async function loadUsers() {
     let ServerData;
     ServerData = await getItem("users");
     let newData = JSON.parse(ServerData.data.value);
-    users = newData;
+    users = JSON.parse(JSON.stringify(newData));
   } catch (e) {
     console.warn("Could not load users!");
   }
 }
 
-function checkExistingUser() {
-  for (let i = 0; i < users.length; i++) {
-    const user = users[i];
-    if (user.mail == mail.value && user.password == password.value) {
-      currentUser = [];
-      currentUser.push(`${user}`)
-    }
+async function checkExistingUser() {
+  let user = users[0];
+  if (user.mail == mail.value && user.password == password.value) {
+    currentUser = user;
+    await saveCurrentUserOnServer();
   }
 }
+
+
 
 

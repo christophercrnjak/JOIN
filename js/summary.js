@@ -6,35 +6,53 @@ let doneAmount = 0;
 let allAmounts = 0;
 let urgentAmount = 0;
 let nextDueDate;
+let tasks_summery = '';
 
 
 async function init() {
-  await fetchTasks();
-  await fetchContacts();
+  await getCurrentUserOnServer();
+  await getContactsFromServer();
+  await getTasksFromServer();
+  await getTasks();
+  fetchContacts();
   calcTaskAmount();
   calcSumOfAmounts();
   calcUrgentAmount();
   getNextDueDate();
   render();
+  setUserInitialsAtHeader()
 }
 
-function setUser() {
-  
+function setUserInitialsAtHeader() {
+  let accountLogo = document.getElementById('navbarHeadIcon');
+  if (currentUser.length == 0) {
+    accountLogo.innerHTML = 'G';
+  } else {
+    let firstName = currentUser[0].name.firstName;
+    firstName = firstName.charAt(0);
+    let secondName = currentUser[0].name.secondName;
+    secondName = secondName.charAt(0);
+    accountLogo.innerHTML = `${firstName} ${secondName}`;
+  }
+}
+
+async function getTasks() {
+  tasks_summery = JSON.parse(JSON.stringify(tasks));
+  await fetchTasks()
 }
 
 async function fetchTasks() {
   // let resp = await fetch("assets/json/tasks.json");
   // tasks = await resp.json();
 
-  tasks = tasks.map((task) => {
+  tasks_summery = tasks.map((task) => {
     let [DD, MM, YY] = task.dueDate.split("/");
     return { ...task, dueDate: new Date(`20${YY}-${MM}-${DD}`) };
   });
 }
 
-async function fetchContacts() {
-  let resp = await fetch("assets/json/contacts.json");
-  contacts_summary = await resp.json();
+function fetchContacts() {
+  contacts_summary = JSON.parse(JSON.stringify(contacts_global));
 }
 
 function render() {
@@ -101,17 +119,35 @@ function renderAwaitingFeedbackAmount() {
 }
 
 function getNextDueDate() {
-  let tasksNotDone = tasks
-    .filter((task) => task.status != "done")
-    .sort((a, b) => a.dueDate - b.dueDate);
+  // let tasksNotDone = JSON.parse(JSON.stringify(tasks))
+  //   .filter((task) => task.status != "done")
+  //   .sort((a, b) => a.dueDate - b.dueDate)
 
-  // outputs the first value of this array
-  let parsedValue = tasksNotDone[0].dueDate;
-  nextDueDate = new Intl.DateTimeFormat("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  }).format(parsedValue);
+  // // outputs the first value of this array
+  // let parsedValue = tasksNotDone[0].dueDate;
+  // nextDueDate = new Intl.DateTimeFormat("en-US", {
+  //   month: "long",
+  //   day: "numeric",
+  //   year: "numeric",
+  // }).format(parsedValue);
+
+  
+    let tasksNotDone = tasks.filter((task) => task.status != "done").sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
+  
+    // Überprüfen, ob das Array tasksNotDone leer ist
+    if (tasksNotDone.length > 0) {
+      let parsedValue = new Date(tasksNotDone[0].dueDate); // Konvertiert das Datum in das richtige Format
+      nextDueDate = new Intl.DateTimeFormat("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+      }).format(parsedValue);
+      return nextDueDate;
+    } else {
+      return "Keine ausstehenden Aufgaben gefunden.";
+    }
+  
+  
 }
 
 function renderNextDueDate() {
@@ -138,7 +174,7 @@ function renderUserName() {
   if (currentUser.length === 0) {
     userNameElement.innerHTML = `Guest`;
   } else {
-  userNameElement.innerHTML = `${currentUser.name.firstName} ${currentUser.name.secondName}`;}
+  userNameElement.innerHTML = `${currentUser[0].name.firstName} ${currentUser[0].name.secondName}`;}
 }
 
 function hover(element, newSrc) {
@@ -149,4 +185,39 @@ function hover(element, newSrc) {
 function unhover(element, originalSrc) {
   let img = element.querySelector("img");
   img.setAttribute("src", originalSrc);
+}
+
+async function logOut() {
+  currentUser = [];
+  saveCurrentUserOnServer();
+  toastMessageLogOut();
+  await timeout (750);
+  await closeToast();
+  window.location.href = "index.html";
+}
+
+/**
+ * Makes the element saying "Task added to board" appear and disappear after 1 s and 20 ms.
+ */
+function toastMessageLogOut() {
+  let container = document.getElementById('toastMessageLogOut');
+  container.classList.remove('d-none');
+}
+
+/**
+ * Starts a timeout.
+ * 
+ * @param {Number} ms 
+ * @returns {}
+ */
+function timeout(ms) {
+  return new Promise(res => setTimeout(res,ms));
+}
+
+/**
+ * Hides the toast message box
+ */
+function closeToast() {
+  let container = document.getElementById('toastMessageLogOut'); 
+  container.classList.add('d-none');
 }

@@ -87,15 +87,7 @@ function saveNewTask() {
     status_newTask();
 }
 
-/**
- * Starts a timeout.
- * 
- * @param {Number} ms 
- * @returns {}
- */
-function timeout (ms) {
-    return new Promise(res => setTimeout(res,ms));
-  }
+
 
 /**
  * Makes the element saying "Task added to board" appear and disappear after 1 s and 20 ms.
@@ -103,9 +95,6 @@ function timeout (ms) {
 function toastMessageAddTask() {
     let container = document.getElementById('toastMessageAddTask');
     container.classList.remove('d-none');
-    // setTimeout(function() {
-    //     container.classList.add('d-none');
-    // }, 1200); 
 }
 
 /**

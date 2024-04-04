@@ -1,6 +1,10 @@
 const STORAGE_TOKEN = "OV30V75C6XC2NMC469UVAT7NWW775KEIDF6SU6PL";
 const STORAGE_URL = `https://remote-storage.developerakademie.org/item`;
 
+
+// ***** global ***** //
+
+
 /**
  * Sets key with value on Server with own token.
  * 
@@ -29,6 +33,10 @@ async function getItem(key) {
     //.then((res) => res.data.value);
 }
 
+
+// ***** tasks ***** //
+
+
 /**
  * Main task storage for the program.
  * 
@@ -37,45 +45,25 @@ async function getItem(key) {
 let tasks = [];
 
 /**
- * Main contact storage for the program.
- * 
- * @type {JSON}
+ * Push new Content to Server
  */
-let contacts_global = [];
-
-/**
- * Contains the user which is loged in.
- * 
- * @type {JSON}
- */
-let currentUser = [];
+async function setTasksToServer() {
+  await setItem('tasks', tasks);   
+}
 
 /**
  * Load the tasks JSON Array from Server in tasks[]
  */
 async function getTasksFromServer() {
+  try {
     let ServerData;
     ServerData = await getItem("tasks");
     let newData = JSON.parse(ServerData.data.value);
     tasks = newData;
-  }
-
-  async function getContactsFromServer() {
-    let ServerData;
-    ServerData = await getItem("contacts");
-    let newData = JSON.parse(ServerData.data.value);
-    contacts_global = newData;
+  } catch (e) {
+    console.warn("Could not load tasks!");
   }
   
-  /**
-   * Push new Content to Server
-   */
-async function setTasksToServer() {
-     await setItem('tasks', tasks);   
-}
-
-async function setContactsToServer(){
-    await setItem('contacts', contacts_global);
 }
 
 /**
@@ -212,6 +200,34 @@ async function resetStorageOfServer_tasks() {
 init();
 }
 
+
+// ***** contacts ***** //
+
+
+/**
+ * Main contact storage for the program.
+ * 
+ * @type {JSON}
+ */
+let contacts_global = [];
+
+async function getContactsFromServer() {
+  try {
+    let ServerData;
+    ServerData = await getItem("contacts");
+    let newData = JSON.parse(ServerData.data.value);
+    contacts_global = newData;
+  } catch (e) {
+    console.warn("Could not load contacts!");
+  }
+  
+  
+}
+
+async function setContactsToServer(){
+  await setItem('contacts', contacts_global);
+}
+
 async function resetStorageOfServer_contacts() {
   setItem('contacts', [
     {
@@ -296,3 +312,38 @@ async function resetStorageOfServer_contacts() {
   );
   getContactsFromServer();
 }
+
+
+// ***** User ***** //
+
+
+/**
+ * Contains the user which is loged in.
+ * 
+ * @type {JSON}
+ */
+let currentUser = [];
+
+/**
+ * Contains all users of Server.
+ */
+let users = [];
+
+async function saveCurrentUserOnServer() {
+  await setItem('currentUser', currentUser);
+}
+
+async function getCurrentUserOnServer() {
+  try {
+    let ServerData;
+    ServerData = await getItem('currentUser');
+    let newData = JSON.parse(ServerData.data.value);
+    currentUser = [newData];
+  } catch (e) {
+    console.warn("Could not load currentUser!");
+  }
+}
+
+
+
+

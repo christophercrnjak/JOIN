@@ -1,4 +1,4 @@
-let users = [];
+
 let passwordCheckStatus;
 let checkbox = document.getElementById("checkbox");
 let password_message = document.getElementById("password_message");
