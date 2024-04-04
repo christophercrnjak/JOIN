@@ -120,6 +120,10 @@
         
     }
 
+    .task_progress .progressbar_section{
+        flex-direction: row;
+    }
+
     .board_content_main {
         justify-content: start;
     }
@@ -160,5 +164,35 @@
     }
 }
 
+@media(max-width: 500px) { 
+    .logo_join_responsiv {
+        width: 32px;
+        height: 39.02px;
+    }
+    
+    #navbarHeadIcon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .column_head_add_btn_mobile svg{
+        width: 30px;
+        height: 30px;
+    }
+
+    .no_task {
+        width: 100%;
+        border-radius: 10px;
+    }
+
+    .board_content {
+        gap: 0px; 
+    }
+
+    .task_container {
+        padding-bottom: 0p;
+        margin-bottom: 26px;
+    }
+}
 
 

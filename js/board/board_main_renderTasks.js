@@ -128,7 +128,7 @@ function taskHTML(task, taskId) {
             <div class="task_members_prio">
                 <div id="task_member_section${taskId}" class="task_members"></div>
             <div id="prio_icon${taskId}" class="task_prio">
-                <img src="assets/img/Priority_symbols_Medium.png" alt="">
+                <img src="" alt="">
             </div>
         </article>
     `

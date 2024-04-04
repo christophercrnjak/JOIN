@@ -77,16 +77,20 @@ function assigedToEditHTML(taskId) {
  */
 function renderCiclesOfTaskContacts(taskId) {
     let container = document.getElementById(`selectedContactsSection`);
-    container.innerHTML = '';
-    for (let i = 0; i < currentTaskContent.contacts.length; i++) {
-        let contact = currentTaskContent.contacts[i];
-        let firstCharacter = contact.firstName.charAt(0);
-        let secondCharacter = contact.secondName.charAt(0);
-        let color = contact.color;
-        container.innerHTML += selectedTaskMemberHTML(firstCharacter, secondCharacter, taskId, i); 
-        document.getElementById(`selected_task_member${taskId}${i}`).style.backgroundColor = `${color}`;
+    if (container !== null) {
+        container.innerHTML = '';
+        for (let i = 0; i < currentTaskContent.contacts.length; i++) {
+            let contact = currentTaskContent.contacts[i];
+            let firstCharacter = contact.firstName.charAt(0);
+            let secondCharacter = contact.secondName.charAt(0);
+            let color = contact.color;
+            container.innerHTML += selectedTaskMemberHTML(firstCharacter, secondCharacter, taskId, i); 
+            document.getElementById(`selected_task_member${taskId}${i}`).style.backgroundColor = `${color}`;} 
+        } else {
+        return false
     }
 }
+
 
 /**
  * HTML structure of cicles 
@@ -130,8 +134,11 @@ function openDropDownList(taskId) {
 }
 
 function closeDropdownList(taskId) {
+    let container = document.getElementById(`selectedContactsSection`);
     renderCiclesOfTaskContacts(taskId);
-    document.getElementById('selectedContactsSection').classList.remove('flexDirection');
+    if (container !== null) {
+        container.classList.remove('flexDirection');
+    }
     dropdownStatus = false;
 }
 

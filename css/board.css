@@ -8,6 +8,16 @@ a {
     cursor: pointer;
 }
 
+.container_toastmessage {
+    padding-left: 232px;
+    padding-top: 96px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    min-width: 950px;
+  }
+
 .container {
     margin-left: 232px;
     display: flex;
@@ -347,7 +357,7 @@ a {
                         
                         /* priority */
                         .task_members_prio {
-                            margin-top: 24px;
+                            margin-top: 40px;
                             display: flex;
                             justify-content: space-between;
                             width: 100%;

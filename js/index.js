@@ -1,36 +1,33 @@
-/**
- * @type {JSON} - like:
- * 0: 
- *    lockedIn: false
- *    mail: "triam90@gmx.de"
- *    name:
- *       color: "#ff4646"
- *       firstName: "Richard"
- *       secondName: "Wezel"
- *       password: "bumsfallera90"
- */
 
 let mail = document.getElementById("mail");
 let password = document.getElementById("password");
 
-
-// document.addEventListener("DOMContentLoaded", init);
-
 /**
  * Loads user data from Server to Array "users[]"
  */
-async function init() {
-  await loadUsers();
+//async function init() {
+//  await loadUsers();
   // setTimeout(function () {
   //   document.querySelector(".logo").classList.add("move-logo");
   // }, 1000);
-}
+//}
 
-function handleLogIn() {
+async function handleLogIn() {
+  await loadUsers();
   checkExistingUser();
   setInterval(() => {
     window.location.href = "summary.html";
   }, 1000);
+}
+
+async function checkExistingUser() {
+  for (let i = 0; i < users.length; i++) {
+    let user = users[i];
+    if (user.mail == mail.value && user.password == password.value) {
+      currentUser = JSON.parse(JSON.stringify(user));
+      await saveCurrentUserOnServer();
+    }
+  }
 }
 
 async function handleGuestLogIn() {
@@ -50,13 +47,7 @@ async function loadUsers() {
   }
 }
 
-async function checkExistingUser() {
-  let user = users[0];
-  if (user.mail == mail.value && user.password == password.value) {
-    currentUser = user;
-    await saveCurrentUserOnServer();
-  }
-}
+
 
 
 

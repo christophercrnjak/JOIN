@@ -10,22 +10,30 @@ let tasks_summery = '';
 
 
 async function init() {
-  await getCurrentUserOnServer();
-  await getContactsFromServer();
-  await getTasksFromServer();
-  await getTasks();
-  fetchContacts();
-  calcTaskAmount();
-  calcSumOfAmounts();
-  calcUrgentAmount();
+  await loadServerData();
+  copyTasksArray();
+  copyContactsArray();
+  calcValuesOfSummery();
   getNextDueDate();
   render();
   setUserInitialsAtHeader()
 }
 
+async function loadServerData() {
+  await getCurrentUserOnServer();
+  await getContactsFromServer();
+  await getTasksFromServer();
+}
+
+function calcValuesOfSummery() {
+  calcTaskAmount();
+  calcSumOfAmounts();
+  calcUrgentAmount();
+}
+
 function setUserInitialsAtHeader() {
   let accountLogo = document.getElementById('navbarHeadIcon');
-  if (currentUser.length == 0) {
+  if (currentUser.length === 0 || typeof currentUser == "undefined" || currentUser[0] == '') {
     accountLogo.innerHTML = 'G';
   } else {
     let firstName = currentUser[0].name.firstName;
@@ -36,22 +44,19 @@ function setUserInitialsAtHeader() {
   }
 }
 
-async function getTasks() {
+async function copyTasksArray() {
   tasks_summery = JSON.parse(JSON.stringify(tasks));
-  await fetchTasks()
+  await changeDateFormatOfTasks();
 }
 
-async function fetchTasks() {
-  // let resp = await fetch("assets/json/tasks.json");
-  // tasks = await resp.json();
-
+async function changeDateFormatOfTasks() {
   tasks_summery = tasks.map((task) => {
     let [DD, MM, YY] = task.dueDate.split("/");
     return { ...task, dueDate: new Date(`20${YY}-${MM}-${DD}`) };
   });
 }
 
-function fetchContacts() {
+function copyContactsArray() {
   contacts_summary = JSON.parse(JSON.stringify(contacts_global));
 }
 
@@ -119,35 +124,20 @@ function renderAwaitingFeedbackAmount() {
 }
 
 function getNextDueDate() {
-  // let tasksNotDone = JSON.parse(JSON.stringify(tasks))
-  //   .filter((task) => task.status != "done")
-  //   .sort((a, b) => a.dueDate - b.dueDate)
+  let tasksNotDone = tasks.filter((task) => task.status != "done").sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
 
-  // // outputs the first value of this array
-  // let parsedValue = tasksNotDone[0].dueDate;
-  // nextDueDate = new Intl.DateTimeFormat("en-US", {
-  //   month: "long",
-  //   day: "numeric",
-  //   year: "numeric",
-  // }).format(parsedValue);
-
-  
-    let tasksNotDone = tasks.filter((task) => task.status != "done").sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
-  
-    // Überprüfen, ob das Array tasksNotDone leer ist
-    if (tasksNotDone.length > 0) {
-      let parsedValue = new Date(tasksNotDone[0].dueDate); // Konvertiert das Datum in das richtige Format
-      nextDueDate = new Intl.DateTimeFormat("en-US", {
-        month: "long",
-        day: "numeric",
-        year: "numeric",
-      }).format(parsedValue);
-      return nextDueDate;
-    } else {
-      return "Keine ausstehenden Aufgaben gefunden.";
-    }
-  
-  
+  // Überprüfen, ob das Array tasksNotDone leer ist
+  if (tasksNotDone.length > 0) {
+    let parsedValue = new Date(tasksNotDone[0].dueDate); // Konvertiert das Datum in das richtige Format
+    nextDueDate = new Intl.DateTimeFormat("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    }).format(parsedValue);
+    return nextDueDate;
+  } else {
+    return "Keine ausstehenden Aufgaben gefunden.";
+  }
 }
 
 function renderNextDueDate() {
@@ -171,7 +161,7 @@ function renderUrgentAmount() {
 
 function renderUserName() {
   let userNameElement = document.getElementById("user_name");
-  if (currentUser.length === 0) {
+  if (currentUser.length === 0 || typeof currentUser == "undefined" || currentUser[0] == '') {
     userNameElement.innerHTML = `Guest`;
   } else {
   userNameElement.innerHTML = `${currentUser[0].name.firstName} ${currentUser[0].name.secondName}`;}
@@ -207,8 +197,8 @@ function toastMessageLogOut() {
 /**
  * Starts a timeout.
  * 
- * @param {Number} ms 
- * @returns {}
+ * @param {Number} ms - Time of timeout
+ * @returns {TimeRanges}
  */
 function timeout(ms) {
   return new Promise(res => setTimeout(res,ms));

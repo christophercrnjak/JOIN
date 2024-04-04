@@ -325,7 +325,15 @@ async function resetStorageOfServer_contacts() {
 let currentUser = [];
 
 /**
- * Contains all users of Server.
+ * @type {JSON} - like:
+ * 0: 
+ *    lockedIn: false
+ *    mail: "triam90@gmx.de"
+ *    name:
+ *       color: "#ff4646"
+ *       firstName: "Richard"
+ *       secondName: "Wezel"
+ *       password: "bumsfallera90"
  */
 let users = [];
 
