@@ -31,17 +31,7 @@ async function register() {
   if (passwordCheckStatus) {
     splitName(userName);
     register_btn.disabled = true;
-    users.push({
-      name: {
-        firstName: firstName,
-        secondName: secondName,
-        color: "#ff4646",
-      },
-      mail: mail.value,
-      password: password.value,
-      lockedIn: false,
-    });
-    await setItem("users", users);
+    saveNewUser();
     resetForm();
     registerSuccessfull.classList.remove("d-none");
     registerSuccessfull.innerHTML = "You Signed Up successfully";
@@ -52,6 +42,20 @@ async function register() {
     document.getElementById("password_message").innerHTML =
       "Passwords do not match. Please check and try again!";
   }
+}
+
+async function saveNewUser() {
+  users.push({
+   name: {
+     firstName: firstName,
+     secondName: secondName,
+     color: "#ff4646",
+   },
+   mail: mail.value,
+   password: password.value,
+   lockedIn: false,
+ });
+ await setItem("users", users);
 }
 
 function comparePassword() {
