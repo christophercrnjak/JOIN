@@ -38,12 +38,15 @@ let selectedFromDropdown = [];
  */
 let prio = ['medium']; 
 
-
-
-
+/**
+ * 
+ */
 let subtasklists = [];
 
- async function addTaskInit() {
+/**
+ * 
+ */
+async function addTaskInit() {
   await loadContactsServer()
   renderDropList();
   renderCategoryDropDown();
@@ -107,7 +110,7 @@ function dropdownHtml(contact, i) {
  */
 function selectFromDropdown(color, firstName, secondName, i) {
   let isSelected = selectedFromDropdown.some(item => item.color === color && item.firstName === firstName && item.secondName === secondName); // Wenn in selectedFromDropdown ein Objekt mit den übergebenen Variablen übereinstimmt, dann entspricht isSelected gleich den Kontakt
-  let dropdownList = document.getElementById('dropdownList');
+  let dropdownList = document.getElementById('row_selected_contacts_circles');
   if (isSelected) {
      // case selected contact is selected (change to unselected)
     removeFromSelectedItems(firstName,i);

@@ -294,7 +294,7 @@ padding-top: 100px;
           overflow-x: auto;
         }
 
-      .dropdown_list {
+      .row_selected_contacts_circles {
         display: flex;
         justify-content: flex-start;
         flex-direction: row;
