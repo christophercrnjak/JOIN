@@ -25,13 +25,6 @@ let categorys = ["Technical Task", "User Stroy"];
 let pushCategory = [];
 
 /**
- * Contains the information of the selected contacts such as color, first name and last name
- * 
- * @type {JSON} - Example: 0: {color: '#9327FF', firstName: 'Anja', secondName: 'Schulz'}
- */
-let selectedFromDropdown = [];
-
-/**
  * Contains selected priority like "medium" through function setPriorityStyles(bgColor, textColor, imgSrc, priority)
  * 
  * @type {String} Example: 'medium'
@@ -48,6 +41,7 @@ let subtasklists = [];
  */
 async function addTaskInit() {
   await loadContactsServer()
+  addSelectstatusToContacts();
   renderDropList();
   renderCategoryDropDown();
   includeHTML();
@@ -57,6 +51,13 @@ async function addTaskInit() {
 async function loadContactsServer() {
   await getContactsFromServer();
   contacts_addTask = JSON.parse(JSON.stringify(contacts_global));
+}
+
+function addSelectstatusToContacts() {
+  for (let i = 0; i < contacts_addTask.length; i++) {
+    let contact = contacts_addTask[i];
+    contact.select_status = false;
+  }
 }
 
 
@@ -81,7 +82,7 @@ async function renderDropList() {
  */
 function dropdownHtml(contact, i) {
   return `
-  <a class="dropdown_assign" id="contact${i}" onclick="selectFromDropdown('${contact["name"]["color"]}', '${contact["name"]["firstName"]}', '${contact["name"]["secondName"]}',${i})">
+  <a class="dropdown_assign" id="contact${i}" onclick="selectFromDropdown(${i})">
       <!-- contact -->
       <div class="display_center gap ">
         <div class="member_cicle_main">
@@ -93,76 +94,74 @@ function dropdownHtml(contact, i) {
         <div class="member_name">${contact["name"]["firstName"]} ${contact["name"]["secondName"]}</div>
       </div> 
       <!-- checkbox -->
-      <div class="dropdown_img">
-        <img id="selected_img${i}" src="assets/img/check_button_unchecked.svg">
+      <div class="dropdown_img" id="selected_img${i}">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="1" y="1" width="16" height="16" rx="3" stroke="#2A3647" stroke-width="2"/>
+        </svg>
       </div>
   </a>
   `;
 }
 
 /**
- * this function put the selected member from the drop down list assigned to 
+ * This function put the selected member from the drop down list assigned to 
  * in a array and div container
- * @param {*} color  - fill the color form JSON in the cricle.
- * @param {*} firstName - fill the first name into the cricle form the JSON.
- * @param {*} secondName 
- * @param {*} i 
+ * @param {String} color  - fill the color from JSON in the circle.
+ * @param {String} firstName - fill the first name into the circle from the JSON.
+ * @param {String} secondName - fill the second name into the circle from the JSON.
+ * @param {Number} i - Index of contact in contacts_addTask array
  */
-function selectFromDropdown(color, firstName, secondName, i) {
-  let isSelected = selectedFromDropdown.some(item => item.color === color && item.firstName === firstName && item.secondName === secondName); // Wenn in selectedFromDropdown ein Objekt mit den übergebenen Variablen übereinstimmt, dann entspricht isSelected gleich den Kontakt
-  let dropdownList = document.getElementById('row_selected_contacts_circles');
-  if (isSelected) {
-     // case selected contact is selected (change to unselected)
-    removeFromSelectedItems(firstName,i);
-    selectedFromDropdown.slice({ color, firstName, secondName });
-    document.getElementById(`contact${i}`).classList.remove('selected');
-    dropdownHtmlMemberCircle();
-    document.getElementById(`selected_img${i}`).setAttribute('src', 'assets/img/check_button_unchecked.svg');
-  } else {
-    // case unselected contact is selected (change to selected)
-    selectedFromDropdown.push({ color, firstName, secondName });
-    dropdownList.innerHTML += dropdownHtmlMemberCircle( color,firstName,secondName,i );
+function selectFromDropdown(i) {
+  if (contacts_addTask[i].select_status == false) {
+    contacts_addTask[i].select_status = true;
     document.getElementById(`contact${i}`).classList.add('selected');
-    document.getElementById(`selected_img${i}`).setAttribute('src', 'assets/img/check_button_checked_white.svg');
+    document.getElementById(`selected_img${i}`).innerHTML = `
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17 8V14C17 15.6569 15.6569 17 14 17H4C2.34315 17 1 15.6569 1 14V4C1 2.34315 2.34315 1 4 1H12" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        <path d="M5 9L9 13L17 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>`;
+    renderSelectedContactsRow();
+  } else if (contacts_addTask[i].select_status == true){
+    contacts_addTask[i].select_status = false;
+    document.getElementById(`contact${i}`).classList.remove('selected');
+    document.getElementById(`selected_img${i}`).innerHTML = `<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="1" y="1" width="16" height="16" rx="3" stroke="#2A3647" stroke-width="2"/>
+    </svg>`;
+    renderSelectedContactsRow();
+  }
+}
+
+function renderSelectedContactsRow() {
+  let selected_contacts_row = document.getElementById('row_selected_contacts_circles');
+  selected_contacts_row.innerHTML = '';
+  for (let i = 0; i < contacts_addTask.length; i++) {
+    let contact = contacts_addTask[i];
+    if (contact.select_status == true) {
+      selected_contacts_row.innerHTML += dropdownHtmlMemberCircle(i);
+    }
+    
   }
 }
 
 
-
-function dropdownHtmlMemberCircle(color, firstName, secondName, i) {
+/**
+ * Creates the circle with initials from contacts are selected.
+ * 
+ * @param {Number} i - Index of contact in contacts_addTask array
+ * @returns 
+ */
+function dropdownHtmlMemberCircle(i) {
+  let firstName = contacts_addTask[i].name.firstName;
+  let secondName = contacts_addTask[i].name.secondName;
+  let color = contacts_addTask[i].name.color;
   return `
     <div class="member_cicle_main">
-      <div onclick="removeFromSelectedItems('${firstName}','${i}')" class="member_cicle" style="background-color:${color};">
+      <div class="member_cicle" style="background-color:${color};">
         ${firstName.charAt(0)}
         ${secondName.charAt(0)}
       </div>
     </div>
   `;
-}
-
-/**
- * Iterates through the array selectedFromDropdown (storage of contacts selected for the task).
- * Removes the Contact from selectedFromDropdown array which is passed into the function.
- * 
- * @param {String} firstName - first Name of choosen contact in the dropdownlist
- * @param {Number} i - Index of choosen contact in contacts_addTask global array 
- */
-function removeFromSelectedItems(firstName, i ) {
-  for (let i = 0; i < selectedFromDropdown.length; i++) {
-    if (selectedFromDropdown[i].firstName === firstName) {
-      selectedFromDropdown.splice(i, 1);
-      let dropdownList = document.getElementById("dropdownList");
-      let elements = dropdownList.getElementsByClassName("member_cicle");
-      for (let j = 0; j < elements.length; j++) {
-        let textContent = elements[j].textContent;
-        if (textContent.includes(firstName.charAt(0))) {
-          dropdownList.removeChild(elements[j]);
-        }
-      }
-    }
-  }
-  document.getElementById(i).classList.remove('selected');
-  selectFromDropdown();
 }
 
 /**

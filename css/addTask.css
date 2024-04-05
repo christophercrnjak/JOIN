@@ -12,15 +12,16 @@ body {
   border: 1px solid #ccc !important;
 }
 
-.right {  
+/* .right {  
   padding-left: 50px;
-}
+} */
 
 .assign_head,
 .category_head,
 .title_head,
-.subtasks_head {
-  margin-top: 12px;
+.subtasks_head,
+.description_head {
+  /* margin-top: 12px; */
   margin-bottom: 8px;
 }
 
@@ -78,25 +79,40 @@ padding-top: 100px;
     margin-top: 15%;
     font-size: 61px;
     font-weight: 700;
-    margin-bottom: 1%;
+    margin-bottom: 48px;
+  }
+
+  .parting_line {
+    height: 424px;
+    width: 0px;
+    border: 1px solid #D1D1D1;
+    display: flex;
   }
 
   /* Forms */
   .addTaskForms {
-    display: flex;
+    /* display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: baseline;
     width: 100%;
     gap: 50px;
+    flex: 1; */
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 50px;
     flex: 1;
+    height: 376px;
   }
 
     .addTaskForm {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: flex-start;
       flex-direction: column;
+      border: 1px solid;
+    height: 376px;
     }
 
       .addTaskForm span {
@@ -117,13 +133,12 @@ padding-top: 100px;
         position: relative;
         height: 96px;
         width: 100%;
-        margin-top: 12px;
       }
 
       /* Description */
-      .description_head {
+      /* .description_head {
         margin-top: 8px;
-      }
+      } */
 
       #description {
         border: 1px solid #dbdbdb !important;
@@ -251,7 +266,7 @@ padding-top: 100px;
               padding: 1px;
               width: 42px;
               height: 42px;
-              margin-right: 16px;
+              margin-right: 8px;
             }
 
               .member_cicle {
@@ -263,7 +278,6 @@ padding-top: 100px;
                 align-items: center;
                 color: #ffffff;
                 font-size: 12px;
-                margin-right: 8px;
                 cursor: pointer;
                 border: 2px solid white;
               }
@@ -279,6 +293,16 @@ padding-top: 100px;
               justify-content: center;
               align-items: center;
             }
+
+            .dropdown_img:hover{
+              background-color: rgba(255, 255, 255,0.9);
+              border-radius: 25px;
+              cursor: pointer;
+            }
+
+            .dropdown_img:hover path  {
+              stroke: var(--bgdarkblue);
+          }
             
             .dropdown_img img {
               width: 16px;

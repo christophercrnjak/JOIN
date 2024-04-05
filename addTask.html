@@ -2,29 +2,29 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon.png">
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/addTask.css">
-    <link rel="stylesheet" href="/css/addTask_subtask.css"> 
-    <link rel="stylesheet" href="/css/addTask_mediaquery.css"> 
-    <link rel="stylesheet" href="/css/sidebar.css">   
-     <script src="js/sidebar.js"></script>
-    <script src="js/storage.js"></script>
-    <script src="/js/addTask.js"></script>
-    <script src="./js/include.js"></script>
-    <title>Add Task</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="assets/img/favicon.png">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/addTask.css">
+  <link rel="stylesheet" href="/css/addTask_subtask.css">
+  <link rel="stylesheet" href="/css/addTask_mediaquery.css">
+  <link rel="stylesheet" href="/css/sidebar.css">
+  <script src="js/sidebar.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="/js/addTask.js"></script>
+  <script src="./js/include.js"></script>
+  <title>Add Task</title>
 </head>
 
 <!-- Sidebar inclube -->
 
 <body onload="addTaskInit(),includeHTML();">
-    <div w3-include-html="/assets/templates/sidebar.html"></div>
-    
+  <div w3-include-html="/assets/templates/sidebar.html"></div>
+
   <form class="main_addTask" onsubmit="pushToBoard()">
     <header class="AddTask_head"> Add Task</header>
-      
+
     <!-- Main section add task -->
     <div class="addTaskForms">
       <!-- section add task -->
@@ -33,85 +33,99 @@
         <!-- title  -->
         <div class="title_section">
           <div class="title_head">Title<span>*</span></div>
-          <input onfocusout="validation('titleAddtask', 'validation_text_title')" id="titleAddtask" class="border inputtextfield" type="text" placeholder="Enter a title" required>
+          <input onfocusout="validation('titleAddtask', 'validation_text_title')" id="titleAddtask"
+            class="border inputtextfield" type="text" placeholder="Enter a title" required>
           <div class="errormessage d-none" id="validation_text_title">This field is required</div>
         </div>
         <!-- description  -->
-        <div class="description_head">Description</div>
-        <textarea id="description" class="border inputtextfield" placeholder="Enter a Description"></textarea>
-        
+        <div>
+          <div class="description_head">Description</div>
+          <textarea id="description" class="border inputtextfield" placeholder="Enter a Description"></textarea>
+        </div>
         <!-- assigned to  -->
-        <div class="assign_head">Assigned to </div>
-        
-        <div class="dropdown" id="assigned_to_section">
+        <div>
+          <div class="assign_head">Assigned to </div>
+
+          <div class="dropdown" id="assigned_to_section">
             <!-- button section (dropdown inactive)  -->
             <div onclick="toggledropbtn(); return false" class="dropbtn" id="dropbtn">Select contacts assign</div>
-            <div id="arrow" class="arrow" onclick="toggledropbtn(); return false"><img src="/assets/img/arrowDropDown.svg" alt="" srcset=""></div>
+            <div id="arrow" class="arrow" onclick="toggledropbtn(); return false"><img
+                src="/assets/img/arrowDropDown.svg" alt="" srcset=""></div>
             <!-- search section (dropdown active)  -->
             <input type="text" id="dropdownInput" onkeyup="filterFunction()" class="dropdownInput d-none">
-            
+
             <!-- dropdown section  -->
             <div id="dropdown" class="dropdown_content">
             </div>
+          </div>
+          <div class="row_selected_contacts_circles" id="row_selected_contacts_circles"></div>
         </div>
-        <div class="row_selected_contacts_circles" id="row_selected_contacts_circles"></div>
       </section>
-      
+      <hr class="parting_line">
       <!-- Secound section  -->
       <section class="addTaskForm right">
-        
+
         <!-- Due Date  -->
         <div class="due_date_section">
           <div class="date_head">Due date<span>*</span></div>
-          <input onfocusout="validation('AddTaskDate', 'validation_text_due_date')" type="date" class="border" id="AddTaskDate" placeholder="DD/MM/YYYY" required>
+          <input onfocusout="validation('AddTaskDate', 'validation_text_due_date')" type="date" class="border"
+            id="AddTaskDate" placeholder="DD/MM/YYYY" required>
           <div class="errormessage d-none" id="validation_text_due_date">This field is required</div>
         </div>
 
         <!-- Priority  -->
         <div class="prio_head">Prio</div>
         <div class="btn_addTask_list" id="btnAddTaskPrio">
-          <a class="btn_addTask" id="btnUrgend" onclick="changePriority('urgend')">Urgent <img id="btnUrgendImg" src="assets/img/Prio_urgent_color_origin.svg"></a>
-          <a class="btn_addTask" id="btnMedium" onclick="changePriority('medium')">Medium <img id="btnMediumImg" src="assets/img/Prio_medium_white.svg"></a>
-          <a class="btn_addTask" id="btnLow" onclick="changePriority('low')">Low <img id="btnLowImg" src="assets/img/Prio_low_color_origin.svg"></a>
-        </div> 
-        
+          <a class="btn_addTask" id="btnUrgend" onclick="changePriority('urgend')">Urgent <img id="btnUrgendImg"
+              src="assets/img/Prio_urgent_color_origin.svg"></a>
+          <a class="btn_addTask" id="btnMedium" onclick="changePriority('medium')">Medium <img id="btnMediumImg"
+              src="assets/img/Prio_medium_white.svg"></a>
+          <a class="btn_addTask" id="btnLow" onclick="changePriority('low')">Low <img id="btnLowImg"
+              src="assets/img/Prio_low_color_origin.svg"></a>
+        </div>
+
         <!-- Category  -->
         <div class="category">
           <div class="category_head">Category<span>*</span></div>
           <div id="btn_and_dropdown_section" class="btn_and_dropdown_section border_button">
-            <div class="dropdown_category border inputtextfield" id="categoryDropDownBtn" onclick="categoryDropDownBtn()">Select task category</div>
-            <div id="dropdownCategory" class="dropdown_content_category"></div>  
+            <div class="dropdown_category border inputtextfield" id="categoryDropDownBtn"
+              onclick="categoryDropDownBtn()">Select task category</div>
+            <div id="dropdownCategory" class="dropdown_content_category"></div>
             <div class="errormessage d-none" id="validation_text_category">This field is required</div>
           </div>
-        </div> 
-        
+        </div>
+
         <!-- Subtasks  -->
         <div class="subtasks_head">Subtasks</div>
         <div class="subtask_button_container">
-          <div class= "subtaskIcons" id="subtaskIcons" onclick="ChangeToSubtasks()"></div>
+          <div class="subtaskIcons" id="subtaskIcons" onclick="ChangeToSubtasks()"></div>
           <div id="delet_and_check_section" class="d-none">
-            <div class= "subtaskIcons" id="subtaskIconsDelete" onclick="deleteSubTasks()"></div>
+            <div class="subtaskIcons" id="subtaskIconsDelete" onclick="deleteSubTasks()"></div>
             <div id="subtaskI">|</div>
-            <div class= "subtaskIcons" id="subtaskIconsCheck" onclick="pushToSubtasks()"></div> 
+            <div class="subtaskIcons" id="subtaskIconsCheck" onclick="pushToSubtasks()"></div>
           </div>
         </div>
-        <input type="text" onkeyup="ChangeToSubtasks()" class="subtasksInput inputtextfield" id="subtasksInput" placeholder="Add new Subtask">
+        <input type="text" onkeyup="ChangeToSubtasks()" class="subtasksInput inputtextfield" id="subtasksInput"
+          placeholder="Add new Subtask">
         <div id="subtasklist"></div>
       </section>
 
-    </div> 
-    
+    </div>
+
     <!-- Commit Section  -->
     <div class="create_clear_task">
       <p><span>*</span>This Field is required</p>
       <div class="addTask_btns">
-        <button class="btn_transparent addTask_btn btn_gab" onclick="removeAllInputes()">Clear <div class="btn_claer"></div></button>
-        <button class="btn_grey addTask_btn display_centerss btn_gab" onclick="validateInputs()"> Create Task <img src="/assets/img/check.png"></button>
+        <button class="btn_transparent addTask_btn btn_gab" onclick="removeAllInputes()">Clear <div class="btn_claer">
+          </div></button>
+        <button class="btn_grey addTask_btn display_centerss btn_gab" onclick="validateInputs()"> Create Task <img
+            src="/assets/img/check.png"></button>
       </div>
     </div>
-    
+
   </form>
 
 
 </body>
+
 </html>
