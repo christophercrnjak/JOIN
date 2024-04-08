@@ -41,6 +41,10 @@ async function setUserInitialsAtHeader() {
   let accountLogo = document.getElementById('navbarHeadIcon');
   if (currentUser.length === 0 || typeof currentUser == "undefined" || currentUser[0] == '') {
     accountLogo.innerHTML = 'G';
+  } else if (typeof currentUser[0].name.secondName == "undefined") {
+    let firstName = currentUser[0].name.firstName;
+    firstName = firstName.charAt(0);
+    accountLogo.innerHTML = `${firstName}`;
   } else {
     let firstName = currentUser[0].name.firstName;
     firstName = firstName.charAt(0);

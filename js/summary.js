@@ -152,8 +152,12 @@ function renderUserName() {
   let userNameElement = document.getElementById("user_name");
   if (currentUser.length === 0 || typeof currentUser == "undefined" || currentUser[0] == '') {
     userNameElement.innerHTML = `Guest`;
+  } else if (typeof currentUser[0].name.secondName == "undefined") {
+    let firstName = currentUser[0].name.firstName;
+    userNameElement.innerHTML = `${firstName}`; 
   } else {
-  userNameElement.innerHTML = `${currentUser[0].name.firstName} ${currentUser[0].name.secondName}`;}
+    userNameElement.innerHTML = `${currentUser[0].name.firstName} ${currentUser[0].name.secondName}`;
+  }
 }
 
 function hover(element, newSrc) {
