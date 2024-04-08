@@ -145,5 +145,10 @@ async function closeDialog(taskId) {
         container.classList.add('d-none');
         await renderColumnContent(); // @ board_main.js:51
         dialog_status = 'inactive';
-    } 
+    } else if (dialog_status == 'addTask') {
+        let container = document.getElementById('dialog_container');
+        container.classList.add('d-none');
+        await init(); // @ board_main.js:51
+        dialog_status = 'inactive';
+    }
 }  
