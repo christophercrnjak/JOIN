@@ -20,58 +20,59 @@ let dialog_status = 'inactive';
  * Initialize rendering content of Kanban Board.
  */
 async function init() {
+    await includeHTML();
+    await setUserInitialsAtHeader();
     await getTasksFromServer();
     await renderColumnContent();
-    setUserInitialsAtHeader();
 }
 
-function setUserInitialsAtHeader() {
-    let accountLogo = document.getElementById('navbarHeadIcon');
-    if (currentUser.length === 0 || typeof currentUser == "undefined" || currentUser[0] == '') {
-      accountLogo.innerHTML = 'G';
-    } else {
-      let firstName = currentUser[0].name.firstName;
-      firstName = firstName.charAt(0);
-      let secondName = currentUser[0].name.secondName;
-      secondName = secondName.charAt(0);
-      accountLogo.innerHTML = `${firstName} ${secondName}`;
-    }
-  }
+// function setUserInitialsAtHeader() {
+//     let accountLogo = document.getElementById('navbarHeadIcon');
+//     if (currentUser.length === 0 || typeof currentUser == "undefined" || currentUser[0] == '') {
+//       accountLogo.innerHTML = 'G';
+//     } else {
+//       let firstName = currentUser[0].name.firstName;
+//       firstName = firstName.charAt(0);
+//       let secondName = currentUser[0].name.secondName;
+//       secondName = secondName.charAt(0);
+//       accountLogo.innerHTML = `${firstName} ${secondName}`;
+//     }
+//   }
 
-  async function logOut() {
-    currentUser = [];
-    saveCurrentUserOnServer();
-    toastMessageLogOut();
-    await timeout (750);
-    await closeToast();
-    window.location.href = "index.html";
-  }
+//   async function logOut() {
+//     currentUser = [];
+//     saveCurrentUserOnServer();
+//     toastMessageLogOut();
+//     await timeout (750);
+//     await closeToast();
+//     window.location.href = "index.html";
+//   }
   
-  /**
-   * Makes the element saying "Task added to board" appear and disappear after 1 s and 20 ms.
-   */
-  function toastMessageLogOut() {
-    let container = document.getElementById('toastMessageLogOut_board');
-    container.classList.remove('d-none');
-  }
+//   /**
+//    * Makes the element saying "Task added to board" appear and disappear after 1 s and 20 ms.
+//    */
+//   function toastMessageLogOut() {
+//     let container = document.getElementById('toastMessageLogOut_board');
+//     container.classList.remove('d-none');
+//   }
   
-  /**
-   * Starts a timeout.
-   * 
-   * @param {Number} ms - Time of timeout
-   * @returns {TimeRanges}
-   */
-  function timeout(ms) {
-    return new Promise(res => setTimeout(res,ms));
-  }
+//   /**
+//    * Starts a timeout.
+//    * 
+//    * @param {Number} ms - Time of timeout
+//    * @returns {TimeRanges}
+//    */
+//   function timeout(ms) {
+//     return new Promise(res => setTimeout(res,ms));
+//   }
   
-  /**
-   * Hides the toast message box
-   */
-  function closeToast() {
-    let container = document.getElementById('toastMessageLogOut_board'); 
-    container.classList.add('d-none');
-  }
+//   /**
+//    * Hides the toast message box
+//    */
+//   function closeToast() {
+//     let container = document.getElementById('toastMessageLogOut_board'); 
+//     container.classList.add('d-none');
+//   }
 
 
 // ***** Search *****

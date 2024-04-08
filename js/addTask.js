@@ -40,12 +40,13 @@ let subtasklists = [];
  * 
  */
 async function addTaskInit() {
+  await includeHTML();
+  await setUserInitialsAtHeader();
   await loadContactsServer()
   addSelectstatusToContacts();
   renderDropList();
   renderCategoryDropDown();
-  includeHTML();
-  changePriority('medium')
+  changePriority('medium');
 }
 
 async function loadContactsServer() {

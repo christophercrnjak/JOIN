@@ -187,27 +187,6 @@ hr {
   color: var(--blue);
 }
 
-.toastMessageLogOut {
-  background-color: var(--bgdarkblue);
-  color: white;
-  font-size: 20px;
-  font-weight: 300;
-  display: flex;
-  width: 275px;
-  padding: 16px 24px 16px 24px;
-  border-radius: 16px;
-  align-items: center;
-  position: fixed;
-  top: 19%;
-  left: 83%;
-  transform: translate(-50%, -50%);
-}
-
-.toastMessageLogOut_text {
-  display: flex;
- 
-}
-
 
 @media (max-width: 1000px) {
   .welcome_message {

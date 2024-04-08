@@ -1,7 +1,9 @@
 let person = [];
 
 async function init() {
-   await getContactsFromServer();
+    await includeHTML();
+    await setUserInitialsAtHeader();
+    await getContactsFromServer();
     person = contacts_global;
     loadContacts();
 }

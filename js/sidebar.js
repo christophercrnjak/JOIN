@@ -11,24 +11,6 @@ document.addEventListener('click', function(event) {
   }
 });
 
-
-/**
- * Sets the innitials of logged account in the head navbar in the top right corner.
- * currentUser is an Array in storage.js.
- */
-function setUserInitialsAtHeader() {
-  let accountLogo = document.getElementById('navbarHeadIcon');
-  if (currentUser.length === 0 || typeof currentUser == "undefined" || currentUser[0] == '') {
-    accountLogo.innerHTML = 'G';
-  } else {
-    let firstName = currentUser[0].name.firstName;
-    firstName = firstName.charAt(0);
-    let secondName = currentUser[0].name.secondName;
-    secondName = secondName.charAt(0);
-    accountLogo.innerHTML = `${firstName} ${secondName}`;
-  }
-}
-  
 async function logOut() {
   currentUser = [];
   saveCurrentUserOnServer();
@@ -42,7 +24,7 @@ async function logOut() {
    * Makes the element saying "Task added to board" appear and disappear after 1 s and 20 ms.
    */
 function toastMessageLogOut() {
-  let container = document.getElementById('toastMessageLogOut_addTask');
+  let container = document.getElementById('toastMessageLogOut');
   container.classList.remove('d-none');
 }
 
@@ -60,6 +42,6 @@ function timeout(ms) {
  * Hides the toast message box
  */
 function closeToast() {
-  let container = document.getElementById('toastMessageLogOut_addTask'); 
+  let container = document.getElementById('toastMessageLogOut'); 
   container.classList.add('d-none');
 }  

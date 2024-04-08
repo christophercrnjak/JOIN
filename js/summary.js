@@ -10,6 +10,8 @@ let tasks_summery = '';
 
 
 async function init() {
+  await includeHTML();
+  await setUserInitialsAtHeader();
   await loadServerData();
   copyTasksArray();
   copyContactsArray();

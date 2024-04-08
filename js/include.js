@@ -18,7 +18,6 @@ async function includeHTML() {
     }
   }
   setActiveLink();
-  setUserInitialsAtHeader();
 }
   
   function setActiveLink() {
@@ -33,7 +32,12 @@ async function includeHTML() {
     });
 }
 
-function setUserInitialsAtHeader() {
+/**
+ * Sets the innitials of logged account in the head navbar in the top right corner.
+ * currentUser is an Array in storage.js.
+ */
+async function setUserInitialsAtHeader() {
+  await getCurrentUserOnServer();
   let accountLogo = document.getElementById('navbarHeadIcon');
   if (currentUser.length === 0 || typeof currentUser == "undefined" || currentUser[0] == '') {
     accountLogo.innerHTML = 'G';
