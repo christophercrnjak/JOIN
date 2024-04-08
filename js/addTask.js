@@ -395,7 +395,10 @@ function removeSubtask(i) {
 function subtasklistHTML(subtaskHTML, i) {
   return `
   <div id="subtasklist_element${i}" class="subtasklist_element" ondblclick="editNewSubtask(${i})">
-  <p><span class="point">• </span> ${subtaskHTML}</p>
+  <div class="subtask_text_content_main">
+    <div class="point">•</div>
+    <div class="subtask_text_content">${subtaskHTML}</div>
+  </div>
   <div class="pencil_and_trash_new_subtask">
     <a class="edit_pencil" onclick="editNewSubtask(${i})">
       <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">

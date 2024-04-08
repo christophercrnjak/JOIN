@@ -2,9 +2,15 @@
 
 body {
   background-color: var(--bgwhite);
-  height: 100%;
-  width: 100%;
+}
+
+.container {
+  margin-left: 232px;
   display: flex;
+  flex-direction: column;
+  row-gap: 56px;
+  padding-top: 96px;
+  width: calc(100% - 232px);
 }
 
 .border{
@@ -12,18 +18,19 @@ body {
   border: 1px solid #ccc !important;
 }
 
-/* .right {  
-  padding-left: 50px;
-} */
-
-.assign_head,
-.category_head,
-.title_head,
-.subtasks_head,
-.description_head {
-  /* margin-top: 12px; */
+.title {
   margin-bottom: 8px;
 }
+
+.margin_bot_16px {
+  margin-bottom: 16px;
+}
+
+.margin_bot_24px {
+  margin-bottom: 24px;
+}
+
+
 
 input[type="text"] {
   border: 1px solid #ccc;
@@ -59,27 +66,37 @@ input[type="date"]:invalid{
   font-size: 12px;
   font-weight: 400;
   color: #FF8190;
-  margin-top: 4px;
+  position: absolute;
+  top: 70px;
+  visibility: hidden;
 }
+
 
 /* Main */
 
 .main_addTask {
   display: flex;
-justify-content: center;
-align-items: flex-start;
-flex-direction: column;
-background-color: var(--bgwhite);
-padding-left: 300px;
-padding-top: 100px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  background-color: var(--bgwhite);
+  width: 100%;
 }
 
   /* Header */
+
+  .AddTask_head_main {
+    width: 100%;
+    display: flex;
+  }
+
   .AddTask_head {
-    margin-top: 15%;
+    margin-top: 110px;
+    padding-left: 96px;
     font-size: 61px;
     font-weight: 700;
     margin-bottom: 48px;
+    width: 100%;
   }
 
   .parting_line {
@@ -90,29 +107,22 @@ padding-top: 100px;
   }
 
   /* Forms */
-  .addTaskForms {
-    /* display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: baseline;
-    width: 100%;
-    gap: 50px;
-    flex: 1; */
+  .addTaskForm_main {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     width: 100%;
     gap: 50px;
-    flex: 1;
-    height: 376px;
+    padding-left: 96px;
+
+
   }
 
     .addTaskForm {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
       align-items: flex-start;
       flex-direction: column;
-      border: 1px solid;
-    height: 376px;
+     
     }
 
       .addTaskForm span {
@@ -122,6 +132,7 @@ padding-top: 100px;
       .addTaskForm input {
         background-image: url();
         width: 100%;
+        padding-right: 70px;
       }
 
       .addTaskForm textarea {
@@ -131,8 +142,9 @@ padding-top: 100px;
       /* Title */
       .title_section {
         position: relative;
-        height: 96px;
         width: 100%;
+        display: flex;
+        flex-direction: column;
       }
 
       /* Description */
@@ -157,8 +169,11 @@ padding-top: 100px;
         }
 
       textarea#description {
-        height: 96px;
         width: 360px;
+      }
+
+      .assigned_to_section_main {
+        width: 100%;
       }
 
       /* Assigned to */
@@ -322,7 +337,6 @@ padding-top: 100px;
         display: flex;
         justify-content: flex-start;
         flex-direction: row;
-        margin-top: 8px;
         width: 90%;
         height: 36px;
       }
@@ -331,21 +345,28 @@ padding-top: 100px;
       /* Due Date */
       .due_date_section {
         position: relative;
-        height: 96px;
         width: 100%;
-        margin-top: 12px;
       }
 
         .date_head {
           margin-bottom: 8px;
         }
+      
+      .prio_head {
+        margin-bottom: 8px;
+      }
+
+      #AddTaskDate {
+        padding-right: 10px;
+      }
+      
 
       /* Priority */
       .btn_addTask_list {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 360px;
+        width: 360px !important;
         gap: 8px;
         cursor: pointer;
       }
@@ -358,7 +379,7 @@ padding-top: 100px;
           color: black; 
           padding: 16px 18px;
           height: 56px;
-          width: 33%;
+          width: 136px;
           border-radius: 10px;
           gap: 8px;
         }
@@ -385,7 +406,6 @@ padding-top: 100px;
       .category {
         position: relative;
         width: 100%;
-        height: 96px;
       }
 
         .btn_and_dropdown_section {
@@ -432,7 +452,9 @@ padding-top: 100px;
               width: 100%;
             }
       
-    
+            .subtask {
+              width: 100%;
+            }
 
 
   /* Clear or Commit Section */
@@ -441,6 +463,8 @@ padding-top: 100px;
     justify-content: space-between;
     width: 100%;
     margin-top: 100px;
+    padding-left: 96px;
+    padding-right: 96px;
   }
 
   .addTask_btns {

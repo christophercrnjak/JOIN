@@ -1,17 +1,15 @@
 /* Subtask */
 .subtask_button_container {
-    position: relative;
-    top: 32px;
-    left: 84%;
-    width: 15%;
-    display: flex;
-    justify-content: flex-end;
-    padding-right: 6px;
-    
-  }
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+}
   
   #delet_and_check_section {
     display: flex;
+    position: absolute;
+    top: 8px;
+    right: 11px;
   }
   
   .line {
@@ -25,9 +23,18 @@
   }
   
   .point {
-    padding-left: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
     color: #000 !important;
     }
+
+  .subtask_text_content {
+    display: flex;
+  }
+
+  .subtask_text_content_main {
+    display: flex;
+  }
   
   .pencil_and_trash_new_subtask {
     display: none;
@@ -111,6 +118,9 @@
     background-position: center;
     height: 25px;
     width: 25px;
+    position: absolute;
+    top: 7px;
+    right: 11px;
   }
   
   #subtaskIconsDelete{
