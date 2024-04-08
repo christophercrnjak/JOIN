@@ -5,10 +5,10 @@
 // If an error occurs (e.g., file not found), "Page not found." is displayed in the element.
 
 async function includeHTML() {
-  let includeElements = document.querySelectorAll("[w3-include-html]");
+  let includeElements = document.querySelectorAll("[template-src]");
 
   for (let element of includeElements) {
-    let file = element.getAttribute("w3-include-html");
+    let file = element.getAttribute("template-src");
     let response = await fetch(file);
     if (response.ok) {
       let text = await response.text();
@@ -18,6 +18,7 @@ async function includeHTML() {
     }
   }
   setActiveLink();
+  setUserInitialsAtHeader();
 }
   
   function setActiveLink() {
@@ -32,3 +33,15 @@ async function includeHTML() {
     });
 }
 
+function setUserInitialsAtHeader() {
+  let accountLogo = document.getElementById('navbarHeadIcon');
+  if (currentUser.length === 0 || typeof currentUser == "undefined" || currentUser[0] == '') {
+    accountLogo.innerHTML = 'G';
+  } else {
+    let firstName = currentUser[0].name.firstName;
+    firstName = firstName.charAt(0);
+    let secondName = currentUser[0].name.secondName;
+    secondName = secondName.charAt(0);
+    accountLogo.innerHTML = `${firstName} ${secondName}`;
+  }
+}

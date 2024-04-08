@@ -16,7 +16,6 @@ async function init() {
   calcValuesOfSummery();
   getNextDueDate();
   render();
-  setUserInitialsAtHeader()
 }
 
 async function loadServerData() {
@@ -31,18 +30,6 @@ function calcValuesOfSummery() {
   calcUrgentAmount();
 }
 
-function setUserInitialsAtHeader() {
-  let accountLogo = document.getElementById('navbarHeadIcon');
-  if (currentUser.length === 0 || typeof currentUser == "undefined" || currentUser[0] == '') {
-    accountLogo.innerHTML = 'G';
-  } else {
-    let firstName = currentUser[0].name.firstName;
-    firstName = firstName.charAt(0);
-    let secondName = currentUser[0].name.secondName;
-    secondName = secondName.charAt(0);
-    accountLogo.innerHTML = `${firstName} ${secondName}`;
-  }
-}
 
 async function copyTasksArray() {
   tasks_summery = JSON.parse(JSON.stringify(tasks));
@@ -175,39 +162,4 @@ function hover(element, newSrc) {
 function unhover(element, originalSrc) {
   let img = element.querySelector("img");
   img.setAttribute("src", originalSrc);
-}
-
-async function logOut() {
-  currentUser = [];
-  saveCurrentUserOnServer();
-  toastMessageLogOut();
-  await timeout (750);
-  await closeToast();
-  window.location.href = "index.html";
-}
-
-/**
- * Makes the element saying "Task added to board" appear and disappear after 1 s and 20 ms.
- */
-function toastMessageLogOut() {
-  let container = document.getElementById('toastMessageLogOut');
-  container.classList.remove('d-none');
-}
-
-/**
- * Starts a timeout.
- * 
- * @param {Number} ms - Time of timeout
- * @returns {TimeRanges}
- */
-function timeout(ms) {
-  return new Promise(res => setTimeout(res,ms));
-}
-
-/**
- * Hides the toast message box
- */
-function closeToast() {
-  let container = document.getElementById('toastMessageLogOut'); 
-  container.classList.add('d-none');
 }
