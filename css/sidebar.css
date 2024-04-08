@@ -17,9 +17,6 @@
     z-index: 1000;
 }
 
-
-  
-
 /* head Navbar  */
 
 .head_main_navbar {
@@ -274,4 +271,3 @@
   .show {
     display:flex;
 }
-

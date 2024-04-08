@@ -351,7 +351,3 @@ async function getCurrentUserOnServer() {
     console.warn("Could not load currentUser!");
   }
 }
-
-
-
-

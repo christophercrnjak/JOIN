@@ -1,4 +1,9 @@
 /* Subtask */
+
+.subtask {
+  width: 100%;
+}
+
 .subtask_button_container {
   position: relative;
   display: flex;
