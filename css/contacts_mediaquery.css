@@ -329,12 +329,12 @@
     .contact_list {
         margin: 0;
         width: 100%;
-        align-items: center;
         margin-top: 24px;
     }
 
     .first_letter {
         width: 90%;
+        margin-left: 24px;
     }
 
     .add {
@@ -367,7 +367,7 @@
 
     .persons_details {
         width: 90%;
-        justify-content: center;
+        margin-left: 24px;
     }
 
     .persons_details.active {
