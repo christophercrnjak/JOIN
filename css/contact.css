@@ -408,7 +408,8 @@ input[type="tel"] {
     margin-left: 8px;
     margin-top: 4px;
 }
-#flexContainer{
+
+#flexContainer {
     margin-left: 55px;
 }
 
@@ -646,7 +647,9 @@ svg {
 .edit_delete_window {
     display: none;
 }
+.error-message {
+    color: red;
+    margin-top: 5px;
+}
 
-
-/*Mobile Version(responsive) in contct_mediaquery.css*/
-
+/*Mobile Version(responsive) in contact_mediaquery.css*/

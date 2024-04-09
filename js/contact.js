@@ -1,9 +1,8 @@
 let person = [];
 
 async function init() {
-    await includeHTML();
-    await setUserInitialsAtHeader();
-    await getContactsFromServer();
+   await getContactsFromServer();
+   await setUserInitialsAtHeader();
     person = contacts_global;
     loadContacts();
 }
@@ -195,6 +194,11 @@ function editPerson(index) {
 async function createContact(event) {
     event.preventDefault();
 
+    var isValid = validateNames();
+            if (!isValid) {
+                return;
+            }
+
     let nameInput = document.getElementById('input_name').value;
     let emailInput = document.getElementById('input_email').value;
     let phoneInput = document.getElementById('input_phone').value;
@@ -301,7 +305,18 @@ async function saveChanges() {
     }
 }
 
-function validateNames(){
-
+function validateNames() {
+    var nameInput = document.getElementById('input_name').value.trim();
+    if (nameInput.indexOf(' ') === -1) {
+        var errorMessage = document.getElementById('error_message');
+        errorMessage.innerText = "Bitte geben Sie einen Vor- und Nachnamen ein.";
+        errorMessage.style.display = 'block';
+        document.getElementById('input_name').style.borderColor = 'red';
+        return false;
+    } else {
+        document.getElementById('input_name').style.borderColor = ''; 
+        document.getElementById('error_message').style.display = 'none'; 
+        return true;
+    }
 }
 

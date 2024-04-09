@@ -100,7 +100,7 @@ function setPrioBtnUrgentActive_addTask() {
 function urgentInactivHTML_addTask() {
     return `
         <a class="urgent_btn_inactive btn_addTask" onclick="renderPrioButtons_addTask('Urgent')">
-            Urgend 
+            Urgent 
             <img id="btnUrgrend_img_addTask" src="assets/img/Prio_urgent_color_origin.svg" alt="" srcset="">
         </a>
     `;
@@ -115,7 +115,7 @@ function urgentInactivHTML_addTask() {
 function urgentActivHTML_addTask() {
     return `
         <a class="urgent_btn_active btn_addTask">
-            Urgend 
+            Urgent 
             <img id="btnUrgrend_img_addTask" src="assets/img/Prio_urgent_white.svg" alt="" srcset="">
         </a>
     `;
