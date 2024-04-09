@@ -1,3 +1,22 @@
+/* toast message  */
+
+.toast_message_logout {
+    background-color: var(--bgdarkblue);
+    color: white;
+    font-size: 20px;
+    font-weight: 300;
+    display: flex;
+    width: 275px;
+    padding: 16px 24px 16px 24px;
+    border-radius: 16px;
+    align-items: center;
+    position: fixed;
+    top: 47px;
+    right: 100px;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
 /* head Navbar  */
 
 .head_main_navbar {
@@ -168,7 +187,6 @@
     justify-content: space-between;
     flex-direction: row;
     height: 80px; 
-    width: 80px;
     width: 100%;
     }
     .logo_sidebar {
@@ -253,4 +271,3 @@
   .show {
     display:flex;
 }
-

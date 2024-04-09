@@ -44,20 +44,16 @@ function assigedToEditHTML(taskId) {
     return /*html */`
     <!-- label -->
     <div class="header_text_edit_section">Assiged to</div>
-
     <!-- dropdown selection field -->
     <div id="dropdown_main" class="dropdown">
-
         <!-- prompt to select contacts -->
         <div id="dropdown_text" class="dropdown_text" onclick="openDropDownList(${taskId})"> 
             Select contacts to assign
         </div>
-
         <!-- search input -->
         <div id="dropdown_input" class="d-none"> 
             <input onkeyup="searchContacts(${taskId})" id="search_contacts_edit" type="text">
         </div>
-
         <!-- triangle which shows whether the list is expanded -->
         <a class="dopdown_img_inactive" id="dropdown_arrow" onclick="openDropDownList(${taskId})">
             <img src="assets/img/arrowDropDown.svg">
@@ -65,8 +61,6 @@ function assigedToEditHTML(taskId) {
          <!-- dropdownlist of contacts for selection to current task -->
         <div id="selectedContactsSection" class="selectedContacts"></div>
     </div>
-
-   
     `;
 }
 
@@ -91,7 +85,6 @@ function renderCiclesOfTaskContacts(taskId) {
     }
 }
 
-
 /**
  * HTML structure of cicles 
  * 
@@ -109,6 +102,7 @@ function selectedTaskMemberHTML(firstCharacter, secondCharacter, taskId, i) {
     
     `;
 }
+
 /**
  * Rotate the triangle, change Input/Text and show/hide the dropdownlist of contacts.
  * 
@@ -210,18 +204,14 @@ function editContactListHTML(taskId, contactId) {
     let contact = loaded_contacts[contactId].name;
     return /*html */`
         <div onclick="changeSelectionStatus(${taskId}, ${contactId})" id="dropdown_contact${taskId}${contactId}" class="dropdown_contact_row">
-            
             <!-- circle & name -->
             <div class="dropdown_contact_image_name">
                 <div class="circle_size" id="character_image${taskId}${contactId}"></div>
                 <div class="dropdownNames">${contact.firstName} ${contact.secondName}</div>
             </div> 
-
             <!-- checkbox -->
             <div class="checkbox_edit">
-                <a id="checkbox_edit${taskId}${contactId}">
-                    
-                </a>
+                <a id="checkbox_edit${taskId}${contactId}"></a>
             </div>
         </div>
     `;
@@ -403,5 +393,3 @@ function selectContactforTask(taskId, firstName, secondName, color) {
     );
     showContactList(taskId);
 }
-
-

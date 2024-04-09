@@ -2,9 +2,15 @@
 
 body {
   background-color: var(--bgwhite);
-  height: 100%;
-  width: 100%;
+}
+
+.container {
+  margin-left: 232px;
   display: flex;
+  flex-direction: column;
+  row-gap: 56px;
+  padding-top: 96px;
+  width: calc(100% - 232px);
 }
 
 .border{
@@ -12,18 +18,19 @@ body {
   border: 1px solid #ccc !important;
 }
 
-/* .right {  
-  padding-left: 50px;
-} */
-
-.assign_head,
-.category_head,
-.title_head,
-.subtasks_head,
-.description_head {
-  /* margin-top: 12px; */
+.title {
   margin-bottom: 8px;
 }
+
+.margin_bot_16px {
+  margin-bottom: 16px;
+}
+
+.margin_bot_24px {
+  margin-bottom: 24px;
+}
+
+
 
 input[type="text"] {
   border: 1px solid #ccc;
@@ -59,27 +66,37 @@ input[type="date"]:invalid{
   font-size: 12px;
   font-weight: 400;
   color: #FF8190;
-  margin-top: 4px;
+  position: absolute;
+  top: 70px;
+  visibility: hidden;
 }
+
 
 /* Main */
 
 .main_addTask {
   display: flex;
-justify-content: center;
-align-items: flex-start;
-flex-direction: column;
-background-color: var(--bgwhite);
-padding-left: 300px;
-padding-top: 100px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  background-color: var(--bgwhite);
+  width: 100%;
 }
 
   /* Header */
+
+  .AddTask_head_main {
+    width: 100%;
+    display: flex;
+  }
+
   .AddTask_head {
-    margin-top: 15%;
+    margin-top: 110px;
+    padding-left: 96px;
     font-size: 61px;
     font-weight: 700;
     margin-bottom: 48px;
+    width: 100%;
   }
 
   .parting_line {
@@ -90,29 +107,22 @@ padding-top: 100px;
   }
 
   /* Forms */
-  .addTaskForms {
-    /* display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: baseline;
-    width: 100%;
-    gap: 50px;
-    flex: 1; */
+  .addTaskForm_main {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     width: 100%;
     gap: 50px;
-    flex: 1;
-    height: 376px;
+    padding-left: 96px;
+
+
   }
 
     .addTaskForm {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
       align-items: flex-start;
       flex-direction: column;
-      border: 1px solid;
-    height: 376px;
+     
     }
 
       .addTaskForm span {
@@ -122,6 +132,7 @@ padding-top: 100px;
       .addTaskForm input {
         background-image: url();
         width: 100%;
+        padding-right: 70px;
       }
 
       .addTaskForm textarea {
@@ -131,8 +142,9 @@ padding-top: 100px;
       /* Title */
       .title_section {
         position: relative;
-        height: 96px;
         width: 100%;
+        display: flex;
+        flex-direction: column;
       }
 
       /* Description */
@@ -157,195 +169,39 @@ padding-top: 100px;
         }
 
       textarea#description {
-        height: 96px;
         width: 360px;
       }
 
-      /* Assigned to */
-      .dropdown {
-        position: relative;
-        display: inline-block;
+      .assigned_to_section_main {
         width: 100%;
-      }
-
-      /* addTask.js:toggledropbtn() */
-      .background_and_radius_fitting {
-        background-color: white;
-        border-start-start-radius: 10px;
-        border-top-right-radius: 10px;
-      }
-
-        .arrow {
-          position: absolute;
-          top: 7px;
-          right: 3px;
-          transform: translateX(-50%);
-          cursor: pointer;
-          color: #000 !important;
-          height: 24px;
-          width: 24px;
-        }
-
-          .arrow:hover {
-            background-color: #dadada;
-            border-radius: 50%;
-          }
-        
-        .rotated {
-          transform: rotate(180deg);
-          right: 15px;
-        }
-
-        .dropbtn {
-          background-color: #ffffff;
-          color: #000;
-          padding: 8px 12px;
-          border: 1px solid var(--grey);
-          border-radius: 10px;
-          cursor: pointer;
-          width: 100%;
-        }
-
-        .dropdownInput{
-          background-color: #ffffff;
-            color: #000;
-            padding: 8px 12px;
-            border: 1px solid var(--grey);
-            border-radius: 15px;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        /* Dropdown Container (Hidden by Default) */
-        .dropdown_content {
-          display: none;
-          position: absolute;
-          background-color: #ffffff;
-          width: 100%;
-          max-height: 200px;
-          border-end-end-radius: 10px;
-          border-bottom-left-radius: 10px;
-          box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-          z-index: 1;
-        }
-
-          /* Links inside the dropdown */
-          .dropdown_content a {
-            color: black;
-            padding: 7px 12px 7px 12px;
-            text-decoration: none;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-          }
-
-          /* Change color of dropdown links on hover */
-          .dropdown_content a:hover {
-            background-color: rgb(232,232,232);
-            border-radius: 10px;
-          }
-
-          /* dropdown-element (row) */
-          .dropdown_assign {
-            display: flex;
-            justify-content: space-between;
-            text-align: center;
-          }
-
-          .selected {
-            background-color: var(--bgdarkblue) !important;
-            color: #ffff !important;
-            border-radius: 10px;
-          }
-          
-          .selected:hover {
-            background-color: var(--marineblue) !important;
-          }
-
-            .member_cicle_main {
-              padding: 1px;
-              width: 42px;
-              height: 42px;
-              margin-right: 8px;
-            }
-
-              .member_cicle {
-                width: 100%;
-                height: 100%;
-                border-radius: 42px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                color: #ffffff;
-                font-size: 12px;
-                cursor: pointer;
-                border: 2px solid white;
-              }
-
-            .member_name {
-              display: flex;
-            }
-
-            .dropdown_img{
-              height: 24px;
-              width: 24px;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-            }
-
-            .dropdown_img:hover{
-              background-color: rgba(255, 255, 255,0.9);
-              border-radius: 25px;
-              cursor: pointer;
-            }
-
-            .dropdown_img:hover path  {
-              stroke: var(--bgdarkblue);
-          }
-            
-            .dropdown_img img {
-              width: 16px;
-              height: 16px;
-            }
-            
-        /* show_task_task the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-        .show_task {
-          display: flex;
-          height: 440px;
-          justify-content: flex-start;
-          flex-direction: column;
-          overflow-x: auto;
-        }
-
-      .row_selected_contacts_circles {
-        display: flex;
-        justify-content: flex-start;
-        flex-direction: row;
-        margin-top: 8px;
-        width: 90%;
-        height: 36px;
       }
 
 
       /* Due Date */
       .due_date_section {
         position: relative;
-        height: 96px;
         width: 100%;
-        margin-top: 12px;
       }
 
         .date_head {
           margin-bottom: 8px;
         }
+      
+      .prio_head {
+        margin-bottom: 8px;
+      }
+
+      #AddTaskDate {
+        padding-right: 10px;
+      }
+      
 
       /* Priority */
       .btn_addTask_list {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 360px;
+        width: 360px !important;
         gap: 8px;
         cursor: pointer;
       }
@@ -358,7 +214,7 @@ padding-top: 100px;
           color: black; 
           padding: 16px 18px;
           height: 56px;
-          width: 33%;
+          width: 136px;
           border-radius: 10px;
           gap: 8px;
         }
@@ -385,7 +241,6 @@ padding-top: 100px;
       .category {
         position: relative;
         width: 100%;
-        height: 96px;
       }
 
         .btn_and_dropdown_section {
@@ -431,8 +286,6 @@ padding-top: 100px;
               color: #000;
               width: 100%;
             }
-      
-    
 
 
   /* Clear or Commit Section */
@@ -441,6 +294,8 @@ padding-top: 100px;
     justify-content: space-between;
     width: 100%;
     margin-top: 100px;
+    padding-left: 96px;
+    padding-right: 96px;
   }
 
   .addTask_btns {

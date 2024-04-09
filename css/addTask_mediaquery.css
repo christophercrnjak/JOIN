@@ -1,11 +1,39 @@
-@media(max-width: 1000px) {
-    .main_addTask {
-      display: flex;
+@media(max-width: 1240px) {
+  .addTaskForm_main {
+    padding-left: 0;
+    justify-content: center;
+  }
+
+  .AddTask_head {
+    padding-left: 16px;
+  }
+}
+
+
+@media(max-width: 1100px) {
+    .addTask_main {
       justify-content: center;
-      align-items: center;
+    } 
+
+    .addTaskForm_main {
       flex-direction: column;
-      background-color: var(--bgwhite);
-      padding-left: 0px;
+      gap: unset;
+    }
+
+    .addTaskForm {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .title_section {
+      width: 100%;
+    }
+    
+    #description {
+      width: 100% !important;
+    }
+
+    .description_main {
       width: 100%;
     }
   
@@ -18,7 +46,6 @@
     .subtasks_head {
       margin-top: 12px;
       margin-bottom: 8px;
-      width: 90%;
     }
   
     .addTaskForm {
@@ -28,13 +55,22 @@
       width: 100%;
       flex-direction: column;
     }
+
+    .priority_main {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .btn_addTask_list {
+      width: 100% !important;
+      justify-content: center;
+    }
   
     .AddTask_head {
-      margin-top: 20%;
       font-size: 61px;
       font-weight: 700;
-      margin-bottom: 1%;
-      width: 90%;
+      margin-top: 48px;
     }
     .right {
       padding-left: 0px;
@@ -61,20 +97,10 @@
       width: 100%;
     }
   
-    #subtasksInput, .title_section, .due_date_section {
-      width: 90% ;
-    }
   
-    #description {  
-      border-radius:10px;
-      font-size: 16px;
-      height: 136px;
-      width: 90% !important;
-      background-color: white;
-      background-position: right 10px center;
-      background-repeat: no-repeat;
-      padding: 8px 12px;
-    }
+   .parting_line {
+    display: none;
+   }
   
     .addTaskForms {
       display: flex;
@@ -89,7 +115,7 @@
     .dropdown {
       position: relative;
       display: inline-block;
-      width: 90%;
+      width: 100%;
     }
   
     
@@ -110,64 +136,63 @@
     .subtasks_head {
       margin-bottom: -10px;
   }
-    .subtask_button_container {
-      top: 33px;
-      left: 36%;
-      gap: 8px;
-      width: 15%;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      padding-right: 6px;
-      
-    }
-  
-  
+ 
     .dropdown_content_category a:hover {
       background-color: var(--bgdarkblue);
       color: #ffff !important;
       width: 90%;
     }
   
-    .dropdown_category {
-      width: 90%;
-    }
-  
-    .btn_addTask_list {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 90%;
-      gap: 8px;
-      cursor: pointer;
-    }
-  
     .create_clear_task {
       justify-content: space-between;
-      width: 90%;
-      margin-top: 10%;
+      
     }
-  
-    .category {
-      position: relative;
-      width: 100%;
+
+    .requiredField {
       display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    }
-  
-    
-  }
-  
-  @media(max-width: 600px) {
-    .AddTask_head {
-      margin-top: 30%;
-      font-size: 61px;
-      font-weight: 700;
-      margin-bottom: 1%;
-      width: 90%;
+      margin-bottom: 84px;
+      margin-left: 16px;
     }
   }
   
+@media(max-width: 1000px) {
+  .container {
+    margin-left: unset;
+    width: 100%;
+  }
+
+  .create_clear_task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-top: 16px;
+    margin-top: unset;
+    padding-left: unset;
+    padding-right: 16px;
+    padding-bottom: 16px;
+    position: sticky;
+    bottom: 0;
+    background-color: var(--bgwhite);
+  }
+
+  /* #ok_section_edit {
+    display: flex;
+    width: 108%;
+    justify-content: end;
+    position: sticky;
+    bottom: 0;
+    z-index: 1000;
+    background-color: white;
+    margin-bottom: 0;
+    margin-left: -18px;
+} */
+
+}
+
+@media(max-width: 515px) {
+  .btn_transparent {
+    display: none;
+  }
+}
   

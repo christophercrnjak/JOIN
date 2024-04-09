@@ -390,4 +390,3 @@ function commitSectionHTML() {
 // *** Clear function @ board_addTask_clear *** //
 
 // *** Create new Task @ board_addTask_createNewTask.js *** //
-
