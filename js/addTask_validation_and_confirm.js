@@ -8,30 +8,6 @@ function takeoverNewSubtaskValue(subtaskId) {
     rendersubtasklist();
   }
   
-   async function pushToBoard() {
-    let title = document.getElementById("titleAddtask");
-    let description = document.getElementById("description");
-    let date = document.getElementById("AddTaskDate");
-  
-    let task = {
-      'title': title.value,
-      'description': description.value,
-      'contacts': selectedFromDropdown,
-      'category': pushCategory,
-      'dueDate': date.value,
-      'priority': prio,
-      'subtasks': subtasklists,
-      'status': 'inProgress',
-      'createdDate': new Date().getTime(),
-    };
-  
-    // await setItem('tasks', task);
-  
-    pushCategory = [];
-    selectedFromDropdown.value = '';
-    prio.value = '';
-  }
-  
   function removeAllInputes() {
     // Remove the Add Task inputs
     selectedFromDropdown = [];
@@ -88,6 +64,37 @@ function takeoverNewSubtaskValue(subtaskId) {
   
   
   function createNewTask() {
-    console.log('Task ist erstellt!');
+    getTextInputValues();
     removeAllInputes();
   }
+
+  function getTextInputValues() {
+    let title = document.getElementById('titleAddtask').value;
+    let description = document.getElementById('description').value;
+    let dueDate = document.getElementById('AddTaskDate').value;
+    
+
+    let new_task = {
+      'title': title,
+      'description': description,
+      'contacts': [],
+      'category': pushCategory,
+      'dueDate': dueDate,
+      'priority': prio,
+      'subtasks': subtasklists,
+      'status': 'toDo',
+      'createdDate': new Date().getTime(),
+    };
+
+
+  }
+
+  
+  
+
+    // await setItem('tasks', task);
+  
+    pushCategory = [];
+    selectedFromDropdown.value = '';
+    prio.value = '';
+  

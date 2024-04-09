@@ -113,23 +113,37 @@ function dropdownHtml(contact, i) {
  * @param {Number} i - Index of contact in contacts_addTask array
  */
 function selectFromDropdown(i) {
+  let contact = document.getElementById(`contact${i}`);
+  let checkbox = document.getElementById(`selected_img${i}`);
+  
   if (contacts_addTask[i].select_status == false) {
     contacts_addTask[i].select_status = true;
-    document.getElementById(`contact${i}`).classList.add('selected');
-    document.getElementById(`selected_img${i}`).innerHTML = `
-      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M17 8V14C17 15.6569 15.6569 17 14 17H4C2.34315 17 1 15.6569 1 14V4C1 2.34315 2.34315 1 4 1H12" stroke="white" stroke-width="2" stroke-linecap="round"/>
-        <path d="M5 9L9 13L17 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>`;
+    contact.classList.add('selected');
+    checkbox.innerHTML = checkboxHTML_checked();
     renderSelectedContactsRow();
   } else if (contacts_addTask[i].select_status == true){
     contacts_addTask[i].select_status = false;
-    document.getElementById(`contact${i}`).classList.remove('selected');
-    document.getElementById(`selected_img${i}`).innerHTML = `<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="1" y="1" width="16" height="16" rx="3" stroke="#2A3647" stroke-width="2"/>
-    </svg>`;
+    contact.classList.remove('selected');
+    checkbox.innerHTML = checkboxHTML_unchecked();
     renderSelectedContactsRow();
   }
+}
+
+function checkboxHTML_checked() {
+  return `
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17 8V14C17 15.6569 15.6569 17 14 17H4C2.34315 17 1 15.6569 1 14V4C1 2.34315 2.34315 1 4 1H12" stroke="white" stroke-width="2" stroke-linecap="round"/>
+      <path d="M5 9L9 13L17 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  `;
+}
+
+function checkboxHTML_unchecked() {
+  return `
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="1" y="1" width="16" height="16" rx="3" stroke="#2A3647" stroke-width="2"/>
+    </svg>
+  `;
 }
 
 function renderSelectedContactsRow() {
@@ -200,7 +214,12 @@ function toggledropbtn() {
 document.addEventListener('click', function(event) {
   let dropdownContent = document.getElementById('dropdown');
   if (!event.target.closest('.dropdown') && !dropdownContent.contains(event.target)) {
-    dropdownContent.classList.remove('show_task');
+    // dropdownContent.classList.remove('show_task');
+    dropdownContent.classList.toggle('show_task'); //dropdown-list appear
+    document.getElementById("dropdownInput").classList.toggle("d-none");// input appear
+    document.getElementById("dropbtn").classList.toggle("d-none"); // btn with text disappears
+    document.getElementById("arrow").classList.toggle("rotated"); // triangle rotate to top
+    document.getElementById('assigned_to_section').classList.toggle('background_and_radius_fitting'); // add white background
   }
 });
 
