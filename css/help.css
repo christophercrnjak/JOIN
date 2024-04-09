@@ -9,7 +9,7 @@ body {
 }
 
 .font {
-    margin-left: 328px;
+    margin-left: 16px;
     margin-bottom: 32px;
     font-size: 61px;
     font-weight: 700;
@@ -24,14 +24,25 @@ body {
     align-items: center;
 }
 
-.headline svg {
-    width: 27px;
-    height: 27px;
-    cursor: pointer;
-    margin-right: 96px;
-    margin-top: 129px;
+.headline img {
+    margin-right: 16px;
+    width: 32px;
+    height: 32px;
+    padding: 1.73px 2.59px 2.59px 1.73px;
 }
 
+.headline img:hover {
+    border: groove 1px rgba(238, 238, 238, 1);
+    border-radius: 50%;
+    background-color: rgba(238, 238, 238, 1);
+    ;
+}
+.headline svg {
+    margin-right: 16px;
+    width: 32px;
+    height: 32px;
+    padding: 1.73px 2.59px 2.59px 1.73px;
+}
 .headline svg:hover {
     border: groove 1px rgba(238, 238, 238, 1);
     border-radius: 50%;
@@ -47,7 +58,7 @@ body {
 }
 
 .text {
-    margin-left: 328px;
+    margin-left: 16px;
     margin-right: 98px;
     margin-bottom: 70px;
 }
@@ -84,7 +95,7 @@ body {
 }
 
 .text_line {
-    margin-left: 328px;
+    margin-left: 16px;
     margin-right: 98px;
 }
 
@@ -131,7 +142,6 @@ body {
 #navbarHeadIcon_help {
     display: none;
 }
-
 
 
 

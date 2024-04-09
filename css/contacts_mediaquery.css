@@ -126,7 +126,6 @@
     .first_letter {
         width: 300px;
     }
-<<<<<<< HEAD
 }
 
 
@@ -335,7 +334,7 @@
 
     .first_letter {
         width: 90%;
-        margin-left: 24px;
+        margin-left: 32px;
     }
 
     .add {
@@ -368,7 +367,6 @@
 
     .persons_details {
         width: 90%;
-        margin-left: 24px;
     }
 
     .persons_details.active {
@@ -533,6 +531,4 @@
         margin-left: 0;
     }
 
-=======
->>>>>>> 90ba94804dedbf3ffb0cfd3e48553404d1312714
 }
