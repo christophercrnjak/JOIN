@@ -488,8 +488,7 @@ input[type="tel"] {
 .button_contacts a {
     align-items: center;
     display: flex;
-    color: rgba(41, 171, 226, 1);
-    ;
+    color: black;
 }
 
 .button_contacts img {
@@ -519,6 +518,9 @@ svg {
     letter-spacing: 0em;
     text-align: left;
     color: rgba(41, 171, 226, 1);
+}
+.edit_delete_text:hover path{
+    fill: rgba(41, 171, 226, 1);
 }
 
 .info {
@@ -647,6 +649,7 @@ svg {
 .edit_delete_window {
     display: none;
 }
+
 .error-message {
     color: red;
     margin-top: 5px;

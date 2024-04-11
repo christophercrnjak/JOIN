@@ -1,0 +1,11 @@
+.side_navbar{
+    display: none;
+}
+#navbarHeadIcon{
+    display: none;
+}
+@media(max-width:1000px){
+    .sidebar{
+        display: none;
+    }
+}
