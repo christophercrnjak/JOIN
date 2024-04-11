@@ -250,7 +250,7 @@ async function resetStorageOfServer_contacts() {
       "mail": "schulz@hotmail.de",
       "phone": "+49 1111 111 11 1",
       "password": "",
-      "lockedIn": true
+      "lockedIn": false,
     },
     {
       "name": {

@@ -23,8 +23,6 @@ function loadEditContent(taskId) {
     currentTaskContent = JSON.parse(JSON.stringify(tasks[taskId]));
 }
 
-
-
 // delete dialog container content and call functions built edit-content
 function renderEditDialog(taskId) {
     let container = document.getElementById('task_dialog_container');

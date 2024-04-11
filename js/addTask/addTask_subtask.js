@@ -1,5 +1,10 @@
 // *** Subtask *** //
 
+/**
+ * 
+ */
+let subtasklists = [];
+
 
 function ChangeToSubtasks() {
     let subtaskIcons_check_delete = document.getElementById('delet_and_check_section');
