@@ -3,7 +3,7 @@
 /**
  * Main json structure of new task.
  */
-let newTask = {
+let newTask_board = {
     "title": "",
     "description": "",
     "category": "",
@@ -21,7 +21,7 @@ let newTask = {
  * @param {String} status - status of the new task to be created
  */
 function addStatus(status) {
-    newTask.status = status;
+    newTask_board.status = status;
 }
 
 /**
@@ -55,7 +55,7 @@ async function validationOfAllInputs() {
  */
 async function initCreateNewTask() {
     saveNewTask();
-    await tasks.push(newTask); // @storage.js:32
+    await tasks.push(newTask_board); // @storage.js:32
     await setAndGetToServer(); // @board_main.js:498
     toastMessageAddTask();
     await timeout (1200);
@@ -112,7 +112,7 @@ function resetSettings() {
  * Resets the newTask JSON-array and clear the content of the keys.
  */
 function resetNewTask() {
-    newTask = {
+    newTask_board = {
         "title": "",
         "description": "",
         "category": "",
@@ -129,7 +129,7 @@ function resetNewTask() {
  */
 function title_newTask() {
     let titleInput = document.getElementById('input_title_addTask_dialog');
-    newTask.title = titleInput.value;
+    newTask_board.title = titleInput.value;
 }
 
 /**
@@ -137,7 +137,7 @@ function title_newTask() {
  */
 function description_newTask() {
     let descriptionInput = document.getElementById('input_description_addTask_dialog');
-    newTask.description = descriptionInput.value;
+    newTask_board.description = descriptionInput.value;
 }
 
 /**
@@ -145,7 +145,7 @@ function description_newTask() {
  * SelectedCategory is a global variable which is used @board_addTask.js:193 to save the choosen Category.
  */
 function category_newTask() {
-    newTask.category = selectedCategory;
+    newTask_board.category = selectedCategory;
 }
 
 /**
@@ -155,7 +155,7 @@ function contacts_newTask() {
     for (let i = 0; i < contacts_addTask.length; i++) {
         let contact = contacts_addTask[i];
         if (contact.select_status == true) {
-            newTask.contacts.push(
+            newTask_board.contacts.push(
             {
                 "firstName": contact.firstName,
                 "secondName": contact.secondName,
@@ -174,7 +174,7 @@ function  dueDate_newTask() {
     let year = parseInt(duedateInput[0]); 
     year = year - 2000;
     let newDate = duedateInput[2] + '/' + duedateInput[1] + '/' + year;
-    newTask.dueDate = newDate;
+    newTask_board.dueDate = newDate;
 }
 
 /**
@@ -182,7 +182,7 @@ function  dueDate_newTask() {
  * prio_addTask is a global variable @board_addTask_priority.js:3
  */
 function priority_newTask() {
-    newTask.priority = prio_addTask;
+    newTask_board.priority = prio_addTask;
 }
 
 /**
@@ -191,7 +191,7 @@ function priority_newTask() {
  */
 function subtasks_newTask() {
     if (new_subtask_addTask_dialog.length > 0) {
-    newTask.subtasks = new_subtask_addTask_dialog;
+    newTask_board.subtasks = new_subtask_addTask_dialog;
     }
 }
 
@@ -200,8 +200,8 @@ function subtasks_newTask() {
  * Otherwise the task will be added to the correct column via the openAddTaskDialog(status) function @board_addTask.js:3.
  */
 function status_newTask() {
-    if(!newTask.status == "toDo") {
-        newTask.status = "toDo";
+    if(!newTask_board.status == "toDo") {
+        newTask_board.status = "toDo";
     }
 }
 

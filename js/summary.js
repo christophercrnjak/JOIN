@@ -32,7 +32,6 @@ function calcValuesOfSummery() {
   calcUrgentAmount();
 }
 
-
 async function copyTasksArray() {
   tasks_summery = JSON.parse(JSON.stringify(tasks));
   await changeDateFormatOfTasks();

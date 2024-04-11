@@ -36,7 +36,7 @@ function removeAllInputes() {
 async function initNewTask() {
   await validateInputs();
   if (
-    validation('titleAddtask', 'validation_text_title' == true) &&
+    validation('titleAddtask', 'validation_text_title') == true &&
     validation('AddTaskDate', 'validation_text_due_date') == true &&
     validation('categoryDropDownBtn', 'validation_text_category') == true) {
       await createNewTask();
@@ -70,15 +70,21 @@ async function validateInputs() {
  */
 function validation(inputId, errortextId) {
   let input = document.getElementById(inputId);
-  let errortext = document.getElementById(errortextId)
-  if (input.value == '') {
+  let errortext = document.getElementById(errortextId);
+  
+  if (!input || !errortext) {
+    console.error("Input oder Errortext nicht gefunden.");
+    return false;
+  }
+
+  if (input.value === '') {
     window.location.hash = inputId;
     input.classList.add('red-border');
-    errortext.style.visibility = "visible"
+    errortext.style.visibility = "visible";
     return false;
   } else {
     input.classList.remove('red-border');
-    errortext.style.visibility = "hidden"
+    errortext.style.visibility = "hidden";
     return true;
   }
 }
@@ -136,7 +142,7 @@ function getContacts() {
     let contact = contacts_addTask[i];
     if (contact.select_status == true) {
       delete contact.select_status;
-      selected_contacts.push(contact);
+      selected_contacts.push(contact.name);
     }
   newTask.contacts = selected_contacts;
   }
