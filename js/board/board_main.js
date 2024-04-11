@@ -19,7 +19,7 @@ let dialog_status = 'inactive';
  * Load content of tasks.json in global array tasks[]. 
  * Initialize rendering content of Kanban Board.
  */
-async function initBoard() {
+async function init_board() {
     await includeHTML();
     await setUserInitialsAtHeader();
     await getTasksFromServer();
@@ -89,7 +89,7 @@ async function closeDialog(taskId) {
         else if (dialog_status == 'addTask') {
             let container = document.getElementById('dialog_container');
             container.classList.add('d-none');
-            await init(); // @ board_main.js:51
+            await init_board(); // @ board_main.js:51
             dialog_status = 'inactive';
         }
     } else  if (dialog_status == 'taskdetails') {
@@ -100,7 +100,7 @@ async function closeDialog(taskId) {
     } else if (dialog_status == 'addTask') {
         let container = document.getElementById('dialog_container');
         container.classList.add('d-none');
-        await init(); // @ board_main.js:51
+        await init_board(); // @ board_main.js:51
         dialog_status = 'inactive';
     }
 }  

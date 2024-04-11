@@ -2,16 +2,6 @@
 let mail = document.getElementById("mail");
 let password = document.getElementById("password");
 
-/**
- * Loads user data from Server to Array "users[]"
- */
-//async function init() {
-//  await loadUsers();
-  // setTimeout(function () {
-  //   document.querySelector(".logo").classList.add("move-logo");
-  // }, 1000);
-//}
-
 async function handleLogIn() {
   await loadUsers();
   checkExistingUser();
@@ -31,9 +21,10 @@ async function checkExistingUser() {
 }
 
 async function handleGuestLogIn() {
-  window.location.href = "summary.html";
-  currentUser = 'Guest';
+  currentUser = {"name": {"firstName": "Guest", "secondName": "", "color": "#ff4646"}, "mail": "", "password": "", "lockedIn": true};
   await saveCurrentUserOnServer();
+  await getCurrentUserFromServer();
+  window.location.href = "summary.html";
 }
 
 async function loadUsers() {

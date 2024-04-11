@@ -58,7 +58,7 @@ function allowDrop(event) {
 async function moveTo(status) {
     tasks[currentDraggedElement].status = status;
     await setAndGetToServer()
-    init();
+    init_board();
 }
 
 /**

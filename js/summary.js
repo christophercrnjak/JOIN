@@ -8,10 +8,12 @@ let urgentAmount = 0;
 let nextDueDate;
 let tasks_summery = '';
 
-
+/**
+ * 
+ */
 async function init() {
-  await includeHTML();
-  await setUserInitialsAtHeader();
+  await includeHTML(); // @include.js
+  await setUserInitialsAtHeader(); //@include.js
   await loadServerData();
   copyTasksArray();
   copyContactsArray();
@@ -21,7 +23,6 @@ async function init() {
 }
 
 async function loadServerData() {
-  await getCurrentUserOnServer();
   await getContactsFromServer();
   await getTasksFromServer();
 }
@@ -151,11 +152,11 @@ function renderUserName() {
   let userNameElement = document.getElementById("user_name");
   if (currentUser.length === 0 || typeof currentUser == "undefined" || currentUser[0] == '') {
     userNameElement.innerHTML = `Guest`;
-  } else if (typeof currentUser[0].name.secondName == "undefined") {
-    let firstName = currentUser[0].name.firstName;
+  } else if (typeof currentUser.name.secondName == "undefined") {
+    let firstName = currentUser.name.firstName;
     userNameElement.innerHTML = `${firstName}`; 
   } else {
-    userNameElement.innerHTML = `${currentUser[0].name.firstName} ${currentUser[0].name.secondName}`;
+    userNameElement.innerHTML = `${currentUser.name.firstName} ${currentUser.name.secondName}`;
   }
 }
 

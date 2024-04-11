@@ -37,18 +37,18 @@ async function includeHTML() {
  * currentUser is an Array in storage.js.
  */
 async function setUserInitialsAtHeader() {
-  await getCurrentUserOnServer();
+  await getCurrentUserFromServer();
   let accountLogo = document.getElementById('navbarHeadIcon');
-  if (currentUser.length === 0 || typeof currentUser == "undefined" || currentUser[0] == '') {
+  if (currentUser.length === 0 || typeof currentUser == "undefined" || currentUser == '') {
     accountLogo.innerHTML = 'G';
-  } else if (typeof currentUser[0].name.secondName == "undefined") {
-    let firstName = currentUser[0].name.firstName;
+  } else if (typeof currentUser.name.secondName == "undefined" || typeof currentUser.name.secondName == '') {
+    let firstName = currentUser.name.firstName;
     firstName = firstName.charAt(0);
     accountLogo.innerHTML = `${firstName}`;
   } else {
-    let firstName = currentUser[0].name.firstName;
+    let firstName = currentUser.name.firstName;
     firstName = firstName.charAt(0);
-    let secondName = currentUser[0].name.secondName;
+    let secondName = currentUser.name.secondName;
     secondName = secondName.charAt(0);
     accountLogo.innerHTML = `${firstName} ${secondName}`;
   }

@@ -30,7 +30,6 @@ async function getItem(key) {
   const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
   return fetch(url)
     .then((res) => res.json())
-    //.then((res) => res.data.value);
 }
 
 
@@ -341,13 +340,14 @@ async function saveCurrentUserOnServer() {
   await setItem('currentUser', currentUser);
 }
 
-async function getCurrentUserOnServer() {
+async function getCurrentUserFromServer() {
   try {
     let ServerData;
     ServerData = await getItem('currentUser');
-    let newData = JSON.parse(ServerData.data.value);
-    currentUser = [newData];
+    let newData = JSON.parse(ServerData.data.value)
+    currentUser = newData;
   } catch (e) {
     console.warn("Could not load currentUser!");
+    console.warn(`${e}`);
   }
 }
