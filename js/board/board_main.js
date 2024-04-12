@@ -21,20 +21,20 @@ let dialog_status = 'inactive';
  */
 async function init_board() {
     await includeHTML();
-    await setUserInitialsAtHeader();
-    await getTasksFromServer();
-    await renderColumnContent();
-    await toastMessageNewTask();
+    await setUserInitialsAtHeader(); // @include.js:39
+    await getTasksFromServer(); // @storage.js:56
+    await renderColumnContent(); // @board_main_renderTasks.js:7
+    await toastMessageNewTask(); 
 }
 
  async function toastMessageNewTask() {
     await getNewTask_statusFromServer();
-    if (newTask_status == true) {
+    if (newTask_status === true) {
         await openToastMessageAddTask();
         await timeout (1300);
         await closeToast();
+        newTask_status = 'false';
         await setItem('newTask_status', newTask_status);
-        await getNewTask_statusFromServer();
     }
 }
 

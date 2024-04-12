@@ -85,19 +85,25 @@ function filterTasks(toDo, inProgress, awaitFeedback, done, search_content) {
     }
 }
 
+/**
+ * 
+ * @param {String} columns_status 
+ * @param {HTMLElement} task - JSON Object of tasks array
+ * @param {Number} taskId - Index of task in tasks array
+ */
 function addTaskElementToBoard(columns_status, task, taskId) {
     columns_status.innerHTML += taskHTML(task, taskId);
-    begrenzeZeichen(`task_description${taskId}`, 45);
+    limitNumberOfCharacters(`task_description${taskId}`, 45);
     renderTaskElements(taskId)
 }
 
 /**
  * Limits the number of characters in the description text
  * 
- * @param {*} id - Id of the document witch contains the description.
- * @param {*} maxZeichen - 
+ * @param {String} id - Id of the document witch contains the description.
+ * @param {Number} maxZeichen - Number of max number of characters
  */
-function begrenzeZeichen(id, maxZeichen) {
+function limitNumberOfCharacters(id, maxZeichen) {
     let container = document.getElementById(id);
     let text = container.textContent;
     if (text.length > maxZeichen) {
@@ -197,13 +203,13 @@ function checkNoSearchcontentFound() {
 /**
  * Calls all functions that require a dependent element design of task.
  * 
- * @param {Number} i - Index of task in tasks array.
+ * @param {Number} taskId - Index of task in tasks array.
  */
-function renderTaskElements(i) {
-    setColorOfCategory(i); 
-    showprogressbar(i); 
-    renderInitialCirclesOfTaskMembers(i);
-    renderPriority(i); 
+function renderTaskElements(taskId) {
+    setColorOfCategory(taskId); 
+    showprogressbar(taskId); 
+    renderInitialCirclesOfTaskMembers(taskId);
+    renderPriority(taskId); 
 }
 
 
@@ -337,10 +343,10 @@ function taskMemberHTML(firstCharacter, secondCharacter, taskId, i) {
 /**
  * Calculates the position of circle
  * 
- * @param {Number} i - Index of Contact in the key "contacts" of task
+ * @param {Number} contactId_task - Index of Contact in the key "contacts" of task
  * @returns {Number} pixel amount for shift to the right of first cicle
  */
-function calcPositionMember(i) {
-    let position = i * -9;
+function calcPositionMember(contactId_task) {
+    let position = contactId_task * -9;
     return `${position}px`
 }

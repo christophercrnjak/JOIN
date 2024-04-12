@@ -34,7 +34,7 @@ let pushCategory = '';
  * 
  * @type {String} Example: 'medium'
  */
-let prio = ['medium']; 
+let prio = 'medium'; 
 
 let dropdown_status_category = false;
 

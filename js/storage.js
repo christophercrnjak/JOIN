@@ -362,11 +362,15 @@ let newTask_status = false;
  */
 async function getNewTask_statusFromServer() {
   try {
-    let ServerData;
-    ServerData = await getItem("newTask_status");
-    let newData = JSON.parse(ServerData.data.value);
-    newTask_status = newData;
+    // Hier warten wir auf das Ergebnis der asynchronen getItem-Funktion
+    const ServerData = await getItem("newTask_status");
+    // Wir extrahieren den Wert aus dem Ergebnis und setzen newTask_status
+    newTask_status = JSON.parse(ServerData.data.value);
   } catch (e) {
     console.warn("Could not load new task status!");
   }
+}
+
+async function setNewTask_status_false() {
+  await setItem('newTask_status', 'false');
 }
