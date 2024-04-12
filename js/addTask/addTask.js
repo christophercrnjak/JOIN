@@ -62,6 +62,7 @@ async function addTaskInit() {
   await includeHTML();
   await setUserInitialsAtHeader();
   await loadContactsServer()
+  await getTasksFromServer();
   addSelectstatusToContacts();
   renderDropList();
   renderCategoryDropDown();

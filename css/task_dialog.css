@@ -23,7 +23,7 @@
         right: -525px;
         animation-name: moveInRightDialog;
         animation-timing-function: ease-out;
-        animation-duration: 150ms;
+        animation-duration: 400ms;
     }
 
     @keyframes moveInRightDialog {

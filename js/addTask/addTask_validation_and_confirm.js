@@ -12,33 +12,16 @@ let newTask = {
   "status": "toDo"
 };
 
-function takeoverNewSubtaskValue(subtaskId) {
-  let input = document.getElementById(`new_subtask_edit_text${subtaskId}`);
-  let subtask_element = document.getElementById(`subtasklist_element${subtaskId}`);
-  subtasklists[subtaskId] = input.value;
-  subtask_element.style.paddingLeft = '10px';
-  subtask_element.classList.remove("no-hover");
-  rendersubtasklist();
-}
-
-function removeAllInputes() {
-  // Remove the Add Task inputs
-  selectedFromDropdown = [];
-  prio = [];
-  pushCategory = [];
-  subtasklists = [];
-  document.getElementById('titleAddtask').value = '';
-  document.getElementById('AddTaskDate').value = '';
-  document.getElementById("categoryDropDownBtn").innerHTML = 'Select task category';
-  changePriority('medium');
-}
-
+/**
+ * Initializes creating a new task.
+ */
 async function initNewTask() {
   await validateInputs();
   if (
-    validation('titleAddtask', 'validation_text_title') == true &&
-    validation('AddTaskDate', 'validation_text_due_date') == true &&
-    validation('categoryDropDownBtn', 'validation_text_category') == true) {
+    await validation('titleAddtask', 'validation_text_title') == true &&
+    await validation('AddTaskDate', 'validation_text_due_date') == true &&
+    await validation('categoryDropDownBtn', 'validation_text_category') == true) {
+      console.log('All required inpiut fields are valide!')
       await createNewTask();
   }
 }
@@ -52,11 +35,6 @@ async function validateInputs() {
   validation('titleAddtask', 'validation_text_title');
   validation('AddTaskDate', 'validation_text_due_date');
   validation('categoryDropDownBtn', 'validation_text_category');
-  // if (validation('titleAddtask', 'validation_text_title') == true && validation('AddTaskDate', 'validation_text_due_date') == true && validateCategory() == true) {
-  //   return true
-  // } else {
-  //   return false
-  // }
 }
 
 /**
@@ -89,41 +67,38 @@ function validation(inputId, errortextId) {
   }
 }
   
-// function validateCategory() {
-//   let container = document.getElementById('categoryDropDownBtn');
-//   let errortext = document.getElementById('validation_text_category');
-//   if (!pushCategory == '') {
-//     container.classList.remove('red-border');
-//     errortext.classList.add('d-none');} 
-//     else {
-//       container.classList.add('red-border');
-//       errortext.classList.remove('d-none');
-//     } 
-//   }
-  
   
 async function createNewTask() {
+  await saveNewTask();
+  await deleteNewTaskContent();
+  await removeAllInputes();
+  newTask_status = true;
+  await setItem('newTask_status', newTask_status);
+  changeWindow();
+}
+
+async function saveNewTask() {
   await getAllSettingsOfNewTask();
   await pushNewTaskToTasks();
   await setTasksToServer();
   await getTasksFromServer();
-  toastMessageAddTask();
-  await timeout (1200);
-  await closeToast();
-  deleteNewTaskContent();
-  removeAllInputes();
+}
+
+
+
+function changeWindow() {
   window.location.href = "board.html";
 }
 
 async function getAllSettingsOfNewTask() {
   await getTextInputValues();
-  getCategory();
-  getContacts();
-  getPrio();
-  getSubtask();
+  await getCategory();
+  await getContacts();
+  await getPrio();
+  await getSubtask();
 }
 
-async function getTextInputValues() {
+function getTextInputValues() {
   let title = document.getElementById('titleAddtask').value;
   let description = document.getElementById('description').value;
   let dueDate = document.getElementById('AddTaskDate').value;
@@ -160,18 +135,7 @@ function pushNewTaskToTasks() {
   tasks.push(newTask);
 }
 
-function toastMessageAddTask() {
-  let container = document.getElementById('toastMessageAddTask_main');
-  container.classList.remove('d-none');
-}
 
-/**
- * Hides the toast message box
- */
-function closeToast() {
-  let container = document.getElementById('toastMessageAddTask_main'); //@board.html:43
-  container.classList.add('d-none');
-}
 
 function deleteNewTaskContent() {
   newTask = {
@@ -186,3 +150,14 @@ function deleteNewTaskContent() {
   }
 }
   
+function removeAllInputes() {
+  // Remove the Add Task inputs
+  selectedFromDropdown = [];
+  prio = [];
+  pushCategory = [];
+  subtasklists = [];
+  document.getElementById('titleAddtask').value = '';
+  document.getElementById('AddTaskDate').value = '';
+  document.getElementById("categoryDropDownBtn").innerHTML = 'Select task category';
+  changePriority('medium');
+}

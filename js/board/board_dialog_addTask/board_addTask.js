@@ -10,7 +10,6 @@ async function openAddTaskDialog(status){
     dialog_status = 'addTask';
     await renderAddTaskDialog();  
     container.classList.remove('d-none');
-    // taskDialogContainer.style.position = 'none'; 
     await getTasksFromServer();
     if(typeof status !== 'undefined') {
         addStatus(status);

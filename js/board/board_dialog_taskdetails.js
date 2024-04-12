@@ -288,7 +288,7 @@ async function deleteTask(taskId) {
     await tasks.splice(taskId, 1);
     await setAndGetToServer();
     closeDialog(taskId);
-    init();
+    init_board();
 }
 
 /**

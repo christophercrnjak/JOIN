@@ -24,7 +24,28 @@ async function init_board() {
     await setUserInitialsAtHeader();
     await getTasksFromServer();
     await renderColumnContent();
+    await toastMessageNewTask();
 }
+
+ async function toastMessageNewTask() {
+    await getNewTask_statusFromServer();
+    if (newTask_status == true) {
+        await openToastMessageAddTask();
+        await timeout (1300);
+        await closeToast();
+        await setItem('newTask_status', newTask_status);
+        await getNewTask_statusFromServer();
+    }
+}
+
+  
+  /**
+   * Hides the toast message box
+   */
+  function closeToast() {
+    let container = document.getElementById('toastMessageAddTask'); //@board.html:43
+    container.classList.add('d-none');
+  }
 
 
 // ***** Search *****

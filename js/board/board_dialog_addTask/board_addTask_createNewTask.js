@@ -57,11 +57,15 @@ async function initCreateNewTask() {
     saveNewTask();
     await tasks.push(newTask_board); // @storage.js:32
     await setAndGetToServer(); // @board_main.js:498
-    toastMessageAddTask();
-    await timeout (1200);
-    await closeToast();
+    await toastmessage();
     resetSettings();
     await closeDialog(); // @board_dialog_taskdetails.js:25
+}
+
+async function toastmessage() {
+    await openToastMessageAddTask();
+    await timeout (1200);
+    closeToast();
 }
 
 /**
@@ -92,7 +96,7 @@ function saveNewTask() {
 /**
  * Makes the element saying "Task added to board" appear and disappear after 1 s and 20 ms.
  */
-function toastMessageAddTask() {
+function openToastMessageAddTask() {
     let container = document.getElementById('toastMessageAddTask');
     container.classList.remove('d-none');
 }

@@ -62,7 +62,6 @@ async function getTasksFromServer() {
   } catch (e) {
     console.warn("Could not load tasks!");
   }
-  
 }
 
 /**
@@ -349,5 +348,25 @@ async function getCurrentUserFromServer() {
   } catch (e) {
     console.warn("Could not load currentUser!");
     console.warn(`${e}`);
+  }
+}
+
+
+// ***** newTAsk status ***** //
+
+
+let newTask_status = false;
+
+/**
+ * Load the tasks JSON Array from Server in tasks[]
+ */
+async function getNewTask_statusFromServer() {
+  try {
+    let ServerData;
+    ServerData = await getItem("newTask_status");
+    let newData = JSON.parse(ServerData.data.value);
+    newTask_status = newData;
+  } catch (e) {
+    console.warn("Could not load new task status!");
   }
 }

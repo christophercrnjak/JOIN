@@ -151,6 +151,11 @@
     background-color: var(--sideAtkivColor);
   }
 
+@media(max-width: 1200px) {
+    .headnav_text {
+        padding-left: 260px;
+    }
+}
 
 @media(max-width: 1000px) {
     .head_main_navbar {

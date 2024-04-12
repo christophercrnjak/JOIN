@@ -277,9 +277,9 @@
     border-radius: 16px;
     align-items: center;
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 17px;
+    z-index: 99;
+    right: 150px;
 }
 
     .toastMessageAddTask_text {
@@ -306,6 +306,13 @@
         width: 100%;
         box-shadow: 0px 0px 14px 3px #0000000A;
         border-end-end-radius: 10px;
+    }
+
+    @media (max-width: 1000px) {
+        .toastMessageAddTask {
+            top: 17px;
+            right: 88px;
+        }
     }
 
 
@@ -344,5 +351,21 @@
 
         #task_dialog_container {
             padding-top: 48px !important;
+        }
+    }
+
+    @media (max-width: 385px) {
+        .toastMessageAddTask {
+            top: 146px;
+            right: -31%;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    @media (max-width: 480px) {
+        .toastMessageAddTask {
+            top: 146px;
+            right: -135px;
+            transform: translate(-50%, -50%);
         }
     }

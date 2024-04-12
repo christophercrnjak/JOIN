@@ -5,6 +5,14 @@
  */
 let subtasklists = [];
 
+function takeoverNewSubtaskValue(subtaskId) {
+  let input = document.getElementById(`new_subtask_edit_text${subtaskId}`);
+  let subtask_element = document.getElementById(`subtasklist_element${subtaskId}`);
+  subtasklists[subtaskId] = input.value;
+  subtask_element.style.paddingLeft = '10px';
+  subtask_element.classList.remove("no-hover");
+  rendersubtasklist();
+}
 
 function ChangeToSubtasks() {
     let subtaskIcons_check_delete = document.getElementById('delet_and_check_section');
