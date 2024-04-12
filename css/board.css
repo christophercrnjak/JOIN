@@ -213,7 +213,14 @@ a {
                                 padding-top: 4px;
                                 position: absolute;
                                 right: 0px;
+                                width: 32px;
+                                height: 32px;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
                             }
+
+                               
 
                             .task_members {
                                 display: flex;
@@ -221,8 +228,8 @@ a {
                             }
 
                                 .member_cycle {
-                                    width: 32px;
-                                    height: 32px;
+                                    width: 42px;
+                                    height: 42px;
                                     border-radius: 42px;
                                     display: flex;
                                     justify-content: center;

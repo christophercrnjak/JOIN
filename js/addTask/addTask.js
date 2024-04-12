@@ -34,7 +34,7 @@ let pushCategory = '';
  * 
  * @type {String} Example: 'medium'
  */
-let prio = 'medium'; 
+let prio = 'Medium'; 
 
 let dropdown_status_category = false;
 
@@ -109,22 +109,21 @@ function setToday() {
  */
 function changePriority(priority) {
   resetStyles();
-  removePreviousPriority();
-  if (priority === "urgend") {
+  if (priority === "Urgend") {
     setPriorityStyles(
       "#FF3D00",
       "#ffff",
       "assets/img/Prio_urgent_white.svg",
       "urgend"
     );
-  } else if (priority === "medium") {
+  } else if (priority === "Medium") {
     setPriorityStyles(
       "#FFA800",
       "#ffff",
       "assets/img/Prio_medium_white.svg",
       "medium"
     );
-  } else if (priority === "low") {
+  } else if (priority === "Low") {
     setPriorityStyles(
       "#7AE229", 
       "#ffff", 
@@ -166,15 +165,6 @@ function resetStyles() {
 }
 
 /**
- * Delets the last Element of array prio.
- */
-function removePreviousPriority() {
-  if (prio.length > 0) {
-    prio.pop();
-  }
-}
-
-/**
  * Changes the background-color, the font-color and imgae source depending on the given values.
  * Pushes the priority to prio array.
  * 
@@ -196,7 +186,7 @@ function setPriorityStyles(bgColor, textColor, imgSrc, priority) {
   button.style.fontWeight = "700";
   image.src = imgSrc;
 
-  prio.push(priority);
+  prio = priority;
 }
 
 

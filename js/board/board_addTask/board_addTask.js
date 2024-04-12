@@ -149,7 +149,6 @@ function DescriptionEditDialogHTML_addTask() {
  */
 function renderDueDateEditDialog_addTask() {
     let container = document.getElementById('addTask_dialog_duedate');
-    // let newDate = changeDueDateFormatInLongYear(taskId)
     container.innerHTML = DueDateEditDialogHTML_addTask();
 }
 

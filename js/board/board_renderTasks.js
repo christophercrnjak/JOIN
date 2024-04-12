@@ -1,8 +1,11 @@
 
 /**
  * Calls the functions which are responsiv for sort the task-elements in the right column of Kanban Board
+ * Deletes the content of columns, 
+ * filter the content by searched characters, 
+ * add "no Task" Element where is no task and checks whether there is no content for searched characters to set a toastmessage by true.
  * 
- * @param {String} search_content - letters by which the Kanban board should be sorted
+ * @param {String} search_content - searched characters to sort the board 
  */
 async function renderColumnContent(search_content){
     let toDo_container = document.getElementById('task_container_ToDo');
@@ -86,8 +89,11 @@ function filterTasks(toDo, inProgress, awaitFeedback, done, search_content) {
 }
 
 /**
+ * Adds the HTML Elements to the right column, 
+ * limits the number of characters of description 
+ * and calls the functions which need a special CSS design by special conditions.
  * 
- * @param {String} columns_status 
+ * @param {String} columns_status - status of task process
  * @param {HTMLElement} task - JSON Object of tasks array
  * @param {Number} taskId - Index of task in tasks array
  */
@@ -282,6 +288,9 @@ function renderInitialCirclesOfTaskMembers(taskId) {
             if (i < 5) {
                 container.innerHTML += taskMemberHTML(firstCharacter, secondCharacter, taskId, i); 
                 document.getElementById(`task_member${taskId}${i}`).style.backgroundColor = `${color}`;
+                if (color == "yellow") {
+                    document.getElementById(`task_member${taskId}${i}`).style.color = `var(--bgdarkblue)`;
+                }
                 // create the position of cicles:  
                 if(i > 0) {
                     setAttributesMoreMemberHTML(taskId, i);

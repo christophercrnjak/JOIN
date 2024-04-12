@@ -205,6 +205,14 @@
     max-height: 338px;
 }
 
+.assigned_to {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    color: black;
+    font-size: 20px;
+    line-height: 24px;
+}
+
     .dropdown {
         display: flex;
         justify-content: space-between;

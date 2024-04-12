@@ -8,7 +8,7 @@ let subtasklists = [];
 function takeoverNewSubtaskValue(subtaskId) {
   let input = document.getElementById(`new_subtask_edit_text${subtaskId}`);
   let subtask_element = document.getElementById(`subtasklist_element${subtaskId}`);
-  subtasklists[subtaskId] = input.value;
+  subtasklists[subtaskId].name = input.value;
   subtask_element.style.paddingLeft = '10px';
   subtask_element.classList.remove("no-hover");
   rendersubtasklist();
@@ -33,7 +33,12 @@ function ChangeToSubtasks() {
       subtasksInputElement.value = '';  
       ChangeToSubtasks()
     } else {
-      subtasklists.push(subtasksInputValue);
+      subtasklists.push(
+        {
+          "name": subtasksInputValue,
+          "done": false,
+        }
+      );
       subtasksInputElement.value = ''; 
       ChangeToSubtasks();
       rendersubtasklist();
@@ -50,7 +55,7 @@ function ChangeToSubtasks() {
     let rendersubtasklist = document.getElementById("subtasklist");
     rendersubtasklist.innerHTML = "";
     for (let i = 0; i < subtasklists.length; i++) {
-      let subtaskHTML = subtasklists[i];
+      let subtaskHTML = subtasklists[i].name;
       rendersubtasklist.innerHTML += subtasklistHTML(subtaskHTML, i);
     }
     subtasklistHTML();
@@ -103,7 +108,7 @@ function ChangeToSubtasks() {
   function subtaskEditHTML(subtask_value, subtaskId) {
     return `
       <div class="new_subtask_edit_main">
-        <input id="new_subtask_edit_text${subtaskId}" class="new_subtask_edit_text" value="${subtask_value}" >
+        <input id="new_subtask_edit_text${subtaskId}" class="new_subtask_edit_text" value="${subtask_value.name}" >
         <div class="subtask_edit_main">
           <a class="trash" onclick="removeSubtask(${subtaskId})">
             <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">

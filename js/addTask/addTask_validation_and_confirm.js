@@ -92,6 +92,7 @@ function changeWindow() {
 
 async function getAllSettingsOfNewTask() {
   await getTextInputValues();
+  await dueDate_newTask_addTask();
   await getCategory();
   await getContacts();
   await getPrio();
@@ -101,10 +102,20 @@ async function getAllSettingsOfNewTask() {
 function getTextInputValues() {
   let title = document.getElementById('titleAddtask').value;
   let description = document.getElementById('description').value;
-  let dueDate = document.getElementById('AddTaskDate').value;
   newTask.title = title;
   newTask.description = description;
-  newTask.dueDate = dueDate;
+}
+
+/**
+ * Adds the due date from Input to newTask.dueDate with the right format dd/mm/yy.
+ */
+function  dueDate_newTask_addTask() {
+  let duedateInput = document.getElementById('AddTaskDate').value;
+  duedateInput = duedateInput.split('-');
+  let year = parseInt(duedateInput[0]); 
+  year = year - 2000;
+  let newDate = duedateInput[2] + '/' + duedateInput[1] + '/' + year;
+  newTask.dueDate = newDate;
 }
 
 function getCategory() {

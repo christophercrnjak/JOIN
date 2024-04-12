@@ -169,6 +169,7 @@ function contacts_newTask() {
         }
     }
 }
+
 /**
  * Adds the due date from Input to newTask.dueDate with the right format dd/mm/yy.
  */
