@@ -77,7 +77,7 @@
             padding-top: 0 !important;
             position: absolute;
             top: 76px;
-            right: 150px;
+            right: -150px;
             width: 150px;
             height: 150px;
             background-color: var(--bgdarkblue);
