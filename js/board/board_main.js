@@ -37,7 +37,6 @@ async function init_board() {
         await setItem('newTask_status', newTask_status);
     }
 }
-
   
   /**
    * Hides the toast message box

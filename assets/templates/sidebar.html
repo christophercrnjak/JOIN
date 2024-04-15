@@ -8,14 +8,15 @@
        <a href="/help.html"><img id="navbarHeadIcon_help" src="/assets/img/HelpDefault.svg" 
         onmouseover="this.src='assets/img/help.svg'" 
         onmouseleave="this.src='assets/img/HelpDefault.svg'"></a>
-        <span onclick="footerToggle()" class="footer_notice">
-            <div id="navbarHeadIcon"></div>
-            <div id="footer_notice" class="footer_notice_dropdown_content">
-               <a id="privacyPolicy" class="" href="privacy_policy.html">Privacy Policy</a>
-               <a id="legalNotice" class="" href="legal_notice.html">Legal notice</a>
-               <a id="logOut" onclick="logOut()">Log out</a>
-            </div>
-         </span> 
+        <div class="account_and_navbar_section">
+            <div onclick="footerToggle()" id="navbarHeadIcon"></div>
+            <nav id="navbar" class="">
+                <a onclick="hideFooterMenu()" id="privacyPolicy"    class="help" href="help.html">Help</a>
+                <a onclick="hideFooterMenu()" id="legalNotice"      href="legal_notice.html">Legal notice</a>
+                <a onclick="hideFooterMenu()" id="privacyPolicy"    href="privacy_policy.html">Privacy Policy</a>
+                <a onclick="hideFooterMenu()" id="logOut"           onclick="logOut()">Log out</a>
+            </nav>
+         </div> 
     </div>
 </div>
 

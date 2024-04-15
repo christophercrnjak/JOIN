@@ -88,8 +88,9 @@
     }
     .board_content {
         margin-top: 0;
-        margin-left: 16px;
-        margin-right: 16px;
+        margin-left: 0;
+        margin-right: 0;
+        min-width: unset;
     }
     
     .container {
@@ -122,6 +123,8 @@
 
     .column_head {
         max-width: none; 
+        padding-left: 16px;
+        padding-right: 16px;
         
     }
 

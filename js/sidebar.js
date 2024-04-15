@@ -1,15 +1,14 @@
 
 function footerToggle() {
-  let footerNotice = document.getElementById('footer_notice');
+  let footerNotice = document.getElementById('navbar');
   footerNotice.classList.toggle('show');
 }
 
-document.addEventListener('click', function(event) {
-  let footerNotice = document.getElementById('footer_notice');
-  if (!event.target.closest('.footer_notice') && !footerNotice.contains(event.target)) {
-    footerNotice.classList.remove('show');
-  }
-});
+function hideFooterMenu() {
+  let footerNotice = document.getElementById('navbar');
+  footerNotice.classList.remove('show');
+  
+}
 
 async function logOut() {
   currentUser = [];
