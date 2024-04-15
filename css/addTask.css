@@ -30,7 +30,9 @@ body {
   margin-bottom: 24px;
 }
 
-
+.show {
+  display: flex !important;
+}
 
 input[type="text"] {
   border: 1px solid #ccc;

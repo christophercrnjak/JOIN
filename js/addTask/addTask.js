@@ -193,7 +193,7 @@ function setPriorityStyles(bgColor, textColor, imgSrc, priority) {
 // *** Category *** //
 
 
-function openCloseCategoryDropDown() {
+function checkCategoryOpenCloseConditions() {
   if (dropdown_status_category == false) {
     openCategoryDropdown();
   } else if (dropdown_status_category == true) {

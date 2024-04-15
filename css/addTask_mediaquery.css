@@ -33,6 +33,10 @@
       width: 100% !important;
     }
 
+    #textarea#description {
+      width: 100%;
+    }
+
     .description_main {
       width: 100%;
     }
@@ -166,6 +170,10 @@
     width: 100%;
   }
 
+  .subtasklist_element {
+    width: 100%;
+  }
+
   .create_clear_task {
     display: flex;
     justify-content: space-between;
@@ -187,5 +195,34 @@
   .btn_transparent {
     display: none;
   }
+}
+
+@media(max-width: 385px) {
+  
+  .addTask_btn {
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  .requiredField {
+    font-size: 14px !important;
+  }
+
+  .AddTask_head {
+    font-size: 45px;
+    margin-top: 8px;
+    margin-bottom: 20px;
+}
+
+#btnUrgend,
+#btnMedium, 
+#btnLow
+ {
+  width: 33%;
+}
+
+.subtask {
+  height: 140px;
+}
 }
   

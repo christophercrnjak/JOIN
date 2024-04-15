@@ -218,3 +218,49 @@ hr {
     width: 100%;
   }
 }
+
+@media (max-width: 1000px) {
+
+  .task_amount {
+    font-size: 45px;
+    font-weight: 600;
+  }
+
+  .task img {
+    height: 50%;
+    width: 50%;
+  }
+
+  .task_name {
+    font-size: 16px;
+    text-align: center;
+}
+
+.urgent_task img {
+  height: 70%;
+    width: 70%;
+}
+
+.urgent_task {
+  gap: 35px;
+}
+
+.third_row {
+  padding-bottom: 120px !important;
+}
+.third_row a {
+  height: 125px;
+}
+
+.task {
+
+  padding: 35px;
+  
+  gap: 0px;
+}
+
+h1 {
+  font-size: 45px;
+}
+}
+
