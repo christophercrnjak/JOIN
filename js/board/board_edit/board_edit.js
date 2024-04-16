@@ -260,7 +260,7 @@ function setPrioBtnUrgentActive() {
 function urgentInactivHTML() {
     return `
         <a class="urgent_btn_inactive btn_addTask" onclick="renderPrioButtons('Urgent')">
-            Urgend 
+            Urgent
             <img id="btnUrgrend_img" src="assets/img/Prio_urgent_color_origin.svg" alt="" srcset="">
         </a>
     `;
@@ -271,7 +271,7 @@ function urgentInactivHTML() {
 function urgentActivHTML() {
     return `
         <a class="urgent_btn_active btn_addTask">
-            Urgend 
+            Urgent
             <img id="btnUrgrend_img" src="assets/img/Prio_urgent_white.svg" alt="" srcset="">
         </a>
     `;

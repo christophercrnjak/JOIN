@@ -162,6 +162,16 @@ async function deletePerson(index) {
     person.splice(index, 1);
     const selectedPersonElement = document.getElementById('selectedPerson');
     selectedPersonElement.innerHTML = '';
+    for (let taskId in tasks) {
+        const task = tasks[taskId];
+        for (let i = 0; i < task.assignedTo.length; i++) {
+            if (task.assignedTo[i].id === deletedPerson.id) {
+                task.assignedTo.splice(i, 1);
+                i--; // Wir müssen den Index korrigieren, da wir ein Element entfernt haben
+            }
+        }
+    }
+
     closeDialog();
 
     await setContactsToServer();
