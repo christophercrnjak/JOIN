@@ -7,17 +7,14 @@ async function handleLogIn() {
   await loadUsers();
   await getContactsFromServer();
   checkExistingUser();
+  setLogIn_status();
   setInterval(() => {
     window.location.href = "summary.html";
   }, 1000);
 }
- 
-
 
 /**
- * If the input values are similar with passwords stored on the server, 
- * the function set currentUser, save the currentUser on the server and
- * set the logIn status from logged in user on true.
+ * 
  */
 async function checkExistingUser() {
   for (let i = 0; i < users.length; i++) {
@@ -38,32 +35,26 @@ async function checkExistingUser() {
  * lockedIn of the contact, which is equal to the currentUser, is set to true.
  */
 async function setLogIn_status() {
-  // define index (index of conatct in contacts_global which is logged in)
-  let index = await findIndexOf_CurrentUser_in_contacts_global();
+  await getContactsFromServer();
+  resetLogIn_status();
+  await checkExistingContact();
+}
+
+function resetLogIn_status() {
   for (let i = 0; i < contacts_global.length; i++) {
-      contacts_global[i].lockedIn = false;
-    }
-  if (index !== undefined) {
-      contacts_global[index].lockedIn = true;
-      await setContactsToServer();
-      await getContactsFromServer();
-  } else {
-      console.log('There is no user locked!')
+    contacts_global[i].lockedIn = false;
   }
 }
 
-function findIndexOf_CurrentUser_in_contacts_global() {
-  let index = "undefined";
+async function checkExistingContact() {
   for (let i = 0; i < contacts_global.length; i++) {
-      let contact = contacts_global[i];
-      if (contact.name.firstName == currentUser.name.firstName && contact.name.secondName == currentUser.name.secondName && contact.mail == currentUser.mail) {
-          index = i;
-          break
-      } else {
-          index = "undefined";
-      }
+    let contact = contacts_global[i];
+    if (contact.name.firstName == currentUser.name.firstName && contact.name.secondName == currentUser.name.secondName && contact.mail == currentUser.mail) {
+        contact.lockedIn = true;
+        await setContactsToServer();
+        await getContactsFromServer();
+    } 
   }
-  return index;
 }
 
 
