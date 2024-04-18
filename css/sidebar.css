@@ -49,7 +49,7 @@
     justify-content: center;
     align-items: center;
     color: var(--blue);
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 700;
     margin-right: 40px;
 }
@@ -238,12 +238,14 @@
     .board_header {
         margin-top: 80px; 
     }
+    
     .logo_join_responsiv {
         display: flex;
         margin-left: 16px;
         height: 39.02px;
         width: 32px;
     }
+
     #navbarHeadIcon_help {
         display: none;
     }
@@ -270,9 +272,11 @@
         display: flex !important;
     }
 
+
     .headnav_text {
         display: none;
     }
+
     .sidebar {
         position: fixed;
         left: 0;
@@ -281,6 +285,7 @@
         bottom: 0;
         font-size: 14px;
     }
+
     .side_navbar {
     display: flex;
     justify-content: space-between;
@@ -288,18 +293,22 @@
     height: 80px; 
     width: 100%;
     }
+
     .logo_sidebar {
         display: none;
     }
+
     .side_navbar_section {
         display: flex;
         justify-content: center;
         align-items: center;
         padding: 0;
     }
+
     .side_navbar_section img {
         padding: 0;
     }
+
     .side_navbar a{
       display: flex;
       justify-content: center;
@@ -307,6 +316,7 @@
       padding: 15px, 0px, 15px, 0px !important;
       border-radius: 8px;
     }
+
     .side_navbar_section {
         width: 100%;
     }
@@ -315,18 +325,3 @@
         display: none;
     }
   }
-
-
-
-/* @keyframes moveOutRightDialog_footer {
-    from {
-        transform: translateX(400%);
-    }
-
-    to {
-        transform: translateX(7px);
-    }
-} */
-
-
-

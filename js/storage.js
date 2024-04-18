@@ -351,6 +351,10 @@ async function getCurrentUserFromServer() {
   }
 }
 
+async function setlockedInStatus() {
+  
+}
+
 
 // ***** newTAsk status ***** //
 
@@ -373,4 +377,58 @@ async function getNewTask_statusFromServer() {
 
 async function setNewTask_status_false() {
   await setItem('newTask_status', 'false');
+}
+
+
+// ***** accounts ***** //
+
+/**
+ * Main task storage for the program.
+ * 
+ * @type {JSON}
+ */
+let accounts = [];
+
+/**
+ * Push new Content to Server
+ */
+async function setTasksToServer() {
+  await setItem('users', accounts);   
+}
+
+/**
+ * Load the tasks JSON Array from Server in tasks[]
+ */
+async function getAccountsFromServer() {
+  try {
+    let ServerData;
+    ServerData = await getItem("users");
+    let newData = JSON.parse(ServerData.data.value);
+    accounts = newData;
+  } catch (e) {
+    console.warn("Could not load accounts!");
+  }
+}
+
+async function deleteAccount(account_index) {
+  await getAccountsFromServer();
+  accounts.splice(account_index,1);
+  await setItem('users', accounts);
+  await getAccountsFromServer();
+}
+
+async function creatNewUserIntern(firstName, secondName, mail, password) {
+  await getAccountsFromServer();
+  accounts.push({
+    name: {
+      firstName: firstName,
+      secondName: secondName,
+      color: "#ff4646",
+    },
+    mail: mail,
+    password: password,
+    lockedIn: false,
+  });
+  await setItem('users', accounts);
+  await getAccountsFromServer();
 }
