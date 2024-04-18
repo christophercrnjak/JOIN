@@ -7,13 +7,12 @@ async function handleLogIn() {
   await loadUsers();
   await getContactsFromServer();
   checkExistingUser();
-  if (validation == true) {
   setInterval(() => {
     window.location.href = "summary.html";
-  }, 1000);} else {
-    console.warn("Please enter correct login details!");
-  }
+  }, 1000);
 }
+ 
+
 
 /**
  * If the input values are similar with passwords stored on the server, 
@@ -27,12 +26,7 @@ async function checkExistingUser() {
     if (user.mail == mail.value && user.password == password.value) {
       currentUser = JSON.parse(JSON.stringify(user));
       await saveCurrentUserOnServer();
-      validation = true
-      await setLogIn_status();
-      break;
-    } else {
-      validation = false
-    }
+    } 
   }
 }
 
