@@ -60,6 +60,9 @@ async function getTasksFromServer() {
     let newData = JSON.parse(ServerData.data.value);
     tasks = newData;
     await sortTasksContacts();
+    if (currentUser !== "Guest") {
+       syncLockedInStatus();
+    }
   } catch (e) {
     console.warn("Could not load tasks!");
   }
@@ -144,6 +147,8 @@ async function setContactsToServer(){
  */
 let currentUser = [];
 
+let currentUserId = '';
+
 /**
  * @type {JSON} - like:
  * 0: 
@@ -167,14 +172,46 @@ async function getCurrentUserFromServer() {
     ServerData = await getItem('currentUser');
     let newData = JSON.parse(ServerData.data.value)
     currentUser = newData;
+    await setCurrentUserId();
   } catch (e) {
     console.warn("Could not load currentUser!");
     console.warn(`${e}`);
   }
 }
 
-async function setlockedInStatus() {
-  
+async function saveCurrentUserIdOnServer() {
+  await setItem('currentUserId', currentUserId);
+}
+
+async function getCurrentUserIdFromServer() {
+  try {
+    let ServerData;
+    ServerData = await getItem('currentUserId');
+    let newData = JSON.parse(ServerData.data.value)
+    currentUserId = newData;
+  } catch (e) {
+    console.warn("Could not load currentUserId!");
+    console.warn(`${e}`);
+  }
+}
+
+async function setCurrentUserId() {
+  currentUserId = findIndexOfCurrentUserInContacts_Global();
+  await saveCurrentUserIdOnServer();
+  await getCurrentUserIdFromServer();
+}
+
+function findIndexOfCurrentUserInContacts_Global() {
+  let index = contacts_global.findIndex(contact =>
+  contact.name.firstName === currentUser.name.firstName && contact.name.secondName === currentUser.name.secondName
+  );
+  return index;
+}
+
+function setYou_contacts() {
+  let index = findIndexOfCurrentUserInContacts_Global();
+  let you = document.getElementById(`you${index}`)
+  you.innerHTML = `(You)`;
 }
 
 
@@ -203,6 +240,7 @@ async function setNewTask_status_false() {
 
 
 // ***** accounts ***** //
+
 
 /**
  * Main task storage for the program.

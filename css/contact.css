@@ -116,6 +116,10 @@ body {
     color: black;
 }
 
+.you {
+    margin-left: 5px;
+  }
+
 .persons_details:hover {
     background: rgba(240, 240, 240, 1)
 }

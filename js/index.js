@@ -14,6 +14,20 @@ async function handleLogIn() {
 }
 
 /**
+ * Gets the account data from Server and save this at users[] @storage.js.
+ */
+async function loadUsers() {
+  try {
+    let ServerData;
+    ServerData = await getItem("users");
+    let newData = JSON.parse(ServerData.data.value);
+    users = JSON.parse(JSON.stringify(newData));
+  } catch (e) {
+    console.warn("Could not load users!");
+  }
+}
+
+/**
  * 
  */
 async function checkExistingUser() {
@@ -65,16 +79,7 @@ async function handleGuestLogIn() {
   window.location.href = "summary.html";
 }
 
-async function loadUsers() {
-  try {
-    let ServerData;
-    ServerData = await getItem("users");
-    let newData = JSON.parse(ServerData.data.value);
-    users = JSON.parse(JSON.stringify(newData));
-  } catch (e) {
-    console.warn("Could not load users!");
-  }
-}
+
 
 
 
