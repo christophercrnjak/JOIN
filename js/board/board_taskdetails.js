@@ -28,7 +28,8 @@ async function renderDialogTask(taskId){
     changeDueDateFormat(taskId);
     setColorOfCategoryInDialog(taskId);
     renderPriorityDialog(taskId);
-    renderAssigedToDialog(taskId);
+    await renderAssigedToDialog(taskId);
+    setYou_board_taskdetails();
     renderSubtasksDialog(taskId);
     if (tasks[taskId].subtasks.length > 0){
         renderBlueProgressbar(taskId);
@@ -157,7 +158,6 @@ function renderAssigedToDialog(taskId) {
             document.getElementById(`taskdetailscontact${taskId}${i}`).style.backgroundColor = `${contact.color}`;
         }
     }
-    
 }
 
 /**
@@ -172,10 +172,23 @@ function AssigedToDialogHTML(contact, taskId, i) {
     return `
         <tr>
             <td id="taskdetailscontact${taskId}${i}" class="member_cycle pos1">${contact.firstName.charAt(0)}${contact.secondName.charAt(0)}</td>
-            <td class="member_name_assiged_to">${contact.firstName} ${contact.secondName}</td>
+            <td class="member_name_assiged_to">${contact.firstName} ${contact.secondName} <div id="you_task_details${i}" class="you"></div></td>
         </tr>
     `;
 }
+
+async function setYou_board_taskdetails() {
+    await getContactsFromServer();
+    for (let i = 0; i < contacts_global.length; i++) {
+      let youDiv = document.getElementById(`you_task_details${i}`)
+      let contact = contacts_global[i];
+      if (contact.lockedIn == false) {
+        youDiv.innerHTML = "";
+      } else {
+        youDiv.innerHTML = "(You)"
+      }
+    }
+  }
 
 /**
  * Set the priority image.

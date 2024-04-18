@@ -143,6 +143,10 @@
                 font-family: 'OpenSans', sans-serif;
             }
 
+            .you {
+                margin-left: 5px;
+              }
+
         .subtasks_main {
             display: flex;
             flex-direction: column;

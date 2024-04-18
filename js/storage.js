@@ -59,8 +59,26 @@ async function getTasksFromServer() {
     ServerData = await getItem("tasks");
     let newData = JSON.parse(ServerData.data.value);
     tasks = newData;
+    sortTasksContacts();
   } catch (e) {
     console.warn("Could not load tasks!");
+  }
+}
+
+function  sortTasksContacts() {
+  for (let i = 0; i < tasks.length; i++) {
+    tasks[i].contacts.sort((a, b) => {
+      let firstNameA = a.firstName.toLowerCase();
+      let firstNameB = b.firstName.toLowerCase();
+      
+      if (firstNameA < firstNameB) {
+        return -1;
+      }
+      if (firstNameA > firstNameB) {
+        return 1;
+      }
+      return 0;
+    });
   }
 }
 
@@ -215,11 +233,25 @@ async function getContactsFromServer() {
     ServerData = await getItem("contacts");
     let newData = JSON.parse(ServerData.data.value);
     contacts_global = newData;
+    sortContacts();
   } catch (e) {
     console.warn("Could not load contacts!");
   }
+}
+
+function sortContacts() {
+  contacts_global.sort((a, b) => {
+    const firstNameA = a.name.firstName.toLowerCase();
+    const firstNameB = b.name.firstName.toLowerCase();
   
-  
+    if (firstNameA < firstNameB) {
+      return -1;
+    }
+    if (firstNameA > firstNameB) {
+      return 1;
+    }
+    return 0;
+  });
 }
 
 async function setContactsToServer(){
