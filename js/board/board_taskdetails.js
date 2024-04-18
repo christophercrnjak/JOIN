@@ -29,7 +29,6 @@ async function renderDialogTask(taskId){
     setColorOfCategoryInDialog(taskId);
     renderPriorityDialog(taskId);
     await renderAssigedToDialog(taskId);
-    setYou_board_taskdetails();
     renderSubtasksDialog(taskId);
     if (tasks[taskId].subtasks.length > 0){
         renderBlueProgressbar(taskId);
@@ -156,6 +155,7 @@ function renderAssigedToDialog(taskId) {
             let contact = task.contacts[i];
             container.innerHTML += AssigedToDialogHTML(contact, taskId, i);
             document.getElementById(`taskdetailscontact${taskId}${i}`).style.backgroundColor = `${contact.color}`;
+            setYou_board_taskdetails(task.contacts[i]);
         }
     }
 }
@@ -177,11 +177,11 @@ function AssigedToDialogHTML(contact, taskId, i) {
     `;
 }
 
-async function setYou_board_taskdetails() {
+async function setYou_board_taskdetails(contacts) {
     await getContactsFromServer();
-    for (let i = 0; i < contacts_global.length; i++) {
+    for (let i = 0; i < contacts.length; i++) {
       let youDiv = document.getElementById(`you_task_details${i}`)
-      let contact = contacts_global[i];
+      let contact = contacts[i];
       if (contact.lockedIn == false) {
         youDiv.innerHTML = "";
       } else {
