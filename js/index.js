@@ -23,6 +23,7 @@ async function handleLogIn() {
 async function checkExistingUser() {
   for (let i = 0; i < users.length; i++) {
     let user = users[i];
+    // comparing of users vs. inputfields
     if (user.mail == mail.value && user.password == password.value) {
       currentUser = JSON.parse(JSON.stringify(user));
       await saveCurrentUserOnServer();

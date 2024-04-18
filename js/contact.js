@@ -170,6 +170,7 @@ async function deletePerson(index) {
     person.splice(index, 1);
     const selectedPersonElement = document.getElementById('selectedPerson');
     selectedPersonElement.innerHTML = '';
+    
     closeDialog();
 
     await setContactsToServer();
