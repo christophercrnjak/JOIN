@@ -123,6 +123,10 @@
           display: flex;
         }
 
+        .you {
+          margin-left: 5px;
+        }
+
         .dropdown_img{
           height: 24px;
           width: 24px;

@@ -10,26 +10,29 @@ async function renderDropList() {
       let contact = contacts_addTask[i];
       dropdown.innerHTML += dropdownHtml(contact, [i]);
     }
+    setYou_addTask();
   }
   
   /**
    * 
-   * @param {JSON} contact 
-   * @param {Number} i 
+   * 
+   * @param {JSON} contact - 
+   * @param {Number} i - Index of contact in contacts_addTask array
    * @returns 
    */
   function dropdownHtml(contact, i) {
+    contact = contact.name;
     return `
     <a class="dropdown_assign" id="contact${i}" onclick="selectFromDropdown(${i})">
         <!-- contact -->
         <div class="display_center gap ">
           <div class="member_cicle_main">
-            <div class="member_cicle" style='background-color:${contact["name"]["color"]};'>
-              ${contact["name"]["firstName"].charAt(0)}
-              ${contact["name"]["secondName"].charAt(0)}
+            <div class="member_cicle" style='background-color:${contact.color};'>
+              ${contact.firstName.charAt(0)}
+              ${contact.secondName.charAt(0)}
             </div>
           </div>
-          <div class="member_name">${contact["name"]["firstName"]} ${contact["name"]["secondName"]}</div>
+          <div class="member_name">${contact.firstName} ${contact.secondName} <div id="you${i}" class="you"></div></div>
         </div> 
         <!-- checkbox -->
         <div class="dropdown_img" id="selected_img${i}">
@@ -39,6 +42,18 @@ async function renderDropList() {
         </div>
     </a>
     `;
+  }
+
+  function setYou_addTask() {
+    for (let i = 0; i < contacts_global.length; i++) {
+      let youDiv = document.getElementById(`you${i}`)
+      let contact = contacts_global[i];
+      if (contact.lockedIn == false) {
+        youDiv.innerHTML = "";
+      } else {
+        youDiv.innerHTML = "(You)"
+      }
+    }
   }
   
   /**
