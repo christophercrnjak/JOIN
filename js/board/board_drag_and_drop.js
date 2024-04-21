@@ -10,7 +10,31 @@
 function startDragging(taskId, status) {
     registerTaskId(taskId);
     markAddableColumns(status);
+    // var x = window.matchMedia("(max-width: 1000px)")
+    // if (x.matches) {
+    //     document.getElementById('selectbar_drag_and_drop_mobil_id').display = "flex";
+    // }
 }
+
+function myFunction(x) {
+    if (x.matches) { // If media query matches
+        document.getElementById('selectbar_drag_and_drop_mobil_id').style.display = "flex";
+    } else {
+        document.getElementById('selectbar_drag_and_drop_mobil_id').style.display = "none";
+    }
+  }
+  
+  // Create a MediaQueryList object
+  var x = window.matchMedia("(max-width: 700px)")
+  
+  // Call listener function at run time
+  myFunction(x);
+  
+  // Attach listener function on state changes
+  x.addEventListener("change", function() {
+    myFunction(x);
+  });
+
 
 /**
  * The function is started by dragging the task element

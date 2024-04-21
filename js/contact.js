@@ -5,7 +5,7 @@ async function init() {
     await setUserInitialsAtHeader();
     person = contacts_global;
     loadContacts();
-    // setYou_contacts();
+    await setYou_contacts();
 }
 
 async function loadContacts() {
@@ -32,26 +32,17 @@ function contactHTML(i, currentPerson, firstLetter, secondLetter) {
     return `
         <div onclick="changeBackground(this);selectPerson(${i}); handleClick(${i})" id="persons_details" class="persons_details">
             <div class="persons" style="background-color: ${currentPerson.name.color};">${firstLetter}${secondLetter}</div>
-            <div class="person_details">${currentPerson.name.firstName} ${currentPerson.name.secondName} <span class="you" id="you${i}"></span><br><div class="email">${currentPerson.mail}</div></div>
+            <div class="person_details">${currentPerson.name.firstName} ${currentPerson.name.secondName} <span class="you" id="youContactList${i}"></span><br><div class="email">${currentPerson.mail}</div></div>
         </div>
     `;
 }
 
-function setYou_contacts(i, currentPerson) {
-    let contactsglobal = contacts_global.find(contact =>
-        contact.name.firstName === currentUser.name.firstName &&
-        contact.name.secondName === taskContact.name.secondName
-      );
-      if (contactsglobal) {
-        // Aktualisiere den Wert des Schlüssels "lockedIn" in der Aufgabe mit dem Wert aus den globalen Kontakten
-        taskContact.lockedIn = globalContact.lockedIn;
-      }
-    let you = document.getElementById(`you${i}`);
-    if (currentPerson.lockedIn == true) {
+async function setYou_contacts() {
+    await getCurrentUserIdFromServer();
+    if (person[currentUserId].name.firstName == currentUser.name.firstName && person[currentUserId].name.secondName == currentUser.name.secondName) {
+        let you = document.getElementById(`youContactList${currentUserId}`);
         you.innerHTML = "(You)";
-    } else {
-        you.innerHTML = "";
-    }
+    };
 }
 
 function selectPerson(index) {

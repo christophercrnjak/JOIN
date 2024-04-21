@@ -18,7 +18,6 @@ let contacts_addTask = []
  * Load the contacts in contacts_addTask array.
  * Render the content of Assigned to contactlist.
  * 
- * @param {Number} taskId - Index of current called task in tasks[] global array
  */
 async function renderAssigedToEditDialog_addTask(){
     await loadContacts_addTask();
@@ -33,10 +32,9 @@ async function renderAssigedToEditDialog_addTask(){
  * Add new Object "select_status" to the Keys.
  */
 async function loadContacts_addTask() {
-    let contacts = await fetch('assets/json/contacts.json'); 
-    contacts = await contacts.json(); 
-    contacts_addTask = contacts;
-    reduceContactKeysToImportant()
+    await getContactsFromServer();
+    contacts_addTask = JSON.parse(JSON.stringify(contacts_global));
+    reduceContactKeysToImportant();
     addNewKeySelectStatus();
 }
 
@@ -61,7 +59,6 @@ function addNewKeySelectStatus() {
 /**
  * HTML main structure of assiged to section in edit dialog.
  * 
- * @param {Number} taskId - Index of current called task in tasks[] global array
  * @returns {String} - HTML structure of task contacts
  */
 function assigedToEditHTML_addTask() {
@@ -187,7 +184,6 @@ function changeTextInInput_addTask() {
 /**
  * Render dropdown contact list depending on input value by key up in search input 
  * 
- * @param {Number} taskId - Index of current called task in tasks[] global array
  */
 function searchContacts_addTask() {
     let searchinput = document.getElementById('search_contacts_edit_addTask').value;
@@ -199,10 +195,10 @@ function searchContacts_addTask() {
 /**
  * Shows all contacts or searched contacts
  * 
- * @param {Number} taskId - Index of current called task in tasks[] global array
  * @param {String} searchValue 
  */
-function showContactList_addTask(searchValue) {
+async function showContactList_addTask(searchValue) {
+    await getContactsFromServer();
     let container = document.getElementById('selectedContactsSection_addTask');
     container.innerHTML = '';
     for (let i = 0; i < contacts_addTask.length; i++) {
@@ -213,6 +209,9 @@ function showContactList_addTask(searchValue) {
                 // circle & checkbox are separate rendered
                 renderCiclesOfContactsDropdown_addTask(i);
                 renderSelectionStatusLayout_addTask(i);
+                if (contacts_addTask[i].firstName == contacts_global[currentUserId].name.firstName && contacts_addTask[i].secondName == contacts_global[currentUserId].name.secondName) {
+                    setYou_boardAddTask(i);
+                }
             }
     }
 }
@@ -220,7 +219,6 @@ function showContactList_addTask(searchValue) {
 /**
  * HTML structure of contact list
  * 
- * @param {Number} taskId - Index of current called task in tasks[] global array
  * @param {Number} contactId - Index of contact in loaded_contacts array JSON
  * @returns {HTMLDivElement} HTML structure of contact row with colored circlen, name and checkbox.
  */
@@ -232,7 +230,7 @@ function editContactListHTML_addTask(contactId) {
             <!-- circle & name -->
             <div class="dropdown_contact_image_name">
                 <div id="character_circleImg_addTask${contactId}" class="circleImg"></div>
-                <div class="dropdownNames">${contact.firstName} ${contact.secondName}</div>
+                <div class="dropdownNames">${contact.firstName} ${contact.secondName} <span id="you_boardAddTask${contactId}"></span></div>
             </div> 
 
             <!-- checkbox -->
@@ -243,6 +241,11 @@ function editContactListHTML_addTask(contactId) {
             </div>
         </div>
     `;
+}
+
+function setYou_boardAddTask(contactId) {
+    let you = document.getElementById(`you_boardAddTask${contactId}`);
+    you.innerHTML = "(You)";
 }
 
 /**

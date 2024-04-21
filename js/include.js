@@ -39,7 +39,7 @@ async function includeHTML() {
 async function setUserInitialsAtHeader() {
   await getCurrentUserFromServer();
   let accountLogo = document.getElementById('navbarHeadIcon');
-  if (currentUser.length === 0 || typeof currentUser == "undefined" || currentUser == '') {
+  if (currentUser.length === 0 || typeof currentUser == "undefined" || currentUser == '' || currentUser == 999) {
     accountLogo.innerHTML = 'G';
   } else if (typeof currentUser.name.secondName == "undefined" || typeof currentUser.name.secondName == '') {
     let firstName = currentUser.name.firstName;

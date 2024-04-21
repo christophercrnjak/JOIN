@@ -154,7 +154,7 @@ function renderUrgentAmount() {
 
 function renderUserName() {
   let userNameElement = document.getElementById("user_name");
-  if (currentUser.length === 0 || typeof currentUser == "undefined" || currentUser[0] == '') {
+  if (currentUser.length === 0 || typeof currentUser == "undefined" || currentUser[0] == '' || currentUser == 999) {
     userNameElement.innerHTML = `Guest`;
   } else if (typeof currentUser.name.secondName == "undefined") {
     let firstName = currentUser.name.firstName;

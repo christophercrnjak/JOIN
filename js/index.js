@@ -15,7 +15,7 @@ let password = document.getElementById("password");
  * By not matching appears the message "E-Mail or Password not exist".
  */
 async function handleLogIn() {
-  checkExistingUser(); // set currentUser
+  await checkExistingUser(); // set currentUser
   if (currentUser == '' ) {
     showToastMessage_UserOrMailNotExist();
   } else {
@@ -126,6 +126,12 @@ async function handleGuestLogIn() {
   currentUser = {"name": {"firstName": "Guest", "secondName": "", "color": "#ff4646"}, "mail": "", "password": "", "lockedIn": true};
   await saveCurrentUserOnServer();
   await getCurrentUserFromServer();
+  currentUser = 999;
+  await saveCurrentUserOnServer();
+  await getCurrentUserFromServer();
+  currentUserId = 999;
+  await saveCurrentUserIdOnServer();
+  await getCurrentUserIdFromServer();
   window.location.href = "summary.html";
 }
 

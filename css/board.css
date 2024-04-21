@@ -265,3 +265,52 @@ a {
 }                                                 
 
 /* responsiv design in board_mediaquery.css */
+
+.selectbar_drag_and_drop_mobil {
+    left: 0;
+    height: 80px; 
+    width: 100%;
+    bottom: 80px;
+    font-size: 14px;
+    position: fixed;
+    z-index: 10;
+    display: none;
+}
+
+.status_bar {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.status {
+    width: 25%;
+    border: dotted 4px var(--bgdarkblue);
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(66, 82, 110, 0.6);
+    text-align: center;
+}
+
+@media(max-width: 750px) {
+    .status {
+       
+        font-size: 16px;
+        font-weight: 700;
+       
+    }
+}
+
+@media(max-width: 600px) {
+    .status {
+       
+        font-size: 14px;
+        font-weight: 700;
+       
+    }
+}

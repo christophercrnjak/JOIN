@@ -278,7 +278,6 @@
     }
 
     .sidebar {
-        position: fixed;
         left: 0;
         height: 80px; 
         width: 100%;
