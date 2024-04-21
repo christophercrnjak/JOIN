@@ -28,6 +28,40 @@ body {
   opacity: 0;
 }
 
+.main_wrapper {
+  position: relative;
+}
+
+.toastMessageIndex {
+  background-color: var(--bgdarkblue);
+  color: white;
+  font-size: 20px;
+  font-weight: 300;
+  display: flex;
+  width: fit-content;
+  padding: 16px 24px 16px 24px;
+  border-radius: 16px;
+  align-items: center;
+  position: absolute;
+  top: -33px;
+  z-index: 99;
+  justify-content: center;
+}
+
+.toastMessageIndex_text {
+  display: flex;
+  margin-right: 25px;
+}
+
+.toastMessageIndex_img path{
+  fill: white;
+}
+
+.toastMessageIndex_img {
+  display: flex;
+
+}
+
 .logo_grey {
   position: absolute;
   top: 50%;

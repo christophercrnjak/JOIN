@@ -22,9 +22,13 @@ async function init() {
   render();
 }
 
+/**
+ * Loads the data from server of contacts_global, tasks, currentUserId.
+ */
 async function loadServerData() {
   await getContactsFromServer();
   await getTasksFromServer();
+  await getCurrentUserIdFromServer();
 }
 
 function calcValuesOfSummery() {

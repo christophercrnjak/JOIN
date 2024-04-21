@@ -23,6 +23,7 @@ async function init_board() {
     await includeHTML();
     await setUserInitialsAtHeader(); // @include.js:39
     await getTasksFromServer(); // @storage.js:56
+    await getCurrentUserIdFromServer();
     await renderColumnContent(); // @board_main_renderTasks.js:7
     await toastMessageNewTask(); 
 }

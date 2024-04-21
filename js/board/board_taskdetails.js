@@ -140,9 +140,10 @@ function setColorOfCategoryInDialog(i) {
  * 
  * @param {Number} taskId - Index of current called task in tasks[] global array.
  */
-function renderAssigedToDialog(taskId) {
+async function renderAssigedToDialog(taskId) {
     let container = document.getElementById('member_container_dialog');
     let main_container = document.getElementById('assigned_to_section_taskdetails');
+    await getContactsFromServer();
     container.innerHTML = '';
     let task = tasks[taskId];
     if (task.contacts.length == 0) {
@@ -155,7 +156,9 @@ function renderAssigedToDialog(taskId) {
             let contact = task.contacts[i];
             container.innerHTML += AssigedToDialogHTML(contact, taskId, i);
             document.getElementById(`taskdetailscontact${taskId}${i}`).style.backgroundColor = `${contact.color}`;
-            setYou_board_taskdetails(task.contacts[i]);
+            if (contact.firstName == contacts_global[currentUserId].name.firstName && contact.secondName == contacts_global[currentUserId].name.secondName) {
+                await setYou_board_taskdetails(taskId, i);
+            }
         }
     }
 }
@@ -165,30 +168,34 @@ function renderAssigedToDialog(taskId) {
  * 
  * @param {JSON} contact - content of contacts of the current task (task.contacts[i]).
  * @param {Number} taskId - Index of current called task in tasks[] global array.
- * @param {Number} i - Index of contact
+ * @param {Number} contactId - Index of contact in contacts_global
  * @returns {HTMLTableRowElement}
  */
-function AssigedToDialogHTML(contact, taskId, i) {
+function AssigedToDialogHTML(contact, taskId, contactId) {
     return `
         <tr>
-            <td id="taskdetailscontact${taskId}${i}" class="member_cycle pos1">${contact.firstName.charAt(0)}${contact.secondName.charAt(0)}</td>
-            <td class="member_name_assiged_to">${contact.firstName} ${contact.secondName} <div id="you_task_details${i}" class="you"></div></td>
+            <td id="taskdetailscontact${taskId}${contactId}" class="member_cycle pos1">${contact.firstName.charAt(0)}${contact.secondName.charAt(0)}</td>
+            <td class="member_name_assiged_to">${contact.firstName} ${contact.secondName} <span id="you_task_details${taskId}${contactId}" class="you"></span></td>
         </tr>
     `;
 }
 
-async function setYou_board_taskdetails(contacts) {
-    await getContactsFromServer();
-    for (let i = 0; i < contacts.length; i++) {
-      let youDiv = document.getElementById(`you_task_details${i}`)
-      let contact = contacts[i];
-      if (contact.lockedIn == false) {
-        youDiv.innerHTML = "";
-      } else {
-        youDiv.innerHTML = "(You)"
-      }
-    }
-  }
+async function setYou_board_taskdetails(taskId, contactId) {
+    let youDiv = document.getElementById(`you_task_details${taskId}${contactId}`)
+    youDiv.innerHTML = "(You)"
+}
+
+//   function setYou_addTask() {
+//     for (let i = 0; i < contacts_global.length; i++) {
+//       let youDiv = document.getElementById(`you${i}`)
+//       let contact = contacts_global[i];
+//       if (contact.lockedIn == false) {
+//         youDiv.innerHTML = "";
+//       } else {
+//         youDiv.innerHTML = "(You)"
+//       }
+//     }
+//   }
 
 /**
  * Set the priority image.
