@@ -156,9 +156,13 @@ async function renderAssigedToDialog(taskId) {
             let contact = task.contacts[i];
             container.innerHTML += AssigedToDialogHTML(contact, taskId, i);
             document.getElementById(`taskdetailscontact${taskId}${i}`).style.backgroundColor = `${contact.color}`;
-            if (contact.firstName == contacts_global[currentUserId].name.firstName && contact.secondName == contacts_global[currentUserId].name.secondName) {
-                await setYou_board_taskdetails(taskId, i);
+            if (currentUser !== '') {
+                if (contact.firstName == contacts_global[currentUserId].name.firstName && 
+                    contact.secondName == contacts_global[currentUserId].name.secondName) {
+                    await setYou_board_taskdetails(taskId, i);
+                }
             }
+            
         }
     }
 }

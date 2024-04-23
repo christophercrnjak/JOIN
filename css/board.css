@@ -64,8 +64,8 @@ a {
                 }
 
                 .column_head_add_btn_mobile {
-                    width: 31px;
-                    height: 34px;
+                    width: 32px;
+                    height: 35px;
                     border-radius: 10px;
                     display: none;
                     justify-content: center;
@@ -156,7 +156,7 @@ a {
                     }
 
                     .task {
-                        background-color: white !important;
+                        background-color: rgba(250, 250, 250, 0.5) !important;
                         padding: 16px;
                         border-radius: 24px;
                         cursor: pointer;
@@ -277,24 +277,28 @@ a {
     display: none;
 }
 
-.status_bar {
-    display: flex;
-    width: 100%;
-    height: 100%;
-}
+    .status_bar {
+        display: none;
+        width: 100%;
+        height: 100%;
+    }
 
-.status {
-    width: 25%;
-    border: dotted 4px var(--bgdarkblue);
-    border-radius: 10px;
-    font-size: 20px;
-    font-weight: 700;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(66, 82, 110, 0.6);
-    text-align: center;
+        .status {
+            width: 25%;
+            border: dotted 4px var(--bgdarkblue);
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: 700;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(66, 82, 110, 0.6);
+            text-align: center;
+        }
+
+.status_selected {
+    background-color: rgba(66, 82, 110, 1);
 }
 
 @media(max-width: 750px) {

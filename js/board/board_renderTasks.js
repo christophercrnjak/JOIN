@@ -131,8 +131,8 @@ function taskHTML(task, taskId) {
     let title = task.title;
     let description = task.description;
     let status = task.status;
-    return `
-        <article id="task${taskId}" draggable="true" ondragend="deleteBorderStyles()" ondragstart="startDragging(${taskId}, '${status}')" onclick="openTaskDetailsDialog(${taskId})" class="task">
+    return /*html */`
+        <article id="task${taskId}" onclick="openTaskDetailsDialog(${taskId})" draggable="true" ondragstart="startDragging(${taskId}, '${status}')" ondragend="deleteBorderStyles()"   class="task">
             <div id="task_category${taskId}" class="task_category">${category}</div>
             <div class="task_title">${title}</div>
             <div id="task_description${taskId}" class="task_description">${description}</div>

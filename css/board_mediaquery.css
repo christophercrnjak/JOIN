@@ -47,14 +47,12 @@
         font-size: 13px;
     }
 }
-/*
-@media(max-width: 1135px) {
-    .hover_text_progressbar {
-        font-size: 11px;
-    }
-} */
 
 @media(max-width: 1000px) {
+    .selectbar_drag_and_drop_mobil {
+        display: flex;
+    }
+    
     .board_header {
         flex-direction: column;
         align-items: start;
