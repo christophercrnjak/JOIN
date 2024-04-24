@@ -11,8 +11,6 @@
   <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon" />
   <script src="./js/navigation.js"></script>
 </head>
-
-<<<<<<< HEAD
 <body onload="init()">
   <button class="d-none btn_grey" id="register_successfull"></button>
   <div class="container">
@@ -27,62 +25,6 @@
           </svg>
         </a>
         <h1>Sign up</h1>
-=======
-      <div class="sign_up_section display_center flex_direction_column">
-        <div class="headline">
-          <h1>Sign up</h1>
-          <hr />
-        </div>
-
-        <div class="input_area">
-          <form class="input_fields" onsubmit="register(); return false">
-            <input
-              required
-              type="text"
-              placeholder="First and last name"
-              pattern=".*\s.*"
-              oninvalid="this.setCustomValidity('Please only use letters and enter your first and last name.')"
-              oninput="this.setCustomValidity('')"
-              id="name"
-            />
-            <input
-              required
-              type="email"
-              placeholder="Email"
-              oninvalid="this.setCustomValidity('Please use a valid e-mail address.')"
-              oninput="this.setCustomValidity('')"
-              id="mail"
-            />
-            <input
-              required
-              type="password"
-              placeholder="Password"
-              oninvalid="this.setCustomValidity('Please enter your password.')"
-              oninput="this.setCustomValidity('')"
-              id="password"
-            />
-            <input
-              required
-              type="password"
-              placeholder="Confirm Password"
-              oninvalid="this.setCustomValidity('Please enter your password.')"
-              oninput="this.setCustomValidity('')"
-              onkeyup="comparePassword()"
-              id="confirm_password"
-            />
-            <span class="display_center" id="password_message"></span>
-            <div class="accept_privacy_policy display_center">
-              <input required type="checkbox" id="checkbox" />
-              <p>
-                I accept the <a href="./privacy_policy_extern.html">Privacy Policy</a>
-              </p>
-            </div>
-            <button class="btn_sign_up btn_grey" id="register_btn">
-              Sign up
-            </button>
-          </form>
-        </div>
->>>>>>> 53dd3c315e4d149225f2d25abceb6cd9290328bd
       </div>
       <hr/>
       <div class="input_area">
@@ -102,11 +44,11 @@
           <div class="accept_privacy_policy display_center">
             <input required type="checkbox" id="checkbox" />
             <p>
-              I accept the <a href="./privacy_policy_extern.html">Privacy Policy</a>
+            I accept the <a href="./privacy_policy_extern.html">Privacy policy</a>
             </p>
           </div>
           <button class="btn_sign_up btn_grey" id="register_btn">
-            Sign up
+          <h1>Sign up</h1> 
           </button>
         </form>
       </div>
