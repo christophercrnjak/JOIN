@@ -33,41 +33,43 @@ body {
 }
 
 .sign_up_section {
-  box-shadow: 0px 0px 14px 3px #0000000a;
+  box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
   background-color: white;
   border-radius: 30px;
-  padding: 48px 48px 48px 48px;
-  row-gap: 32px;
-  width: 45%;
+  padding: 48px 88px 48px 88px;
+  gap: 32px;
+  width: 598px;
+  height: 630px;
 }
 
 .headline {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  row-gap: 16px;
+  align-items: center;
 }
 
 h1 {
   margin: 0;
   font-size: 61px;
   font-weight: 700;
+  line-height: 73.2px;
 }
 
 hr {
-  width: 70%;
+  width: 150px;
   align-self: center;
   height: 3px;
   border: none;
   background-color: var(--blue);
+  margin-left: 16px;
 }
 
 .input_area {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  row-gap: 20px;
-  width: 65%;
+  gap: 16px;
+  width: 422px;
+  height: 327px;
 }
 
 form {
@@ -104,6 +106,15 @@ form input {
 
 .btn_sign_up {
   padding: 15px 24px 15px 24px;
+    width: 126px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    gap: 10px;
+    margin-left: 150px;
+    margin-top: 32px;
 }
 
 .legal_section {
@@ -126,4 +137,24 @@ form input {
 .legal_section a:hover {
   font-weight: 700;
   color: var(--blue);
+}
+.headline a {
+  height: 0;
+  cursor: pointer;
+  margin-bottom: 24px;
+  position: relative;
+  right: 120px;
+}
+
+@media (max-width:1000px){
+  .sign_up_section{
+    width: 396px;
+    height: 595px;
+    padding: 32px 0px 32px 0px;
+  }
+  .input_area{
+    width: 364px;
+    height: 296px;
+    gap: 24px;
+  }
 }

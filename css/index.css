@@ -28,10 +28,6 @@ body {
   opacity: 0;
 }
 
-.main_wrapper {
-  position: relative;
-}
-
 .toastMessageIndex {
   background-color: var(--bgdarkblue);
   color: white;

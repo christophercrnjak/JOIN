@@ -26,12 +26,12 @@ body {
     width: 32px;
     height: 32px;
     padding: 1.73px 2.59px 2.59px 1.73px;
+    cursor: pointer;
 }
 .headline svg:hover {
     border: groove 1px rgba(238, 238, 238, 1);
     border-radius: 50%;
     background-color: rgba(238, 238, 238, 1);
-    ;
 }
 
 .text ul {
