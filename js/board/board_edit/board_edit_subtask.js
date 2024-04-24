@@ -156,6 +156,7 @@ function take_over_new_content_of_Task(subtaskId, taskId) {
     renderSubtasksEditDialog(taskId);
 }
 
+
 /**
  * Change the icons on the right side depending on status (subtask_status_addTask).
  * Shows a "plus" in inctive mode and confirm oder delete icon in active mode.
@@ -223,6 +224,9 @@ function take_over_new_Subtask(taskId) {
     );
     subtask_status = !subtask_status;
     renderSubtasksEditDialog(taskId);
+    let lastIdNumber = currentTaskContent.subtasks.length - 1 ;
+    var targetElement = document.getElementById(`subtask_name_edit_id${'0' + `${lastIdNumber}`}`);
+    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 }
 
