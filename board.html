@@ -51,11 +51,11 @@
         </div>
     </div>
     <div id="selectbar_drag_and_drop_mobil_id" class="selectbar_drag_and_drop_mobil">
-        <div class="status_bar">
-            <div class="status" id="status_toDo">To do</div>
-            <div class="status" id="status_inProgress">In progress</div>
-            <div class="status" id="status_awaitFeedback">Await Feedback</div>
-            <div class="status" id="status_done">Done</div>
+        <div id="status_bar_id" class="status_bar">
+            <div class="status" id="status_toDo"            ondrop="moveTo('toDo'); removeHighlight('status_toDo')"             ondragleave="removeHighlight('status_toDo')"            ondragover="allowDrop(event); highlight('status_toDo')" >To do</div>
+            <div class="status" id="status_inProgress"      ondrop="moveTo('inProgress'); removeHighlight('status_inProgress')"       ondragleave="removeHighlight('status_inProgress')"      ondragover="allowDrop(event); highlight('status_inProgress')">In progress</div>
+            <div class="status" id="status_awaitFeedback"   ondrop="moveTo('awaitFeedback'); removeHighlight('status_awaitFeedback')"    ondragleave="removeHighlight('status_awaitFeedback')"   ondragover="allowDrop(event); highlight('status_awaitFeedback')">Await Feedback</div>
+            <div class="status" id="status_done"            ondrop="moveTo('done'); removeHighlight('status_done')"             ondragleave="removeHighlight('status_done')"            ondragover="allowDrop(event); highlight('status_done')">Done</div>
         </div>
     </div>
     <!-- DIALOG SHOW MORE TASK INFORMATIONS -->
