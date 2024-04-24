@@ -34,8 +34,9 @@
             <input
               required
               type="text"
-              placeholder="Name"
-              oninvalid="this.setCustomValidity('Please only use letters.')"
+              placeholder="First and last name"
+              pattern=".*\s.*"
+              oninvalid="this.setCustomValidity('Please only use letters and enter your first and last name.')"
               oninput="this.setCustomValidity('')"
               id="name"
             />
