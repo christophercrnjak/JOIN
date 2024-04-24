@@ -290,6 +290,7 @@ hr {
 @media (min-width: 1000px) {
   .container {
     animation: contentVisibilityDesktop 700ms ease-in-out 700ms both;
+    
   }
 
   .logo_grey {
@@ -313,6 +314,7 @@ hr {
 
   .container {
     animation: contentVisibilityMobile 700ms ease-in-out 700ms both;
+    flex-direction: column-reverse;
   }
 
   .sign_up {
