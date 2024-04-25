@@ -157,8 +157,6 @@ async function renderDropList() {
     let buttonfield = document.getElementById("dropbtn");
     let arrow_icon = document.getElementById("arrow")
     let inputfield = document.getElementById("dropdownInput");
-  
-  
     if (!dropdown_container.classList.contains("d-none")) {
       dropdown_container.classList.add('show_task'); //dropdown-list appear
       inputfield.classList.remove("d-none");// input appear
@@ -169,7 +167,6 @@ async function renderDropList() {
   }
   
   function open_close_Dropdownlsit_contacts() {
-  
     if (dropdown_status_assignedTo == false) {
       openDropdownlsit_contacts()
     } else if (dropdown_status_assignedTo == true){

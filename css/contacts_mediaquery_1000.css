@@ -37,32 +37,22 @@
 
     .right {
         padding: 66px 24px 66px 24px;
-        display: flex;
         gap: 12px;
         width: 396px;
         height: 352px;
         border-top-right-radius: 0;
         border-bottom-left-radius: 30px;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
         margin-right: 0px;
     }
 
     .background_image {
-        width: 120px;
-        height: 120px;
         margin: 0;
-        border: 3px solid rgba(255, 255, 255, 1);
-        box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
-        background: rgba(217, 217, 217, 1);
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        display: flex;
-        justify-content: center;
-        align-items: center;
     }
 
 
@@ -264,7 +254,6 @@
         margin-left: 16px;
     }
 
-
     .better_team_text {
         flex-direction: column;
         align-items: unset;
@@ -374,7 +363,6 @@
 
     .edit_delete_window.active {
         right: 10px;
-
     }
 
     .edit_delete_window a:hover {
@@ -385,7 +373,6 @@
 
     .edit_delete_window a:hover path {
         fill: rgba(41, 171, 226, 1);
-
     }
 
     .edit_delete_window a {
