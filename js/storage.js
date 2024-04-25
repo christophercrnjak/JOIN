@@ -294,3 +294,10 @@ async function creatNewUserIntern(firstName, secondName, mail, password) {
   await setItem('users', accounts);
   await getAccountsFromServer();
 }
+
+async function deleteFromTo(start, end) {
+  for (let i = start; i < end; i++) {
+    await deleteAccount(i);
+    
+  }
+}

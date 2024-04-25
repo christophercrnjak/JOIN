@@ -189,6 +189,12 @@ function showContactList(taskId, searchValue) {
                 // circle & checkbox are separate rendered
                 renderMemberImageDropdown(taskId, i);
                 renderSelectionStatusLayout(taskId, i);
+                if (currentUser !== '' && currentUserId !== 999) {
+                    if (loaded_contacts[i].name.firstName == contacts_global[currentUserId].name.firstName && 
+                        loaded_contacts[i].name.secondName == contacts_global[currentUserId].name.secondName) {
+                            setYou_board_edit(taskId, i);
+                    }
+                }
             }
     }
 }
@@ -207,7 +213,7 @@ function editContactListHTML(taskId, contactId) {
             <!-- circle & name -->
             <div class="dropdown_contact_image_name">
                 <div class="circle_size" id="character_image${taskId}${contactId}"></div>
-                <div class="dropdownNames">${contact.firstName} ${contact.secondName}</div>
+                <div class="dropdownNames">${contact.firstName} ${contact.secondName} <span id="you_edit_assignedTo${taskId}${contactId}" class="you"></span></div>
             </div> 
             <!-- checkbox -->
             <div class="checkbox_edit">
@@ -216,6 +222,12 @@ function editContactListHTML(taskId, contactId) {
         </div>
     `;
 }
+
+function setYou_board_edit(taskId, contactId) {
+    let youDiv = document.getElementById(`you_edit_assignedTo${taskId}${contactId}`);
+    youDiv.innerHTML = "(You)";
+}
+
 
 /**
  * If the contact is containing in the contactlist of task, the Layout of Contact-row is colored.
