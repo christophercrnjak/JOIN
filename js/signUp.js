@@ -36,7 +36,7 @@ async function register() {
     await createContact();
     resetForm();
     registerSuccessfull.classList.remove("d-none");
-    registerSuccessfull.innerHTML = "You Signed Up successfully";
+    registerSuccessfull.innerHTML = "<h2>You Signed Up successfully</h2>";
     setInterval(() => {
       window.location.href = "index.html";
     }, 1000);
