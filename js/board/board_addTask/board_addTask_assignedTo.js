@@ -205,14 +205,16 @@ async function showContactList_addTask(searchValue) {
         if (!searchValue || 
             contacts_addTask[i].firstName.toLowerCase().includes(searchValue) || 
             contacts_addTask[i].secondName.toLowerCase().includes(searchValue)) {
-                container.innerHTML += editContactListHTML_addTask(i);
-                // circle & checkbox are separate rendered
-                renderCiclesOfContactsDropdown_addTask(i);
-                renderSelectionStatusLayout_addTask(i);
+            container.innerHTML += editContactListHTML_addTask(i);
+            // circle & checkbox are separate rendered
+            renderCiclesOfContactsDropdown_addTask(i);
+            renderSelectionStatusLayout_addTask(i);
+            if (!currentUserId == 999){
                 if (contacts_addTask[i].firstName == contacts_global[currentUserId].name.firstName && contacts_addTask[i].secondName == contacts_global[currentUserId].name.secondName) {
                     setYou_boardAddTask(i);
                 }
             }
+        }
     }
 }
 

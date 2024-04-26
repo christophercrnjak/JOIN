@@ -42,13 +42,6 @@
     }
 }
 
-@media(max-width: 1100px) {
-    .member_cycle {
-        width: 33px;
-        height: 33px;
-    }
-    }
-
 
 @media(max-width: 1018px) {
     .hover_text_progressbar {
