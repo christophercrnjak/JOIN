@@ -225,7 +225,7 @@ function take_over_new_Subtask(taskId) {
     subtask_status = !subtask_status;
     renderSubtasksEditDialog(taskId);
     let lastIdNumber = currentTaskContent.subtasks.length - 1 ;
-    var targetElement = document.getElementById(`subtask_name_edit_id${'0' + `${lastIdNumber}`}`);
+    var targetElement = document.getElementById(`subtask_list_row_main${taskId}${currentTaskContent.subtasks.length + 1}`);
     targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 }
