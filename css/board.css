@@ -228,8 +228,8 @@ a {
                             }
 
                                 .member_cycle {
-                                    width: 42px;
-                                    height: 42px;
+                                    width: 32px;
+                                    height: 32px;
                                     border-radius: 42px;
                                     display: flex;
                                     justify-content: center;
