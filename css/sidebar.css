@@ -11,10 +11,20 @@
     border-radius: 16px;
     align-items: center;
     position: fixed;
-    top: 47px;
-    right: 100px;
-    transform: translate(-50%, -50%);
+    top: 20px;
+    right: 260px;
     z-index: 1000;
+    animation-name: moveDown;
+    animation-timing-function: ease-out;
+    animation-duration: 400ms;
+}
+@keyframes moveDown {
+    0% {
+        top: 0;
+    }
+    100% {
+        top: 20px;
+    }
 }
 
 /* head Navbar  */
@@ -291,6 +301,7 @@
     flex-direction: row;
     height: 80px; 
     width: 100%;
+    gap: 20px;
     }
 
     .logo_sidebar {
@@ -312,8 +323,8 @@
       display: flex;
       justify-content: center;
       flex-direction: column;
-      padding: 15px, 0px, 15px, 0px !important;
-      border-radius: 8px;
+      padding: 15px 0px 15px 0px;
+      border-radius: 16px;
     }
 
     .side_navbar_section {
@@ -323,4 +334,16 @@
     .sidebar_footer {
         display: none;
     }
-  }
+    #summary {
+        order: 1;
+    }
+    #board {
+        order: 2;
+    }
+    #addTask {
+        order: 3;
+    }
+    #conracts {
+        order: 4;
+    }
+}

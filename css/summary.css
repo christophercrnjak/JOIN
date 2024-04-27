@@ -207,19 +207,24 @@ hr {
 
   header {
     flex-direction: column;
+    align-items: unset;
+    gap: 16px;
+    margin-top: 48px;
   }
 
   header hr {
-    width: 59px;
+    display: none;
+  }
+
+  .line {
+    background-color: var(--blue) !important;
+    width: 90px;
     height: 3px;
   }
 
   .content {
     width: 100%;
   }
-}
-
-@media (max-width: 1000px) {
 
   .task_amount {
     font-size: 45px;
@@ -234,33 +239,40 @@ hr {
   .task_name {
     font-size: 16px;
     text-align: center;
-}
+  }
 
-.urgent_task img {
-  height: 70%;
+  .urgent_task img {
+    height: 70%;
     width: 70%;
-}
+  }
 
-.urgent_task {
-  gap: 35px;
-}
+  .urgent_task {
+    gap: 35px;
+  }
 
-.third_row {
-  padding-bottom: 120px !important;
-}
-.third_row a {
-  height: 125px;
-}
+  .third_row {
+    padding-bottom: 120px !important;
+  }
 
-.task {
+  .third_row a {
+    height: 125px;
+  }
 
-  padding: 35px;
-  
-  gap: 0px;
-}
+  .task {
 
-h1 {
-  font-size: 45px;
-}
-}
+    padding: 35px;
 
+    gap: 0px;
+  }
+
+  h1 {
+    font-size: 47px;
+    line-height: 56.4px;
+  }
+
+  h2 {
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 400;
+  }
+}

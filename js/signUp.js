@@ -39,7 +39,7 @@ async function register() {
     registerSuccessfull.innerHTML = "<h2>You Signed Up successfully</h2>";
     setInterval(() => {
       window.location.href = "index.html";
-    }, 1000);
+    }, 800);
   } else {
     document.getElementById("password_message").innerHTML =
       "Passwords do not match. Please check and try again!";

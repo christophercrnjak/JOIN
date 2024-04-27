@@ -8,19 +8,33 @@ body {
 
 #register_successfull {
   position: fixed;
-  right: 570px;
   padding: 0px 25px 0px 25px;
   z-index: 200;
   width: 312px;
   height: 74px;
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
+  animation-name: moveUpandDown;
+  animation-timing-function: ease-out;
+  animation-duration: 200ms;
 }
-#register_successfull:hover{
+
+@keyframes moveUpandDown {
+  from {
+    transform: translateY(400%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+#register_successfull:hover {
   background-color: var(--bgdarkblue);
   cursor: unset;
 }
-#register_successfull h2{
+
+#register_successfull h2 {
   font-size: 20px;
   line-height: 24px;
   font-weight: 400;
@@ -215,10 +229,11 @@ form input {
   .logo {
     width: 64px;
     height: 78.03px;
-    top: 37px;
-    left: 38px;
+    top: 33px;
+    left: 24px;
   }
-  #register_successfull{
-    right: 100px;
+
+  #register_successfull {
+    bottom: 375px;
   }
 }
