@@ -285,7 +285,11 @@ function renderInitialCirclesOfTaskMembers(taskId) {
             let firstCharacter = contact.firstName.charAt(0);
             let secondCharacter = contact.secondName.charAt(0);
             let color = contact.color;
+<<<<<<< HEAD
             if (i < 3) {
+=======
+            if (i < 3) { // solange nur 3 Kontakte da sind
+>>>>>>> 7a7e0bd1fbae70c7719ebac8022680a378451b6b
                 container.innerHTML += taskMemberHTML(firstCharacter, secondCharacter, taskId, i); 
                 document.getElementById(`task_member${taskId}${i}`).style.backgroundColor = `${color}`;
                 if (color == "yellow") {
@@ -295,12 +299,21 @@ function renderInitialCirclesOfTaskMembers(taskId) {
                 if(i > 0) {
                     setAttributesMoreMemberHTML(taskId, i);
                 }
+<<<<<<< HEAD
             } else {
                 if(i > 3){
                     let moreNumber = i - 2;
                     container.innerHTML += moreMemberHTML(taskId, i, moreNumber); 
                     setAttributesMoreMemberHTML(taskId, i);
                 }
+=======
+            } else if(i > 2){
+                // sobald mehr als 3 Kontakte da sind
+                let moreNumber = task.contacts.length - 3;
+                container.innerHTML += moreMemberHTML(taskId, i, moreNumber); 
+                setAttributesMoreMemberHTML(taskId, i);
+                break
+>>>>>>> 7a7e0bd1fbae70c7719ebac8022680a378451b6b
             }
         }
     }

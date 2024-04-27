@@ -71,8 +71,9 @@ function addTaskDialogHTML() {
             </div>
         </div>
         <!-- footer -->
-        <div id="addTask_dialog_createTask" class="distance"></div>
+        
     </div>
+    <div id="addTask_dialog_createTask" class="distance"></div>
     `;
 }
 
@@ -370,7 +371,6 @@ function renderCommitSection_addTask() {
  */
 function commitSectionHTML() {
     return /*html */`
-        <div class="create_clear_task">
             <p><span class="red_star">*</span>This Field is required</p>
             <div class="addTask_btns">
               <button onclick="clearInputsAddTaskDialog()" class="btn_transparent addTask_btn btn_gab">Clear <span>
@@ -381,7 +381,6 @@ function commitSectionHTML() {
               </button>
               <button onclick="validationOfAllInputs()" class="btn_grey addTask_btn display_centerss btn_gab"> Create Task <img src="/assets/img/check.png"></button>
             </div>
-        </div>
     `;
 }
 

@@ -321,6 +321,11 @@
             display: none;
         }
 
+        .addTask_dialog_container {
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+
         .addTask_dialog_box_middle {
             flex-direction: column;
         }
@@ -331,6 +336,34 @@
 
         #addTask_dialog_subtasks {
             height: unset;
+        }
+
+        .btn_transparent {
+            display: none;
+        }
+
+        #task_dialog_container {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        #addTask_dialog_createTask {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding-top: 16px;
+            margin-top: unset;
+            padding-left: unset;
+            padding-right: 16px;
+            padding-bottom: 16px;
+            position: sticky;
+            bottom: 0;
+            background-color: var(--bgwhite);
+        }
+
+         #addTask_dialog_createTask p{
+            padding-left: 16px;
         }
 
         .create_clear_task {
@@ -360,6 +393,22 @@
             right: -31%;
             transform: translate(-50%, -50%);
         }
+        button {
+            font-size: 16px;
+        }
+
+        #addTask_dialog_createTask p{
+                font-size: 12px;
+        }
+
+        .btn_addTask {
+        height: unset !important;
+        min-width: 86.67px !important;
+    }
+
+        .btn_addTask_list a {
+        font-size: 12px;
+    }
     }
 
     @media (max-width: 480px) {
@@ -367,5 +416,13 @@
             top: 146px;
             right: -135px;
             transform: translate(-50%, -50%);
+        }
+
+        .addTask_dialog_box_content_left {
+            width: 100%;
+        }
+
+        .addTask_dialog_box_content_right {
+            width: 100%;
         }
     }
