@@ -323,7 +323,7 @@
       display: flex;
       justify-content: center;
       flex-direction: column;
-      padding: 15px 0px 15px 0px;
+      /* padding: 15px 0px 15px 0px; */
       border-radius: 16px;
     }
 
@@ -345,5 +345,20 @@
     }
     #conracts {
         order: 4;
+    }
+}
+
+@media(max-height: 700px) {
+    .sidebar {
+        height: 60px;
+    }
+
+    .head_main_navbar {
+        height: 60px;
+    }
+
+    .logo_join_responsiv {
+        height: 32.02px;
+        width: 25px;
     }
 }

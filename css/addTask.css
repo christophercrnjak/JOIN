@@ -313,6 +313,39 @@ input[type="date"]:invalid{
     padding-right: 96px;
   }
 
+@media(max-height: 700px) {
+  button {
+    font-size: 16px;
+  }
+
+  .addTask_btn {
+    padding: 8px !important;
+  }
+
+  .create_clear_task {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+
+  .requiredField {
+    font-size: 12px;
+  }
+
+  .addTask_btns {
+    margin-bottom: 58px !important;
+  }
+
+  .requiredField {
+    margin-bottom: 58px !important;
+}
+
+.AddTask_head {
+  font-size: 32px !important;
+  font-weight: 700;
+  margin-top: -6px !important;
+}
+}
+
   .addTask_btns {
     display: flex;
     gap: 18px;
