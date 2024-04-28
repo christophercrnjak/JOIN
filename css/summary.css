@@ -3,9 +3,44 @@ body {
   background-color: var(--bgwhite);
 }
 
+.background_greeting {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: hsla(210, 12%, 97%, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeOut 3s ease-in-out;
+}
+
+.welcome_message_first {
+  font-size: 36px;
+  font-weight: 400;
+  text-align: center;
+}
+
+#user_name_first {
+  font-size: 47px;
+  font-weight: 700;
+  color: var(--deepskyblue);
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
 .container {
   padding-left: 232px;
-  padding-top: 96px;
+  padding-top: 80px;
   display: flex;
   justify-content: center;
   align-items: center;

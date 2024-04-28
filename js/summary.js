@@ -13,6 +13,7 @@ let tasks_summery = '';
  */
 async function init() {
   await includeHTML(); // @include.js
+  await greeting();
   await setUserInitialsAtHeader(); //@include.js
   await loadServerData();
   copyTasksArray();
@@ -20,6 +21,34 @@ async function init() {
   calcValuesOfSummery();
   getNextDueDate();
   render();
+}
+
+async function greeting() {
+  let summary_container = document.getElementById('summary_main_container');
+  let container = document.getElementById('good_morning_container');
+  let text = document.getElementById('good_morning_text');
+  let user = document.getElementById('user_name_first')
+  summary_container.style.display = 'none';
+  await getCurrentUserFromServer();
+  await getCurrentUserIdFromServer();
+  if (currentUserId == 999) {
+    text.innerHTML = 'Good morning!';
+  } else {
+    text.innerHTML = 'Good morning,';
+    user.innerHTML = `${currentUser.name.firstName} ${currentUser.name.secondName}`;
+  }
+  await timeout(2000);
+  container.style.display = 'none';summary_container.style.display = 'flex';
+}
+
+/**
+ * Starts a timeout.
+ * 
+ * @param {Number} ms - Time of timeout
+ * @returns {TimeRanges}
+ */
+function timeout(ms) {
+  return new Promise(res => setTimeout(res,ms));
 }
 
 /**
