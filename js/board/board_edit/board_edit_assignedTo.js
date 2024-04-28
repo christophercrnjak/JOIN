@@ -191,7 +191,9 @@ function showContactList(taskId, searchValue) {
                 renderSelectionStatusLayout(taskId, i);
                 if (currentUser !== '' && currentUserId !== 999) {
                     if (loaded_contacts[i].name.firstName == contacts_global[currentUserId].name.firstName && 
-                        loaded_contacts[i].name.secondName == contacts_global[currentUserId].name.secondName) {
+                        loaded_contacts[i].name.secondName == contacts_global[currentUserId].name.secondName || 
+                        loaded_contacts[i].name.firstName == contacts_global[currentUserId].name.firstName && 
+                        typeof loaded_contacts[i].name.secondName == 'undefined') {
                             setYou_board_edit(taskId, i);
                     }
                 }
@@ -208,12 +210,17 @@ function showContactList(taskId, searchValue) {
  */
 function editContactListHTML(taskId, contactId) {
     let contact = loaded_contacts[contactId].name;
+    if (typeof contact.secondName == 'undefined') {
+        secondName_List = '' 
+    } else {
+        secondName_List = contact.secondName
+    }
     return /*html */`
         <div onclick="changeSelectionStatus(${taskId}, ${contactId})" id="dropdown_contact${taskId}${contactId}" class="dropdown_contact_row">
             <!-- circle & name -->
             <div class="dropdown_contact_image_name">
                 <div class="circle_size" id="character_image${taskId}${contactId}"></div>
-                <div class="dropdownNames">${contact.firstName} ${contact.secondName} <span id="you_edit_assignedTo${taskId}${contactId}" class="you"></span></div>
+                <div class="dropdownNames">${contact.firstName} ${secondName_List} <span id="you_edit_assignedTo${taskId}${contactId}" class="you"></span></div>
             </div> 
             <!-- checkbox -->
             <div class="checkbox_edit">
@@ -321,9 +328,15 @@ function checkContactIndex(firstName, secondName) {
 function renderMemberImageDropdown(taskId, contactId) {
     let container = document.getElementById(`character_image${taskId}${contactId}`);
     let firstCharacter = loaded_contacts[contactId].name.firstName.charAt(0);
+    if (typeof loaded_contacts[contactId].name.secondName == 'undefined') {
+        let secondCharacter = '';
+        container.innerHTML = dropdownContactHTML(firstCharacter, secondCharacter, taskId, contactId);   
+        setcicleColor(taskId, contactId);
+    } else {
     let secondCharacter = loaded_contacts[contactId].name.secondName.charAt(0);
     container.innerHTML = dropdownContactHTML(firstCharacter, secondCharacter, taskId, contactId);   
     setcicleColor(taskId, contactId);
+    }
 }
 
 /**

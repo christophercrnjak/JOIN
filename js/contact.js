@@ -19,22 +19,35 @@ async function loadContacts() {
         let currentPerson = person[i];
         if (currentPerson.name && currentPerson.name.firstName) {
             let firstLetter = currentPerson.name.firstName.charAt(0).toUpperCase();
-            let secondLetter = currentPerson.name.secondName.charAt(0).toUpperCase();
-            if (!displayedLetters.includes(firstLetter)) {
-                displayedLetters.push(firstLetter);
-                contactList += `<div class="first_letter"><h3>${firstLetter}</h3></div>`;
+            if (!currentPerson.name.secondName) {
+                let secondLetter = '';
+                if (!displayedLetters.includes(firstLetter)) {
+                    displayedLetters.push(firstLetter);
+                    contactList += `<div class="first_letter"><h3>${firstLetter}</h3></div>`;
+                }
+                contactList += contactHTML(i, currentPerson, firstLetter, secondLetter);
+            } else {
+                let secondLetter = currentPerson.name.secondName.charAt(0).toUpperCase();
+                if (!displayedLetters.includes(firstLetter)) {
+                    displayedLetters.push(firstLetter);
+                    contactList += `<div class="first_letter"><h3>${firstLetter}</h3></div>`;
+                }
+                contactList += contactHTML(i, currentPerson, firstLetter, secondLetter);
             }
-            contactList += contactHTML(i, currentPerson, firstLetter, secondLetter);
         }
     }
     content.innerHTML = contactList;
 }
 
 function contactHTML(i, currentPerson, firstLetter, secondLetter) {
+    let secondName = currentPerson.name.secondName;
+    if (typeof secondName == 'undefined') {
+        secondName = ''
+    } 
     return `
         <div onclick="changeBackground(this);selectPerson(${i}); handleClick(${i})" id="persons_details" class="persons_details">
             <div class="persons" style="background-color: ${currentPerson.name.color};">${firstLetter}${secondLetter}</div>
-            <div class="person_details">${currentPerson.name.firstName} ${currentPerson.name.secondName} <span class="you" id="youContactList${i}"></span><br><div class="email">${currentPerson.mail}</div></div>
+            <div class="person_details">${currentPerson.name.firstName} ${secondName} <span class="you" id="youContactList${i}"></span><br><div class="email">${currentPerson.mail}</div></div>
         </div>
     `;
 }

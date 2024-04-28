@@ -22,6 +22,13 @@ async function renderDropList() {
    */
   function dropdownHtml(contact, i) {
     contact = contact.name;
+    let secondName = contact.secondName;
+    if (typeof secondName == 'undefined') {
+      secondChar = '';
+      secondName = '';
+    } else {
+      secondChar = secondName.charAt(0)
+    }
     return `
     <a class="dropdown_assign" id="contact${i}" onclick="selectFromDropdown(${i})">
         <!-- contact -->
@@ -29,10 +36,10 @@ async function renderDropList() {
           <div class="member_cicle_main">
             <div class="member_cicle" style='background-color:${contact.color};'>
               ${contact.firstName.charAt(0)}
-              ${contact.secondName.charAt(0)}
+              ${secondChar}
             </div>
           </div>
-          <div class="member_name">${contact.firstName} ${contact.secondName} <div id="you${i}" class="you"></div></div>
+          <div class="member_name">${contact.firstName} ${secondName} <div id="you${i}" class="you"></div></div>
         </div> 
         <!-- checkbox -->
         <div class="dropdown_img" id="selected_img${i}">
