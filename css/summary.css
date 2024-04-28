@@ -40,7 +40,7 @@ body {
 
 .container {
   padding-left: 232px;
-  padding-top: 80px;
+  padding-top: 96px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -233,6 +233,7 @@ hr {
     padding-left: 0;
     justify-content: flex-start;
     min-width: 0;
+    padding-top: 80px;
   }
 
   .section_summary {

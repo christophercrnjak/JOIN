@@ -8,37 +8,56 @@ let urgentAmount = 0;
 let nextDueDate;
 let tasks_summery = '';
 
+function isMaxWidth1000() {
+  return window.matchMedia('(max-width: 1000px)').matches;
+}
 /**
  * 
  */
 async function init() {
   await includeHTML(); // @include.js
-  await greeting();
-  await setUserInitialsAtHeader(); //@include.js
-  await loadServerData();
-  copyTasksArray();
-  copyContactsArray();
-  calcValuesOfSummery();
-  getNextDueDate();
-  render();
+  if(isMaxWidth1000() == true) {
+    await greeting()
+    await setUserInitialsAtHeader(); //@include.js
+    await loadServerData();
+    copyTasksArray();
+    copyContactsArray();
+    calcValuesOfSummery();
+    getNextDueDate();
+    render();
+  } else {
+    let summary_container = document.getElementById('summary_main_container');
+    summary_container.style.display = 'flex';
+    let container = document.getElementById('good_morning_container');
+    container.style.display = 'none';
+    await setUserInitialsAtHeader(); //@include.js
+    await loadServerData();
+    await render();
+    copyTasksArray();
+    copyContactsArray();
+    calcValuesOfSummery();
+    getNextDueDate();
+    render();
+  }
 }
 
 async function greeting() {
-  let summary_container = document.getElementById('summary_main_container');
-  let container = document.getElementById('good_morning_container');
-  let text = document.getElementById('good_morning_text');
-  let user = document.getElementById('user_name_first')
-  summary_container.style.display = 'none';
-  await getCurrentUserFromServer();
-  await getCurrentUserIdFromServer();
-  if (currentUserId == 999) {
-    text.innerHTML = 'Good morning!';
-  } else {
-    text.innerHTML = 'Good morning,';
-    user.innerHTML = `${currentUser.name.firstName} ${currentUser.name.secondName}`;
-  }
-  await timeout(2000);
-  container.style.display = 'none';summary_container.style.display = 'flex';
+    let summary_container = document.getElementById('summary_main_container');
+    let container = document.getElementById('good_morning_container');
+    let text = document.getElementById('good_morning_text');
+    let user = document.getElementById('user_name_first')
+    summary_container.style.display = 'none';
+    await getCurrentUserFromServer();
+    await getCurrentUserIdFromServer();
+    if (currentUserId == 999) {
+      text.innerHTML = 'Good morning!';
+    } else {
+      text.innerHTML = 'Good morning,';
+      user.innerHTML = `${currentUser.name.firstName} ${currentUser.name.secondName}`;
+    }
+    await timeout(2000);
+    container.style.display = 'none';
+    summary_container.style.display = 'flex';
 }
 
 /**
