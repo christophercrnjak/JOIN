@@ -1,15 +1,12 @@
 .container_display_flex {
     display: flex;
-}
-
-body {
-    overflow: hidden;
+    height: 100vh;
 }
 
 .contacts {
     background-color: white;
     width: 456px;
-    height: 915px;
+    height: 100vh;
     box-shadow: 4px 0px 6px 0px #00000014;
     margin-left: 232px;
     overflow-y: scroll;

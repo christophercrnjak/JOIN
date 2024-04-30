@@ -124,4 +124,20 @@ async function closeDialog(taskId) {
         await init_board(); // @ board_main.js:51
         dialog_status = 'inactive';
     }
-}  
+} 
+
+function redirectToTaskPage() {
+    window.location.href = "addTask.html";
+}
+
+window.onload = function() {
+    var mediaQuery = window.matchMedia("(max-width: 1000px)");
+    if (mediaQuery.matches) {
+        let dialogContainer = document.getElementById("dialog_container");
+        dialogContainer.style.display = "none"; 
+    } else {
+        let addTaskButton = document.querySelector(".add_task_btn_mobile");
+        addTaskButton.addEventListener("click", redirectToTaskPage); 
+    }
+};
+

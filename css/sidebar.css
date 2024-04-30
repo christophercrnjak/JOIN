@@ -101,7 +101,6 @@
             /* animation-name: moveInRightDialog_footer;
             animation-timing-function: ease-in;
             animation-duration: 300ms; */
-            transition: .4s;
         }
 
         #navbar.show {
@@ -278,6 +277,7 @@
         height: 204px !important;
         top: 60px !important;
         right: -150px !important;
+        transition: .4s;
     }
 
     .help {

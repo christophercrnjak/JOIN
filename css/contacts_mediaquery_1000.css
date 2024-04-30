@@ -1,8 +1,9 @@
 /*Mobile Version(responsive)*/
 
 @media(max-width: 1000px) {
-    body {
-        overflow: unset;
+    .container_display_flex{
+        height: unset;
+        justify-content: center;
     }
 
     .add_dialog {
@@ -189,8 +190,9 @@
     }
 
     .contact_list {
-        margin: 0;
+        margin-left: 0;
         margin-top: 24px;
+        margin-bottom: 50px;
     }
 
     .first_letter {
@@ -301,6 +303,7 @@
         margin-right: 0px;
         padding: 0;
         justify-content: unset;
+        margin-left: 0;
     }
 
     .selected_person .persons {
