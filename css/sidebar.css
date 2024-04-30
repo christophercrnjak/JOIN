@@ -10,14 +10,16 @@
     padding: 16px 24px 16px 24px;
     border-radius: 16px;
     align-items: center;
-    position: fixed;
-    top: 20px;
-    right: 260px;
+    position: absolute;
+    top: 11px;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 1000;
     animation-name: moveDown;
     animation-timing-function: ease-out;
     animation-duration: 400ms;
 }
+
 @keyframes moveDown {
     0% {
         top: 0;
