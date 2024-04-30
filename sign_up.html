@@ -29,8 +29,11 @@
       <hr/>
       <div class="input_area">
         <form class="input_fields" onsubmit="register(); return false">
+          <div class="input_name_div">
           <input required type="text" placeholder="Name" oninvalid="this.setCustomValidity('Please only use letters.')"
             oninput="this.setCustomValidity('')" id="name" />
+            <div id="errormessage_signup" class="errormessage">Please register first and second name</div>
+          </div>
           <input required type="email" placeholder="Email"
             oninvalid="this.setCustomValidity('Please use a valid e-mail address.')"
             oninput="this.setCustomValidity('')" id="mail" />

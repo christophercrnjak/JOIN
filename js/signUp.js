@@ -28,46 +28,45 @@ async function loadUsers() {
 }
 
 async function register() {
-  comparePassword();
-  if (passwordCheckStatus) {
-    splitName(userName);
-    register_btn.disabled = true;
-    saveNewUser();
-    await createContact();
-    resetForm();
-    registerSuccessfull.classList.remove("d-none");
-    registerSuccessfull.innerHTML = "<h2>You Signed Up successfully</h2>";
-    setInterval(() => {
-      window.location.href = "index.html";
-    }, 800);
-  } else {
-    document.getElementById("password_message").innerHTML =
+  checkName();
+  if (checkName() == true) {
+    comparePassword();
+    if (passwordCheckStatus) {
+      splitName(userName);
+      register_btn.disabled = true;
+      saveNewUser();
+      await createContact();
+      resetForm();
+      registerSuccessfull.classList.remove("d-none");
+      registerSuccessfull.innerHTML = "<h2>You Signed Up successfully</h2>";
+      setInterval(() => {
+        window.location.href = "index.html";
+      }, 800);
+    } else {
+      document.getElementById("password_message").innerHTML =
       "Passwords do not match. Please check and try again!";
+    }
+  } else {
+    window.location.hash = 'name';
   }
 }
 
-// function checkName() {
-//   let fullName = document.getElementById('name').value.trim();
-  
-//   // Überprüfen, ob das Eingabefeld nicht leer ist und Leerzeichen vorhanden sind
-//   if (fullName !== '' && fullName.includes(' ')) {
-//     // Wenn ja, trenne den Namen anhand des Leerzeichens
-//     let names = fullName.split(' ');
-//     let firstName = names[0];
-//     let lastName = names.slice(1).join(' '); // Wenn mehrere Wörter für den Nachnamen verwendet werden
-    
-//     // Überprüfen, ob sowohl Vor- als auch Nachname vorhanden sind
-//     if (firstName !== '' && lastName !== '') {
-//       nameValidation = true;
-//     } else {
-//       // Wenn nicht, gib eine Fehlermeldung aus
-//       alert('Bitte geben Sie sowohl Vor- als auch Nachname ein.');
-//     }
-//   } else {
-//     // Wenn nicht, gib eine Fehlermeldung aus
-//     alert('Bitte geben Sie den vollständigen Vor- und Nachnamen ein.');
-//   }
-// }
+function checkName() {
+  let fullName = document.getElementById('name').value.trim();
+  let error_div = document.getElementById('errormessage_signup');
+  let inputName = document.getElementById('name');
+  // Überprüfen, ob das Eingabefeld nicht leer ist und Leerzeichen vorhanden sind
+  if (fullName !== '' && fullName.includes(' ')) {
+    // Wenn ja, trenne den Namen anhand des Leerzeichens 
+    error_div.style.display = 'none';
+    inputName.style.borderColor = '#ccc';
+    return true;
+  } else {
+    error_div.style.display = 'flex';
+    inputName.style.borderColor = '2px solid #ff0000 !important';
+    return false;
+  }
+}
 
 async function saveNewUser() {
   users.push({
