@@ -38,8 +38,10 @@ body {
   padding: 16px 24px 16px 24px;
   border-radius: 16px;
   align-items: center;
-  position: relative;
-  left: 150px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%);
   z-index: 99;
   justify-content: center;
 }

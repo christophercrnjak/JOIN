@@ -93,10 +93,4 @@
       animation: bgChangeColor 700ms ease-in-out 700ms both;
       display: block;
     }
-  
-    .toastMessageIndex {
-      top: 37px;
-      right: 6px;
-      left: 0;
-    }
   }
