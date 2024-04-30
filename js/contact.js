@@ -5,7 +5,8 @@ async function init() {
     await setUserInitialsAtHeader();
     person = contacts_global;
     loadContacts();
-    if (!currentUserId == 999) {
+    await getCurrentUserIdFromServer();
+    if (currentUserId !== 999) {
         await setYou_contacts();
     }
 }
