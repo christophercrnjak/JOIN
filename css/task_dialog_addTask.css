@@ -230,6 +230,7 @@
 
     #addTask_dialog_createTask {
         display: flex;
+        justify-content: space-between;
     }
 
     #addTask_dialog_assignedTo {
