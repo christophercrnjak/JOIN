@@ -20,6 +20,8 @@ body {
   font-size: 36px;
   font-weight: 400;
   text-align: center;
+  flex-direction: column;
+  display: flex;
 }
 
 #user_name_first {
@@ -32,6 +34,7 @@ body {
   0% {
     opacity: 1;
   }
+
   100% {
     opacity: 0;
     display: none;
