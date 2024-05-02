@@ -16,7 +16,7 @@ let password = document.getElementById("password");
  */
 async function handleLogIn() {
   await checkExistingUser(); // set currentUser
-  if (currentUser == '' ) {
+  if (currentUser == "") {
     showToastMessage_UserOrMailNotExist();
   } else {
     await setCurrentUserId(); // set currentUserId
@@ -28,7 +28,7 @@ async function handleLogIn() {
 }
 
 /**
- * Iterates through users[] and compares the input values with content of users. 
+ * Iterates through users[] and compares the input values with content of users.
  * By match currentUser is filled with matched user data.
  */
 async function checkExistingUser() {
@@ -70,13 +70,15 @@ async function setCurrentUserId() {
 
 /**
  * Finds the Index of currentUser in contacts_global.
- * 
+ *
  * @returns {Number} - Index of currentUser data in contacts_global
  */
 async function findIndexOfCurrentUserInContacts_Global() {
   await getContactsFromServer();
-  let index = contacts_global.findIndex(contact =>
-  contact.name.firstName === currentUser.name.firstName && contact.name.secondName === currentUser.name.secondName
+  let index = contacts_global.findIndex(
+    (contact) =>
+      contact.name.firstName === currentUser.name.firstName &&
+      contact.name.secondName === currentUser.name.secondName
   );
   return index;
 }
@@ -85,7 +87,7 @@ async function findIndexOfCurrentUserInContacts_Global() {
  * Loads the Contacts from Server in contacts_global.
  * Finds the Index of currentUser in contacts_global.
  * Sets all lockedIn of contacts in contacts_global on false.
- * If currentUser is available in contacts_global, 
+ * If currentUser is available in contacts_global,
  * lockedIn of the contact, which is equal to the currentUser, is set to true.
  */
 async function setLogIn_statusOfCurrentUser() {
@@ -103,7 +105,7 @@ function resetLogIn_status() {
 }
 
 /**
- * Iterates through contacts_global. If a currentUser exist, compares the function the contacts with currentUser. 
+ * Iterates through contacts_global. If a currentUser exist, compares the function the contacts with currentUser.
  * By match the lockedIn_status is true.
  * Saves the changes at server.
  */
@@ -114,16 +116,18 @@ async function setNewLogIn_status() {
   await getContactsFromServer();
 }
 
-
-
 /* Gueat Login */
 
-
 /**
- * 
+ *
  */
 async function handleGuestLogIn() {
-  currentUser = {"name": {"firstName": "Guest", "secondName": "", "color": "#ff4646"}, "mail": "", "password": "", "lockedIn": true};
+  currentUser = {
+    name: { firstName: "Guest", secondName: "", color: "#ff4646" },
+    mail: "",
+    password: "",
+    lockedIn: true,
+  };
   await saveCurrentUserOnServer();
   await getCurrentUserFromServer();
   currentUser = 999;
@@ -135,10 +139,7 @@ async function handleGuestLogIn() {
   window.location.href = "summary.html";
 }
 
-
-
 /* Toast Message */
-
 
 /**
  * Shows the toat message "E-Mail or Password not exist" for 3 seconds.
@@ -147,7 +148,7 @@ async function showToastMessage_UserOrMailNotExist() {
   // mail.value = '';
   // password.value = '';
   await openToastMessageIndex();
-  await timeout (3000);
+  await timeout(3000);
   await closeToast();
 }
 
@@ -155,30 +156,24 @@ async function showToastMessage_UserOrMailNotExist() {
  * Makes the element saying "E-Mail or Password not exist" appear.
  */
 function openToastMessageIndex() {
-  let container = document.getElementById('toastMessage_Index');
-  container.classList.remove('d-none');
+  let container = document.getElementById("toastMessage_Index");
+  container.classList.remove("d-none");
 }
 
 /**
  * Starts a timeout.
- * 
+ *
  * @param {Number} ms - Time of timeout
  * @returns {TimeRanges}
  */
 function timeout(ms) {
-  return new Promise(res => setTimeout(res,ms));
+  return new Promise((res) => setTimeout(res, ms));
 }
 
 /**
  * Hides the toast message box saying "E-Mail or Password not exist"
  */
 function closeToast() {
-  let container = document.getElementById('toastMessage_Index'); 
-  container.classList.add('d-none');
-}  
-
-
-
-
-
-
+  let container = document.getElementById("toastMessage_Index");
+  container.classList.add("d-none");
+}
