@@ -72,16 +72,18 @@
                         </a>
                         <input type="hidden" id="selectedPersonIndex">
                         <input id="name" type="text" required autocomplete="name" placeholder="Name">
-                        <input id="email" type="email" required autocomplete="email" placeholder="Email" onblur="validateEmail(this)">
-                        <span id="emailError1" style="color: red; display: none;">Please enter a valid email address.</span>
-                        <input id="phone" type="tel" required autocomplete="tel" placeholder="Phone" oninput="validatePhone(this)">
+                        <input id="email" type="email" required autocomplete="email" placeholder="Email">
+                        <span id="emailError1" style="color: red; display: none;">Please enter a valid email
+                            address.</span>
+                        <input id="phone" type="tel" required autocomplete="tel" placeholder="Phone"
+                            oninput="validatePhone(this)">
                         <span id="phoneError" style="color: red; display: none;">Please enter only numbers.</span>
                     </div>
-                    <div  class="display_center_b">
+                    <div class="display_center_b">
                         <button style="display: flex;" onclick="deletePerson(); closePerson(); event.preventDefault();"
                             class="delete_button">Delete</button>
-                        <button style="display: flex;" onclick="saveChanges(); event.preventDefault();" class="save_button">Save<img
-                                src="./assets/img/check.png"></button>
+                        <button style="display: flex;" onclick="saveChanges(); event.preventDefault();"
+                            class="save_button">Save<img src="./assets/img/check.png"></button>
                     </div>
                 </form>
             </div>
@@ -111,9 +113,12 @@
                         </a>
                         <input id="input_name" type="text" required autocomplete="name" placeholder="Name">
                         <div id="error_message" class="error-message" style="display: none;"></div>
-                        <input id="input_email" type="email" required autocomplete="email" placeholder="Email" onblur="validateEmail(this)">
-                        <span id="emailError2" style="color: red; display: none;">Please enter a valid email address.</span>                        
-                        <input id="input_phone" type="tel" required autocomplete="tel" placeholder="Phone" oninput="validatePhone(this)">
+                        <input id="input_email" type="email" required autocomplete="email" placeholder="Email"
+                            onblur="validateEmail()">
+                        <span id="emailError" style="color: red; display: none;">Please enter a valid email
+                            address.</span>
+                        <input id="input_phone" type="tel" required autocomplete="tel" minlength="6" placeholder="Phone"
+                            oninput="validatePhone(this)">
                         <span id="phoneError" style="color: red; display: none;">Please enter only numbers.</span>
                     </div>
                     <div class="display_center_b">
@@ -124,8 +129,8 @@
                                     fill="#2A3647" />
                             </svg>
                         </button>
-                        <button type="submit" class="create_button">Create contact<img
-                                src="./assets/img/check.png"></button>
+                        <button type="submit" id="createButton" class="create_button" disabled>Create contact<img
+                            src="./assets/img/check.png"></button>
                     </div>
                 </form>
             </div>

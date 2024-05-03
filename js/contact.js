@@ -180,7 +180,6 @@ window.onload = function () {
 };
 window.onresize = updateDisplay;
 
-
 function changeBackground(element) {
     element.parentElement.querySelectorAll('.persons_details').forEach(function (el) {
         el.classList.remove('active');
@@ -190,6 +189,7 @@ function changeBackground(element) {
         element.classList.add('active');
     }, 100);
 }
+
 async function deletePerson() {
     let index = parseInt(document.getElementById('selectedPersonIndex').value);
     if (isNaN(index)) {
@@ -197,7 +197,6 @@ async function deletePerson() {
     }
     person.splice(index, 1);
     closeDialog(); 
-    loadContacts(); 
     await setContactsToServer(); 
     await getContactsFromServer(); 
     if (person.length > 0) {
@@ -207,6 +206,7 @@ async function deletePerson() {
         document.getElementById('selectedPerson').innerHTML = '';
     }
     backMobile();
+    loadContacts(); 
 }
 
 
@@ -338,23 +338,28 @@ function validateNames() {
 
 function validatePhone(input) {
     input.value = input.value.replace(/\D/g, '');
-    if (!/^\d+$/.test(input.value)) {
+    if (!/^\d+$/.test(input.value) || input.value.length < 6) {
         document.getElementById('phoneError').style.display = 'inline';
-        input.setCustomValidity('Please enter only numbers.');
+        input.setCustomValidity('Please enter at least 6 digits.');
     } else {
         document.getElementById('phoneError').style.display = 'none';
         input.setCustomValidity('');
     }
 }
 
-function validateEmail(input) {
-    var email = input.value;
-    var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.(com|de|domain)?$/;
-    var errorId = input.id === 'email' ? 'emailError1' : 'emailError2';
-    var errorMessage = document.getElementById(errorId);
-    if (!emailPattern.test(email)) {
-        errorMessage.style.display = 'inline';
+
+function validateEmail() {
+    let emailInput = document.getElementById('input_email').value.trim();
+    let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.(com|de|domain)$/;
+
+    if (!emailPattern.test(emailInput)) {
+        let errorMessage = document.getElementById('emailError');
+        errorMessage.style.display = 'block';
+        document.getElementById('input_email').style.borderColor = 'red';
+        document.getElementById('createButton').disabled = true; 
     } else {
-        errorMessage.style.display = 'none';
+        document.getElementById('input_email').style.borderColor = '';
+        document.getElementById('emailError').style.display = 'none';
+        document.getElementById('createButton').disabled = false; 
     }
 }
