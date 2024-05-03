@@ -118,7 +118,6 @@ function limitNumberOfCharacters(id, maxZeichen) {
     }
 }
 
-
 /**
  * Define the HTML structure of tasks in the Kanban Board
  * 
@@ -145,10 +144,6 @@ function taskHTML(task, taskId) {
         </article>
     `
 }
-
-
-// ***** No Task *****
-
 
 /**
  * Render "no task" elements for columns without content.
@@ -201,11 +196,6 @@ function checkNoSearchcontentFound() {
    }
 }
 
-
-
-// ***** Task elements *****
-
-
 /**
  * Calls all functions that require a dependent element design of task.
  * 
@@ -217,10 +207,6 @@ function renderTaskElements(taskId) {
     renderInitialCirclesOfTaskMembers(taskId);
     renderPriority(taskId); 
 }
-
-
-// ***** Category *****
-
 
 /**
  * Set the background-color of category-element.
@@ -239,10 +225,6 @@ function setColorOfCategory(taskId) {
           break;
     }
 }
-
-
-// ***** Priority *****
-
 
 /**
  * Set the priority icon.
@@ -264,10 +246,6 @@ function renderPriority(taskId) {
         break;
     }
 }
-
-
-// ***** Member of task *****
-
 
 /**
  * If there are contacts added to the task, the function shows colored cicles with the initials of contacts.
@@ -317,7 +295,6 @@ function setAttributesMoreMemberHTML(taskId, contactId) {
     additionalTaskMember.style.position = 'relative';
     additionalTaskMember.style.left     = calcPositionMember(contactId);
 }
-
 
 /**
  * Shows a gry cicle with the nimber of additional members which are not showen.

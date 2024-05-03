@@ -1,4 +1,3 @@
-// ****** Dialog taskdetails functions for the board *****
 
 /**
  * Sets the dialog status and let render the Dialog with task details.
@@ -34,7 +33,6 @@ async function renderDialogTask(taskId){
         renderBlueProgressbar(taskId);
     }
 }
-
 
 /**
  * Returns the HTML structure of dialog with task details of current choosen task

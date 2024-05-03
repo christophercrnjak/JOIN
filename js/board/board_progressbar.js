@@ -1,5 +1,3 @@
-// ***** Progressbar *****
-
 
 /**
  * Calls the functions which render the progressbar elements 
