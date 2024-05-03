@@ -392,4 +392,10 @@
     #flexContainer {
         margin-left: 0;
     }
+    .display_center_b button{
+        display: none;
+    }
+    .display_center_b button .delete_button{
+        display: flex;
+    }
 }

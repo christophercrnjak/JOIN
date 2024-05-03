@@ -44,7 +44,7 @@ function contactHTML(i, currentPerson, firstLetter, secondLetter) {
     let secondName = currentPerson.name.secondName;
     if (typeof secondName == 'undefined') {
         secondName = ''
-    } 
+    }
     return `
         <div onclick="changeBackground(this);selectPerson(${i}); handleClick(${i})" id="persons_details" class="persons_details">
             <div class="persons" style="background-color: ${currentPerson.name.color};">${firstLetter}${secondLetter}</div>
@@ -190,17 +190,22 @@ function changeBackground(element) {
         element.classList.add('active');
     }, 100);
 }
-async function deletePerson(index) {
+async function deletePerson() {
+    let index = parseInt(document.getElementById('selectedPersonIndex').value);
+    if (isNaN(index)) {
+        return;
+    }
     person.splice(index, 1);
-    const selectedPersonElement = document.getElementById('selectedPerson');
-    selectedPersonElement.innerHTML = '';
-    
-    closeDialog();
-
-    await setContactsToServer();
-    await getContactsFromServer();
-
-    loadContacts();
+    closeDialog(); 
+    loadContacts(); 
+    await setContactsToServer(); 
+    await getContactsFromServer(); 
+    if (person.length > 0) {
+        let newIndex = Math.min(index, person.length - 1);
+        selectPerson(newIndex);
+    } else {
+        document.getElementById('selectedPerson').innerHTML = '';
+    }
     backMobile();
 }
 
@@ -233,10 +238,6 @@ async function createContact(event) {
     let nameInput = document.getElementById('input_name').value;
     let emailInput = document.getElementById('input_email').value;
     let phoneInput = document.getElementById('input_phone').value;
-
-    // console.log("Name:", nameInput);
-    // console.log("Email:", emailInput);
-    // console.log("Phone:", phoneInput);
 
     if (nameInput && emailInput && phoneInput) {
         let [firstName, secondName] = nameInput.split(' ');
@@ -323,8 +324,8 @@ async function saveChanges() {
 function validateNames() {
     let nameInput = document.getElementById('input_name').value.trim();
     if (nameInput.indexOf(' ') === -1) {
-        var errorMessage = document.getElementById('error_message');
-        errorMessage.innerText = "Bitte geben Sie einen Vor- und Nachnamen ein.";
+        let errorMessage = document.getElementById('error_message');
+        errorMessage.innerText = "Please enter a first and last name.";
         errorMessage.style.display = 'block';
         document.getElementById('input_name').style.borderColor = 'red';
         return false;
@@ -335,3 +336,25 @@ function validateNames() {
     }
 }
 
+function validatePhone(input) {
+    input.value = input.value.replace(/\D/g, '');
+    if (!/^\d+$/.test(input.value)) {
+        document.getElementById('phoneError').style.display = 'inline';
+        input.setCustomValidity('Please enter only numbers.');
+    } else {
+        document.getElementById('phoneError').style.display = 'none';
+        input.setCustomValidity('');
+    }
+}
+
+function validateEmail(input) {
+    var email = input.value;
+    var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.(com|de|domain)?$/;
+    var errorId = input.id === 'email' ? 'emailError1' : 'emailError2';
+    var errorMessage = document.getElementById(errorId);
+    if (!emailPattern.test(email)) {
+        errorMessage.style.display = 'inline';
+    } else {
+        errorMessage.style.display = 'none';
+    }
+}

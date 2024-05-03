@@ -134,6 +134,10 @@ body {
     display: none;
 }
 
+a{
+    display: none;
+}
+
 
 
 /* Mobile Version (Responsive)*/
