@@ -7,16 +7,15 @@ function footerToggle() {
 }
 
 /**
- * 
+ * Appears or disappears the menu. 
  */
 function hideFooterMenu() {
   let footerNotice = document.getElementById('navbar');
   footerNotice.classList.remove('show');
-  
 }
 
 /**
- * 
+ * Logs out the current user and link to the log in (index.html) side.
  */
 async function logOut() {
   currentUser = [];
