@@ -106,7 +106,7 @@ function renderCiclesOfTaskContacts_addTask() {
 }
 
 /**
- * HTML structure of cicles 
+ * HTML structure of cicles.
  * 
  * @param {String} firstCharacter - first letter of first name of contact 
  * @param {String} secondCharacter - first letter of second name of contact 
@@ -182,7 +182,7 @@ function changeTextInInput_addTask() {
 }
 
 /**
- * Render dropdown contact list depending on input value by key up in search input 
+ * Render dropdown contact list depending on input value by key up in search input .
  * 
  */
 function searchContacts_addTask() {
@@ -193,7 +193,7 @@ function searchContacts_addTask() {
 }
 
 /**
- * Shows all contacts or searched contacts
+ * Shows all contacts or searched contacts.
  * 
  * @param {String} searchValue 
  */
@@ -219,7 +219,7 @@ async function showContactList_addTask(searchValue) {
 }
 
 /**
- * HTML structure of contact list
+ * HTML structure of contact list.
  * 
  * @param {Number} contactId - Index of contact in loaded_contacts array JSON
  * @returns {HTMLDivElement} HTML structure of contact row with colored circlen, name and checkbox.
@@ -245,6 +245,11 @@ function editContactListHTML_addTask(contactId) {
     `;
 }
 
+/**
+ * add a "(YOU) after the first and second name at the given contactId"
+ * 
+ * @param {Number} contactId - Index of Contact in contacts_addTask array
+ */
 function setYou_boardAddTask(contactId) {
     let you = document.getElementById(`you_boardAddTask${contactId}`);
     you.innerHTML = "(You)";
