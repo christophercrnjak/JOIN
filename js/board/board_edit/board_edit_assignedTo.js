@@ -106,7 +106,7 @@ function selectedTaskMemberHTML(firstCharacter, secondCharacter, taskId, i) {
 /**
  * Rotate the triangle, change Input/Text and show/hide the dropdownlist of contacts.
  * 
- * @param {Number} taskId 
+ * @param {Number} taskId - Index of current called task in tasks[] global array
  */
 function openDropDownList(taskId) {
     let dropdown_section = document.getElementById('selectedContactsSection');
@@ -127,6 +127,11 @@ function openDropDownList(taskId) {
     }
 }
 
+/**
+ * Closes the droppdown list of contcts of the assigned to section.
+ * 
+ * @param {Number} taskId - Index of current called task in tasks[] global array
+ */
 function closeDropdownList(taskId) {
     let container = document.getElementById(`selectedContactsSection`);
     renderCiclesOfTaskContacts(taskId);
@@ -197,12 +202,13 @@ function showContactList(taskId, searchValue) {
                             setYou_board_edit(taskId, i);
                     }
                 }
-            }
+        }
     }
 }
 
 /**
  * HTML structure of contact list.
+ * Sets the second name in case of not definded.
  * 
  * @param {Number} taskId - Index of current called task in tasks[] global array.
  * @param {Number} contactId - Index of contact in loaded_contacts array JSON.
@@ -230,11 +236,16 @@ function editContactListHTML(taskId, contactId) {
     `;
 }
 
+/**
+ * Add a "(You)" to the current logged contacts in the dropdown contact list.
+ * 
+ * @param {Number} taskId - Index of current called task in tasks[] global array
+ * @param {Number} contactId - Index of contact in loaded_contacts array JSON
+ */
 function setYou_board_edit(taskId, contactId) {
     let youDiv = document.getElementById(`you_edit_assignedTo${taskId}${contactId}`);
     youDiv.innerHTML = "(You)";
 }
-
 
 /**
  * If the contact is containing in the contactlist of task, the Layout of Contact-row is colored.

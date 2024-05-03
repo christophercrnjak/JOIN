@@ -156,7 +156,6 @@ function take_over_new_content_of_Task(subtaskId, taskId) {
     renderSubtasksEditDialog(taskId);
 }
 
-
 /**
  * Change the icons on the right side depending on status (subtask_status_addTask).
  * Shows a "plus" in inctive mode and confirm oder delete icon in active mode.
@@ -192,6 +191,7 @@ function ckeck_or_close_HTML(taskId) {
         </a>
     `;
 }
+
 /**
  * HTML structure of the inactive mode with a "plus" icon
  * 

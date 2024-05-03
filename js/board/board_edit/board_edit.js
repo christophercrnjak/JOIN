@@ -18,12 +18,20 @@ function openTaskEdit(taskId) {
     renderEditDialog(taskId);
 }
 
-// take a copy of current editing task and load in array currentTaskContent to protect the original data of tasks.json
+/**
+ * Takes a copy of current editing task and load in array currentTaskContent to protect the original data of tasks.json
+ * 
+ * @param {Number} taskId - Index of task in tasks array 
+ */
 function loadEditContent(taskId) {
     currentTaskContent = JSON.parse(JSON.stringify(tasks[taskId]));
 }
-
-// delete dialog container content and call functions built edit-content
+ 
+/**
+ * Deletes the content of dialog container and calls functions building edit-content
+ * 
+ * @param {NUmber} taskId - Index of task in tasks array
+ */
 function renderEditDialog(taskId) {
     let container = document.getElementById('task_dialog_container');
     container.innerHTML = editDialogHTML(taskId);
@@ -35,7 +43,12 @@ function renderEditDialog(taskId) {
     renderSubtasksEditDialog(taskId);
 }
 
-// HTML of main structure of edit dialog
+/**
+ * Returns the HTML structure of edit dialog
+ * 
+ * @param {Number} taskId - Index of task in tasks array
+ * @returns {HTMLElements}
+ */
 function editDialogHTML(taskId) {
     return /*html*/`
     <div onclick="closeDropdownList(${taskId})">
@@ -60,11 +73,10 @@ function editDialogHTML(taskId) {
     `;
 }
 
-
-// *** titel *** //
-
-// show title input to change content of title via inputfield
-function renderTitleEditDialog(taskId) {
+/**
+ *Shows title input to change content of title via inputfield
+ */
+function renderTitleEditDialog() {
     let container = document.getElementById('title_section_edit');
     let title = currentTaskContent.title;
     container.innerHTML = `
@@ -74,7 +86,9 @@ function renderTitleEditDialog(taskId) {
     `;
 }
 
-
+/**
+ * Validates the input value. Controlls whether there is no content and add in red border and error text in case of true.
+ */
 function checkFormValidation_title() {
     let titleInput = document.getElementById('title_edit');
     let errormessage_title = document.getElementById('errormessage_title');
@@ -90,15 +104,19 @@ function checkFormValidation_title() {
   }
 }
 
-
-// *** description *** //
-
-// show description input to change content of description via inputfield
+/**
+ * Shows the  description input to change content of description via inputfield
+ */
 function renderDescriptionEditDialog() {
     let container = document.getElementById('description_section_edit');
     container.innerHTML = DescriptionEditDialogHTML();
 }
 
+/**
+ * Returns the HTML structure of description section.
+ * 
+ * @returns {HTMLElements}
+ */
 function DescriptionEditDialogHTML() {
     return /*html */ `
     <div class="header_text_edit_section">Description</div>
@@ -106,16 +124,23 @@ function DescriptionEditDialogHTML() {
     `;
 }
 
-
-// *** due date *** //
-
-// show Due Date input to change content of Due Date via inputfield
+/**
+ * Shows the Due Date input to change content of Due Date via inputfield
+ * 
+ * @param {Number} taskId - Index of task in tasks array
+ */
 function renderDueDateEditDialog(taskId) {
     let container = document.getElementById('dueDate_section_edit');
     let newDate = changeDueDateFormatInLongYear(taskId)
     container.innerHTML = DueDateEditDialogHTML(newDate);
 }
 
+/**
+ * Returns the HTML structure of input field with the due date.
+ * 
+ * @param {String} newDate - represents the  Due Date format dd/mm/yyyy of current task
+ * @returns {HTMLElements} - HTML input with due date
+ */
 function DueDateEditDialogHTML(newDate) {
     return /*html*/`
         <div class="header_text_edit_section">Due Date</div>
@@ -126,12 +151,18 @@ function DueDateEditDialogHTML(newDate) {
     `;
 }
 
+/**
+ * Calls the fuctions to validate the due date
+ */
 function DueDatevalidation() {
     validationOfDay();
     validationOfMonth();
     validationOfYear();
 }
 
+/**
+ * Validates the day section of due date.
+ */
 function validationOfDay() {
     let inputDate = document.getElementById("edit_input_dueDate");
     let errormessage_due_date = document.getElementById("errormessage_due_date");
@@ -146,6 +177,9 @@ function validationOfDay() {
     }
 }
 
+/**
+ *  Validates the month section of due date.
+ */
 function validationOfMonth() {
     let inputDate = document.getElementById("edit_input_dueDate");
     let errormessage_due_date = document.getElementById("errormessage_due_date");
@@ -162,6 +196,9 @@ function validationOfMonth() {
     }
 }
 
+/**
+ *  Validates the year section of due date.
+ */
 function validationOfYear() {
     let inputDate = document.getElementById("edit_input_dueDate");
     let errormessage_due_date = document.getElementById("errormessage_due_date");
@@ -178,10 +215,9 @@ function validationOfYear() {
     }
 }
 
-
-// *** priority *** //
-
-// show priotity buttons to change content of priority status via click on button
+/**
+ * Shows priotity buttons to change content of priority status via click on button
+ */
 function renderPrioEditDialog() {
     let container = document.getElementById('prio_section_edit');
     let prio = currentTaskContent.priority;
@@ -195,7 +231,11 @@ function renderPrioEditDialog() {
     }
 }
 
-// HTML of main structure of priority section in edit dialog
+/**
+ * Returns HTML structure of priority section in edit dialog.
+ * 
+ * @returns 
+ */
 function prioBtnHTML() {
     return /*html */`
     <div class="header_text_edit_section_Opensans">Priority</div>
@@ -209,8 +249,12 @@ function prioBtnHTML() {
     `;
 }
 
-// change priority buttons design depending on value of Variable "prio"
-// set global variable "prioStatusEdit" depending on prio
+/**
+ * Changes the priority buttons design depending on value of Variable "prio".
+ * Set global variable "prioStatusEdit" depending on prio.
+ * 
+ * @param {String} prio - Name of priority
+ */
 function renderPrioButtons(prio) {
     if (prio == 'Low') {
         setPrioBtnLowActive()
@@ -222,8 +266,10 @@ function renderPrioButtons(prio) {
     prioStatusEdit = prio;
 }
 
-// change priority buttons in edit dialog
-// case low is active
+/**
+ * Changes priority buttons in edit dialog.
+ * Case low is active.
+ */
 function setPrioBtnLowActive() {
     let urgent_btn = document.getElementById('urgent_btn');
     let medium_btn = document.getElementById('medium_btn');
@@ -233,8 +279,10 @@ function setPrioBtnLowActive() {
     low_btn.innerHTML = lowActivHTML();
 }
 
-// change priority buttons in edit dialog
-// case medium is active
+/**
+ * Changes priority buttons in edit dialog.
+ * Case medium is active.
+ */
 function setPrioBtnMediumActive() {
     let urgent_btn = document.getElementById('urgent_btn');
     let medium_btn = document.getElementById('medium_btn');
@@ -244,8 +292,10 @@ function setPrioBtnMediumActive() {
     low_btn.innerHTML = lowInactivHTML();
 }
 
-// change priority buttons in edit dialog
-// case urgent is active
+/**
+ * Changes priority buttons in edit dialog.
+ * Case urgent is active.
+ */
 function setPrioBtnUrgentActive() {
     let urgent_btn = document.getElementById('urgent_btn');
     let medium_btn = document.getElementById('medium_btn');
@@ -255,8 +305,12 @@ function setPrioBtnUrgentActive() {
     low_btn.innerHTML = lowInactivHTML();
 }
 
-// HTML of urgent button in priority section for status "inactive"
-// change font design through specific class and image with color
+/**
+ * Returns the HTML structure of urgent button in priority section for status "inactive".
+ * Changes font design through specific class and image with color.
+ * 
+ * @returns {HTMLElements} HTML structure of urgent-button "inactive".
+ */
 function urgentInactivHTML() {
     return `
         <a class="urgent_btn_inactive btn_addTask" onclick="renderPrioButtons('Urgent')">
@@ -266,8 +320,12 @@ function urgentInactivHTML() {
     `;
 }
 
-// HTML of urgent button in priority section for status "active"
-// change font design through specific class and image with white 
+/**
+ * Returns the HTML structure of urgent button in priority section for status "active".
+ * Changes font design through specific class and image with color.
+ * 
+ * @returns {HTMLElements} HTML structure of urgent-button "active".
+ */
 function urgentActivHTML() {
     return `
         <a class="urgent_btn_active btn_addTask">
@@ -277,8 +335,12 @@ function urgentActivHTML() {
     `;
 }
 
-// HTML of medium button in priority section for status "inactive"
-// change font design through specific class and image with color
+/**
+ * Returns the HTML structure of medium button in priority section for status "inactive".
+ * Changes font design through specific class and image with color.
+ * 
+ * @returns {HTMLElements} HTML structure of medium-button "inactive".
+ */
 function mediumInactivHTML() {
     return `
         <a class="medium_btn_inactive btn_addTask" onclick="renderPrioButtons('Medium')">
@@ -288,8 +350,12 @@ function mediumInactivHTML() {
     `;
 }
 
-// HTML of medium button in priority section for status "active"
-// change font design through specific class and image with white 
+/**
+ * Returns the HTML structure of medium button in priority section for status "active".
+ * Changes font design through specific class and image with color.
+ * 
+ * @returns {HTMLElements} HTML structure of medium-button "active".
+ */
 function mediumActivHTML() {
     return `
         <a class="medium_btn_active btn_addTask">
@@ -299,8 +365,12 @@ function mediumActivHTML() {
     `;
 }
 
-// HTML of low button in priority section for status "inactive"
-// change font design through specific class and image with color
+/**
+ * Returns the HTML structure of low button in priority section for status "inactive".
+ * Changes font design through specific class and image with color.
+ * 
+ * @returns {HTMLElements} HTML structure of low-button "inactive".
+ */
 function lowInactivHTML() {
     return `
         <a class="low_btn_inactive btn_addTask" onclick="renderPrioButtons('Low')">
@@ -310,8 +380,12 @@ function lowInactivHTML() {
     `;
 }
 
-// HTML of low button in priority section for status "active"
-// change font design through specific class and image with white 
+/**
+ * Returns the HTML structure of low button in priority section for status "active".
+ * Changes font design through specific class and image with color.
+ * 
+ * @returns {HTMLElements} HTML structure of low-button "active".
+ */
 function lowActivHTML() {
     return `
         <a class="low_btn_active btn_addTask">
@@ -320,10 +394,6 @@ function lowActivHTML() {
         </a>
     `;
 }
-
-
-// *** Confirmation *** //
-
 
 /**
  * Starts the functions that save and display the changed entries.
@@ -338,7 +408,6 @@ async function confirmInputsOfEditDialog(taskId) {
     await deleteCurrentTaskContent();
     renderDialogTask(taskId); // @board_dialog_taskdetails.js:24
 }
-
 
 /**
  * Load content of title, description, due date inputs and priority choice in currentTaskContent.
@@ -368,7 +437,7 @@ function changeDueDateFormatInShortYear() {
 /**
  * Loads the items of the new task to tasks
  * 
- * @param {*} taskId - - Index of task in tasks array
+ * @param {Number} taskId - - Index of task in tasks array
  */
 function loadChangedContentInTasksArray(taskId) {
     tasks[taskId] = currentTaskContent;

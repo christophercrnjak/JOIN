@@ -91,8 +91,6 @@ function saveNewTask() {
     status_newTask();
 }
 
-
-
 /**
  * Makes the element saying "Task added to board" appear and disappear after 1 s and 20 ms.
  */
@@ -209,9 +207,3 @@ function status_newTask() {
         newTask_board.status = "toDo";
     }
 }
-
-
-
-
-
-

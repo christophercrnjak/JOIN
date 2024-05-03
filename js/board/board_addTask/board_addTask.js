@@ -1,3 +1,7 @@
+let categorys = ["Technical Task", "User Story"];
+
+let selectedCategory = '';
+
 /**
  * Opens the Dialog to add a new task.
  * If the variable is undefined, the status is the status of column where the task is currently 
@@ -37,7 +41,7 @@ function renderAddTaskDialog() {
 /**
  * HTML structure of add task dialog.
  * 
- * @returns {HTMLDivElement}
+ * @returns {HTMLDivElement} - dialog HTML
  */
 function addTaskDialogHTML() {
     return /*html*/`
@@ -77,10 +81,6 @@ function addTaskDialogHTML() {
     `;
 }
 
-
-// *** titel *** //
-
-
 /**
  * show title input to change content of title via inputfield
  */
@@ -112,10 +112,6 @@ function checkFormValidation_title_addTask() {
   }
 }
 
-
-// *** description *** //
-
-
 /**
  * Shows the description input to change content of description via inputfield.
  */
@@ -135,15 +131,6 @@ function DescriptionEditDialogHTML_addTask() {
     <textarea placeholder="Enter a description" id="input_description_addTask_dialog" rows="4" type="text"></textarea>
     `;
 }
-
-
-
-// *** Assigned to (-> board_addTask_assignedTo.js) *** //
-
-
-
-// *** due date *** //
-
 
 /**
  * show Due Date input to change content of Due Date via inputfield
@@ -238,16 +225,6 @@ function validationOfYear_addTask() {
     }
 }
 
-
-// *** Priority (-> board_addTask_priority.js) *** //
-
-
-// *** Category *** //
-
-let categorys = ["Technical Task", "User Story"];
-
-let selectedCategory = '';
-
 /**
  * Shows whether the dropdown list is open.
  * @type {boolean}
@@ -315,7 +292,6 @@ function selectCategory(category) {
     }
 }
 
-
 /**
  * Shows the dropdownlist with contacts and change arrow depending on dropdownstatus.
  * Change text in input for searching contacts in the list.
@@ -350,12 +326,6 @@ function rotateArrow_category_addTask() {
     }
 }
 
-
-// *** Subtasks (-> board_addTask_subtask.js) *** //
-
-
-// *** Footer add task dialog *** //
-
 /**
  * Shows commit section
  */
@@ -383,7 +353,3 @@ function commitSectionHTML() {
             </div>
     `;
 }
-
-// *** Clear function @ board_addTask_clear *** //
-
-// *** Create new Task @ board_addTask_createNewTask.js *** //
