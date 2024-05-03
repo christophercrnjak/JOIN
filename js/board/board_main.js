@@ -1,4 +1,3 @@
-// ****** Main structure and functions for Kanban Board *****
 
 /**
  * Global Variable with the current dragged task as Index of tasks[]
@@ -28,7 +27,10 @@ async function init_board() {
     await toastMessageNewTask(); 
 }
 
- async function toastMessageNewTask() {
+/**
+ * Marks the adding of the new task.
+ */
+async function toastMessageNewTask() {
     await getNewTask_statusFromServer();
     if (newTask_status === true) {
         await openToastMessageAddTask();
@@ -39,17 +41,13 @@ async function init_board() {
     }
 }
   
-  /**
-   * Hides the toast message box
-   */
-  function closeToast() {
-    let container = document.getElementById('toastMessageAddTask'); //@board.html:43
-    container.classList.add('d-none');
-  }
-
-
-// ***** Search *****
-
+/**
+ * Hides the toast message box
+ */
+function closeToast() {
+  let container = document.getElementById('toastMessageAddTask'); //@board.html:43
+  container.classList.add('d-none');
+}
 
 /**
  * Gets Value of search-input-field (in the upper area of the page) in lowerCase letters and trasfer it to renderColumnContent()
@@ -59,14 +57,6 @@ function searchTask() {
     search_content = search_content.toLowerCase();
     renderColumnContent(search_content);
 }
-
-
-// ***** Building Webpage *****
-// @board_main_renderTasks.js
-
-
-// ***** Global function *****
-
 
 /**
  * Changes the Due Date format from dd/mm/yy to dd/mm/yyyy
@@ -126,10 +116,16 @@ async function closeDialog(taskId) {
     }
 } 
 
+/**
+ * Link to the add task html site.
+ */
 function redirectToTaskPage() {
     window.location.href = "addTask.html";
 }
 
+/**
+ * If the max-width of 1000px was reached, the addTask button links to addTask.html site and does not allow the dialog for addTAsk to appear.
+ */
 window.onload = function() {
     var mediaQuery = window.matchMedia("(max-width: 1000px)");
     if (mediaQuery.matches) {
@@ -140,4 +136,3 @@ window.onload = function() {
         addTaskButton.addEventListener("click", redirectToTaskPage); 
     }
 };
-

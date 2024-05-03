@@ -1,8 +1,5 @@
-// ***** Drag and Drop *****
-
-
 /**
- * 
+ * Saves the task id of current dragging task and add a dotted border to columns as dragtagets.
  * 
  * @param {Number} taskId - Index of current dragging task in JSON-array tasks.
  * @param {String} status - Status of current dragging task.
@@ -76,11 +73,21 @@ function deleteBorderStyles() {
     document.getElementById('status_bar_id').style.display = 'none';
 }
 
+/**
+ * Marks the current drag target with darker background-color
+ * 
+ * @param {String} id - id name like "status_inProgress".
+ */
 function highlight(id) {
     let status_area = document.getElementById(id);
     status_area.classList.add('status_selected');
 }
 
+/**
+ * Removes the added background-color by leaving the drag target.
+ * 
+ * @param {String} id - id name like "status_inProgress".
+ */
 function removeHighlight(id) {
     let status_area = document.getElementById(id);
     status_area.classList.remove('status_selected');
