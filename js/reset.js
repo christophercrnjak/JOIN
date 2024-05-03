@@ -136,7 +136,9 @@ async function resetStorageOfServer_tasks() {
   initBoard();
   }
 
-  
+/**
+ * Resets the server data of contacts with dummy contacts.
+ */
 async function resetStorageOfServer_contacts() {
     setItem('contacts', [
       {
