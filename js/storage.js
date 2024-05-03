@@ -68,6 +68,9 @@ async function getTasksFromServer() {
   }
 }
 
+/**
+ * Sorts the Contacts of the task from a-z.
+ */
 function sortTasksContacts() {
   for (let i = 0; i < tasks.length; i++) {
     tasks[i].contacts.sort((a, b) => {
@@ -86,7 +89,7 @@ function sortTasksContacts() {
 }
 
 /**
- * 
+ * Saves and loads the tasks to and from server.
  */
 async function setAndGetToServer() {
   await setTasksToServer();
@@ -119,6 +122,9 @@ async function getContactsFromServer() {
   }
 }
 
+/**
+ * Sorts the Contacts from a-z.
+ */
 function sortContacts() {
   contacts_global.sort((a, b) => {
     const firstNameA = a.name.firstName.toLowerCase();
@@ -134,6 +140,9 @@ function sortContacts() {
   });
 }
 
+/**
+ * Saves the Contacts data to server.
+ */
 async function setContactsToServer(){
   await setItem('contacts', contacts_global);
 }
@@ -214,7 +223,9 @@ async function getCurrentUserIdFromServer() {
 
 // ***** newTAsk status ***** //
 
-
+/**
+ * Variable to mark teh status of task when the user uses the column addTask buttons to add the new task a certain column.
+ */
 let newTask_status = false;
 
 /**
@@ -231,6 +242,9 @@ async function getNewTask_statusFromServer() {
   }
 }
 
+/**
+ * Saves the new task status to server.
+ */
 async function setNewTask_status_false() {
   await setItem('newTask_status', 'false');
 }
@@ -279,6 +293,14 @@ async function deleteAccount(account_index) {
   await getAccountsFromServer();
 }
 
+/**
+ * Add the new user to contact list of contacts.html.
+ * 
+ * @param {String} firstName 
+ * @param {String} secondName 
+ * @param {String} mail 
+ * @param {String} password 
+ */
 async function creatNewUserIntern(firstName, secondName, mail, password) {
   await getAccountsFromServer();
   accounts.push({
@@ -293,11 +315,4 @@ async function creatNewUserIntern(firstName, secondName, mail, password) {
   });
   await setItem('users', accounts);
   await getAccountsFromServer();
-}
-
-async function deleteFromTo(start, end) {
-  for (let i = start; i < end; i++) {
-    await deleteAccount(i);
-    
-  }
 }
