@@ -1,15 +1,23 @@
-
+/**
+ * Lets appear ode rdisappear the menu of 
+ */
 function footerToggle() {
   let footerNotice = document.getElementById('navbar');
   footerNotice.classList.toggle('show');
 }
 
+/**
+ * 
+ */
 function hideFooterMenu() {
   let footerNotice = document.getElementById('navbar');
   footerNotice.classList.remove('show');
   
 }
 
+/**
+ * 
+ */
 async function logOut() {
   currentUser = [];
   saveCurrentUserOnServer();
