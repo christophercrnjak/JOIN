@@ -16,22 +16,20 @@ let newTask = {
  * Initializes creating a new task.
  */
 async function initNewTask() {
-  await validateInputs();
+  validateInputs();
   if (
-    await validation('titleAddtask', 'validation_text_title') == true &&
-    await validation('AddTaskDate', 'validation_text_due_date') == true &&
-    await validation('categoryDropDownBtn', 'validation_text_category') == true) {
-      console.log('All required inpiut fields are valide!')
-      await createNewTask();
+    validation('titleAddtask', 'validation_text_title') == true &&
+    validation('AddTaskDate', 'validation_text_due_date') == true &&
+    validation('categoryDropDownBtn', 'validation_text_category') == true) {
+    console.log('All required inpiut fields are valide!')
+    await createNewTask();
   }
 }
 
 /**
  * Initializes the validation functions for title, due date and category.
- * 
- * @returns 
  */
-async function validateInputs() {
+function validateInputs() {
   validation('titleAddtask', 'validation_text_title');
   validation('AddTaskDate', 'validation_text_due_date');
   validation('categoryDropDownBtn', 'validation_text_category');
@@ -44,7 +42,7 @@ async function validateInputs() {
  * 
  * @param {String} inputId - id of input element which is to validate
  * @param {String} errortextId - id of error text element witch appears in case of non valide
- * @returns {Boolean} 
+ * @returns {Boolean} - Marks whether the all is valide or not.
  */
 function validation(inputId, errortextId) {
   let input = document.getElementById(inputId);
@@ -67,7 +65,11 @@ function validation(inputId, errortextId) {
   }
 }
   
-  
+/**
+ * Initials the functions to save the new task.
+ * Sets the newTask status on true to start the toast message on borad html.
+ * Changes to board.html
+ */
 async function createNewTask() {
   await saveNewTask();
   await deleteNewTaskContent();
@@ -77,6 +79,9 @@ async function createNewTask() {
   changeWindow();
 }
 
+/**
+ * Initials the functions to saves the new task.
+ */
 async function saveNewTask() {
   await getAllSettingsOfNewTask();
   await pushNewTaskToTasks();
@@ -84,11 +89,13 @@ async function saveNewTask() {
   await getTasksFromServer();
 }
 
-
-
+/**
+ * Change to bord.html
+ */
 function changeWindow() {
   window.location.href = "board.html";
 }
+
 
 async function getAllSettingsOfNewTask() {
   await getTextInputValues();
