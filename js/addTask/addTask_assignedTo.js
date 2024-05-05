@@ -82,7 +82,6 @@ function setYou_addTask() {
   function selectFromDropdown(i) {
     let contact = document.getElementById(`contact${i}`);
     let checkbox = document.getElementById(`selected_img${i}`);
-    
     if (contacts_addTask[i].select_status == false) {
       contacts_addTask[i].select_status = true;
       contact.classList.add('selected');
