@@ -96,7 +96,9 @@ function changeWindow() {
   window.location.href = "board.html";
 }
 
-
+/**
+ * Calls all functions which getting the values of the new task.
+ */
 async function getAllSettingsOfNewTask() {
   await getTextInputValues();
   await dueDate_newTask_addTask();
@@ -106,6 +108,9 @@ async function getAllSettingsOfNewTask() {
   await getSubtask();
 }
 
+/**
+ * Saves the input values in variables.
+ */
 function getTextInputValues() {
   let title = document.getElementById('titleAddtask').value;
   let description = document.getElementById('description').value;
@@ -125,10 +130,16 @@ function  dueDate_newTask_addTask() {
   newTask.dueDate = newDate;
 }
 
+/**
+ * Saves the choosen category to the new array.
+ */
 function getCategory() {
   newTask.category = pushCategory;
 }
-  
+
+/**
+ * Saves the choosen contacts to the new task.
+ */
 function getContacts() {
   let selected_contacts = [];
   for (let i = 0; i < contacts_addTask.length; i++) {
@@ -141,20 +152,30 @@ function getContacts() {
   }
 }
 
+/**
+ * Saves the choosen priority to the new task.
+ */
 function getPrio() {
   newTask.priority = prio;
 }
 
+/**
+ * Saves the subtasks to the new task.
+ */
 function getSubtask() {
   newTask.subtasks = subtasklists;
 }
 
+/**
+ * Pushes the new task to the main tasks array.
+ */
 function pushNewTaskToTasks() {
   tasks.push(newTask);
 }
 
-
-
+/**
+ * Resets the newTask array.
+ */
 function deleteNewTaskContent() {
   newTask = {
     "title": "",
@@ -167,7 +188,10 @@ function deleteNewTaskContent() {
     "status": "toDo"
   }
 }
-  
+
+/**
+ * clear the content of the new task page.
+ */
 function removeAllInputes() {
   // Remove the Add Task inputs
   selectedFromDropdown = [];

@@ -1,8 +1,3 @@
-
-
-// *** Add Task Main *** //
-
-
 /**
  * Copy of contacts_global (server based contact list)
  * 
@@ -36,11 +31,10 @@ let pushCategory = '';
  */
 let prio = 'Medium'; 
 
+/**
+ * MArks the status of dropdown menu of category section.
+ */
 let dropdown_status_category = false;
-
-
-// *** Global *** //
-
 
 /**
  * Stops closing elements.
@@ -51,14 +45,8 @@ function doNotClose(event) {
   event.stopPropagation();
 }
 
-
-
-
-// *** Initialize *** //
-
-
 /**
- * 
+ * Initialize, on load of the page, the functions build the page. 
  */
 async function addTaskInit() {
   await includeHTML();
@@ -71,11 +59,17 @@ async function addTaskInit() {
   changePriority('medium');
 }
 
+/**
+ * Loads the current on server saved contacts.
+ */
 async function loadContactsServer() {
   await getContactsFromServer();
   contacts_addTask = JSON.parse(JSON.stringify(contacts_global));
 }
 
+/**
+ * Adds the select status to contacts.
+ */
 function addSelectstatusToContacts() {
   for (let i = 0; i < contacts_addTask.length; i++) {
     let contact = contacts_addTask[i];
@@ -83,7 +77,9 @@ function addSelectstatusToContacts() {
   }
 }
 
-
+/**
+ * Build the current date in format YYYY-MM-DD.
+ */
 function setToday() {
   let due_date_input = document.getElementById('AddTaskDate');
   let today = new Date;
@@ -98,9 +94,6 @@ function setToday() {
   let year = today.getFullYear();
   due_date_input.value = `${year}` + `-` + `${month}` + `-` + `${day}`;
 }
-
-// *** Priority *** //
-
 
 /**
  * Resets styles of priority buttons to start style.
@@ -141,20 +134,16 @@ function resetStyles() {
   let btnUrgend = document.getElementById("btnUrgend");
   let btnMedium = document.getElementById("btnMedium");
   let btnLow = document.getElementById("btnLow");
-
   let imgUrgend = document.getElementById("btnUrgendImg");
   let imgMedium = document.getElementById("btnMediumImg");
   let imgLow = document.getElementById("btnLowImg");
-
   let buttons = [btnUrgend, btnMedium, btnLow];
   let images = [imgUrgend, imgMedium, imgLow];
-
   buttons.forEach(function (button) {
     button.style.backgroundColor = "#ffff";
     button.style.color = "black";
     button.style.fontWeight = "400";
   });
-
   images.forEach(function (image) {
     if (image.id === "btnUrgendImg") {
       image.src = "assets/img/Prio_urgent_color_origin.svg";
@@ -182,19 +171,16 @@ function setPriorityStyles(bgColor, textColor, imgSrc, priority) {
   let image = document.getElementById(
     "btn" + priority.charAt(0).toUpperCase() + priority.slice(1) + "Img"
   );
-
   button.style.backgroundColor = bgColor;
   button.style.color = textColor;
   button.style.fontWeight = "700";
   image.src = imgSrc;
-
   prio = priority;
 }
 
-
-// *** Category *** //
-
-
+/**
+ * Handle teh dropdown status of category (open/close).
+ */
 function checkCategoryOpenCloseConditions() {
   if (dropdown_status_category == false) {
     openCategoryDropdown();
@@ -203,6 +189,9 @@ function checkCategoryOpenCloseConditions() {
   }
 }
 
+/**
+ * Opens the dropdown menu of category section.
+ */
 function openCategoryDropdown() {
   let dropdownCategory = document.getElementById("dropdownCategory");
   let btn_and_dropdown_section = document.getElementById('btn_and_dropdown_section');
@@ -213,6 +202,9 @@ function openCategoryDropdown() {
   arrow_icon.classList.add("rotated");
 }
 
+/**
+ * Closes the dropdown menu of category section.
+ */
 function closeCategoryDropdown() {
   let dropdownCategory = document.getElementById("dropdownCategory");
   let btn_and_dropdown_section = document.getElementById('btn_and_dropdown_section');
@@ -223,6 +215,9 @@ function closeCategoryDropdown() {
   arrow_icon.classList.remove("rotated");
 }
 
+/**
+ * Builds the dropdown menu of category section.
+ */
 function renderCategoryDropDown() {
   let dropdownCategory = document.getElementById("dropdownCategory");
   dropdownCategory.innerHTML = "";
@@ -233,6 +228,12 @@ function renderCategoryDropDown() {
         `;
   }
 }
+
+/**
+ * Saves the choosen category in the dropdown menu.
+ * 
+ * @param {String} element - String of category name.
+ */
 function pushCategoryInTo(element) {
   let textfield = document.getElementById("categoryDropDownBtn_text");
   textfield.innerHTML = `${element}`;
