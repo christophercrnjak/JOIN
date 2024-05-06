@@ -56,7 +56,6 @@ async function addTaskInit() {
   addSelectstatusToContacts();
   renderDropList();
   renderCategoryDropDown();
-  changePriority('medium');
 }
 
 /**

@@ -207,13 +207,18 @@ input[type="date"]:invalid{
         padding-right: 10px;
       }
       
+      .priority_main {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+      }
 
       /* Priority */
       .btn_addTask_list {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 360px !important;
+    
         gap: 8px;
       }
 
