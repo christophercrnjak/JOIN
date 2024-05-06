@@ -60,6 +60,14 @@
 
     }
 
+    #flexContainer {
+        margin-left: 0;
+    }
+
+    .contact_list {
+        margin-left: 12px;
+    }
+
     .selected_person .persons_details {
         font-size: 30px;
         margin-right: 16px;
@@ -99,12 +107,17 @@
 
 }
 
-@media(max-width:1160px) {
-    .contacts {
-        width: 430px;
-        margin-left: 190px;
+@media(max-width:1190px) {
+    .persons_details {
+        gap: 10px;
     }
 
+    .first_letter {
+        width: 320px;
+    }
+}
+
+@media(max-width:1160px) {
     .first_letter {
         width: 330px;
     }
@@ -122,5 +135,5 @@
     .first_letter {
         width: 300px;
     }
-}
 
+}

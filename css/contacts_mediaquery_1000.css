@@ -193,11 +193,11 @@
         margin-left: 0;
         margin-top: 24px;
         margin-bottom: 50px;
+        width: 100%;
     }
 
     .first_letter {
-        width: 90%;
-        margin-left: 24px;
+        width: 95%;
     }
 
     .add {
@@ -230,7 +230,8 @@
 
     .persons_details {
         width: 90%;
-        margin-left: 24px;
+        margin-right: 0;
+        display: -webkit-inline-box;
     }
 
     .persons_details.active {
@@ -396,5 +397,34 @@
     }
     .display_center_b button .delete_button{
         display: flex;
+    }
+}
+@media(max-width:400px){
+
+    .left{
+        width: 300px;
+    }
+    .right{
+        width: 300px;
+    }
+    .add_contact{
+        width: 280px;
+    }
+    .add_contact .vector{
+        left: 290px;
+        bottom: 380px;
+    }
+    .display_center_b{
+        margin-left: 50px;
+    }
+    .add_contact .vector{
+        left: 250px;
+        bottom: 380px;
+    }
+    .left h2{
+        font-size: 36px;
+    }
+    .left h3{
+        font-size: 16px;
     }
 }

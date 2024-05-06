@@ -5,7 +5,6 @@
 
 .contacts {
     background-color: white;
-    width: 456px;
     height: 100vh;
     box-shadow: 4px 0px 6px 0px #00000014;
     margin-left: 232px;
@@ -37,7 +36,7 @@
 .contact_list {
     display: flex;
     flex-direction: column;
-    margin-left: 52px;
+    margin-left: 40px;
     margin-top: 28px;
 }
 
@@ -304,7 +303,10 @@
     font-weight: 400;
     border-radius: 10px;
     padding: 13px 21px 13px 21px;
-    border: 1px solid rgba(209, 209, 209, 1)
+    border: 1px solid rgba(209, 209, 209, 1);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .right input:hover {
@@ -323,7 +325,10 @@
     font-weight: 400;
     border-radius: 10px;
     padding: 13px 21px 13px 21px;
-    border: 1px solid rgba(209, 209, 209, 1)
+    border: 1px solid rgba(209, 209, 209, 1);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .right input:hover {
@@ -342,7 +347,10 @@ input[type="tel"] {
     font-weight: 400;
     border-radius: 10px;
     padding: 13px 21px 13px 21px;
-    border: 1px solid rgba(209, 209, 209, 1)
+    border: 1px solid rgba(209, 209, 209, 1);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .add_contact {
