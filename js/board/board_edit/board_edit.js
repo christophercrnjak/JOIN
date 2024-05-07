@@ -87,24 +87,6 @@ function renderTitleEditDialog() {
 }
 
 /**
- * Validates the input value. Controlls whether there is no content and add in red border and error text in case of true.
- */
-function checkFormValidation_title() {
-    let titleInput = document.getElementById('title_edit');
-    let errormessage_title = document.getElementById('errormessage_title');
-    if (titleInput.value === '' || titleInput.value == null) {
-        titleInput.classList.add('non_valide'); // red border
-        errormessage_title.innerHTML = 'This field is required'; // div is under the Input
-        document.getElementById('errormessage_title').style.display = 'block'; // let div with text appear
-        document.getElementById('close_section_edit').scrollIntoView({ behavior: 'smooth', block: 'start' }); // scroll to input
-        document.getElementById('title_edit').focus();
-  } else {
-    titleInput.classList.remove('non_valide');
-    errormessage_title.style.display = 'none';
-  }
-}
-
-/**
  * Shows the  description input to change content of description via inputfield
  */
 function renderDescriptionEditDialog() {
@@ -147,7 +129,7 @@ function DueDateEditDialogHTML() {
     return /*html*/`
         <div class="header_text_edit_section">Due Date</div>
         <form>
-            <input class="" pattern="\d{2}/\d{2}/\d{4}" placeholder="dd/mm/yyyy" id="edit_input_dueDate" type="date" required>
+            <input class="" onkeyup="checkFormValidation_DueDate()" onfocusout="checkFormValidation_DueDate()"pattern="\d{2}/\d{2}/\d{4}" placeholder="dd/mm/yyyy" id="edit_input_dueDate" type="date" required>
         </form>
         <div class="" id="errormessage_due_date">This field is required</div>
     `;

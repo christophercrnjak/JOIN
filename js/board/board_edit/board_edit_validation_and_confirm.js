@@ -10,7 +10,17 @@ async function confirmInputsOfEditDialog(taskId) {
     await setAndGetToServer(); //@storage.js:55
     dialog_status = 'taskdetails';
     await deleteCurrentTaskContent();
-    renderDialogTask(taskId); // @board_dialog_taskdetails.js:24
+    renderDialogTask(taskId); // @board_dialog_taskdetails.js:24     
+}
+
+function input_value_validation(){
+    let input_value_due_date = document.getElementById('edit_input_dueDate').value;
+    let input_value_title = document.getElementById('title_edit').value;
+    if (input_value_due_date == '' || input_value_title == '') {
+        return false;
+    } else {
+        true;
+    }
 }
 
 /**
@@ -52,4 +62,37 @@ function loadChangedContentInTasksArray(taskId) {
  */
 function deleteCurrentTaskContent() {
     currentTaskContent = '';
+}
+
+/**
+ * Validates the input value. Controlls whether there is no content and add in red border and error text in case of true.
+ */
+function checkFormValidation_title() {
+    let titleInput = document.getElementById('title_edit');
+    let errormessage_title = document.getElementById('errormessage_title');
+    if (titleInput.value === '' || titleInput.value == null) {
+        titleInput.classList.add('non_valide'); // red border
+        errormessage_title.innerHTML = 'This field is required'; // div is under the Input
+        document.getElementById('errormessage_title').style.display = 'block'; // let div with text appear
+        document.getElementById('close_section_edit').scrollIntoView({ behavior: 'smooth', block: 'start' }); // scroll to input
+        document.getElementById('title_edit').focus();
+  } else {
+    titleInput.classList.remove('non_valide');
+    errormessage_title.style.display = 'none';
+  }
+}
+
+function checkFormValidation_DueDate() {
+    let dueDateInput = document.getElementById('edit_input_dueDate');
+    let errormessage_dueDate = document.getElementById('errormessage_due_date');
+    if (dueDateInput.value == '') {
+        dueDateInput.classList.add('non_valide'); // red border
+        errormessage_dueDate.innerHTML = 'This field is required'; // div is under the Input
+        document.getElementById('errormessage_due_date').style.display = 'block'; // let div with text appear
+        document.getElementById('close_section_edit').scrollIntoView({ behavior: 'smooth', block: 'start' }); // scroll to input
+        document.getElementById('edit_input_dueDate').focus();
+  } else {
+    dueDateInput.classList.remove('non_valide');
+    errormessage_dueDate.style.display = 'none';
+  }
 }
