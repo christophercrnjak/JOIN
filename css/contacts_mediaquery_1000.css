@@ -244,8 +244,8 @@
     }
 
     .success {
-        transform: translateY(700%);
-        left: 10%;
+        transform: translateY(600%);
+        left: 30%;
     }
 
     .success.active {

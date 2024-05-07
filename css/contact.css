@@ -5,12 +5,12 @@
 
 .contacts {
     background-color: white;
-    height: 100vh;
     box-shadow: 4px 0px 6px 0px #00000014;
     margin-left: 232px;
     overflow-y: scroll;
     margin-top: 96px;
     padding-bottom: 24px;
+    width: 456px;
 }
 
 .add {
@@ -98,7 +98,7 @@
 }
 
 .persons_details {
-    display: flex;
+    display: -webkit-inline-box;
     margin-top: 15px;
     margin-bottom: 21px;
     font-weight: 400;
@@ -648,7 +648,7 @@ svg {
     justify-content: center;
     align-items: center;
     top: 80%;
-    transform: translateX(700%);
+    transform: translateX(600%);
     transition: transform 800ms ease-in-out;
 }
 
