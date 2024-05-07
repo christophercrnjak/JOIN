@@ -47,13 +47,11 @@ function validateInputs() {
 function validation(inputId, errortextId) {
   let input = document.getElementById(inputId);
   let errortext = document.getElementById(errortextId);
-  
   if (!input || !errortext) {
     console.error("Input oder Errortext nicht gefunden.");
     return false;
   }
-
-  if (input.value === '') {
+  if (input.value === '' ) {
     window.location.hash = inputId;
     input.classList.add('red-border');
     errortext.style.visibility = "visible";

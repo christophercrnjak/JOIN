@@ -56,6 +56,7 @@ async function addTaskInit() {
   addSelectstatusToContacts();
   renderDropList();
   renderCategoryDropDown();
+  renderminDate()
 }
 
 /**
@@ -86,12 +87,28 @@ function setToday() {
   if (day < 10) {
     day = `0` + `${day}`;
   }
-  let month = today.getMonth();
+  let month = today.getMonth() + 1;
   if (month < 10) {
     month = `0` + `${month}`;
   }
   let year = today.getFullYear();
   due_date_input.value = `${year}` + `-` + `${month}` + `-` + `${day}`;
+}
+
+function renderminDate() {
+  let dateInput = document.getElementById('AddTaskDate');
+  let today = new Date;
+  let day = today.getDate();
+  if (day < 10) {
+    day = `0` + `${day}`;
+  }
+  let month = today.getMonth() + 1;
+  if (month < 10) {
+    month = `0` + `${month}`;
+  }
+  let year = today.getFullYear();
+  today = `${year}` + `-` + `${month}` + `-` + `${day}`;
+  dateInput.setAttribute("min", today);
 }
 
 /**

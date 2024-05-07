@@ -82,7 +82,6 @@
 /***** Due Date Section *****/
 
 #dueDate_section_edit input {
-    background-image: url(/assets/img/event.svg);
     border-radius: 10px;
     padding-left: 21px;
     cursor: pointer;

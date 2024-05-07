@@ -129,10 +129,12 @@ function DescriptionEditDialogHTML() {
  * 
  * @param {Number} taskId - Index of task in tasks array
  */
-function renderDueDateEditDialog(taskId) {
+function renderDueDateEditDialog() {
     let container = document.getElementById('dueDate_section_edit');
-    let newDate = changeDueDateFormatInLongYear(taskId)
-    container.innerHTML = DueDateEditDialogHTML(newDate);
+    let newDate = currentTaskContent.dueDate;
+    container.innerHTML = DueDateEditDialogHTML();
+    setDueDateValue();
+    renderminDateEdit();
 }
 
 /**
@@ -141,78 +143,41 @@ function renderDueDateEditDialog(taskId) {
  * @param {String} newDate - represents the  Due Date format dd/mm/yyyy of current task
  * @returns {HTMLElements} - HTML input with due date
  */
-function DueDateEditDialogHTML(newDate) {
+function DueDateEditDialogHTML() {
     return /*html*/`
         <div class="header_text_edit_section">Due Date</div>
         <form>
-            <input class="" pattern="\d{2}/\d{2}/\d{4}" onfocusout="DueDatevalidation()" onkeyup="DueDatevalidation()" placeholder="dd/mm/yyyy" id="edit_input_dueDate" type="text" value="${newDate}"  required>
+            <input class="" pattern="\d{2}/\d{2}/\d{4}" placeholder="dd/mm/yyyy" id="edit_input_dueDate" type="date" required>
         </form>
         <div class="" id="errormessage_due_date">This field is required</div>
     `;
 }
 
 /**
- * Calls the fuctions to validate the due date
+ * Gets the due date in format dd/mm/yy and transform this in yyyy-mm-dd to show the date in input type date.
  */
-function DueDatevalidation() {
-    validationOfDay();
-    validationOfMonth();
-    validationOfYear();
+function setDueDateValue() {
+    let dateInput = document.getElementById('edit_input_dueDate');
+    date = currentTaskContent.dueDate.split('/');
+    date[2] = parseInt(date[2].trim()) +2000;
+    let new_date_format = date[2] + '-' + date[1] + '-' + date[0];
+    dateInput.value = new_date_format;
 }
 
-/**
- * Validates the day section of due date.
- */
-function validationOfDay() {
-    let inputDate = document.getElementById("edit_input_dueDate");
-    let errormessage_due_date = document.getElementById("errormessage_due_date");
-    let parts = inputDate.value.split('/');
-    let day = parts[0];
-    if (parseInt(day, 10) > 31 || parseInt(day, 10) < 1 || parseInt(day, 10) == 0 || day.length < 2 || isNaN(day)) {
-        inputDate.classList.add('non_valide');
-        errormessage_due_date.style.display = 'block';
-    } else {
-        inputDate.classList.remove('non_valide');
-        errormessage_due_date.style.display = 'none';
-    }
-}
-
-/**
- *  Validates the month section of due date.
- */
-function validationOfMonth() {
-    let inputDate = document.getElementById("edit_input_dueDate");
-    let errormessage_due_date = document.getElementById("errormessage_due_date");
-    let parts = inputDate.value.split('/');
-    let month = parts[1];
-    if (parseInt(month, 10) > 12 || parseInt(month, 10) < 1 || parseInt(month, 10) == 0 || month.toString().length < 2 || isNaN(month)) {
-        inputDate.classList.add('non_valide');
-        errormessage_due_date.style.display = 'block'; 
-    } else {
-        if(!inputDate.classList.contains('non_valide')){
-        inputDate.classList.remove('non_valide');
-        errormessage_due_date.style.display = 'none';
-        }
-    }
-}
-
-/**
- *  Validates the year section of due date.
- */
-function validationOfYear() {
-    let inputDate = document.getElementById("edit_input_dueDate");
-    let errormessage_due_date = document.getElementById("errormessage_due_date");
-    let parts = inputDate.value.split('/');
-    let year = parseInt(parts[2], 10);
-    if (year < 2000 || isNaN(year)) {
-        inputDate.classList.add('non_valide');
-        errormessage_due_date.style.display = 'block'; 
-    } else {
-        if(!inputDate.classList.contains('non_valide')){
-        inputDate.classList.remove('non_valide');
-        errormessage_due_date.style.display = 'none';
-        }
-    }
+function renderminDateEdit() {
+  let dateInput = document.getElementById('edit_input_dueDate');
+  let today = new Date;
+  let day = today.getDate();
+  if (day < 10) {
+    day = `0` + `${day}`;
+  }
+  let month = today.getMonth() + 1;
+  if (month < 10) {
+    month = `0` + `${month}`;
+  }
+  let year = today.getFullYear();
+  today = `${year}` + `-` + `${month}` + `-` + `${day}`;
+  dateInput.setAttribute("min", today);
 }
 
 /**
@@ -393,59 +358,4 @@ function lowActivHTML() {
             <img id="btnLow_img" src="assets/img/Prio_low_white.svg" alt="" srcset="">
         </a>
     `;
-}
-
-/**
- * Starts the functions that save and display the changed entries.
- * 
- * @param {Number} taskId - Index of task in tasks array
- */
-async function confirmInputsOfEditDialog(taskId) {
-    getInputValuesOfEditDialog(); 
-    await loadChangedContentInTasksArray(taskId);
-    await setAndGetToServer(); //@storage.js:55
-    dialog_status = 'taskdetails';
-    await deleteCurrentTaskContent();
-    renderDialogTask(taskId); // @board_dialog_taskdetails.js:24
-}
-
-/**
- * Load content of title, description, due date inputs and priority choice in currentTaskContent.
- * Contacts of Assigned to section and subtasks section are always directly saved in currentTaskContent after changes.
- */
-function getInputValuesOfEditDialog() {
-    currentTaskContent.title = document.getElementById('title_edit').value;
-    currentTaskContent.description = document.getElementById('edit_input_description').value;
-    currentTaskContent.dueDate = changeDueDateFormatInShortYear();
-    currentTaskContent.priority = prioStatusEdit;
-}
-
-/**
- * Chages the due date fomat from dd/mm/yyyy to dd/mm/yy
- * 
- * @returns {String} "dd/mm/yy"
- */
-function changeDueDateFormatInShortYear() {
-    let date = document.getElementById('edit_input_dueDate').value;
-    date = date.split('/');
-    let year = parseInt(date[2]); 
-    year = year - 2000;
-    let newDate = date[0] + '/' + date[1] + '/' + year;
-    return newDate
-}
-
-/**
- * Loads the items of the new task to tasks
- * 
- * @param {Number} taskId - - Index of task in tasks array
- */
-function loadChangedContentInTasksArray(taskId) {
-    tasks[taskId] = currentTaskContent;
-}
-
-/**
- * Resets the currentTaskContent array.
- */
-function deleteCurrentTaskContent() {
-    currentTaskContent = '';
 }
