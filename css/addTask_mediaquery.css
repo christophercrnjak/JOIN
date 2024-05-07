@@ -122,10 +122,6 @@
       width: 100%;
     }
   
-    .row_selected_contacts_circles {
-      margin-bottom: 16px;
-    }
-  
     .assigned_to_section_main {
       margin-bottom: 16px;
     }
@@ -186,7 +182,7 @@
     padding-bottom: 16px;
     position: sticky;
     bottom: 0;
-    background-color: var(--bgwhite);
+    background-color: rgba(246, 247, 248, 1);
   }
 
 }

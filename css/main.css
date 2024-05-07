@@ -22,7 +22,7 @@
 
 :root {
   --bgdarkblue: #2a3647;
-  --bgwhite: rgba(246, 247, 248, 1);
+  --bgwhite: rgba(246, 247, 248, 0.906);
   --blue: #29abe2;
   --overlaybgwhite: #ffff;
   --grey: #d1d1d1;
