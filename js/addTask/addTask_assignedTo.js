@@ -8,53 +8,54 @@ let dropdown_status_assignedTo = false;
  */
 async function renderDropList() {
     // render the drop down menu form the
+    let maxScreenWidth = Math.max(window.innerWidth, document.documentElement.clientWidth);
     let dropdown = document.getElementById("dropdown");
     dropdown.innerHTML = "";
     for (let i = 0; i < contacts_addTask.length; i++) {
       let contact = contacts_addTask[i];
-      dropdown.innerHTML += dropdownHtml(contact, [i]);
+      dropdown.innerHTML += dropdownHtml(contact, i);
     }
     setYou_addTask();
   }
   
-  /**
-   * HTML structure of dropdownlist.
-   * Sets in case of second name is unset.
-   * 
-   * @param {JSON} contact - Objekt of contacts_addTask
-   * @param {Number} i - Index of contact in contacts_addTask array
-   * @returns {HTMLAnchorElement}
-   */
-  function dropdownHtml(contact, i) {
-    contact = contact.name;
-    let secondName = contact.secondName;
-    if (typeof secondName == 'undefined') {
-      secondChar = '';
-      secondName = '';
-    } else {
-      secondChar = secondName.charAt(0)
-    }
-    return `
-    <a class="dropdown_assign" id="contact${i}" onclick="selectFromDropdown(${i})">
-        <!-- contact -->
-        <div class="display_center gap ">
-          <div class="member_cicle_main">
-            <div class="member_cicle" style='background-color:${contact.color};'>
-              ${contact.firstName.charAt(0)}
-              ${secondChar}
-            </div>
-          </div>
-          <div class="member_name">${contact.firstName} ${secondName} <div id="you${i}" class="you"></div></div>
-        </div> 
-        <!-- checkbox -->
-        <div class="dropdown_img" id="selected_img${i}">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="1" y="1" width="16" height="16" rx="3" stroke="#2A3647" stroke-width="2"/>
-          </svg>
-        </div>
-    </a>
-    `;
+/**
+ * HTML structure of dropdownlist.
+ * Sets in case of second name is unset.
+ * 
+ * @param {JSON} contact - Objekt of contacts_addTask
+ * @param {Number} contactId - Index of contact in contacts_addTask array
+ * @returns {HTMLAnchorElement}
+ */
+function dropdownHtml(contact, contactId) {
+  contact = contact.name;
+  let secondName = contact.secondName;
+  if (typeof secondName == 'undefined') {
+    secondChar = '';
+    secondName = '';
+  } else {
+    secondChar = secondName.charAt(0)
   }
+  return `
+  <a class="dropdown_assign" id="contact${contactId}" onclick="selectFromDropdown(${contactId})">
+      <!-- contact -->
+      <div class="display_center gap ">
+        <div class="member_cicle_main">
+          <div class="member_cicle" style='background-color:${contact.color};'>
+            ${contact.firstName.charAt(0)}
+            ${secondChar}
+          </div>
+        </div>
+        <div class="member_name">${contact.firstName} ${secondName} <div id="you${contactId}" class="you"></div></div>
+      </div> 
+      <!-- checkbox -->
+      <div class="dropdown_img" id="selected_img${contactId}">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="1" y="1" width="16" height="16" rx="3" stroke="#2A3647" stroke-width="2"/>
+        </svg>
+      </div>
+  </a>
+  `;
+}
 
 /**
  * Sets the "(You)" to the name depending on current loggIn status.
@@ -70,30 +71,42 @@ function setYou_addTask() {
     }
   }
 }
-  
-  /**
-   * This function put the selected member from the drop down list assigned to 
-   * in a array and div container
-   * @param {String} color  - fill the color from JSON in the circle.
-   * @param {String} firstName - fill the first name into the circle from the JSON.
-   * @param {String} secondName - fill the second name into the circle from the JSON.
-   * @param {Number} i - Index of contact in contacts_addTask array
-   */
-  function selectFromDropdown(i) {
-    let contact = document.getElementById(`contact${i}`);
-    let checkbox = document.getElementById(`selected_img${i}`);
-    if (contacts_addTask[i].select_status == false) {
-      contacts_addTask[i].select_status = true;
-      contact.classList.add('selected');
-      checkbox.innerHTML = checkboxHTML_checked();
-      renderSelectedContactsRow();
-    } else if (contacts_addTask[i].select_status == true){
-      contacts_addTask[i].select_status = false;
-      contact.classList.remove('selected');
-      checkbox.innerHTML = checkboxHTML_unchecked();
-      renderSelectedContactsRow();
-    }
+
+/**
+ * If the max-width of 1000px was reached, the addTask button links to addTask.html site and does not allow the dialog for addTAsk to appear.
+ */
+window.onload = function test() {
+  let mediaQuery = window.matchMedia("(max-width: 485px)");
+  if (mediaQuery.matches) {
+    document.getElementById('row_selected_contacts_circles').style.display = 'none';
+  } else {
+    document.getElementById('row_selected_contacts_circles').style.display = 'flex';
   }
+};
+  
+/**
+ * This function put the selected member from the drop down list assigned to 
+ * in a array and div container
+ * @param {String} color  - fill the color from JSON in the circle.
+ * @param {String} firstName - fill the first name into the circle from the JSON.
+ * @param {String} secondName - fill the second name into the circle from the JSON.
+ * @param {Number} i - Index of contact in contacts_addTask array
+ */
+function selectFromDropdown(i) {
+  let contact = document.getElementById(`contact${i}`);
+  let checkbox = document.getElementById(`selected_img${i}`);
+  if (contacts_addTask[i].select_status == false) {
+    contacts_addTask[i].select_status = true;
+    contact.classList.add('selected');
+    checkbox.innerHTML = checkboxHTML_checked();
+    renderSelectedContactsRow();
+  } else if (contacts_addTask[i].select_status == true){
+    contacts_addTask[i].select_status = false;
+    contact.classList.remove('selected');
+    checkbox.innerHTML = checkboxHTML_unchecked();
+    renderSelectedContactsRow();
+  }
+}
   
 /**
  * HTML structure of checked checkboxes of contacts in the dropdown list in the assigned to section.

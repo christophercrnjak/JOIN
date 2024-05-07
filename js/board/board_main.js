@@ -127,7 +127,7 @@ function redirectToTaskPage() {
  * If the max-width of 1000px was reached, the addTask button links to addTask.html site and does not allow the dialog for addTAsk to appear.
  */
 window.onload = function() {
-    var mediaQuery = window.matchMedia("(max-width: 1000px)");
+    let mediaQuery = window.matchMedia("(max-width: 1000px)");
     if (mediaQuery.matches) {
         let dialogContainer = document.getElementById("dialog_container");
         dialogContainer.style.display = "none"; 

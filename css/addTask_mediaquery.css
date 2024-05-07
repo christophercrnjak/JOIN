@@ -225,4 +225,32 @@
   height: 140px;
 }
 }
-  
+
+
+@media(max-width: 385px) {
+  .create_clear_task {
+    flex-direction: column;
+  }
+
+  .requiredField {
+    margin-bottom: 17px;
+    margin-left: 0px;
+  }
+}
+
+@media(max-width: 340px) {
+  .btn_addTask_list {
+    flex-direction: column;
+  }
+
+  #btnUrgend, #btnMedium, #btnLow {
+    width: 100%;
+  } 
+}
+
+
+@media(max-width: 238px) {
+  .AddTask_head {
+    font-size: 32px;
+}
+}
