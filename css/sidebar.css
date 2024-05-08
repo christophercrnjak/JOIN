@@ -188,6 +188,10 @@
     width: 232px;
 }
 
+.side_navbar_section div{
+    text-align: center;
+}
+
 .side_navbar_section a {
     padding-top: 6px;
 }
