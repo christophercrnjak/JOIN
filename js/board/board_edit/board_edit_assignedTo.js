@@ -12,7 +12,6 @@ let loaded_contacts =[];
  */
 let dropdownStatus = false;
 
-
 /**
  * Load the contacts of Server in loaded_contacts array.
  * Render the content of Taskcontacts in edit dialog
@@ -92,14 +91,13 @@ function renderCiclesOfTaskContacts(taskId) {
  * @param {String} secondCharacter - first letter of second name of contact 
  * @param {Number} taskId - Index of current called task in tasks[] global array
  * @param {Number} i - Index of current Contact in currentTaskContent.contacts
- * @returns 
+ * @returns {HTMLDivElement}
  */
 function selectedTaskMemberHTML(firstCharacter, secondCharacter, taskId, i) {
     return `
         <div class="circle_size">
             <div id="selected_task_member${taskId}${i}" class="selected_member_cicle">${firstCharacter}${secondCharacter}</div>
         </div> 
-    
     `;
 }
 
@@ -221,7 +219,7 @@ function editContactListHTML(taskId, contactId) {
     } else {
         secondName_List = contact.secondName
     }
-    return /*html */`
+    return `
         <div onclick="changeSelectionStatus(${taskId}, ${contactId})" id="dropdown_contact${taskId}${contactId}" class="dropdown_contact_row">
             <!-- circle & name -->
             <div class="dropdown_contact_image_name">
@@ -315,7 +313,7 @@ function checkContactSelected(firstName, secondName) {
 }
 
 /**
- * 
+ * Returns the Index of contact in currentTaskContent array fpr the contact information witch is given by variables (firstName, secondName).
  * 
  * @param {String} firstName - first name of the Contact which is selected
  * @param {String} secondName - second name of the Contact which is selected

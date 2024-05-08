@@ -13,6 +13,11 @@ async function confirmInputsOfEditDialog(taskId) {
     renderDialogTask(taskId); // @board_dialog_taskdetails.js:24     
 }
 
+/**
+ * Validates the inputfields "due date" and "title" whether there is content and returns true or false.
+ * 
+ * @returns {Boolean} false by empty input field / true by content
+ */
 function input_value_validation(){
     let input_value_due_date = document.getElementById('edit_input_dueDate').value;
     let input_value_title = document.getElementById('title_edit').value;
@@ -82,6 +87,9 @@ function checkFormValidation_title() {
   }
 }
 
+/**
+ * Validates the due date input. Corlor the border and show a error message in case of there is no contaent at input.
+ */
 function checkFormValidation_DueDate() {
     let dueDateInput = document.getElementById('edit_input_dueDate');
     let errormessage_dueDate = document.getElementById('errormessage_due_date');
