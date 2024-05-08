@@ -60,9 +60,6 @@ async function getTasksFromServer() {
     let newData = JSON.parse(ServerData.data.value);
     tasks = newData;
     await sortTasksContacts();
-    // if (currentUser !== "Guest") {
-    //    syncLockedInStatus();
-    // }
   } catch (e) {
     console.warn("Could not load tasks!");
   }

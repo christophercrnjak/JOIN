@@ -7,16 +7,34 @@ let dropdown_status_assignedTo = false;
  * Builds the dropdown list. Sets (You)
  */
 async function renderDropList() {
-    // render the drop down menu form the
-    let maxScreenWidth = Math.max(window.innerWidth, document.documentElement.clientWidth);
-    let dropdown = document.getElementById("dropdown");
-    dropdown.innerHTML = "";
-    for (let i = 0; i < contacts_addTask.length; i++) {
-      let contact = contacts_addTask[i];
-      dropdown.innerHTML += dropdownHtml(contact, i);
+  await getCurrentUserIdFromServer();
+  await getCurrentUserFromServer();
+  let dropdown = document.getElementById("dropdown");
+  dropdown.innerHTML = "";
+  for (let i = 0; i < contacts_addTask.length; i++) {
+    let contact = contacts_addTask[i];
+    dropdown.innerHTML += dropdownHtml(contact, i);
+    if (currentUser !== '' && currentUserId !== 999) {
+      if (contact.name.firstName == contacts_global[currentUserId].name.firstName && 
+          contact.name.secondName == contacts_global[currentUserId].name.secondName || 
+          contact.name.firstName == contacts_global[currentUserId].name.firstName && 
+          typeof contact.name.secondName == 'undefined') {
+            setYou_addTask(i); 
+          }
     }
-    setYou_addTask();
   }
+}
+
+/**
+ * Sets the "(You)" to the name depending on current loggIn status.
+ */
+function setYou_addTask(contactId) {
+  let you_element = document.getElementById(`you${contactId}`);
+  you_element.innerHTML = '(You)'
+} 
+   
+  
+
   
 /**
  * HTML structure of dropdownlist.
@@ -57,32 +75,7 @@ function dropdownHtml(contact, contactId) {
   `;
 }
 
-/**
- * Sets the "(You)" to the name depending on current loggIn status.
- */
-function setYou_addTask() {
-  for (let i = 0; i < contacts_global.length; i++) {
-    let youDiv = document.getElementById(`you${i}`)
-    let contact = contacts_global[i];
-    if (contact.lockedIn == false) {
-      youDiv.innerHTML = "";
-    } else {
-      youDiv.innerHTML = "(You)"
-    }
-  }
-}
 
-/**
- * If the max-width of 1000px was reached, the addTask button links to addTask.html site and does not allow the dialog for addTAsk to appear.
- */
-window.onload = function test() {
-  let mediaQuery = window.matchMedia("(max-width: 485px)");
-  if (mediaQuery.matches) {
-    document.getElementById('row_selected_contacts_circles').style.display = 'none';
-  } else {
-    document.getElementById('row_selected_contacts_circles').style.display = 'flex';
-  }
-};
   
 /**
  * This function put the selected member from the drop down list assigned to 
