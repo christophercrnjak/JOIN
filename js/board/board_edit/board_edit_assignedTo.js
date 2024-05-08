@@ -116,7 +116,6 @@ function openDropDownList(taskId) {
         main_section.style.boxShadow = '0px 8px 16px 0px rgba(0, 0, 0, 0.2)';
         showContactList(taskId);
         dropdownStatus = true;
-
     } else {
         renderCiclesOfTaskContacts(taskId);
         dropdown_section.classList.remove('flexDirection');
@@ -231,7 +230,7 @@ function editContactListHTML(taskId, contactId) {
                 <a id="checkbox_edit${taskId}${contactId}"></a>
             </div>
         </div>
-    `;
+    `
 }
 
 /**
@@ -272,14 +271,18 @@ function setListContactOnSelect(taskId, contactId) {
     let container_checkbox = document.getElementById(`checkbox_edit${taskId}${contactId}`);
     let cicle = document.getElementById(`selected_task_member${taskId}${contactId}`);
     let container_dropdown_contact = document.getElementById(`dropdown_contact${taskId}${contactId}`);
-    container_checkbox.innerHTML = `
+    container_checkbox.innerHTML = svgCheckbox();
+    container_dropdown_contact.classList.toggle('contactOfTask');
+    cicle.style.border = 'solid 3px white';
+}
+
+function svgCheckbox() {
+    return `
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M17 8V14C17 15.6569 15.6569 17 14 17H4C2.34315 17 1 15.6569 1 14V4C1 2.34315 2.34315 1 4 1H12" stroke="white" stroke-width="2" stroke-linecap="round"/>
         <path d="M5 9L9 13L17 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
     `;
-    container_dropdown_contact.classList.toggle('contactOfTask');
-    cicle.style.border = 'solid 3px white';
 }
 
 /**
