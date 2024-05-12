@@ -151,9 +151,10 @@ function renderSelectedContactsRow() {
 }
 
 /**
+ * Creates a grey circle with amount of additional members over the max_member_amount.
  * 
  * @param {Number} amount - Amount of selected members-
- * @returns 
+ * @returns {HTMLDivElement}
  */
 function dropdownHtmlAdditionalMemberCircle(amount) {
 
@@ -170,7 +171,7 @@ function dropdownHtmlAdditionalMemberCircle(amount) {
  * Creates the circle with initials from contacts are selected.
  * 
  * @param {Number} i - Index of contact in contacts_addTask array
- * @returns 
+ * @returns {HTMLDivElement}
  */
 function dropdownHtmlMemberCircle(i) {
   let firstName = contacts_addTask[i].name.firstName;
