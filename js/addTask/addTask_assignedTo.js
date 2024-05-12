@@ -32,9 +32,6 @@ function setYou_addTask(contactId) {
   let you_element = document.getElementById(`you${contactId}`);
   you_element.innerHTML = '(You)'
 } 
-   
-  
-
   
 /**
  * HTML structure of dropdownlist.
@@ -75,8 +72,6 @@ function dropdownHtml(contact, contactId) {
   `;
 }
 
-
-  
 /**
  * This function put the selected member from the drop down list assigned to 
  * in a array and div container
