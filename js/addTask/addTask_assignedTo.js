@@ -133,14 +133,37 @@ function checkboxHTML_unchecked() {
  */
 function renderSelectedContactsRow() {
   let selected_contacts_row = document.getElementById('row_selected_contacts_circles');
+  let max_member_amount = 3;
   selected_contacts_row.innerHTML = '';
+  let selected_members = contacts_addTask.filter(obj => obj.select_status === true);
   for (let i = 0; i < contacts_addTask.length; i++) {
     let contact = contacts_addTask[i];
-    if (contact.select_status == true) {
-      selected_contacts_row.innerHTML += dropdownHtmlMemberCircle(i);
-    }
-    
+    if (i < max_member_amount) {
+      if (contact.select_status == true) {
+        selected_contacts_row.innerHTML += dropdownHtmlMemberCircle(i);
+      }
+    } 
   }
+  if (selected_members.length > max_member_amount) {
+    let amount = selected_members.length - max_member_amount;
+    selected_contacts_row.innerHTML += dropdownHtmlAdditionalMemberCircle(amount)
+  }
+}
+
+/**
+ * 
+ * @param {Number} amount - Amount of selected members-
+ * @returns 
+ */
+function dropdownHtmlAdditionalMemberCircle(amount) {
+
+  return `
+    <div class="member_cicle_main">
+      <div class="member_cicle_additional">
+        +${amount}
+      </div>
+    </div>
+  `;
 }
   
 /**
