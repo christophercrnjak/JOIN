@@ -59,6 +59,9 @@ function pushToSubtasks() {
     subtasksInputElement.value = ''; 
     ChangeToSubtasks();
     rendersubtasklist();
+    let lastIdNumber = subtasklists.length - 1;
+    let targetElement = document.getElementById(`subtasklist_element${lastIdNumber}`);
+    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 }
 
