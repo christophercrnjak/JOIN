@@ -14,7 +14,7 @@ async function renderDropList() {
   for (let i = 0; i < contacts_addTask.length; i++) {
     let contact = contacts_addTask[i];
     dropdown.innerHTML += dropdownHtml(contact, i);
-    if (currentUser !== '' && currentUserId !== 999) {
+    if (currentUser !== '' && currentUserId !== 999 || currentUser !== 999 && currentUserId !== 999) {
       if (contact.name.firstName == contacts_global[currentUserId].name.firstName && 
           contact.name.secondName == contacts_global[currentUserId].name.secondName || 
           contact.name.firstName == contacts_global[currentUserId].name.firstName && 
