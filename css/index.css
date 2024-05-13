@@ -57,7 +57,10 @@ body {
 
 .toastMessageIndex_img {
   display: flex;
+}
 
+.logo_wrapper {
+  display: flex;
 }
 
 .logo_grey {
@@ -304,14 +307,12 @@ hr {
   }
 }
 
-@media (min-width:1000px) {
+@media (min-width: 1000px) {
   .container {
     animation: contentVisibilityDesktop 700ms ease-in-out 700ms both;
-
   }
 
   .logo_grey {
     animation: moveLogoDesktop 700ms ease-in-out 700ms both;
   }
 }
-

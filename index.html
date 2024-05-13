@@ -17,7 +17,7 @@
 
   <body>
     <div class="early_mobile_screen"></div>
-    <div>
+    <div class="logo_wrapper">
       <img class="logo_grey" src="./assets/img/logo.svg" alt="" />
     </div>
     <div>
@@ -31,14 +31,25 @@
         </button>
       </div>
       <div class="main_wrapper">
-        <div id="toastMessage_Index" class="toastMessageIndex d-none"><span class="toastMessageIndex_text">E-Mail or Password not exist</span>
+        <div id="toastMessage_Index" class="toastMessageIndex d-none">
+          <span class="toastMessageIndex_text"
+            >E-Mail or Password not exist</span
+          >
           <div class="toastMessageIndex_img">
-            <svg width="25" height="25" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M7.00005 8.40005L2.10005 13.3C1.91672 13.4834 1.68338 13.575 1.40005 13.575C1.11672 13.575 0.883382 13.4834 0.700049 13.3C0.516715 13.1167 0.425049 12.8834 0.425049 12.6C0.425049 12.3167 0.516715 12.0834 0.700049 11.9L5.60005 7.00005L0.700049 2.10005C0.516715 1.91672 0.425049 1.68338 0.425049 1.40005C0.425049 1.11672 0.516715 0.883382 0.700049 0.700049C0.883382 0.516715 1.11672 0.425049 1.40005 0.425049C1.68338 0.425049 1.91672 0.516715 2.10005 0.700049L7.00005 5.60005L11.9 0.700049C12.0834 0.516715 12.3167 0.425049 12.6 0.425049C12.8834 0.425049 13.1167 0.516715 13.3 0.700049C13.4834 0.883382 13.575 1.11672 13.575 1.40005C13.575 1.68338 13.4834 1.91672 13.3 2.10005L8.40005 7.00005L13.3 11.9C13.4834 12.0834 13.575 12.3167 13.575 12.6C13.575 12.8834 13.4834 13.1167 13.3 13.3C13.1167 13.4834 12.8834 13.575 12.6 13.575C12.3167 13.575 12.0834 13.4834 11.9 13.3L7.00005 8.40005Z" fill="#2A3647"/>
+            <svg
+              width="25"
+              height="25"
+              viewBox="0 0 14 14"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M7.00005 8.40005L2.10005 13.3C1.91672 13.4834 1.68338 13.575 1.40005 13.575C1.11672 13.575 0.883382 13.4834 0.700049 13.3C0.516715 13.1167 0.425049 12.8834 0.425049 12.6C0.425049 12.3167 0.516715 12.0834 0.700049 11.9L5.60005 7.00005L0.700049 2.10005C0.516715 1.91672 0.425049 1.68338 0.425049 1.40005C0.425049 1.11672 0.516715 0.883382 0.700049 0.700049C0.883382 0.516715 1.11672 0.425049 1.40005 0.425049C1.68338 0.425049 1.91672 0.516715 2.10005 0.700049L7.00005 5.60005L11.9 0.700049C12.0834 0.516715 12.3167 0.425049 12.6 0.425049C12.8834 0.425049 13.1167 0.516715 13.3 0.700049C13.4834 0.883382 13.575 1.11672 13.575 1.40005C13.575 1.68338 13.4834 1.91672 13.3 2.10005L8.40005 7.00005L13.3 11.9C13.4834 12.0834 13.575 12.3167 13.575 12.6C13.575 12.8834 13.4834 13.1167 13.3 13.3C13.1167 13.4834 12.8834 13.575 12.6 13.575C12.3167 13.575 12.0834 13.4834 11.9 13.3L7.00005 8.40005Z"
+                fill="#2A3647"
+              />
             </svg>
           </div>
         </div>
-        
 
         <form class="login_section" onsubmit="return false">
           <div class="headline">
@@ -77,7 +88,7 @@
               id="log_in"
               onclick="handleLogIn()"
             >
-            <h1>Log in</h1>
+              <h1>Log in</h1>
             </button>
             <button
               class="btn_transparent btn_guest_log_in"
@@ -85,7 +96,7 @@
               onclick="handleGuestLogIn()"
               type="button"
             >
-            <h1>Guest Log in</h1>
+              <h1>Guest Log in</h1>
             </button>
           </div>
         </form>
@@ -93,10 +104,17 @@
 
       <div class="legal_section">
         <div class="link_wrapper">
-          <a href="./privacy_policy_extern.html" target="_blank">Privacy Policy</a>
+          <a href="./privacy_policy_extern.html" target="_blank"
+            >Privacy Policy</a
+          >
         </div>
         <div class="link_wrapper">
-          <a href="./legal_notice_extern.html" target="_blank" class="link_wrapper">Legal notice</a>
+          <a
+            href="./legal_notice_extern.html"
+            target="_blank"
+            class="link_wrapper"
+            >Legal notice</a
+          >
         </div>
       </div>
     </div>
