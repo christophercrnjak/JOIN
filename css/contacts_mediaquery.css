@@ -30,7 +30,8 @@
     .better_team {
         margin-right: 16px;
     }
-    .success{
+
+    .success {
         left: 60%;
     }
 }
@@ -65,6 +66,7 @@
     #flexContainer {
         margin-left: 0;
     }
+
     .selected_person .persons_details {
         font-size: 30px;
         margin-right: 16px;
@@ -103,6 +105,7 @@
     }
 
 }
+
 @media(max-width:1180px) {
     .persons_details {
         margin-bottom: 8px;
@@ -111,12 +114,27 @@
     .first_letter {
         width: 300px;
     }
-    .add{
+
+    .add {
         margin-left: 32px;
         font-size: 16px;
     }
-    .persons_details{
+
+    .persons_details {
         gap: 10px;
+    }
+    .contact_list{
+        margin-left: 10px;
+    }
+
+    .persons_details.active {
+        flex-direction: column;
+        display: flex;
+        align-items: center;
+        text-align: center;
+    }
+    .first_letter{
+        width: 95%;
     }
 
 }

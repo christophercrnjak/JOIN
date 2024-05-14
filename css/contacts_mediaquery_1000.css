@@ -1,7 +1,7 @@
 /*Mobile Version(responsive)*/
 
 @media(max-width: 1000px) {
-    .container_display_flex{
+    .container_display_flex {
         height: unset;
         justify-content: center;
     }
@@ -190,7 +190,7 @@
     }
 
     .contact_list {
-        margin-left: 0;
+        margin-left: 16px;
         margin-top: 24px;
         margin-bottom: 50px;
         width: 100%;
@@ -232,11 +232,16 @@
         width: 90%;
         margin-right: 0;
         display: -webkit-inline-box;
+        font-size: 16px;
     }
 
     .persons_details.active {
         background-color: unset;
         color: unset;
+        flex-direction: unset;
+        display: unset;
+        align-items: unset;
+        text-align: unset;
     }
 
     .persons_details:hover {
@@ -254,7 +259,7 @@
 
     .better_team {
         margin-top: 128px;
-        margin-left: 16px;
+        margin-right: 0;
     }
 
     .better_team_text {
@@ -305,6 +310,7 @@
         padding: 0;
         justify-content: unset;
         margin-left: 0;
+        display: flex;
     }
 
     .selected_person .persons {
@@ -389,42 +395,65 @@
         align-items: center;
         margin-left: 10px;
     }
+
     #flexContainer {
         margin-left: 0;
     }
-    .display_center_b button{
+
+    .display_center_b button {
         display: none;
     }
-    .display_center_b button .delete_button{
+
+    .display_center_b button .delete_button {
         display: flex;
     }
 }
-@media(max-width:400px){
 
-    .left{
+@media(max-width:400px) {
+
+    .left {
         width: 300px;
     }
-    .right{
+
+    .right {
         width: 300px;
     }
-    .add_contact{
+
+    .add_contact {
         width: 280px;
     }
-    .add_contact .vector{
+
+    .add_contact .vector {
         left: 290px;
         bottom: 380px;
     }
-    .display_center_b{
+
+    .display_center_b {
         margin-left: 50px;
     }
-    .add_contact .vector{
+
+    .add_contact .vector {
         left: 250px;
         bottom: 380px;
     }
-    .left h2{
+
+    .left h2 {
         font-size: 36px;
     }
-    .left h3{
+
+    .left h3 {
         font-size: 16px;
+    }
+    .back_button{
+        margin-left: 270px;
+    }
+    .selected_person .persons_details{
+        font-size: 19px;
+    }
+    .info{
+        margin-left: 8px;
+    }
+    .better_team h1, .better_team h2, .line{
+        margin-left: 10px;
     }
 }
