@@ -93,10 +93,11 @@
       font-weight: 400;
     }
   }
-  @media (max-width: 350px) {
+  @media (max-width: 370px) {
     .first_row{
         gap: 16px;
         justify-content: center;
+        margin-right: 10px;
     }
     .third_row{
         gap: 16px;
