@@ -232,7 +232,7 @@
         width: 90%;
         margin-right: 0;
         display: -webkit-inline-box;
-        font-size: 16px;
+        font-size: 20px;
     }
 
     .persons_details.active {
@@ -250,11 +250,11 @@
 
     .success {
         transform: translateY(600%);
-        left: 30%;
+        left: 6%;
     }
 
     .success.active {
-        top: 70%;
+        top: 80%;
     }
 
     .better_team {
