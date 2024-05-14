@@ -1,4 +1,17 @@
+
+/**
+ * Person array to hold contact information.
+ * @type {Array<Object>}
+ */
+
 let person = [];
+
+/**
+ * Initializes the contact management system.
+ * Fetches contacts from the server, sets user initials, and loads contacts.
+ * If the current user is not a default user (ID 999), sets 'You' indicator for the user's contacts.
+ * @returns {Promise<void>}
+ */
 
 async function init() {
     await getContactsFromServer();
@@ -10,6 +23,11 @@ async function init() {
         await setYou_contacts();
     }
 }
+
+/**
+ * Loads contacts onto the web page.
+ * @returns {void}
+ */
 
 async function loadContacts() {
     let content = document.getElementById('person');
@@ -40,6 +58,15 @@ async function loadContacts() {
     content.innerHTML = contactList;
 }
 
+/**
+ * Generates HTML for a contact.
+ * @param {number} i - Index of the current contact.
+ * @param {Object} currentPerson - Information of the current contact.
+ * @param {string} firstLetter - First letter of the contact's first name.
+ * @param {string} secondLetter - First letter of the contact's second name.
+ * @returns {string} HTML for the contact.
+ */
+
 function contactHTML(i, currentPerson, firstLetter, secondLetter) {
     let secondName = currentPerson.name.secondName;
     if (typeof secondName == 'undefined') {
@@ -53,6 +80,11 @@ function contactHTML(i, currentPerson, firstLetter, secondLetter) {
     `;
 }
 
+/**
+ * Sets 'You' indicator for the current user's contacts.
+ * @returns {Promise<void>}
+ */
+
 async function setYou_contacts() {
     await getCurrentUserIdFromServer();
     if (person[currentUserId].name.firstName == currentUser.name.firstName && person[currentUserId].name.secondName == currentUser.name.secondName) {
@@ -60,6 +92,12 @@ async function setYou_contacts() {
         you.innerHTML = "(You)";
     };
 }
+
+/**
+ * Selects a contact.
+ * @param {number} index - Index of the selected contact.
+ * @returns {void}
+ */
 
 function selectPerson(index) {
     let selectedPerson = person[index];
@@ -72,6 +110,13 @@ function selectPerson(index) {
         selectedPersonElement.classList.add('active');
     }, 300);
 }
+
+/**
+ * Generates HTML for the selected contact.
+ * @param {Object} selectedPerson - Information of the selected contact.
+ * @param {number} index - Index of the selected contact.
+ * @returns {string} HTML for the selected contact.
+ */
 
 function selectPersonHTML(selectedPerson, index) {
     return `
@@ -137,6 +182,10 @@ function closeDialog() {
 
 }
 
+/**
+ * Opens the edit/delete window for a contact.
+ * @returns {void}
+ */
 
 function openWindow() {
     const screenWidth = window.innerWidth;
@@ -148,6 +197,10 @@ function openWindow() {
     }
 }
 
+/**
+ * Handles click events.
+ * @returns {void}
+ */
 
 function handleClick() {
     const screenWidth = window.innerWidth;
@@ -161,6 +214,11 @@ function handleClick() {
 }
 window.onload = handleClick;
 window.onresize = handleClick;
+
+/**
+ * Updates the display based on screen width.
+ * @returns {void}
+ */
 
 function updateDisplay() {
     const screenWidth = window.innerWidth;
@@ -180,6 +238,12 @@ window.onload = function () {
 };
 window.onresize = updateDisplay;
 
+/**
+ * Changes the background of a contact element.
+ * @param {HTMLElement} element - The contact element.
+ * @returns {void}
+ */
+
 function changeBackground(element) {
     element.parentElement.querySelectorAll('.persons_details').forEach(function (el) {
         el.classList.remove('active');
@@ -189,6 +253,11 @@ function changeBackground(element) {
         element.classList.add('active');
     }, 100);
 }
+
+/**
+ * Deletes a contact.
+ * @returns {Promise<void>}
+ */
 
 async function deletePerson() {
     let index = parseInt(document.getElementById('selectedPersonIndex').value);
@@ -209,11 +278,22 @@ async function deletePerson() {
     loadContacts(); 
 }
 
+/**
+ * Closes the edit/delete window for a contact.
+ * @returns {void}
+ */
 
 function closePerson() {
     let editPersons = document.getElementById('editPersons');
     editPersons.classList.add('close');
 }
+
+/**
+ * Edits a contact.
+ * @param {number} index - Index of the contact to edit.
+ * @returns {void}
+ */
+
 function editPerson(index) {
     let selectedPerson = person[index];
     let nameInput = document.getElementById('name');
@@ -228,6 +308,12 @@ function editPerson(index) {
     editPersons.classList.remove('close');
     editPersons.classList.add('open');
 }
+
+/**
+ * Creates a new contact.
+ * @param {Event} event - The submit event.
+ * @returns {void}
+ */
 
 async function createContact(event) {
     event.preventDefault();
@@ -274,6 +360,11 @@ async function createContact(event) {
     }
 }
 
+/**
+ * Sorts contacts alphabetically.
+ * @returns {void}
+ */
+
 function sortPerson() {
     person.sort(function (a, b) {
         let nameA = (a.name.firstName + ' ' + a.name.secondName).toUpperCase();
@@ -288,6 +379,10 @@ function sortPerson() {
     });
 }
 
+/**
+ * Saves changes to a contact.
+ * @returns {Promise<void>}
+ */
 
 async function saveChanges() {
     let selectedPersonIndex = parseInt(document.getElementById('selectedPersonIndex').value);
@@ -321,6 +416,11 @@ async function saveChanges() {
     }
 }
 
+/**
+ * Validates the name input for creating a contact.
+ * @returns {boolean} - Returns true if the name input is valid, false otherwise.
+ */
+
 function validateNames() {
     let nameInput = document.getElementById('input_name').value.trim();
     if (nameInput.indexOf(' ') === -1) {
@@ -336,6 +436,12 @@ function validateNames() {
     }
 }
 
+/**
+ * Validates the phone number input.
+ * @param {HTMLInputElement} input - The phone input element.
+ * @returns {void}
+ */
+
 function validatePhone(input) {
     input.value = input.value.replace(/\D/g, '');
     if (!/^\d+$/.test(input.value) || input.value.length < 6) {
@@ -347,6 +453,10 @@ function validatePhone(input) {
     }
 }
 
+/**
+ * Validates the email input.
+ * @returns {void}
+ */
 
 function validateEmail() {
     let emailInput = document.getElementById('input_email').value.trim();
