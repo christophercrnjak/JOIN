@@ -275,7 +275,11 @@ async function deletePerson() {
         document.getElementById('selectedPerson').innerHTML = '';
     }
     backMobile();
-    loadContacts(); 
+    loadContacts();
+
+    contacts_global.splice(index, 1);
+    await setContactsToServer();
+    await getContactsFromServer();
 }
 
 /**
