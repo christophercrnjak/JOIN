@@ -198,6 +198,7 @@ function removeAllInputes() {
   subtasklists = [];
   document.getElementById('titleAddtask').value = '';
   document.getElementById('AddTaskDate').value = '';
+  document.getElementById('description').value = '';
   document.getElementById("categoryDropDownBtn").innerHTML = 'Select task category';
   changePriority('medium');
 }

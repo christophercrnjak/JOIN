@@ -112,7 +112,7 @@ function removeSubtask(subtaskId) {
 function subtasklistHTML(subtask_value, subtaskId) {
   return `
   <div id="subtasklist_element${subtaskId}" class="subtasklist_element" ondblclick="editNewSubtask(${subtaskId})">
-  <div class="subtask_text_content_main">
+  <div id="subtaskText" class="subtask_text_content_main">
     <div class="point">•</div>
     <div class="subtask_text_content">${subtask_value}</div>
   </div>
