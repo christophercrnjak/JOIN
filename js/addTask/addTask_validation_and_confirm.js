@@ -200,5 +200,5 @@ function removeAllInputes() {
   document.getElementById('AddTaskDate').value = '';
   document.getElementById('description').value = '';
   document.getElementById("categoryDropDownBtn").innerHTML = 'Select task category';
-  changePriority('medium');
+  changePriority("Medium");
 }
