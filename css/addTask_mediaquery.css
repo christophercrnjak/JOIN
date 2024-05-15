@@ -67,7 +67,7 @@
 
   .btn_addTask_list {
     width: 100% !important;
-    justify-content: center;
+    justify-content: space-around;
   }
 
   .AddTask_head {
@@ -150,8 +150,8 @@
 
   .requiredField {
     display: flex;
-    margin-bottom: 84px;
     margin-left: 16px;
+    align-self: center;
   }
 }
 
@@ -174,7 +174,7 @@
     margin-top: unset;
     padding-left: unset;
     padding-right: 16px;
-    padding-bottom: 16px;
+    padding-bottom: 96px;
     position: sticky;
     bottom: 0;
     background-color: rgba(246, 247, 248, 1);
@@ -224,7 +224,7 @@
   .requiredField {
     font-size: 14px !important;
     margin-bottom: 17px;
-    margin-left: 0px;
+    margin-left: 12px;
   }
 
   .AddTask_head {

@@ -118,7 +118,7 @@ input[type="date"]:invalid {
 /* Forms */
 .addTaskForm_main {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   width: 100%;
   gap: 50px;
 }
@@ -128,6 +128,7 @@ input[type="date"]:invalid {
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
+  width: 41%;
 }
 
 .addTaskForm span {
@@ -162,11 +163,15 @@ input[type="date"]:invalid {
   border-radius: 10px;
   font-size: 16px;
   height: 136px;
-  width: 440px;
+  /* width: 440px; */
   background-color: white;
   background-position: right 10px center;
   background-repeat: no-repeat;
   padding: 8px 12px;
+}
+
+.description_main {
+  width: 100%;
 }
 
 #description::placeholder {
@@ -174,7 +179,7 @@ input[type="date"]:invalid {
 }
 
 textarea#description {
-  width: 360px;
+  width: 100% !important;
 }
 
 .assigned_to_section_main {
@@ -203,12 +208,13 @@ textarea#description {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  width: 100%;
 }
 
 /* Priority */
 .btn_addTask_list {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 
   gap: 8px;
@@ -222,7 +228,8 @@ textarea#description {
   color: black;
   padding: 16px 18px;
   height: 56px;
-  width: 136px;
+  width: 33%;
+  max-width: 145px;
   border-radius: 10px;
   gap: 8px;
   cursor: pointer;
@@ -306,12 +313,17 @@ textarea#description {
   width: 100%;
   padding-left: 96px;
   padding-right: 96px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.requiredField {
+  align-self: center;
 }
 
 .addTask_btns {
   display: flex;
   gap: 18px;
-  margin-bottom: 79px;
 }
 
 .create_clear_task span {
