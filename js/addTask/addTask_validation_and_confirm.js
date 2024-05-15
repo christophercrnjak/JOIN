@@ -195,10 +195,12 @@ function removeAllInputes() {
   prio = [];
   pushCategory = [];
   subtasklists = [];
+  rendersubtasklist();
   document.getElementById('titleAddtask').value = '';
   document.getElementById('AddTaskDate').value = '';
   document.getElementById('description').value = '';
-  document.getElementById("categoryDropDownBtn").innerHTML = 'Select task category';
+  document.getElementById('categoryDropDownBtn_text').innerHTML = 'Select task category';
+  closeCategoryDropdown();
   changePriority("Medium");
   deleteSelectedContacts()
 }
