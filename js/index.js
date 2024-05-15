@@ -142,7 +142,7 @@ async function handleGuestLogIn() {
 /* Toast Message */
 
 /**
- * Shows the toat message "E-Mail or Password not exist" for 3 seconds.
+ * Shows the toast message "E-Mail or Password not exist" for 3 seconds.
  */
 async function showToastMessage_UserOrMailNotExist() {
   // mail.value = '';
