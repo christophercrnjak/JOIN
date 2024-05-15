@@ -192,7 +192,6 @@ function deleteNewTaskContent() {
  */
 function removeAllInputes() {
   // Remove the Add Task inputs
-  selectedFromDropdown = [];
   prio = [];
   pushCategory = [];
   subtasklists = [];
@@ -201,4 +200,12 @@ function removeAllInputes() {
   document.getElementById('description').value = '';
   document.getElementById("categoryDropDownBtn").innerHTML = 'Select task category';
   changePriority("Medium");
+  deleteSelectedContacts()
+}
+
+function deleteSelectedContacts() {
+  for (let i = 0; i < contacts_addTask.length; i++) {
+    contacts_addTask[i].select_status = false;
+  }
+  renderSelectedContactsRow();
 }
