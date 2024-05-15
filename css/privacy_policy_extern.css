@@ -175,3 +175,8 @@ a{
         display: none;
     }
 }
+@media(max-width:410px){
+    .font{
+        font-size: 34px;
+    }
+}

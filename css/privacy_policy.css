@@ -93,6 +93,7 @@ body {
     font-size: 27px;
     line-height: 32.4px;
     font-weight: 700;
+    word-break: break-all;
 }
 
 .text_line p {
@@ -169,5 +170,13 @@ body {
     .text_line p{
         margin: 0;
     }
-
+    
+}
+@media(max-width:410px){
+    .font{
+        font-size: 34px;
+    }
+    .headline svg{
+        margin-right: 0px;
+    }
 }
