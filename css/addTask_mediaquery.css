@@ -168,7 +168,7 @@
   .create_clear_task {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: baseline;
     width: 100%;
     padding-top: 16px;
     margin-top: unset;
@@ -223,6 +223,8 @@
 
   .requiredField {
     font-size: 14px !important;
+    margin-bottom: 17px;
+    margin-left: 0px;
   }
 
   .AddTask_head {
@@ -239,13 +241,6 @@
 
   .subtask {
     height: 140px;
-  }
-}
-
-@media (max-width: 385px) {
-  .requiredField {
-    margin-bottom: 17px;
-    margin-left: 0px;
   }
 }
 
