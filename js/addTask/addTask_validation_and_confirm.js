@@ -205,7 +205,11 @@ function removeAllInputes() {
 
 function deleteSelectedContacts() {
   for (let i = 0; i < contacts_addTask.length; i++) {
-    contacts_addTask[i].select_status = false;
+    if (contacts_addTask[i].select_status == true) {
+      contacts_addTask[i].select_status = false;
+      document.getElementById(`contact${i}`).classList.remove('selected');
+      document.getElementById(`selected_img${i}`).innerHTML = checkboxHTML_unchecked();
+    }
   }
   renderSelectedContactsRow();
 }
