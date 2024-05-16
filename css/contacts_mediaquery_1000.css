@@ -2,7 +2,6 @@
 
 @media(max-width: 1000px) {
     .container_display_flex {
-        height: unset;
         justify-content: center;
     }
 
