@@ -120,26 +120,26 @@ function renderminDate() {
  */
 function changePriority(priority) {
   resetStyles();
-  if (priority === "Urgend") {
+  if (priority === "Urgent") {
     setPriorityStyles(
       "#FF3D00",
       "#ffff",
       "assets/img/Prio_urgent_white.svg",
-      "urgend"
+      "Urgent"
     );
   } else if (priority === "Medium") {
     setPriorityStyles(
       "#FFA800",
       "#ffff",
       "assets/img/Prio_medium_white.svg",
-      "medium"
+      "Medium"
     );
   } else if (priority === "Low") {
     setPriorityStyles(
       "#7AE229", 
       "#ffff", 
       "assets/img/Prio_low_white.svg", 
-      "low");
+      "Low");
   }
 }
 
