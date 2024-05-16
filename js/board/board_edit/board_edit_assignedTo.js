@@ -130,12 +130,17 @@ function openDropDownList(taskId) {
  * @param {Number} taskId - Index of current called task in tasks[] global array
  */
 function closeDropdownList(taskId) {
-    let container = document.getElementById(`selectedContactsSection`);
-    renderCiclesOfTaskContacts(taskId);
-    if (container !== null) {
-        container.classList.remove('flexDirection');
+    let dropdown_section = document.getElementById('selectedContactsSection');
+    let main_section = document.getElementById('dropdown_main');
+    if (dropdownStatus == true) {
+        rotateArrow();
+        changeTextInInput();
+        renderCiclesOfTaskContacts(taskId);
+        dropdown_section.classList.remove('flexDirection');
+        dropdownStatus = false;
+        main_section.style.boxShadow = 'none';
     }
-    dropdownStatus = false;
+    
 }
 
 /**
