@@ -147,21 +147,21 @@ function changePriority(priority) {
  * Resets the style of each priority-button to white background, black font-color and a colored image of priority
  */
 function resetStyles() {
-  let btnUrgend = document.getElementById("btnUrgend");
+  let btnUrgent = document.getElementById("btnUrgent");
   let btnMedium = document.getElementById("btnMedium");
   let btnLow = document.getElementById("btnLow");
-  let imgUrgend = document.getElementById("btnUrgendImg");
+  let imgUrgent = document.getElementById("btnUrgentImg");
   let imgMedium = document.getElementById("btnMediumImg");
   let imgLow = document.getElementById("btnLowImg");
-  let buttons = [btnUrgend, btnMedium, btnLow];
-  let images = [imgUrgend, imgMedium, imgLow];
+  let buttons = [btnUrgent, btnMedium, btnLow];
+  let images = [imgUrgent, imgMedium, imgLow];
   buttons.forEach(function (button) {
     button.style.backgroundColor = "#ffff";
     button.style.color = "black";
     button.style.fontWeight = "400";
   });
   images.forEach(function (image) {
-    if (image.id === "btnUrgendImg") {
+    if (image.id === "btnUrgentImg") {
       image.src = "assets/img/Prio_urgent_color_origin.svg";
     } else if (image.id === "btnMediumImg") {
       image.src = "assets/img/Prio_medium_color_origin.svg";
