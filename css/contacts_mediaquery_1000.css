@@ -2,6 +2,7 @@
 
 @media(max-width: 1000px) {
     .container_display_flex {
+        height: unset;
         justify-content: center;
     }
 
@@ -184,7 +185,7 @@
         justify-content: center;
         overflow-y: unset;
         height: 100%;
-        padding-bottom: 80px;
+        padding-bottom: 150px;
         margin-top: 80px;
     }
 
