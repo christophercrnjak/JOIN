@@ -34,7 +34,6 @@ function renderAddTaskDialog() {
     renderCategoryAddTaskDialog();
     renderSubtasksEditDialog_addTask();
     renderCommitSection_addTask();
-    document.getElementById('task_dialog_container').style.width = 'fit-content';
     document.getElementById('task_dialog_container').style.paddingTop = '64px';
 }
 

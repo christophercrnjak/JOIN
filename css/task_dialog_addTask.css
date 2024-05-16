@@ -387,6 +387,37 @@
             padding-top: 48px !important;
         }
     }
+@media(max-width:550px){
+
+    .task_dialog{
+        width: 460px;
+    }
+    .confirm_btn_edit{
+        margin-left: 330px;
+    }
+}
+
+@media (max-width:480px) {
+        .toastMessageAddTask {
+            top: 146px;
+            right: -135px;
+            transform: translate(-50%, -50%);
+        }
+
+        .addTask_dialog_box_content_left {
+            width: 100%;
+        }
+
+        .addTask_dialog_box_content_right {
+            width: 100%;
+        }
+        .task_dialog{
+            width: 380px;
+        }
+        .confirm_btn_edit{
+            margin-left: 250px;
+        }
+    }
 
     @media (max-width: 385px) {
         .toastMessageAddTask {
@@ -410,20 +441,15 @@
         .btn_addTask_list a {
         font-size: 12px;
     }
+    .btn_addTask_list{
+        justify-content: unset;
+        gap: 8px;
     }
-
-    @media (max-width: 480px) {
-        .toastMessageAddTask {
-            top: 146px;
-            right: -135px;
-            transform: translate(-50%, -50%);
-        }
-
-        .addTask_dialog_box_content_left {
-            width: 100%;
-        }
-
-        .addTask_dialog_box_content_right {
-            width: 100%;
-        }
     }
+@media(max-width:370px){
+    .confirm_btn_edit{
+        margin-left: 190px;
+    }
+}
+
+    
