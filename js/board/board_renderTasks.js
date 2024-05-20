@@ -131,17 +131,26 @@ function taskHTML(task, taskId) {
     let description = task.description;
     let status = task.status;
     return /*html */`
-        <article id="task${taskId}" onclick="openTaskDetailsDialog(${taskId})" draggable="true" ondragstart="startDragging(${taskId}, '${status}')" ondragend="deleteBorderStyles()"   class="task">
-            <div id="task_category${taskId}" class="task_category">${category}</div>
-            <div class="task_title">${title}</div>
-            <div id="task_description${taskId}" class="task_description">${description}</div>
-            <div id="task_progressbar${taskId}" class="task_progress"></div>
-            <div class="task_members_prio">
-                <div id="task_member_section${taskId}" class="task_members"></div>
-            <div id="prio_icon${taskId}" class="task_prio">
-                <img src="" alt="">
-            </div>
-        </article>
+    <article 
+    id="task${taskId}" 
+    onclick="openTaskDetailsDialog(${taskId})" 
+    draggable="true" 
+    ondragstart="startDragging(${taskId}, '${status}', event)" 
+    ondragend="deleteBorderStyles()" 
+    ontouchstart="touchStart(${taskId}, '${status}', event)" 
+    ontouchend="touchEnd(event)" 
+    class="task">
+    <div id="task_category${taskId}" class="task_category">${category}</div>
+    <div class="task_title">${title}</div>
+    <div id="task_description${taskId}" class="task_description">${description}</div>
+    <div id="task_progressbar${taskId}" class="task_progress"></div>
+    <div class="task_members_prio">
+        <div id="task_member_section${taskId}" class="task_members"></div>
+        <div id="prio_icon${taskId}" class="task_prio">
+            <img src="" alt="">
+        </div>
+    </div>
+</article>
     `
 }
 

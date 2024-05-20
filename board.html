@@ -98,7 +98,7 @@
         <section class="board_content_main">
             <div class="board_content">
                 <!-- To do -->
-                <div class="board_column" ondrop="moveTo('toDo')" ondragover="allowDrop(event)">
+                <div class="board_column" ondrop="moveTo('toDo')" ondrop="drop(event)" ondragover="allowDrop(event)">
                     <div class="column_head_main">
                         <div class="column_head">
                             <div class="column_head_text">To do</div>
@@ -122,7 +122,7 @@
                 </div>
 
                 <!-- In progress -->
-                <div class="board_column" ondrop="moveTo('inProgress')" ondragover="allowDrop(event)">
+                <div class="board_column" ondrop="moveTo('inProgress')" ondrop="drop(event)" ondragover="allowDrop(event)">
                     <div class="column_head_main">
                         <div class="column_head">
                             <div class="column_head_text">In progress</div>
@@ -146,7 +146,7 @@
                 </div>
 
                 <!-- Await feedback -->
-                <div class="board_column" ondrop="moveTo('awaitFeedback')" ondragover="allowDrop(event)">
+                <div class="board_column" ondrop="moveTo('awaitFeedback')" ondrop="drop(event)" ondragover="allowDrop(event)">
                     <div class="column_head_main">  
                         <div class="column_head">
                             <div class="column_head_text">Await feedback</div>
@@ -170,7 +170,7 @@
                 </div>
 
                 <!-- Done -->
-                <div class="board_column" ondrop="moveTo('done')" ondragover="allowDrop(event)">
+                <div class="board_column" ondrop="moveTo('done')" ondrop="drop(event)" ondragover="allowDrop(event)">
                     <div class="column_head_main">
                         <div class="column_head">
                             <div class="column_head_text">Done</div>
