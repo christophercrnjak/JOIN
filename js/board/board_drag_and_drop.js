@@ -105,20 +105,6 @@ function touchStart(taskId, status, event) {
     startDragging(taskId, status, event);
 }
 
-// neu:
-/**
- * Handles the movement of a touch event for a task.
- * @param {TouchEvent} event - The event object representing the touch move event.
- */
-function touchMove(event) {
-    event.preventDefault(); // Prevent scrolling
-    let touch = event.touches[0];
-    let taskElement = document.getElementById(`task${currentDraggedElement}`);
-    taskElement.style.position = 'absolute';
-    taskElement.style.left = `${touch.clientX - touchStartX}px`;
-    taskElement.style.top = `${touch.clientY - touchStartY}px`;
-}
-
 /**
  * Handles the end of a touch event, determining if it should be treated as a click or a drag.
  * @param {TouchEvent} event - The event object representing the touch end event.
@@ -129,9 +115,7 @@ function touchEnd(event) {
     let deltaX = touchEndX - touchStartX;
     let deltaY = touchEndY - touchStartY;
 
-    // neu:
-    let taskElement = document.getElementById(`task${currentDraggedElement}`);
-    taskElement.style.position = 'static'; // Reset position
+    
 
     if (Math.abs(deltaX) < 10 && Math.abs(deltaY) < 10) {
         // Treat as a click
@@ -144,6 +128,3 @@ function touchEnd(event) {
         moveTo(status);
     }
 }
-
-// neu:
-document.addEventListener('touchmove', touchMove);
