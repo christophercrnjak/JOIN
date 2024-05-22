@@ -51,6 +51,8 @@ function markAddableColumns(status) {
 async function moveTo(status) {
     tasks[currentDraggedElement].status = status;
     await setAndGetToServer();
+    deleteBorderStyles();
+    document.getElementById('status_bar_id').style.display = 'none';
     init_board();
 }
 
