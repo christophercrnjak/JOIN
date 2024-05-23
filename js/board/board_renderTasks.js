@@ -138,7 +138,6 @@ function taskHTML(task, taskId) {
     ondragstart="startDragging(${taskId}, '${status}', event)" 
     ondragend="deleteBorderStyles()" 
     ontouchstart="touchStart(${taskId}, '${status}', event)" 
-    ontouchmove="touchMove(event)" 
     ontouchend="touchEnd(event)" 
     class="task">
     <div id="task_category${taskId}" class="task_category">${category}</div>

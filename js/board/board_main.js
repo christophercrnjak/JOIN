@@ -14,6 +14,7 @@ let currentDraggedElement;
 let dialog_status = 'inactive';
 
 
+
 /**
  * Load content of tasks.json in global array tasks[]. 
  * Initialize rendering content of Kanban Board.

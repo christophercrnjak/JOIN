@@ -103,7 +103,9 @@ function allowDrop(event) {
 function touchStart(taskId, status, event) {
     touchStartX = event.touches[0].clientX;
     touchStartY = event.touches[0].clientY;
+    document.body.style.overflowY = "hidden";
     startDragging(taskId, status, event);
+
 }
 
 /**
@@ -115,6 +117,7 @@ function touchEnd(event) {
     let touchEndY = event.changedTouches[0].clientY;
     let deltaX = touchEndX - touchStartX;
     let deltaY = touchEndY - touchStartY;
+    document.body.style.overflowY = "auto";
 
     
 
