@@ -137,6 +137,7 @@ function taskHTML(task, taskId) {
     draggable="true" 
     ondragstart="startDragging(${taskId}, '${status}', event)" 
     ondragend="deleteBorderStyles()" 
+    ontouchmove="handleTouchMove(event, ${taskId})"
     ontouchstart="touchStart(${taskId}, '${status}', event)" 
     ontouchend="touchEnd(event)" 
     class="task">

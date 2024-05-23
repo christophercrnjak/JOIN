@@ -1,5 +1,6 @@
 let touchStartX = 0;
 let touchStartY = 0;  
+let dragging = false;
 
 /**
  * Handles the start of a dragging event for a task.
@@ -30,7 +31,9 @@ function startDragging(taskId, status, event) {
 function touchStart(taskId, status, event) {
     touchStartX = event.touches[0].clientX;
     touchStartY = event.touches[0].clientY;
+    dragging = true;
     startDragging(taskId, status, event);
+    event.preventDefault();
 }
 
 /**
@@ -38,6 +41,7 @@ function touchStart(taskId, status, event) {
  * @param {TouchEvent} event - The event object representing the touch end event.
  */
 function touchEnd(event) {
+    dragging = false;
     let touchEndX = event.changedTouches[0].clientX;
     let touchEndY = event.changedTouches[0].clientY;
     let deltaX = touchEndX - touchStartX;
@@ -52,6 +56,43 @@ function touchEnd(event) {
         moveTo(status);
     }
     deleteBorderStyles();
+    event.preventDefault();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    let dropZone_toDo = document.getElementById('status_toDo');
+    dropZone_toDo.addEventListener('touchstart', function() {
+        this.classList.add('status_selected');
+    });
+
+    dropZone_toDo.addEventListener('touchend', function() {
+        this.classList.remove('status_selected');
+    });
+});
+
+function handleTouchMove(event, taskId) {
+    if (!dragging) return;
+
+    let touch = event.touches[0];
+
+    let dragItem = document.getElementById(`task${taskId}`);
+    dragItem.style.left = touch.pageX - dragItem.offsetWidth / 2 + 'px';
+    dragItem.style.top = touch.pageY - dragItem.offsetHeight / 2 + 'px';
+
+    let dropZone = document.getElementById('status_toDo');
+    let dropRect = dropZone.getBoundingClientRect();
+    let dragRect = dragItem.getBoundingClientRect();
+
+    if (dragRect.left >= dropRect.left &&
+        dragRect.right <= dropRect.right &&
+        dragRect.top >= dropRect.top &&
+        dragRect.bottom <= dropRect.bottom) {
+        dropZone.classList.add('status_selected');
+    } else {
+        dropZone.classList.remove('status_selected');
+    }
+
+    event.preventDefault();
 }
 
 // task0.addEventListener('touchstart', (event) => {
