@@ -60,6 +60,7 @@ function touchEnd(event) {
     }
     deleteBorderStyles();
     event.preventDefault();
+    init_board();
 }
 
 document.addEventListener('DOMContentLoaded', function() {
