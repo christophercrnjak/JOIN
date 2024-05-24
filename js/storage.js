@@ -314,7 +314,9 @@ async function creatNewUserIntern(firstName, secondName, mail, password) {
   await getAccountsFromServer();
 }
 
-
+/**
+ * status of new task.
+ */
 statusBymobile_addTask_board = "toDo";
 
 /**

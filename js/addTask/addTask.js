@@ -1,5 +1,3 @@
-
-
 /**
  * Copy of contacts_global (server based contact list)
  * 
@@ -259,4 +257,3 @@ function pushCategoryInTo(element) {
   pushCategory = element;
   closeCategoryDropdown();
 }
-

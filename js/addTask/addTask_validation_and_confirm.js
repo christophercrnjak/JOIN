@@ -166,7 +166,7 @@ function getSubtask() {
 }
 
 /**
- * Saves the subtasks to the new task.
+ * Saves the status of the new task.
  */
 async function getStatus() {
   await getStatusFromServer();
@@ -216,6 +216,9 @@ function removeAllInputes() {
   deleteSelectedContacts()
 }
 
+/**
+ * Deletes the selected Contacts.
+ */
 function deleteSelectedContacts() {
   for (let i = 0; i < contacts_addTask.length; i++) {
     if (contacts_addTask[i].select_status == true) {
