@@ -63,13 +63,15 @@ function touchEnd(event) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    let dropZone_toDo = document.getElementById('status_toDo');
-    dropZone_toDo.addEventListener('touchstart', function() {
-        this.classList.add('status_selected');
-    });
-
-    dropZone_toDo.addEventListener('touchend', function() {
-        this.classList.remove('status_selected');
+    let dropZones = document.getElementsByClassName('status');
+    Array.from(dropZones).forEach(dropZone => {
+        dropZone.addEventListener('touchstart', function(event) {
+            this.classList.add('status_selected');
+            touchStart(this.id.split('_')[1], '', event);
+        });
+        dropZone.addEventListener('touchend', function() {
+            this.classList.remove('status_selected');
+        });
     });
 });
 
@@ -90,11 +92,18 @@ function handleTouchMove(event) {
     if (dragRect.left >= dropRect.left &&
         dragRect.right <= dropRect.right &&
         dragRect.top >= dropRect.top &&
-        dragRect.bottom <= dropRect.bottom) {
-        dropZone.classList.add('status_selected');
-    } else {
-        dropZone.classList.remove('status_selected');
-    }
+        dragRect.bottom <= dropRect.bottom);
+  
+    let dropZones = document.getElementsByClassName('status');
+            Array.from(dropZones).forEach(dropZone => {
+                let dropRect = dropZone.getBoundingClientRect();
+                if (touch.clientX > dropRect.left && touch.clientX < dropRect.right &&
+                    touch.clientY > dropRect.top && touch.clientY < dropRect.bottom) {
+                    dropZone.classList.add('status_selected');
+                } else {
+                    dropZone.classList.remove('status_selected');
+                }
+            });
 
     event.preventDefault();
 }
