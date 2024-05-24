@@ -120,7 +120,10 @@ async function closeDialog(taskId) {
 /**
  * Link to the add task html site.
  */
-function redirectToTaskPage() {
+async function redirectToTaskPage(status) {
+    statusBymobile_addTask_board = status;
+    await setStatusToServer();
+    await getStatusFromServer();
     window.location.href = "addTask.html";
 }
 

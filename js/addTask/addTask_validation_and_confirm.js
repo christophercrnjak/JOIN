@@ -9,7 +9,7 @@ let newTask = {
   "dueDate": "",
   "priority": "",
   "subtasks": [],
-  "status": "toDo"
+  "status": "",
 };
 
 /**
@@ -104,6 +104,7 @@ async function getAllSettingsOfNewTask() {
   await getContacts();
   await getPrio();
   await getSubtask();
+  await getStatus();
 }
 
 /**
@@ -165,6 +166,14 @@ function getSubtask() {
 }
 
 /**
+ * Saves the subtasks to the new task.
+ */
+async function getStatus() {
+  await getStatusFromServer();
+  newTask.status = statusBymobile_addTask_board;
+}
+
+/**
  * Pushes the new task to the main tasks array.
  */
 function pushNewTaskToTasks() {
@@ -174,7 +183,7 @@ function pushNewTaskToTasks() {
 /**
  * Resets the newTask array.
  */
-function deleteNewTaskContent() {
+async function deleteNewTaskContent() {
   newTask = {
     "title": "",
     "description": "",
@@ -183,8 +192,10 @@ function deleteNewTaskContent() {
     "dueDate": "",
     "priority": "",
     "subtasks": [],
-    "status": "toDo"
+    "status": ""
   }
+  statusBymobile_addTask_board = "toDo";
+  await setStatusToServer();
 }
 
 /**

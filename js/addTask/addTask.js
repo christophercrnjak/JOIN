@@ -1,3 +1,5 @@
+
+
 /**
  * Copy of contacts_global (server based contact list)
  * 
@@ -53,6 +55,7 @@ async function addTaskInit() {
   await setUserInitialsAtHeader();
   await loadContactsServer()
   await getTasksFromServer();
+  await getStatusFromServer();
   addSelectstatusToContacts();
   renderDropList();
   renderCategoryDropDown();

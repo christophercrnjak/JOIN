@@ -313,3 +313,27 @@ async function creatNewUserIntern(firstName, secondName, mail, password) {
   await setItem('users', accounts);
   await getAccountsFromServer();
 }
+
+
+statusBymobile_addTask_board = "toDo";
+
+/**
+ * Push status for new task to Server
+ */
+async function setStatusToServer() {
+  await setItem('status', statusBymobile_addTask_board);   
+}
+
+/**
+ * Load status for new task from Server 
+ */
+async function getStatusFromServer() {
+  try {
+    let ServerData;
+    ServerData = await getItem('status');
+    let newData = ServerData.data.value;
+    statusBymobile_addTask_board = newData;
+  } catch (e) {
+    console.warn("Could not load status for new task!");
+  }
+}
