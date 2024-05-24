@@ -1,6 +1,7 @@
 let touchStartX = 0;
 let touchStartY = 0;  
 let dragging = false;
+let currentTaskId = null;
 
 /**
  * Handles the start of a dragging event for a task.
@@ -32,6 +33,7 @@ function touchStart(taskId, status, event) {
     touchStartX = event.touches[0].clientX;
     touchStartY = event.touches[0].clientY;
     dragging = true;
+    currentTaskId = taskId;
     startDragging(taskId, status, event);
     event.preventDefault();
 }
@@ -42,6 +44,7 @@ function touchStart(taskId, status, event) {
  */
 function touchEnd(event) {
     dragging = false;
+    currentTaskId = null;
     let touchEndX = event.changedTouches[0].clientX;
     let touchEndY = event.changedTouches[0].clientY;
     let deltaX = touchEndX - touchStartX;
@@ -70,12 +73,13 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-function handleTouchMove(event, taskId) {
-    if (!dragging) return;
+function handleTouchMove(event) {
+    if (!dragging || !currentTaskId) return;
 
     let touch = event.touches[0];
 
-    let dragItem = document.getElementById(`task${taskId}`);
+    let dragItem = document.getElementById(`task${currentTaskId}`);
+    dragItem.style.position = 'absolute';
     dragItem.style.left = touch.pageX - dragItem.offsetWidth / 2 + 'px';
     dragItem.style.top = touch.pageY - dragItem.offsetHeight / 2 + 'px';
 
@@ -94,6 +98,10 @@ function handleTouchMove(event, taskId) {
 
     event.preventDefault();
 }
+
+// Attach touchmove and touchend event listeners to the document
+document.addEventListener('touchmove', handleTouchMove);
+document.addEventListener('touchend', touchEnd);
 
 // task0.addEventListener('touchstart', (event) => {
 //     const touch = event.touches[0];
