@@ -113,33 +113,25 @@ function handleTouchMove(event) {
 document.addEventListener('touchmove', handleTouchMove);
 document.addEventListener('touchend', touchEnd);
 
-// task0.addEventListener('touchstart', (event) => {
-//     const touch = event.touches[0];
-//     const rect = draggable.getBoundingClientRect();
-//     touchStartX = touch.clientX - rect.left;
-//     touchStartY = touch.clientY - rect.top;
-// })
+/**
+ * Handles the click event for addTask button in column "to Do" in mobile mode.
+ */
+document.addEventListener('DOMContentLoaded', function() {
+    const buttons = document.querySelectorAll('.column_head_add_btn_mobile');
 
-// task0.addEventListener('touchmove', (event) => {
-//     event.preventDefault(); // Prevent the default scrolling behavior
-//     const touch = event.touches[0];
-//     draggable.style.left = `${touch.clientX - touchStartX}px`;
-//     draggable.style.top = `${touch.clientY - touchStartY}px`;
-//     const dropRect = dropzone.getBoundingClientRect();
-//     if (touch.clientX > dropRect.left && touch.clientX < dropRect.right &&
-//         touch.clientY > dropRect.top && touch.clientY < dropRect.bottom) {
-//         dropzone.classList.add('highlight');
-//     } else {
-//         dropzone.classList.remove('highlight');
-//     }
-// })
+    const handleClick = function(event) {
+        if (window.innerWidth <= 1000) {
+            const status = event.currentTarget.getAttribute('data-status');
+            redirectToTaskPage(status);
+        }
+    };
 
-// task0.addEventListener('touchend', (event) => {
-//     const touch = event.changedTouches[0];
-//     const dropRect = dropzone.getBoundingClientRect();
-//     if (touch.clientX > dropRect.left && touch.clientX < dropRect.right &&
-//         touch.clientY > dropRect.top && touch.clientY < dropRect.bottom) {
-//         alert('Dropped in the dropzone!');
-//     }
-//     dropzone.classList.remove('highlight');
-// });
+    buttons.forEach(button => {
+        button.addEventListener('click', handleClick);
+        button.addEventListener('touchstart', function(event) {
+            event.preventDefault(); // Prevent the default touch behavior to ensure the function is called
+            handleClick(event);
+        });
+    });
+});
+
