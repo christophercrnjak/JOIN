@@ -186,20 +186,18 @@
     font-size: 16px;
   }
 
+  .create_clear_task {
+    padding-bottom: 60px;
+  }
+
   .addTask_btn {
     padding: 8px !important;
+    margin-bottom: 20px !important;
   }
 
   .requiredField {
     font-size: 12px;
-  }
-
-  .addTask_btns {
-    margin-bottom: 58px !important;
-  }
-
-  .requiredField {
-    margin-bottom: 58px !important;
+    margin-bottom: 20px !important;
   }
 
   .AddTask_head {
