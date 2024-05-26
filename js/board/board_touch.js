@@ -35,7 +35,7 @@ function touchStart(taskId, status, event) {
     dragging = true;
     currentTaskId = taskId;
     startDragging(taskId, status, event);
-    event.preventDefault();
+    
 }
 
 /**
